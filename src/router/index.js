@@ -22,7 +22,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "login" */ '../views/account/TermsOfService.vue'),
         meta: {
-            title: 'Churchplus - Terms Of Use',
+            title: 'SendiT - Terms Of Use',
         }
     },
 
@@ -32,7 +32,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "login" */ '../views/account/Login.vue'),
         meta: {
-            title: 'Churchplus - Login',
+            title: 'SendiT - Login',
         }
     },
     {
@@ -41,7 +41,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "PublicResetPassword" */ '../views/account/PublicResetPassword.vue'),
         meta: {
-            title: 'Churchplus - Admin Reset Password',
+            title: 'SendiT - Admin Reset Password',
         }
     },
     {
@@ -50,7 +50,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "register" */ '../views/account/Register.vue'),
         meta: {
-            title: 'Churchplus - Register',
+            title: 'SendiT - Register',
         }
     },
 
@@ -60,7 +60,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "onboarding" */ '../views/account/OnboardingForm.vue'),
         meta: {
-            title: 'Churchplus - Onboarding',
+            title: 'SendiT - Onboarding',
         }
     },
     {
@@ -69,7 +69,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "startingpoint" */ '../views/onboarding/StartingPoint.vue'),
         meta: {
-            title: 'Churchplus - Start Point',
+            title: 'SendiT - Start Point',
         }
     },
     {
@@ -78,7 +78,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "startingdashboard" */ '../views/onboarding/StartingDashboard.vue'),
         meta: {
-            title: 'Churchplus - Starting Board',
+            title: 'SendiT - Starting Board',
         }
     },
     {
@@ -91,7 +91,7 @@ const routes = [
         path: '/forgotpassword',
         name: 'ForgotPassword',
         meta: {
-            title: 'Churchplus - Forgot Password',
+            title: 'SendiT - Forgot Password',
         },
         component: () =>
             import( /* webpackChunkName: "forgotpassword" */ '../views/account/ForgotPassword.vue')
@@ -100,7 +100,7 @@ const routes = [
         path: '/resetpassword',
         name: 'ResetPassword',
         meta: {
-            title: 'Churchplus - Reset Password',
+            title: 'SendiT - Reset Password',
         },
         component: () =>
             import( /* webpackChunkName: "resetpassword" */ '../views/account/ResetPassword.vue')
@@ -109,7 +109,7 @@ const routes = [
         path: '/emailsent/:email',
         name: 'EmailSent',
         meta: {
-            title: 'Churchplus - Reset Email Confirmation',
+            title: 'SendiT - Reset Email Confirmation',
         },
         component: () =>
             import( /* webpackChunkName: "emailsent" */ '../views/account/EmailSent.vue')
@@ -126,10 +126,10 @@ const routes = [
             component: () =>
                 import( /* webpackChunkName: "dashboard" */ '../views/dashboard/ChurchDashboard.vue'),
             meta: {
-                title: 'Churchplus - Dashboard',
+                title: 'SendiT - Dashboard',
                 metaTags: [{
                     name: 'description',
-                    content: 'The home page of Churchplus app.'
+                    content: 'The home page of SendiT app.'
                 },
                     // {
                     // property: 'og:description',
@@ -143,7 +143,7 @@ const routes = [
             path: 'subscription',
             name: 'Subscription',
             meta: {
-                title: 'Churchplus - Subscription',
+                title: 'SendiT - Subscription',
             },
             component: () =>
                 import( /* webpackChunkName: "dashboard" */ '../views/dashboard/Subscription.vue')
@@ -157,7 +157,7 @@ const routes = [
                 {
                     path: '',
                     meta: {
-                        title: 'Churchplus - Church Members',
+                        title: 'SendiT - Church Members',
                     },
                     component: () =>
                         import( /* webpackChunkName: "peopleempty" */ '../views/people/PeopleEmpty.vue')
@@ -165,7 +165,7 @@ const routes = [
                 {
                     path: 'import',
                     meta: {
-                        title: 'Churchplus - Import Members',
+                        title: 'SendiT - Import Members',
                     },
                     component: () =>
                         import( /* webpackChunkName: "importpeople" */ '../views/people/ImportPeople.vue'),
@@ -175,7 +175,7 @@ const routes = [
                     path: 'addfirsttimer',
                     name: 'AddFirstTimer',
                     meta: {
-                        title: 'Churchplus - First Timer Form',
+                        title: 'SendiT - First Timer Form',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/people/AddFirstTimer.vue')
@@ -184,7 +184,7 @@ const routes = [
                     path: 'addnewconvert',
                     name: 'AddNewConvert',
                     meta: {
-                        title: 'Churchplus - New Convert Form',
+                        title: 'SendiT - New Convert Form',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/people/AddNewConvert.vue')
@@ -193,7 +193,7 @@ const routes = [
                     path: 'add/:personId?',
                     name: 'AddPerson',
                     meta: {
-                        title: 'Churchplus - Member Form',
+                        title: 'SendiT - Member Form',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addperson" */ '../views/people/AddPerson.vue')
@@ -201,7 +201,7 @@ const routes = [
                 {
                     path: 'addfirsttimer/:firstTimerId?',
                     meta: {
-                        title: 'Churchplus - First Timer Form',
+                        title: 'SendiT - First Timer Form',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/people/AddFirstTimer.vue')
@@ -214,7 +214,7 @@ const routes = [
             path: 'firsttimermanagement/:personId?',
             name: 'FirsttimerManagement',
             meta: {
-                title: 'Churchplus - First Timer CRM',
+                title: 'SendiT - First Timer CRM',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/people/firsttimer_crm/Index.vue')
@@ -223,7 +223,7 @@ const routes = [
         // {
         //     path: 'branch',
         //     meta: {
-        //         title: 'Churchplus - Branch'
+        //         title: 'SendiT - Branch'
         //     },
         //     component: () =>
         //         import ( /* webpackChunkName: "addfirsttimer" */ '../views/branch/FirstTimer'),
@@ -241,7 +241,7 @@ const routes = [
         {
             path: 'reports',
             meta: {
-                title: 'Churchplus - Reports',
+                title: 'SendiT - Reports',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Reports.vue'),
@@ -249,7 +249,7 @@ const routes = [
                 {
                     path: '',
                     meta: {
-                        title: 'Churchplus - Report',
+                        title: 'SendiT - Report',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Index.vue'),
@@ -259,7 +259,7 @@ const routes = [
                     path: 'membershipreport',
                     name: "MemberShipReport",
                     meta: {
-                        title: 'Churchplus - Membership Report',
+                        title: 'SendiT - Membership Report',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Membershipreport/MemberShipReport.vue')
@@ -269,7 +269,7 @@ const routes = [
                     path: 'firsttimersreport',
                     name: "FirstTimersReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Membershipreport/firstTimersReport.vue')
@@ -278,7 +278,7 @@ const routes = [
                     path: 'newconvertreport',
                     name: "NewConvertReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /*webpackChunkName: "addfirsttimer" */ '../views/Reports/Membershipreport/NewConvertReport.vue')
@@ -287,7 +287,7 @@ const routes = [
                     path: 'celebrationsreport',
                     name: "CelebrationsReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Membershipreport/BirthdayReport.vue')
@@ -296,7 +296,7 @@ const routes = [
                     path: 'attendancereport',
                     name: "CheckinAttendanceReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Performancereport/CheckinAttendanceReport.vue')
@@ -305,7 +305,7 @@ const routes = [
                     path: 'firsttimerperformancereport',
                     name: "FirstTimerPerformanceReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "firsttimerperformance" */ '../views/Reports/Performancereport/FirstTimerPerformanceReport.vue')
@@ -314,7 +314,7 @@ const routes = [
                     path: 'summaryreport',
                     name: "SummaryReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "summaryreport" */ '../views/Reports/Performancereport/SummaryReport.vue')
@@ -324,7 +324,7 @@ const routes = [
                     path: 'overallsummaryreport/:id?',
                     name: "DailySummaryReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "overallsummary" */ '../views/Reports/Performancereport/DailySummaryReport.vue')
@@ -334,7 +334,7 @@ const routes = [
                     path: 'attendanceperformancereport',
                     name: "AttendancePerformanceReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "performancereport" */ '../views/Reports/Performancereport/AttendancePerformanceReport.vue')
@@ -344,7 +344,7 @@ const routes = [
                     path: 'groupattendancereport',
                     name: "GroupAttendanceReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "presentabsentreport" */ '../views/Reports/Performancereport/GroupAttendanceReport.vue')
@@ -354,7 +354,7 @@ const routes = [
                     path: 'summarygroupattendancereport',
                     name: "GroupSummaryAttendanceReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "presentabsentreport" */ '../views/Reports/Performancereport/GroupSummaryAttendanceReport.vue')
@@ -365,7 +365,7 @@ const routes = [
                     path: 'newconvertperformancereport',
                     name: "NewConvertPerformanceReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Performancereport/NewConvertPerformanceReport.vue')
@@ -375,7 +375,7 @@ const routes = [
                     path: 'accountingtransactionreport',
                     name: "FinancialTransactionReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
 
@@ -385,7 +385,7 @@ const routes = [
                     path: 'expensereport',
                     name: "BasicExpenseReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
 
@@ -395,7 +395,7 @@ const routes = [
                     path: 'incomestatementreport',
                     name: "IncomeStatementReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
 
@@ -419,7 +419,7 @@ const routes = [
                     path: 'financialactivitiesbalance',
                     name: "financialActivitiesBalance",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
 
@@ -429,7 +429,7 @@ const routes = [
                     path: 'weddinganniversaryreport',
                     name: "weddinganniversaryreport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
 
@@ -439,7 +439,7 @@ const routes = [
                     path: 'statementofactivity',
                     name: "StatementOfActivity",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Financialreport/StatementOfActivity.vue')
@@ -448,7 +448,7 @@ const routes = [
                     path: 'incomereport',
                     name: "IncomeReport",
                     meta: {
-                        title: 'Churchplus - Reports',
+                        title: 'SendiT - Reports',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Financialreport/IncomeReport.vue')
@@ -460,7 +460,7 @@ const routes = [
             path: 'branches',
             name: "singleBranch",
             meta: {
-                title: 'Churchplus - Branch',
+                title: 'SendiT - Branch',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/singleBranch'),
@@ -470,7 +470,7 @@ const routes = [
                     path: 'summary',
                     name: "singleBranchSummary",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/singleBranchSummary')
@@ -481,7 +481,7 @@ const routes = [
                     path: 'members_branch',
                     name: "MemberBranch",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/subpages/People.vue')
@@ -492,7 +492,7 @@ const routes = [
                     path: 'branch_communication',
                     name: "BranchCommunication",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/subpages/BranchCommunication.vue')
@@ -503,7 +503,7 @@ const routes = [
                     path: 'branchattendance',
                     name: "BranchAttendanc",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                     import( /* webpackChunkName: "branchattendance" */ '../views/branch/subpages/BranchAttendance.vue')
@@ -514,7 +514,7 @@ const routes = [
                     path: 'branchtransaction',
                     name: "BranchTransaction",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                     import( /* webpackChunkName: "branchtransactions" */ '../views/branch/subpages/BranchTransactions.vue')
@@ -525,7 +525,7 @@ const routes = [
                     path: 'branchreport',
                     name: "BranchRepot",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                     import( /* webpackChunkName: "branchreport" */ '../views/branch/report/BranchReport.vue')
@@ -536,7 +536,7 @@ const routes = [
                 //     path: 'branchincomestatementreport',
                 //     name: "BranchIncomeStatement",
                 //     meta: {
-                //         title: 'Churchplus - Branch',
+                //         title: 'SendiT - Branch',
                 //     },
                 //     component: () =>
                 //     import( /* webpackChunkName: "branchreport" */ '../views/branch/report/financialReport/BranchIncomeStatement.vue')
@@ -549,7 +549,7 @@ const routes = [
             path: 'branch',
             name: "Branch",
             meta: {
-                title: 'Churchplus - Branch',
+                title: 'SendiT - Branch',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/Branch'),
@@ -559,7 +559,7 @@ const routes = [
                     path: 'branchsummary',
                     name: "BranchSummary",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/BranchSummary')
@@ -570,7 +570,7 @@ const routes = [
                     path: 'mainbranchsummary',
                     name: "MainBranch",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/MainBranch')
@@ -581,7 +581,7 @@ const routes = [
                     path: 'addbranch',
                     name: "AddBranch",
                     meta: {
-                        title: 'Churchplus - Branch',
+                        title: 'SendiT - Branch',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addfirsttimer" */ '../views/branch/AddBranch')
@@ -632,7 +632,7 @@ const routes = [
                 //     path: 'branch_people',
                 //     name: "BranchPeoples",
                 //     meta: {
-                //         title: 'Churchplus - Members',
+                //         title: 'SendiT - Members',
                 //     },
                 //     component: () =>
                 //         import ( /* webpackChunkName: "people" */ '../views/people/People.vue'),
@@ -653,7 +653,7 @@ const routes = [
                 //     path: 'firsttimerslist',
                 //     name: 'FirstTimerList',
                 //     meta: {
-                //         title: 'Churchplus - First Timers',
+                //         title: 'SendiT - First Timers',
                 //     },
                 //     component: () =>
                 //         import ( /* webpackChunkName: "addfirsttimer" */ '../views/people/FirstTimerEmpty.vue')
@@ -662,7 +662,7 @@ const routes = [
                 //     path: 'reports',
                 //     name: 'ReportList',
                 //     meta: {
-                //         title: 'Churchplus - Reports',
+                //         title: 'SendiT - Reports',
                 //     },
                 //     component: () =>
                 //     import ( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Index.vue'),
@@ -671,7 +671,7 @@ const routes = [
                 //     path: 'events',
                 //     name: 'EventsList',
                 //     meta: {
-                //         title: 'Churchplus - Event Forms',
+                //         title: 'SendiT - Event Forms',
                 //     },
                 //     component: () =>
                 //     import ( /* webpackChunkName: "emptyevent" */ '@/views/event/Events.vue')
@@ -685,7 +685,7 @@ const routes = [
         //     path: 'attendanceservicereport',
         //     name:"ServiceAttendanceReport",
         //     meta: {
-        //         title: 'Churchplus - Reports',
+        //         title: 'SendiT - Reports',
         //     },
         //     component: () =>
         //         import ( /* webpackChunkName: "addfirsttimer" */ '../views/Reports/Performancereport/ServiceAttendanceReport.vue')
@@ -706,7 +706,7 @@ const routes = [
             path: 'importinstruction',
             name: 'ImportInstruction',
             meta: {
-                title: 'Churchplus - Import Members',
+                title: 'SendiT - Import Members',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/people/ImportInstruction.vue')
@@ -715,7 +715,7 @@ const routes = [
             path: 'events',
             name: 'Events',
             meta: {
-                title: 'Churchplus - Event Form',
+                title: 'SendiT - Event Form',
             },
             component: () =>
                 import( /* webpackChunkName: "emptyevent" */ '@/views/event/Events.vue')
@@ -730,7 +730,7 @@ const routes = [
             path: 'event/:event?',
             name: 'Event',
             meta: {
-                title: 'Churchplus - Event Form',
+                title: 'SendiT - Event Form',
             },
             component: () =>
                 import( /* webpackChunkName: "event" */ '@/views/event/Event.vue')
@@ -745,7 +745,7 @@ const routes = [
                 path: '',
                 name: 'AttendanceList',
                 meta: {
-                    title: 'Churchplus - Attendance Checkins',
+                    title: 'SendiT - Attendance Checkins',
                 },
                 component: () =>
                     import( /* webpackChunkName: "attendance" */ '@/views/event/attendance&checkin/AttendanceCheckin'),
@@ -754,7 +754,7 @@ const routes = [
                 path: 'add',
                 name: 'AddCheckin',
                 meta: {
-                    title: 'Churchplus - Create Checkin',
+                    title: 'SendiT - Create Checkin',
                 },
                 component: () =>
                     import( /* webpackChunkName: "addcheckin" */ '@/views/event/attendance&checkin/AddAttendance'),
@@ -763,7 +763,7 @@ const routes = [
                 path: 'ussd',
                 name: 'USSDCheckin',
                 meta: {
-                    title: 'Churchplus - USSD Checkin',
+                    title: 'SendiT - USSD Checkin',
                 },
                 component: () =>
                     import( /* webpackChunkName: "ussdcheckin" */ '@/views/event/attendance&checkin/USSDCheckin'),
@@ -772,7 +772,7 @@ const routes = [
                 path: 'sms',
                 name: 'SMSCheckin',
                 meta: {
-                    title: 'Churchplus - SMS Checkin',
+                    title: 'SendiT - SMS Checkin',
                 },
                 component: () =>
                     import( /* webpackChunkName: "smscheckin" */ '@/views/event/attendance&checkin/SMSCheckin'),
@@ -782,7 +782,7 @@ const routes = [
                 path: 'mark',
                 name: 'MarkAttendance',
                 meta: {
-                    title: 'Churchplus - Manual Checkin',
+                    title: 'SendiT - Manual Checkin',
                 },
                 component: () =>
                     import( /* webpackChunkName: "markattendance" */ '@/views/event/attendance&checkin/MarkAttendance'),
@@ -792,7 +792,7 @@ const routes = [
                 path: 'childcheckin',
                 name: 'ChildCheckin',
                 meta: {
-                    title: 'Churchplus - Child Checkin',
+                    title: 'SendiT - Child Checkin',
                 },
                 component: () =>
                     import( /* webpackChunkName: "childcheckin" */ '@/views/event/attendance&checkin/ChildCheckin'),
@@ -802,7 +802,7 @@ const routes = [
                 path: 'type',
                 name: 'CheckinType',
                 meta: {
-                    title: 'Churchplus - Checkin Options',
+                    title: 'SendiT - Checkin Options',
                 },
                 component: () =>
                     import( /* webpackChunkName: "childcheckin" */ '@/views/event/attendance&checkin/GroupCategoryAttendance'),
@@ -811,7 +811,7 @@ const routes = [
                 path: 'tag',
                 name: 'AttendanceTag',
                 meta: {
-                    title: 'Churchplus - Checkin Tag',
+                    title: 'SendiT - Checkin Tag',
                 },
                 component: () =>
                     import( /* webpackChunkName: "tag" */ '@/views/event/attendance&checkin/AttendanceTag')
@@ -820,7 +820,7 @@ const routes = [
                 path: 'checkins',
                 name: 'AttendanceAndCheckinList',
                 meta: {
-                    title: 'Churchplus - Attendance List',
+                    title: 'SendiT - Attendance List',
                 },
                 component: () =>
                     import( /* webpackChunkName: "checkins" */ '@/views/event/attendance&checkin/AttendanceAndCheckinList')
@@ -829,7 +829,7 @@ const routes = [
                 path: 'qr',
                 name: 'AttendanceQR',
                 meta: {
-                    title: 'Churchplus - QR Checkin',
+                    title: 'SendiT - QR Checkin',
                 },
                 component: () =>
                     import( /* webpackChunkName: "attendaceqr" */ '@/views/event/attendance&checkin/AttendanceQR')
@@ -839,7 +839,7 @@ const routes = [
                 path: 'report/:id',
                 name: 'AttendanceReport',
                 meta: {
-                    title: 'Churchplus - Attendance Checkin Report',
+                    title: 'SendiT - Attendance Checkin Report',
                 },
                 component: () =>
                     import( /* webpackChunkName: "childcheckin" */ '@/views/event/attendance&checkin/AttendanceReport'),
@@ -850,7 +850,7 @@ const routes = [
             path: 'childcheckin',
             name: 'ChildCheckin',
             meta: {
-                title: 'Churchplus - Child Checkin',
+                title: 'SendiT - Child Checkin',
             },
             component: () =>
                 import( /* webpackChunkName: "wardcheckin" */ '@/views/event/childcheckin/Index.vue')
@@ -859,7 +859,7 @@ const routes = [
             path: 'checkinachild',
             name: 'CheckinAChild',
             meta: {
-                title: 'Churchplus - Child Checkin',
+                title: 'SendiT - Child Checkin',
             },
             component: () =>
                 import( /* webpackChunkName: "checkinachild" */ '@/views/event/childcheckin/pages/WardCheckin.vue')
@@ -868,7 +868,7 @@ const routes = [
             path: 'checkins',
             name: 'AttendanceAndCheckinList',
             meta: {
-                title: 'Churchplus - Attendance Checkins',
+                title: 'SendiT - Attendance Checkins',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/event/attendance&checkin/AttendanceAndCheckinList')
@@ -878,7 +878,7 @@ const routes = [
             path: 'attendancetag',
             name: 'AttendanceTag',
             meta: {
-                title: 'Churchplus - Checkin Tag',
+                title: 'SendiT - Checkin Tag',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/event/attendance&checkin/AttendanceTag')
@@ -888,7 +888,7 @@ const routes = [
             path: 'addattendancecheckin/:id?',
             name: 'AddAttendance',
             meta: {
-                title: 'Churchplus - Create Attendance Checkin',
+                title: 'SendiT - Create Attendance Checkin',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/event/attendance&checkin/AddAttendance')
@@ -898,7 +898,7 @@ const routes = [
             path: 'firsttimers',
             name: 'FirstTimers',
             meta: {
-                title: 'Churchplus - First Timers',
+                title: 'SendiT - First Timers',
             },
             component: () =>
                 import( /* webpackChunkName: "firsttimers" */ '@/views/people/FirstTimersList.vue')
@@ -907,7 +907,7 @@ const routes = [
             path: 'firsttimerslist',
             name: 'FirstTimerEmpty',
             meta: {
-                title: 'Churchplus - First Timers',
+                title: 'SendiT - First Timers',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/people/FirstTimerEmpty.vue')
@@ -916,7 +916,7 @@ const routes = [
             path: 'newconvertlist',
             name: 'NewConvert',
             meta: {
-                title: 'Churchplus - New Convert',
+                title: 'SendiT - New Convert',
             },
             component: () =>
                 import( /* webpackChunkName: "addfirsttimer" */ '../views/people/NewConvert.vue')
@@ -932,7 +932,7 @@ const routes = [
             path: 'report/:id',
             name: 'Report',
             meta: {
-                title: 'Churchplus - Event Report',
+                title: 'SendiT - Event Report',
             },
             component: () =>
                 import( /* webpackChunkName: "report" */ '@/views/event/EventReport.vue')
@@ -941,7 +941,7 @@ const routes = [
             path: 'contacts',
             name: 'ContactList',
             meta: {
-                title: 'Churchplus - SMS Communication - Phone Groups',
+                title: 'SendiT - SMS Communication - Phone Groups',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/ContactList')
@@ -955,7 +955,7 @@ const routes = [
                 path: '',
                 name: 'Inbox',
                 meta: {
-                    title: 'Churchplus - SMS Inbox',
+                    title: 'SendiT - SMS Inbox',
                 },
                 component: () =>
                     import( /* webpackChunkName: "inbox" */ '@/views/communication/MessageInbox')
@@ -964,7 +964,7 @@ const routes = [
                 path: 'sent',
                 name: 'SentMessages',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Sent Messages',
+                    title: 'SendiT - SMS Communication - Sent Messages',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sentmessages" */ '@/views/communication/SentMessages'),
@@ -973,7 +973,7 @@ const routes = [
                 path: 'draft',
                 name: 'DraftMessages',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Drafts',
+                    title: 'SendiT - SMS Communication - Drafts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "draftmessages" */ '@/views/communication/DraftMessages')
@@ -982,7 +982,7 @@ const routes = [
             //     path: 'contacts',
             //     name: 'ContactList',
             //     meta: {
-            //         title: 'Churchplus - SMS Communication - Phone Groups',
+            //         title: 'SendiT - SMS Communication - Phone Groups',
             //     },
             //     component: () =>
             //         import( /* webpackChunkName: "contactlist" */ '@/views/communication/ContactList')
@@ -991,7 +991,7 @@ const routes = [
                 path: 'sent/:messageId',
                 name: 'MessageDetails',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Message Details',
+                    title: 'SendiT - SMS Communication - Message Details',
                 },
                 component: () =>
                     import( /* webpackChunkName: "contactlist" */ '@/views/communication/MessageDetails')
@@ -1000,7 +1000,7 @@ const routes = [
                 path: 'addgroup',
                 name: 'Phongroup',
                 meta: {
-                    title: 'Churchplus - Create | Edit Phone Group',
+                    title: 'SendiT - Create | Edit Phone Group',
                 },
                 component: () =>
                     import( /* webpackChunkName: "phonegroup" */ '@/views/communication/PhoneGroup')
@@ -1009,7 +1009,7 @@ const routes = [
                 path: 'editcontact/:groupId',
                 name: 'EditContactList',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Edit Phone group',
+                    title: 'SendiT - SMS Communication - Edit Phone group',
                 },
                 component: () =>
                     import( /* webpackChunkName: "editcontactlist" */ '@/views/communication/EditGroup')
@@ -1018,7 +1018,7 @@ const routes = [
                 path: 'report/:messageId',
                 name: 'DeliveryReport',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Delivery Report',
+                    title: 'SendiT - SMS Communication - Delivery Report',
                 },
                 component: () =>
                     import( /* webpackChunkName: "deliveryreport" */ '@/views/communication/DeliveryReport')
@@ -1027,7 +1027,7 @@ const routes = [
                 path: 'compose',
                 name: 'SendMessage',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Compose message',
+                    title: 'SendiT - SMS Communication - Compose message',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sendmessage" */ '@/views/communication/SendSms')
@@ -1036,7 +1036,7 @@ const routes = [
                 path: 'scheduled',
                 name: 'ScheduledSMS',
                 meta: {
-                    title: 'Churchplus - SMS Communication - Scheduled',
+                    title: 'SendiT - SMS Communication - Scheduled',
                 },
                 component: () =>
                     import( /* webpackChunkName: "scheduled" */ '@/views/communication/ScheduledSMS')
@@ -1052,7 +1052,7 @@ const routes = [
                 path: '',
                 name: 'Sent',
                 meta: {
-                    title: 'Churchplus - Email Communication - Sent Emails',
+                    title: 'SendiT - Email Communication - Sent Emails',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sentemails" */ '@/views/communication/SentEmails')
@@ -1061,7 +1061,7 @@ const routes = [
                 path: 'sent',
                 name: 'SentEmails',
                 meta: {
-                    title: 'Churchplus - Email Communication - Sent Emails',
+                    title: 'SendiT - Email Communication - Sent Emails',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sentemails" */ '@/views/communication/SentEmails')
@@ -1070,7 +1070,7 @@ const routes = [
                 path: 'sent/:messageId',
                 name: 'EmailDetails',
                 meta: {
-                    title: 'Churchplus - Email Communication - Email Details',
+                    title: 'SendiT - Email Communication - Email Details',
                 },
                 component: () =>
                     import( /* webpackChunkName: "emaildetails" */ '@/views/communication/EmailDetails')
@@ -1079,7 +1079,7 @@ const routes = [
                 path: 'draft',
                 name: 'EmailDraft',
                 meta: {
-                    title: 'Churchplus - Email Communication - Email Drafts',
+                    title: 'SendiT - Email Communication - Email Drafts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "emaildraft" */ '@/views/communication/EmailDraft')
@@ -1090,7 +1090,7 @@ const routes = [
                 path: 'compose',
                 name: 'ComposeEmail',
                 meta: {
-                    title: 'Churchplus - Email Communication - Compose',
+                    title: 'SendiT - Email Communication - Compose',
                 },
                 component: () =>
                     import( /* webpackChunkName: "compose" */ '@/views/communication/ComposeEmail')
@@ -1099,7 +1099,7 @@ const routes = [
                 path: 'schedules',
                 name: 'Schedules',
                 meta: {
-                    title: 'Churchplus - Email Communication - Scheduled',
+                    title: 'SendiT - Email Communication - Scheduled',
                 },
                 component: () =>
                     import( /* webpackChunkName: "compose" */ '@/views/communication/ScheduledEmails')
@@ -1110,7 +1110,7 @@ const routes = [
             path: 'whatsapp',
             name: 'Whatsapp',
             meta: {
-                title: 'Churchplus - Whatsapp Communication',
+                title: 'SendiT - Whatsapp Communication',
             },
             component: () =>
                 import( /* webpackChunkName: "whatsappmodule" */ '@/components/whatsapp/whatsapp'),
@@ -1119,7 +1119,7 @@ const routes = [
                     path: 'auth',
                     name: 'ConnectWhatsapp',
                     meta: {
-                        title: 'Churchplus - Connect Whatsapp',
+                        title: 'SendiT - Connect Whatsapp',
                     },
                     component: () =>
                         import( /* webpackChunkName: "connectwhatsapp" */ '@/views/communication/whatsapp/ConnectWhatsapp')
@@ -1128,7 +1128,7 @@ const routes = [
                     path: '',
                     name: 'Compose',
                     meta: {
-                        title: 'Churchplus - Whatsapp Compose',
+                        title: 'SendiT - Whatsapp Compose',
                     },
                     component: () =>
                         import( /* webpackChunkName: "composewhatsapp" */ '@/views/communication/whatsapp/composeWhatsapp')
@@ -1137,7 +1137,7 @@ const routes = [
                     path: 'scheduledmessages',
                     name: 'ScheduledList',
                     meta: {
-                        title: 'Churchplus - Whatsapp Scheduled Messages',
+                        title: 'SendiT - Whatsapp Scheduled Messages',
                     },
                     component: () =>
                         import( /* webpackChunkName: "scheduledwhatsapp" */ '@/views/communication/whatsapp/ScheduledList')
@@ -1148,7 +1148,7 @@ const routes = [
             path: 'voice',
             name: 'Voice',
             meta: {
-                title: 'Churchplus - Voice Communication',
+                title: 'SendiT - Voice Communication',
             },
             component: () =>
                 import( /* webpackChunkName: "voicemodule" */ '@/components/Voice/Voice'),
@@ -1157,7 +1157,7 @@ const routes = [
                     path: 'voicelist',
                     name: 'VoiceList',
                     meta: {
-                        title: 'Churchplus -Voice List',
+                        title: 'SendiT -Voice List',
                     },
                     component: () =>
                         import( /* webpackChunkName: "voicelist" */ '@/views/communication/Voice/VoiceList')
@@ -1166,7 +1166,7 @@ const routes = [
                     path: 'sendvoicemessage',
                     name: 'composeVoice',
                     meta: {
-                        title: 'Churchplus - Send Voice Message',
+                        title: 'SendiT - Send Voice Message',
                     },
                     component: () =>
                         import( /* webpackChunkName: "sendvoicemessage" */ '@/views/communication/Voice/composeVoice')
@@ -1175,7 +1175,7 @@ const routes = [
                     path: 'report/:messageId',
                     name: 'VoiceDeliveryReport',
                     meta: {
-                        title: 'Churchplus - Voice Communication - Delivery Report',
+                        title: 'SendiT - Voice Communication - Delivery Report',
                     },
                     component: () =>
                         import( /* webpackChunkName: "deliveryreport" */ '@/views/communication/DeliveryReport')
@@ -1186,7 +1186,7 @@ const routes = [
             path: 'peoplegroups:actionType?',
             name: 'Groups',
             meta: {
-                title: 'Churchplus - Groups',
+                title: 'SendiT - Groups',
             },
             component: () =>
                 import( /* webpackChunkName: "groups" */ '@/views/groups/GroupsList')
@@ -1195,7 +1195,7 @@ const routes = [
             path: 'sidemodal',
             name: 'SideModal',
             meta: {
-                title: 'Churchplus - Groups',
+                title: 'SendiT - Groups',
             },
             component: () =>
                 import( /* webpackChunkName: "groups" */ '@/views/groups/sidemodal/SideModal.vue')
@@ -1204,7 +1204,7 @@ const routes = [
             path: 'createpeoplegroup/:groupId?',
             name: 'CreateGroup',
             meta: {
-                title: 'Churchplus - Create | Edit Group',
+                title: 'SendiT - Create | Edit Group',
             },
             component: () =>
                 import( /* webpackChunkName: "createpeoplegroup" */ '@/views/groups/CreateGroup')
@@ -1213,7 +1213,7 @@ const routes = [
             path: 'groupleader',
             name: 'GroupLeaderDashboard',
             meta: {
-                title: 'Churchplus - Gorup Leader',
+                title: 'SendiT - Gorup Leader',
             },
             component: () =>
                 import( /* webpackChunkName: "createpeoplegroup" */ '@/views/groups/groupleader/GroupLeaderDashboard')
@@ -1222,7 +1222,7 @@ const routes = [
             path: 'groupleaderattendance',
             name: 'GroupLeaderAttendanceReport',
             meta: {
-                title: 'Churchplus - Gorup Leader',
+                title: 'SendiT - Gorup Leader',
             },
             component: () =>
                 import( /* webpackChunkName: "createpeoplegroup" */ '@/views/groups/groupleader/GroupLeaderAttendanceReport')
@@ -1231,7 +1231,7 @@ const routes = [
             path: 'takeattendance/:id',
             name: 'TakeAttendance',
             meta: {
-                title: 'Churchplus - Gorup Leader',
+                title: 'SendiT - Gorup Leader',
             },
             component: () =>
                 import( /* webpackChunkName: "createpeoplegroup" */ '@/views/groups/groupleader/TakeAttendance')
@@ -1240,7 +1240,7 @@ const routes = [
             path: 'units',
             name: 'BuyUnits',
             meta: {
-                title: 'Churchplus - Purchase SMS Units',
+                title: 'SendiT - Purchase SMS Units',
             },
             component: () =>
                 import( /* webpackChunkName: "buyunits" */ '@/views/payment/BuyUnits')
@@ -1255,7 +1255,7 @@ const routes = [
                 path: '',
                 name: 'SocialDashboard',
                 meta: {
-                    title: 'Churchplus - Social Media Dashboard',
+                    title: 'SendiT - Social Media Dashboard',
                 },
                 component: () =>
                     import( /* webpackChunkName: "socialdashboard" */ '@/views/social&mobile/dashboard/Index'),
@@ -1264,7 +1264,7 @@ const routes = [
                 path: 'post',
                 name: 'SocialPost',
                 meta: {
-                    title: 'Churchplus - Social Media - Create Post',
+                    title: 'SendiT - Social Media - Create Post',
                 },
                 component: () =>
                     import( /* webpackChunkName: "post" */ '@/views/social&mobile/post/Index'),
@@ -1278,7 +1278,7 @@ const routes = [
                     path: '',
                     name: 'AllPosts',
                     meta: {
-                        title: 'Churchplus - Socail Media - All Posts',
+                        title: 'SendiT - Socail Media - All Posts',
                     },
                     component: () =>
                         import( /* webpackChunkName: "facebookposts" */ '@/views/social&mobile/feed/general/Index'),
@@ -1287,7 +1287,7 @@ const routes = [
                     path: 'facebook',
                     name: 'FacebookPosts',
                     meta: {
-                        title: 'Churchplus - Socail Media - Facebook Posts',
+                        title: 'SendiT - Socail Media - Facebook Posts',
                     },
                     component: () =>
                         import( /* webpackChunkName: "facebookposts" */ '@/views/social&mobile/feed/facebook/Index'),
@@ -1296,7 +1296,7 @@ const routes = [
                     path: 'twitter',
                     name: 'TwitterPosts',
                     meta: {
-                        title: 'Churchplus - Socail Media - Twitter Posts',
+                        title: 'SendiT - Socail Media - Twitter Posts',
                     },
                     component: () =>
                         import( /* webpackChunkName: "facebookposts" */ '@/views/social&mobile/feed/twitter/Index'),
@@ -1305,7 +1305,7 @@ const routes = [
                     path: 'instagram',
                     name: 'InstagramPosts',
                     meta: {
-                        title: 'Churchplus - Socail Media - Instagram Posts',
+                        title: 'SendiT - Socail Media - Instagram Posts',
                     },
                     component: () =>
                         import( /* webpackChunkName: "facebookposts" */ '@/views/social&mobile/feed/instagram/Index'),
@@ -1314,7 +1314,7 @@ const routes = [
                     path: 'whatsapp',
                     name: 'WhatsappPosts',
                     meta: {
-                        title: 'Churchplus - Socail Media - WhatsApp Posts',
+                        title: 'SendiT - Socail Media - WhatsApp Posts',
                     },
                     component: () =>
                         import( /* webpackChunkName: "facebookposts" */ '@/views/social&mobile/feed/whatsapp/Index'),
@@ -1325,7 +1325,7 @@ const routes = [
                 path: 'pending',
                 name: 'PendingPosts',
                 meta: {
-                    title: 'Churchplus - Socail Media - Pending Posts',
+                    title: 'SendiT - Socail Media - Pending Posts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "pendingfeed" */ '@/views/social&mobile/pending/Index'),
@@ -1334,7 +1334,7 @@ const routes = [
                 path: 'schedule',
                 name: 'PendingReview',
                 meta: {
-                    title: 'Churchplus - Socail Media - Scheduled Posts',
+                    title: 'SendiT - Socail Media - Scheduled Posts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "schedule" */ '@/views/social&mobile/schedule/Index'),
@@ -1343,7 +1343,7 @@ const routes = [
                 path: 'setting',
                 name: 'SocialSetting',
                 meta: {
-                    title: 'Churchplus - Socail Media - Setup',
+                    title: 'SendiT - Socail Media - Setup',
                 },
                 component: () =>
                     import( /* webpackChunkName: "socialsetting" */ '@/views/social&mobile/settingspage/Index'),
@@ -1352,7 +1352,7 @@ const routes = [
                 path: 'category',
                 name: 'PostCategory',
                 meta: {
-                    title: 'Churchplus - Socail Media - Create Post Category',
+                    title: 'SendiT - Socail Media - Create Post Category',
                 },
                 component: () =>
                     import( /* webpackChunkName: "socialsetting" */ '@/views/social&mobile/settingspage/PostCategory'),
@@ -1361,7 +1361,7 @@ const routes = [
                 path: 'involvement',
                 name: 'PostEngagement',
                 meta: {
-                    title: 'Churchplus - Socail Media - All Posts',
+                    title: 'SendiT - Socail Media - All Posts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "involvement" */ '@/views/social&mobile/involvement/Index'),
@@ -1374,7 +1374,7 @@ const routes = [
             component: () =>
                 import( /* webpackChunkName: "workflow" */ '../views/workflow/Index.vue'),
             meta: {
-                title: 'Churchplus - Ministry Workflow',
+                title: 'SendiT - Ministry Workflow',
             },
             children: [{
                 path: 'list',
@@ -1382,7 +1382,7 @@ const routes = [
                 component: () =>
                     import( /* webpackChunkName: "workflows" */ '../views/workflow/pages/Workflows.vue'),
                 meta: {
-                    title: 'Churchplus - Add Workflow',
+                    title: 'SendiT - Add Workflow',
                 }
             },
             {
@@ -1391,7 +1391,7 @@ const routes = [
                 component: () =>
                     import( /* webpackChunkName: "addworkflow" */ '../views/workflow/components/MainBoard.vue'),
                 meta: {
-                    title: 'Churchplus - Add Workflow',
+                    title: 'SendiT - Add Workflow',
                 }
             },
             ]
@@ -1406,7 +1406,7 @@ const routes = [
                 path: '',
                 name: 'MinistryUsers',
                 meta: {
-                    title: 'Churchplus - Church Settings',
+                    title: 'SendiT - Church Settings',
                 },
                 component: () =>
                     import( /* webpackChunkName: "ministryusers" */ '@/views/settings/MinistryUsers')
@@ -1415,7 +1415,7 @@ const routes = [
                 path: 'invitenewuser',
                 name: 'InviteNewUser',
                 meta: {
-                    title: 'Churchplus - Church Settings - Invite User',
+                    title: 'SendiT - Church Settings - Invite User',
                 },
                 component: () =>
                     import( /* webpackChunkName: "ministryusers" */ '@/views/settings/InviteNewUser')
@@ -1424,7 +1424,7 @@ const routes = [
                 path: 'profile',
                 name: 'ChurchProfile',
                 meta: {
-                    title: 'Churchplus - Church Profile',
+                    title: 'SendiT - Church Profile',
                 },
                 component: () =>
                     import( /* webpackChunkName: "churchprofile" */ '@/views/settings/ChurchProfile')
@@ -1433,7 +1433,7 @@ const routes = [
                 path: 'defaultmessage',
                 name: 'DefaultMessage',
                 meta: {
-                    title: 'Churchplus - Church Settings - Default Messages',
+                    title: 'SendiT - Church Settings - Default Messages',
                 },
                 component: () =>
                     import( /* webpackChunkName: "defaultmessage" */ '@/views/settings/DefaultMessage')
@@ -1442,7 +1442,7 @@ const routes = [
                 path: 'membership',
                 name: 'MembershipCategory',
                 meta: {
-                    title: 'Churchplus - Church Settings - Membership Category',
+                    title: 'SendiT - Church Settings - Membership Category',
                 },
                 component: () =>
                     import( /* webpackChunkName: "membership" */ '@/views/settings/MembershipCategory')
@@ -1451,7 +1451,7 @@ const routes = [
                 path: 'attendance',
                 name: 'AttendanceCategory',
                 meta: {
-                    title: 'Churchplus - Church Settings - Attendance Category',
+                    title: 'SendiT - Church Settings - Attendance Category',
                 },
                 component: () =>
                     import( /* webpackChunkName: "membership" */ '@/views/settings/AttendanceCategory')
@@ -1460,7 +1460,7 @@ const routes = [
                 path: 'social',
                 name: 'SocialCategory',
                 meta: {
-                    title: 'Churchplus - Church Settings - Social&Mobile Category',
+                    title: 'SendiT - Church Settings - Social&Mobile Category',
                 },
                 component: () =>
                     import( /* webpackChunkName: "membership" */ '@/views/settings/SocialCategory')
@@ -1469,7 +1469,7 @@ const routes = [
                 path: 'ageGroup',
                 name: 'AgeGroupCategory',
                 meta: {
-                    title: 'Churchplus - Church Settings',
+                    title: 'SendiT - Church Settings',
                 },
                 component: () =>
                     import( /* webpackChunkName: "membership" */ '@/views/settings/AgeGroupCategory')
@@ -1478,7 +1478,7 @@ const routes = [
                 path: 'giving',
                 name: 'OnlineGiving',
                 meta: {
-                    title: 'Churchplus - Online Giving',
+                    title: 'SendiT - Online Giving',
                 },
                 component: () =>
                     import( /* webpackChunkName: "giving" */ '@/views/settings/OnlineGivingSetup')
@@ -1487,7 +1487,7 @@ const routes = [
                 path: 'adddefaultmessage',
                 name: 'AddDefaultMessage',
                 meta: {
-                    title: 'Churchplus - Church Settings - Add | Edit Default Message',
+                    title: 'SendiT - Church Settings - Add | Edit Default Message',
                 },
                 component: () =>
                     import( /* webpackChunkName: "defaultmessage" */ '@/views/settings/AddDefaultMessage')
@@ -1501,7 +1501,7 @@ const routes = [
             {
                 path: 'archivedpeople',
                 meta: {
-                    title: 'Churchplus - Archived People',
+                    title: 'SendiT - Archived People',
                 },
                 component: () =>
                     import( /* webpackChunkName: "importpeople" */ '../views/people/ArchivedPeople.vue'),
@@ -1537,7 +1537,7 @@ const routes = [
             path: 'chartofaccount',
             name: 'ChartOfAccount',
             meta: {
-                title: 'Churchplus - Chart Of Accounts',
+                title: 'SendiT - Chart Of Accounts',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/accounting/chartOfAccount/ChartOfAccount')
@@ -1551,7 +1551,7 @@ const routes = [
                 path: '',
                 name: 'Gallery',
                 meta: {
-                    title: 'Churchplus - Media Gallery',
+                    title: 'SendiT - Media Gallery',
                 },
                 component: () =>
                     import( /* webpackChunkName: "medialibrary" */ '@/views/media/library/components/Gallery')
@@ -1560,7 +1560,7 @@ const routes = [
                 path: 'file',
                 name: 'FileDetails',
                 meta: {
-                    title: 'Churchplus - Media Library',
+                    title: 'SendiT - Media Library',
                 },
                 component: () =>
                     import( /* webpackChunkName: "medialibrary" */ '@/views/media/file/Index')
@@ -1571,7 +1571,7 @@ const routes = [
             path: 'upload',
             name: 'UploadMedia',
             meta: {
-                title: 'Churchplus - Upload Media',
+                title: 'SendiT - Upload Media',
             },
             component: () =>
                 import( /* webpackChunkName: "uploadmedia" */ '@/views/media/upload/Index')
@@ -1580,7 +1580,7 @@ const routes = [
             path: 'chartofaccount/update',
             name: 'OldAccounts',
             meta: {
-                title: 'Churchplus - Chart Of Accounts - Update',
+                title: 'SendiT - Chart Of Accounts - Update',
             },
             component: () =>
                 import( /* webpackChunkName: "oldaccounts" */ '@/views/accounting/chartOfAccount/OldAccounts')
@@ -1589,7 +1589,7 @@ const routes = [
             path: 'offering',
             name: 'Offering',
             meta: {
-                title: 'Churchplus - Contributions',
+                title: 'SendiT - Contributions',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/accounting/offering/Offering')
@@ -1598,7 +1598,7 @@ const routes = [
             path: 'offeringcategory/:offId?',
             name: 'OfferingCategory',
             meta: {
-                title: 'Churchplus - Contribution Item Form',
+                title: 'SendiT - Contribution Item Form',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/accounting/offering/SelectOffCat')
@@ -1607,7 +1607,7 @@ const routes = [
             path: 'addoffering/:offId?',
             name: 'AddOffering',
             meta: {
-                title: 'Churchplus - Add Contribution',
+                title: 'SendiT - Add Contribution',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/accounting/offering/AddOffering')
@@ -1616,7 +1616,7 @@ const routes = [
             path: 'offeringreport',
             name: 'OfferingReport',
             meta: {
-                title: 'Churchplus - Contribution Report',
+                title: 'SendiT - Contribution Report',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/accounting/offering/OfferingReport')
@@ -1637,7 +1637,7 @@ const routes = [
             path: 'transactionlist',
             name: 'TransactionList',
             meta: {
-                title: 'Churchplus - Transactions',
+                title: 'SendiT - Transactions',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/accounting/transaction/TransactionList')
@@ -1646,7 +1646,7 @@ const routes = [
             path: 'onlinedonation',
             name: 'DonateOnline',
             meta: {
-                title: 'Churchplus - Online Donations',
+                title: 'SendiT - Online Donations',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/churchdonation/onlinedonation/Index.vue')
@@ -1655,7 +1655,7 @@ const routes = [
             path: 'payments/:editPayment?',
             name: 'PaymentTransaction',
             meta: {
-                title: 'Churchplus - Payment',
+                title: 'SendiT - Payment',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/donation/PaymentTransaction')
@@ -1670,7 +1670,7 @@ const routes = [
             path: 'payment',
             name: 'Payment',
             meta: {
-                title: 'Churchplus - Payment',
+                title: 'SendiT - Payment',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/donation/Payment')
@@ -1685,7 +1685,7 @@ const routes = [
             path: '/mobileonboarding',
             name: 'MobileOnboarding',
             meta: {
-                title: 'Churchplus - Mobile Onboarding',
+                title: 'SendiT - Mobile Onboarding',
             },
             component: () =>
                 import( /* webpackChunkName: "giving" */ '@/views/mobile/mobileapp/MobileOnboarding')
@@ -1694,7 +1694,7 @@ const routes = [
             path: '/appbranding',
             name: 'AppBranding',
             meta: {
-                title: 'Churchplus - App Branding',
+                title: 'SendiT - App Branding',
             },
             component: () =>
                 import( /* webpackChunkName: "giving" */ '@/views/mobile/mobileapp/AppBranding')
@@ -1703,7 +1703,7 @@ const routes = [
             path: '/socialmedia',
             name: 'SocialMedia',
             meta: {
-                title: 'Churchplus - Social media',
+                title: 'SendiT - Social media',
             },
             component: () =>
                 import( /* webpackChunkName: "giving" */ '@/views/mobile/mobileapp/SocialMedia')
@@ -1718,7 +1718,7 @@ const routes = [
             path: '/churchsetup',
             name: 'ChurchSetUp',
             meta: {
-                title: 'Churchplus - Church Setup',
+                title: 'SendiT - Church Setup',
             },
             component: () =>
                 import( /* webpackChunkName: "giving" */ '@/views/mobile/mobileapp/ChurchSetUp')
@@ -1727,7 +1727,7 @@ const routes = [
             path: '/donationsetup',
             name: 'DonationSetup',
             meta: {
-                title: 'Churchplus - Donation Setup',
+                title: 'SendiT - Donation Setup',
             },
             component: () =>
                 import( /* webpackChunkName: "giving" */ '@/views/mobile/mobileapp/DonationSetup')
@@ -1740,7 +1740,7 @@ const routes = [
                 {
                     path: 'pledgedefinition',
                     meta: {
-                        title: 'Churchplus - Pledge',
+                        title: 'SendiT - Pledge',
                     },
                     component: () =>
                         import( /* webpackChunkName: "pledgedefinition" */ '../views/pledge/PledgeDefinition.vue')
@@ -1748,7 +1748,7 @@ const routes = [
                 {
                     path: 'pledgeslist',
                     meta: {
-                        title: 'Churchplus - Pledge',
+                        title: 'SendiT - Pledge',
                     },
                     component: () =>
                         import( /* webpackChunkName: "pledgeslist" */ '../views/pledge/PledgesList.vue')
@@ -1757,7 +1757,7 @@ const routes = [
                     path: 'pledgedefinitionlist',
                     name: 'PledgeDefinitionList',
                     meta: {
-                        title: 'Churchplus - Pledge',
+                        title: 'SendiT - Pledge',
                     },
                     component: () =>
                         import( /* webpackChunkName: "pledgedefinitionlist" */ '../views/pledge/PledgeDefinitionList.vue')
@@ -1766,7 +1766,7 @@ const routes = [
                     path: 'makepledge',
                     name: 'MakePledge',
                     meta: {
-                        title: 'Churchplus - Pledge',
+                        title: 'SendiT - Pledge',
                     },
                     component: () =>
                         import( /* webpackChunkName: "makepledge" */ '../views/pledge/MakePledge.vue')
@@ -1775,7 +1775,7 @@ const routes = [
                     path: 'pledgemaking',
                     name: 'PledgeMaking',
                     meta: {
-                        title: 'Churchplus - Pledge',
+                        title: 'SendiT - Pledge',
                     },
                     component: () =>
                         import( /* webpackChunkName: "pledgemaking" */ '../views/pledge/PledgeMaking.vue')
@@ -1785,7 +1785,7 @@ const routes = [
                     path: 'pledgepaymentlist',
                     name: 'PledgePaymentList',
                     meta: {
-                        title: 'Churchplus - Pledge',
+                        title: 'SendiT - Pledge',
                     },
                     component: () =>
                         import( /* webpackChunkName: "pledgepaymentlist" */ '../views/pledge/PledgePaymentList.vue')
@@ -1799,7 +1799,7 @@ const routes = [
         path: '/partnership/pay/',
         name: 'PublicPledgePayment',
         meta: {
-            title: 'Churchplus - Church Pledge',
+            title: 'SendiT - Church Pledge',
         },
         component: () =>
             import( /* webpackChunkName: "partnershippayment" */ '../views/pledge/PublicPledgePayment.vue')
@@ -1808,7 +1808,7 @@ const routes = [
         path: '/pricing',
         name: 'PricingPage',
         meta: {
-            title: 'Churchplus - Pricing ',
+            title: 'SendiT - Pricing ',
         },
         component: () =>
             import( /* webpackChunkName: "dashboard" */ '../views/dashboard/PricingPage.vue')
@@ -1817,7 +1817,7 @@ const routes = [
     //     path: '/PublicPledgeMaking/:id',
     //     name: 'PublicPledgeMaking',
     //     meta: {
-    //         title: 'Churchplus - Church Pledge',
+    //         title: 'SendiT - Church Pledge',
     //     },
     //     component: () =>
     //     import ( /* webpackChunkName: "peopleempty" */ '../views/pledge/PublicPledgeMaking.vue')
@@ -1826,7 +1826,7 @@ const routes = [
         path: '/checkin/e/:code',
         name: 'WebCheckin',
         meta: {
-            title: 'Churchplus - Web Checkin',
+            title: 'SendiT - Web Checkin',
         },
         component: () =>
             import( /* webpackChunkName: "defaultmessage" */ '@/views/event/attendance&checkin/MarkinAttendance')
@@ -1835,7 +1835,7 @@ const routes = [
         path: '/event/:checkinId',
         name: 'EventRegistration',
         meta: {
-            title: 'Churchplus - Event Registration',
+            title: 'SendiT - Event Registration',
         },
         component: () =>
             import( /* webpackChunkName: "defaultmessage" */ '@/views/event/EventRegistration')
@@ -1853,7 +1853,7 @@ const routes = [
         path: '/onlinegivingform1',
         name: 'OnlineGiving',
         meta: {
-            title: 'Churchplus - Online Giving',
+            title: 'SendiT - Online Giving',
         },
         component: () =>
             import( /* webpackChunkName: "giving" */ '@/views/giving/onlinegiving/GivingForm')
@@ -1874,7 +1874,7 @@ const routes = [
         path: '/give/:userId?',
         name: 'OnlineGiving4',
         meta: {
-            title: 'Churchplus - Online Giving',
+            title: 'SendiT - Online Giving',
         },
         component: () =>
             import( /* webpackChunkName: "giving" */ '@/views/giving/onlinegiving/GivingForm4')
@@ -1889,7 +1889,7 @@ const routes = [
         path: '/pay',
         name: 'Pay',
         meta: {
-            title: 'Churchplus - Pay',
+            title: 'SendiT - Pay',
         },
         component: () =>
             import( /* webpackChunkName: "giving" */ '@/views/giving/onlinegiving/Pay')
@@ -1916,7 +1916,7 @@ const routes = [
         path: '/signinpayment/:userId?',
         name: 'SignInPayment',
         meta: {
-            title: 'Churchplus - Payment',
+            title: 'SendiT - Payment',
         },
         component: () =>
             import( /* webpackChunkName: "defaultmessage" */ '@/views/donation/SignInPayment')
@@ -1939,7 +1939,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "workflow" */ '../views/ChildCheckinPortal/CheckinSignup.vue'),
         meta: {
-            title: 'Churchplus - ChildSignup',
+            title: 'SendiT - ChildSignup',
         }
     },
     {
@@ -1948,7 +1948,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "workflow" */ '../views/ChildCheckinPortal/CheckinSignin.vue'),
         meta: {
-            title: 'Churchplus - ChildSignin',
+            title: 'SendiT - ChildSignin',
         },
         beforeEnter() {
             window.location.href = "https://child-checkin-seven.vercel.app/";
