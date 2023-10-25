@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="facebook-domain-verification" content="skcpslxs145l3d3zhdcij5ssp9cm2w" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.png">
+  <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <script src="https://kit.fontawesome.com/46f43ab1c3.js" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script async defer src="https://apis.google.com/js/api.js"></script>
+  <!-- onload="this.onload=function(){};handleClientLoad()" -->
+  <!-- onreadystatechange="if (this.readyState === 'complete') this.onload()" -->
+
+  <!-- AddEvent script -->
+  <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+
+  <!-- AddEvent Settings -->
+  <script type="text/javascript">
+    window.addeventasync = function () {
+      addeventatc.settings({
+        appleical: { show: true, text: "Apple Calendar" },
+        google: { show: true, text: "Google <em>(online)</em>" },
+        office365: { show: true, text: "Office 365 <em>(online)</em>" },
+        outlook: { show: true, text: "Outlook" },
+        outlookcom: { show: true, text: "Outlook.com <em>(online)</em>" },
+        yahoo: { show: true, text: "Yahoo <em>(online)</em>" }
+      });
+    };
+  </script>
+
+
+  <style>
+    body {
+      font-family: 'Nunito Sans' !important;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .select2-selection--single {
+      padding: 0px 10px !important;
+      height: 40px !important;
+      margin-top: 4px !important;
+      display: flex !important;
+      align-items: center !important;
+      border: 1px solid #b2c2cd !important;
+      border-radius: 4px;
+    }
+
+    .select2-container .select2-choice {
+      padding: 5px 4px;
+      height: 40px;
+      font-size: 1.2em;
+      appearance: none;
+      border: 1px solid #b2c2cd;
+    }
+
+    .select2-selection__arrow {
+      position: absolute;
+      top: 10px !important;
+    }
+
+
+    #select2-code-container {
+      padding: 0;
+    }
+
+    #eventCategorySelectElem .select2-selection {
+      border: none !important;
+      padding: 40px 0;
+      /* border: 1px solid #b2c2cd !important; */
+      outline: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    .select2-eventcategory-0n-results li.select2-results__option:last-child {
+      color: red !important;
+    }
+
+    #eventCategorySelectElem option:last-child {
+      color: red !important;
+    }
+
+    #eventCategorySelectElem .select2-selection__arrow {
+      display: none;
+    }
+
+    table.uiGrid._51mz._5h0i._88va._5f0n {
+      background: red !important;
+    }
+
+    ._5h0i._88va {
+      border: 2px solid red !important;
+    }
+
+    .fb_iframe_widget iframe {
+      opacity: 0;
+    }
+
+    .fb_iframe_widget {
+      background-image: url(another-button.png);
+      background-repeat: no-repeat;
+    }
+
+    .p-button {
+      background: #136acd !important;
+      font-weight: 600 !important;
+    }
+
+    .p-splitbutton-menubutton {
+      /* background: red !important; */
+      border-radius: 0 22px 22px 0 !important;
+    }
+
+    .p-splitbutton-defaultbutton {
+      border-radius: 22px 0 0 22px !important;
+    }
+
+    #successDialog .p-dialog .p-dialog-header {
+      display: none;
+    }
+
+    #successDialog .p-dialog .p-dialog-content {
+      padding: 0;
+      margin: 0;
+      background: #797979;
+    }
+
+    .p-dialog .p-component {
+      border: 1px solid #EBEFF4 !important;
+      border-radius: 20px !important;
+    }
+
+    #currencySelect .p-dropdown-items {
+      max-width: 300px !important
+    }
+
+    #post-icon .p-dropdown {
+      border: none !important;
+      outline: transparent;
+    }
+
+    .swal-button--confirm {
+      background-color: #136acd !important;
+    }
+  </style>
+  <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
+  <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+
+  <!-- //   <script src="https://cdn.lr-ingest.com/LogRocket.min.js" crossorigin="anonymous"></script>
+// <script>window.LogRocket && window.LogRocket.init('taw8su/churchplus');</script> -->
+
+</head>
+
+<body>
+  <!-- <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=725655091722748&autoLogAppEvents=1" nonce="BTlgsgIj"></script> -->
+
+
+
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+  <!-- <script src="https://unpkg.com/vue-paystack/dist/paystack.min.js"></script> -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"></script>
+  <span id="tawktohh"></span>
+
+  <!-- Facebook SDK for Javascript -->
+  <script>
+    window.fbAsyncInit = function () {
+
+      FB.init({
+        appId: '479314263454002',
+        // appId: '272808251120368',
+        cookie: true,
+        xfbml: true,
+        version: 'v11.0'
+        // version: 'v10.0'
+      });
+
+      FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '780615695985579');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=780615695985579&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" async defer></script>
+
+
+</body>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  if (
+    !window.location.href.toLowerCase().includes('/partnership/pay') &&
+    !window.location.href.toLowerCase().includes('/createmember') &&
+    !window.location.href.toLowerCase().includes('/createfirsttimer') &&
+    !window.location.href.toLowerCase().includes('/createnewconvert') &&
+    !window.location.href.toLowerCase().includes('/pricing')
+  ) {
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/60ba6591de99a4282a1b7128/1f7c1pgqv';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  }
+</script>
+<!--End of Tawk.to Script-->
+
+<!-- Paypal SDK -->
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=AYkkF4BsYulgjwSYkDjDuOshCutxnktJkhqPOa82t1Ol8Ig1rXUiKWMPr3kO6rza5JTbfklbZ76obz1i"></script> -->
+</html>
