@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-5 offset-md-1 border" style="height:100vh;">
                 <div class="col-10 offset-md-2 my-5 logo">
-                     <img src="../../assets/churchplus-logo.png"  alt="">
+                     <img src="../../assets/sendit-logo.png"  alt="">
                  </div>
                  <div class="col-8 offset-md-2 my-5 col-12">
                      <p class="childLog">Log in to child checkin</p>
@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
 .logo img {
-    /* background: transparent url('../../assets/churchplus-logo.png') 0% 0% no-repeat padding-box; */
+    /* background: transparent url('../../assets/sendit-logo.png') 0% 0% no-repeat padding-box; */
     width: 123px;
     height: 35px;
 }

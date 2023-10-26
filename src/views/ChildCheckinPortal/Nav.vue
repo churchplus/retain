@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-8 offset-1 container-top">
                 <img :src="churchLogo" v-if="churchLogo" class="w-100"/>
-                <!-- <img src="../../assets/churchplus-logo.png" v-else class="w-100"/> -->
+                <!-- <img src="../../assets/sendit-logo.png" v-else class="w-100"/> -->
                 
                 
             </div>

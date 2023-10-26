@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 container-top">
-                <img src="../../../../assets/churchplus-logo.png">
+                <img src="../../../../assets/sendit-logo.png">
             </div>
         </div>
         <div class="row align-content-center">

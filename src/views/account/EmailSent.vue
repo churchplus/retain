@@ -2,7 +2,7 @@
   <div>
     <div class="fp-con">
       <div class="logo-con">
-        <a href="" class="logo-link"><img src="../../assets/churchplus-logo.png" alt="Churchplus Logo"></a>
+        <a href="" class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo"></a>
       </div>
       <div class="fp-form-con mt-5">
         <div class="confirm-text">

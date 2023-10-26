@@ -17,18 +17,18 @@
       <div class="desc" :class="{ box2: processing }">
         <div class="desc-details">
           <div class="desc-text mobile">
-            <h4>All-in-one Church management software</h4>
+            <h4>Your all-in-one Communication App with 99.9 delivery</h4>
             <p>
-              Get your church administrative activities and processes automated without hassle.
+              Get your business activities and processes automated without hassle.
             </p>
           </div>
           <div class="image-box">
             <img src="../../assets/laptop.png" alt="" />
           </div>
           <div class="desc-text desktop">
-            <h4>All-in-one Church management software</h4>
+            <h4>All-in-one Communication software</h4>
             <p>
-              Get your church administrative activities and processes automated without hassle.
+              Get your business activities and processes automated without hassle.
             </p>
           </div>
           <div>

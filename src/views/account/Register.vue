@@ -2,7 +2,7 @@
   <div>
     <div class="main-section">
       <div class="logo-con">
-        <a class="logo-link"><img src="../../assets/churchplus-logo.png" alt="Churchplus Logo" /></a>
+        <a class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo" /></a>
       </div>
       <div class="header">
         <div class="top-con">
@@ -210,6 +210,10 @@ export default {
   width: 100%;
   text-align: center;
   margin-top: 36px;
+}
+
+.logo-link img{
+  height: 4.2rem;
 }
 
 .header {

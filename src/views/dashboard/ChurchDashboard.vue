@@ -271,7 +271,7 @@
             (tenantInfoFirstTimerWeekly[0] && tenantInfoFirstTimerWeekly[0].data.some(i => i > 0)) ||
             (tenantInfoAttendanceWeekly[0] && tenantInfoAttendanceWeekly[0].data.some(i => i > 0))
           ">
-            <div class="more-things side p-3" v-if="!tenantInfoExtra.hasWebsite">
+            <!-- <div class="more-things side p-3" v-if="!tenantInfoExtra.hasWebsite">
 
               <img src="../../assets/website2.svg" class="w-100" />
               <div class="mt-4">Website</div>
@@ -292,7 +292,7 @@
               <router-link to="/tenant/payments" class="no-decoration">
                 <el-button class="mt-1" round>Set up now</el-button>
               </router-link>
-            </div>
+            </div> -->
 
             <!-- <div class="more-things side p-3 mt-4" v-if="!tenantInfoExtra.hasMobileApp">
               <img src="../../assets/mobileapp2.svg" class="w-100" />
@@ -472,7 +472,7 @@
           </div>
         </div>
       </div>
-      <div v-if="
+      <!-- <div v-if="
         tenantInfoCeleb.length === 0 &&
         (tenantInfoFirstTimerWeekly[0] && tenantInfoFirstTimerWeekly[0].data.every(i => i === 0)) &&
         (tenantInfoAttendanceWeekly[0] && tenantInfoAttendanceWeekly[0].data.every(i => i === 0))
@@ -514,7 +514,7 @@
                 <el-button class="mt-1" round>Set up now</el-button>
               </router-link>
             </div>
-            <!-- <div class="col-12 col-sm-6 col-md-4 mt-5 mt-md-0 more-things">
+            <div class="col-12 col-sm-6 col-md-4 mt-5 mt-md-0 more-things">
               <img src="../../assets/mobileapp2.svg" />
               <div class="mt-4">
                 <div class="can-do">
@@ -527,12 +527,12 @@
               <router-link :to="{ name: 'MobileOnboarding' }" class="no-decoration">
                 <el-button class="mt-1" round>Set up now</el-button>
               </router-link>
-            </div> -->
+            </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
-    <el-dialog v-model="pastorsDialog" title="" class="pastorsDialog" :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : `90%`" align-center>
+    <!-- <el-dialog v-model="pastorsDialog" title="" class="pastorsDialog" :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : `90%`" align-center>
       <div class="row">
         <div class="col-md-12">
           <div class="pastor-text text-center">
@@ -590,7 +590,7 @@
         </div>
         </div>
       </div>
-    </el-dialog>
+    </el-dialog> -->
   </main>
 </template>
 

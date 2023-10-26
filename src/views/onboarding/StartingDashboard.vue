@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="logo-con">
-      <a class="logo-link"><img src="../../assets/churchplus-logo.png" alt="Churchplus Logo" /></a>
+      <a class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo" /></a>
     </div>
     <div class="main-con">
       <div class="main-section">
@@ -10,18 +10,18 @@
           <p class="intro-subtext">Where do you want to start ?</p>
         </div>
         <div class="boxes-con">
-          <router-link class="box" to="/tenant/people/add" style="text-decoration: none">
+          <router-link class="box" to="/tenant/email" style="text-decoration: none">
             <el-card shadow="hover">
               <div class="inner-box">
               <div class="img-box">
-                <img src="../../assets/add-member-big.svg" alt="Add Member Icon" />
+                <img src="../../assets/sms-email-big.svg" alt="Add Member Icon" />
               </div>
               <div class="box-text can-dogi">
                 <div class="box-header-text">
-                  <h4>Add members</h4>
+                  <h4>Send Email</h4>
                 </div>
                 <div class="box-small-text">
-                  <p>Stay compliant by keeping accurate records of your members.</p>
+                  <p>Communicate with your client by sending sms with our seamless email.</p>
                 </div>
               </div>
             </div>
@@ -46,18 +46,36 @@
             </el-card>
           </router-link>
 
-          <router-link class="box" to="/tenant/people/addfirsttimer" style="text-decoration: none">
+          <router-link class="box" to="/tenant/voice/voicelist" style="text-decoration: none">
             <el-card shadow="hover">
             <div class="inner-box">
               <div class="img-box">
-                <img src="../../assets/add-first-timer.svg" alt="Add Member Icon" />
+                <img src="../../assets/voice-icon.svg" alt="Add Member Icon" />
               </div>
               <div class="box-text can-do">
                 <div class="box-header-text">
-                  <h4>Add first timers</h4>
+                  <h4>Send Voice</h4>
                 </div>
                 <div class="box-small-text">
-                  <p>Keep accurate record and follow up your first timers with our automation system.</p>
+                  <p>Communicate with your client by sending voice with our seamless sendiT app.</p>
+                </div>
+
+              </div>
+            </div>
+            </el-card>
+          </router-link>
+          <router-link class="box" to="/tenant/whatsapp/auth" style="text-decoration: none">
+            <el-card shadow="hover">
+            <div class="inner-box">
+              <div class="img-box">
+                <img src="../../assets/WhatsApp.svg" alt="Add Member Icon" />
+              </div>
+              <div class="box-text can-do">
+                <div class="box-header-text">
+                  <h4>Send Whatsapp</h4>
+                </div>
+                <div class="box-small-text">
+                  <p>Communicate with your client by sending whatsapp message with our seamless whatsapp.</p>
                 </div>
 
               </div>
@@ -123,6 +141,11 @@ export default {
 .logo-link {
   width: 100%;
   text-align: center;
+  margin-top: 36px;
+}
+
+.logo-link img{
+  height: 5.2rem;
 }
 
 .main-con {

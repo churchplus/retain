@@ -1507,7 +1507,7 @@ export default {
     const willCopyLink = ref(false);
     // const status = ref("Draft");
     const shareableLinkField = ref(null);
-    const location = ref(window.location);
+    const location = ref(cation);
 
     const toggleReportState = () => {
       reportApproved.value = !reportApproved.value;

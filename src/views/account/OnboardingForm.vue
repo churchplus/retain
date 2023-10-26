@@ -6,10 +6,10 @@
           <div class="onboarding-form-container">
             <div class="title-div">
               <div class="main-title">
-                <h1>Welcome to Churchplus!</h1>
+                <h1>Welcome to SendiT !</h1>
               </div>
               <div class="sub-title">
-                <p>Tell us about you and your church</p>
+                <p>Tell us about you and your business</p>
               </div>
             </div>
             <el-form ref="ruleFormRef" :rules="rules" :model="userDetails" style="width: 100%">
@@ -30,7 +30,7 @@
               </div>
 
               <div class="input-div">
-                <label class="mb-0">What's the name of your ministry?</label>
+                <label class="mb-0">What's the name of your business?</label>
                 <el-form-item prop="churchName">
                   <el-input type="text" v-model="userDetails.churchName" placeholder="Name of church" />
                 </el-form-item>
@@ -54,7 +54,7 @@
               </div>
 
               <div class="input-div cstm-select w-100">
-                <label class="mb-0">What's the membership size of your ministry?</label>
+                <label class="mb-0">How many client did you serve?</label>
                 <el-form-item prop="churchSize">
                   <el-select-v2 v-model="userDetails.churchSize" :options="membershipSizeList"
                     placeholder="Select size range" size="large" class="w-100" />
@@ -73,8 +73,8 @@
           <div>
             <div>
               <div class="onboarding-image-con">
-                <img src="../../assets/onboarding.png" alt="Image" />
-                <span class="reactive-text">{{ churchName }}</span>
+                <!-- <img src="../../assets/onboarding.png" alt="Image" /> -->
+                <span class="reactive-text text-white">{{ churchName }}</span>
               </div>
             </div>
           </div>

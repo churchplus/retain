@@ -6,7 +6,7 @@
           <div class="welcome-intro">
             <div v-if="!processing">
               <h1>Hey {{ userDetails.firstName ? userDetails.firstName : "" }}</h1>
-              <h2>What would you like to do in Churchplus?</h2>
+              <h2>What would you like to do in sendiT?</h2>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
           </div>
 
           <div class="more-later hidden-md-and-up">
-            <span>What would you like to do in churchplus</span>
+            <span>What would you like to do in sendiT</span>
           </div>
 
 
@@ -93,7 +93,7 @@
               </div>
             </router-link>
 
-            <router-link class="start-option"
+            <!-- <router-link class="start-option"
               :to="{ name: 'ProcessRequest', params: { option: '/tenant/people/add' } }">
               <div class="icon">
                 <img class="link-icon link-icon-no-bg" src="../../assets/people/add-church-members.svg"
@@ -103,9 +103,9 @@
                 <a class="start-link">Add church members</a>
                 <p class="my-auto"><i class="fas fa-angle-right"></i></p>
               </div>
-            </router-link>
+            </router-link> -->
 
-            <router-link class="start-option"
+            <!-- <router-link class="start-option"
               :to="{ name: 'ProcessRequest', params: { option: '/tenant/people/addfirsttimer' } }">
               <div class="icon">
                 <img class="link-icon" src="../../assets/first-timers.svg" alt="First Timers Icon" />
@@ -114,7 +114,7 @@
                 <a class="start-link">Add first timers</a>
                 <p class="my-auto"><i class="fas fa-angle-right"></i></p>
               </div>
-            </router-link>
+            </router-link> -->
 
             <router-link class="start-option" :to="{ name: 'ProcessRequest', params: { option: '/next' } }">
               <div class="icon">
@@ -130,7 +130,7 @@
       </div>
     </div>
     <div class="logo">
-      <img src="../../assets/churchplus-logo.png" alt="" />
+      <img src="../../assets/sendit-logo.png" alt="" />
     </div>
   </div>
 </template>

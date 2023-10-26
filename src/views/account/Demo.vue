@@ -2,7 +2,7 @@
   <div>
     <div class="main-section">
       <div class="logo-con">
-        <a href="" class="logo-link"><img src="../../assets/churchplus-logo.png" alt="Churchplus Logo"></a>
+        <a href="" class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo"></a>
       </div>
       <div class="header">
         <h1>Sign in</h1>

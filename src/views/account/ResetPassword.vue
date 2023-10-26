@@ -3,7 +3,7 @@
     <div class="fp-con">
       <div class="logo-con">
         <a href="" class="logo-link"
-          ><img src="../../assets/churchplus-logo.png" alt="Churchplus Logo"
+          ><img src="../../assets/sendit-logo.png" alt="Churchplus Logo"
         /></a>
       </div>
       <div class="fp-header mt-5 mb-4">

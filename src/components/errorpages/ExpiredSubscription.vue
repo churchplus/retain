@@ -7,7 +7,7 @@
       </div>
     <div class="row" d-md-flex justify-content-md-between>
       <div class="col-12 d-flex justify-content-center mb-3">
-        <img src="../../assets/churchplus-logo.png" class="link-image" />
+        <img src="../../assets/sendit-logo.png" class="link-image" />
         <!-- <img src="../../assets/dashboardlinks/churchcloud.png" class="link-image" /> -->
       </div>
       <div class="col-md-8 mb-md-5"><h2 class="font-weight-700">Subscription  Expired</h2></div>

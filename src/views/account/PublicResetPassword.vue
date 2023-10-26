@@ -4,7 +4,7 @@
       <Toast />
       <div class="logo-con">
         <a href="" class="logo-link"
-          ><img src="../../assets/churchplus-logo.png" alt="Churchplus Logo"
+          ><img src="../../assets/sendit-logo.png" alt="Churchplus Logo"
         /></a>
       </div>
       <div v-if="!passwordChanged" class="fp-header mt-5 mb-4">
@@ -202,6 +202,11 @@ export default {
 .logo-link {
   width: 100%;
   text-align: center;
+  margin-top: 36px;
+}
+
+.logo-link img{
+  height: 4.2rem;
 }
 
 .fp-header {
