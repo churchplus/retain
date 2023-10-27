@@ -32,7 +32,7 @@
               <div class="input-div">
                 <label class="mb-0">What's the name of your business?</label>
                 <el-form-item prop="churchName">
-                  <el-input type="text" v-model="userDetails.churchName" placeholder="Name of church" />
+                  <el-input type="text" v-model="userDetails.churchName" placeholder="Name of business" />
                 </el-form-item>
               </div>
 
