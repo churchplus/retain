@@ -55,7 +55,7 @@
           </el-form-item>
         </el-form>
 
-        <div class="terms">
+        <!-- <div class="terms">
           <p>
             By signing up, you are indicating that you have read and agree to
             the
@@ -63,7 +63,7 @@
             and
             <router-link to="/termsofuse" class="terms-link">Privacy Policy.</router-link>
           </p>
-        </div>
+        </div> -->
 
         <div class="bottom-container">
           <div>
