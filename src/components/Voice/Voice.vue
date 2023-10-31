@@ -15,22 +15,23 @@
     <main :class="{ 'main': mdAndUp || lgAndUp || xlAndUp }" class="mt-3">
       <div class="container-fluid">
         <div class="row">
-          <!-- Side menu -->
-          <div class="col-md-3" id="side-menu">
-            <div class="row">
-              <div class="col-md-12 mt-4">
-                <div class="mt-2" v-show="xsOnly || smAndUp">
-                  <i class="pi pi-bars" @click="toggleMenu"></i>
-                </div>
-                <el-button round class="font-weight-bold w-100" size="large" :color="primarycolor" @click="nextPage">
-                  Compose voice
-                </el-button>
-              </div>
-            </div>
 
-            <div class="row mt-4" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }">
-              <div class="col-md-12">
-                <div class="row menu-item-con py-2" :class="{ 'active-link': route.path === '/tenant/voice/voicelist' }">
+          <!-- <div class="row"> -->
+          <div class="col-md-3 col-12 mt-4">
+            <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
+              <i class="pi pi-bars" @click="toggleMenu"></i>
+            </div> -->
+            <el-button round class="font-weight-bold w-100" size="large" :color="primarycolor" @click="nextPage">
+              Compose voice
+            </el-button>
+          </div>
+          <!-- </div> -->
+          <!-- Side menu -->
+          <div class="col-md-9 col-12" id="side-menu">
+            <div class="row mt-4">
+            <!-- <div class="row mt-4" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }"> -->
+              <div class="col-md-12 d-flex flex-wrap">
+                <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/voice/voicelist' }">
                   <div class="col-md-12 menu-item-div m-auto">
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
@@ -50,7 +51,7 @@
           </div>
 
           <!-- Bigger row -->
-          <div class="col-md-9 col-xl-8" style="margin: auto">
+          <div class="col-md-12 col-xl-12 " style="margin: auto">
             <router-view> </router-view>
           </div>
         </div>
@@ -119,9 +120,9 @@ export default {
   justify-content: space-between;
 }
 
-#side-menu {
+/* #side-menu {
   border-right: 1px solid #02172e30;
-}
+} */
 
 .search-div {
   width: fit-content;
@@ -185,8 +186,8 @@ export default {
 }
 
 .active-link {
-  background: rgba(19, 106, 205, 0.05);
-  border-left: 2px solid #136acd;
+  /* background: rgba(19, 106, 205, 0.05); */
+  border-bottom: 2px solid #136acd;
 }
 
 .router-link-exact-active .active {
@@ -297,6 +298,7 @@ export default {
 
 @media screen and (min-width: 1300px) {
   .menu-item-div {
-    padding-left: 40px;
+    padding-left: 30px;
   }
-}</style>
+}
+</style>

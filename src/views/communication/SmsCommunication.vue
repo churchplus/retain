@@ -12,13 +12,24 @@
     </div>
 
     <!-- Content Box -->
-    <main class="mt-md-3" :class="{ 'main' : mdAndUp || lgAndUp || xlAndUp }">
+    <main class="mt-md-3" :class="{ 'main': mdAndUp || lgAndUp || xlAndUp }">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row ">
+          <div class="col-md-3 col-12 px-0 px-md-3  mt-4">
+            <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
+              <i class="pi pi-bars mb-3" @click="toggleMenu"></i>
+            </div> -->
+            <router-link to="/tenant/sms/compose" class="no-decoration">
+              <el-button round class="font-weight-bold w-100 mb-3" size="large" :color="primarycolor">
+                Compose SMS
+              </el-button>
+            </router-link>
+          </div>
           <!-- Side mennu -->
-          <div class="col-md-3" :class="{ 'side-menu' : mdAndUp || lgAndUp || xlAndUp }">
-            <div class="row">
-              <div class="col-md-12 px-0 px-md-3 d-flex flex-column mt-4">
+          <div class="col-md-9 col-12  mt-4  " :class="{ 'side-menu': mdAndUp || lgAndUp || xlAndUp }">
+          <!-- <div class="col-md-9  mt-3  " :class="{ 'side-menu': mdAndUp || lgAndUp || xlAndUp }"> -->
+            <!-- <div class="row">
+              <div class="col-md-12 col-12 px-0 px-md-3  mt-4">
                 <div class="mt-2" v-show="xsOnly || smAndUp">
                   <i class="pi pi-bars mb-3" @click="toggleMenu"></i>
                 </div>
@@ -28,10 +39,11 @@
                   </el-button>
                 </router-link>
               </div>
-            </div>
-            <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }">
-              <div class="col-md-12 ">
-                <div class="row menu-item-con py-2" :class="{
+            </div> -->
+            <div class="row" >
+            <!-- <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }"> -->
+              <div class="col-md-12 d-flex flex-wrap ">
+                <div class="row menu-item-con " :class="{
                   'active-link':
                     route.path.includes('/tenant/sms/sent'),
                 }">
@@ -39,7 +51,9 @@
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms/sent">
-                          <el-icon class="mr-3"><Top /></el-icon>
+                          <el-icon class="mr-3">
+                            <Top />
+                          </el-icon>
                           <span class="active">Sent</span>
                         </router-link>
                       </span>
@@ -47,22 +61,25 @@
                   </div>
                 </div>
 
-                <div class="row menu-item-con py-2" :class="{
+                <!-- <div class="row menu-item-con py-1" :class="{
                   'active-link':
                     route.path === '/tenant/sms',
                 }">
                   <div class="col-md-12 menu-item-div m-auto">
                     <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item"><router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms">
-                        <el-icon class="mr-3"><MessageBox /></el-icon>
+                      <span class="menu-item"><router-link class="r-link text-decoration-none d-flex align-items-center"
+                          to="/tenant/sms">
+                          <el-icon class="mr-3">
+                            <MessageBox />
+                          </el-icon>
                           <span class="active">Replies</span>
                         </router-link>
                       </span>
                     </a>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="row menu-item-con py-2" :class="{
+                <!-- <div class="row menu-item-con py-1" :class="{
                   'active-link':
                     route.path === '/tenant/sms/draft',
                 }">
@@ -70,13 +87,15 @@
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms/draft">
-                          <el-icon class="mr-3"><Message /></el-icon>
+                          <el-icon class="mr-3">
+                            <Message />
+                          </el-icon>
                           <span class="active">Draft</span>
                         </router-link>
                       </span>
                     </a>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- <div class="row menu-item-con py-2" :class="{
                   'active-link':
@@ -94,28 +113,33 @@
                   </div>
                 </div> -->
 
-                <div class="row menu-item-con py-2" :class="{
+                <div class="row menu-item-con " :class="{
                   'active-link':
                     route.path === '/tenant/sms/scheduled',
                 }">
                   <div class="col-md-12 menu-item-div m-auto">
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
-                        <router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms/scheduled">
-                          <el-icon class="mr-3"><Clock /></el-icon>
+                        <router-link class="r-link text-decoration-none d-flex align-items-center"
+                          to="/tenant/sms/scheduled">
+                          <el-icon class="mr-3">
+                            <Clock />
+                          </el-icon>
                           <span class="active">Scheduled</span>
                         </router-link>
                       </span>
                     </a>
                   </div>
                 </div>
-                <div class="row menu-item-con py-2">
+                <div class="row menu-item-con ">
                   <div class="col-md-12 menu-item-div m-auto">
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center"
                           :to="{ name: 'BuyUnits', path: '/tenant/buyunits' }">
-                          <el-icon class="mr-3"><Sell /></el-icon>
+                          <el-icon class="mr-3">
+                            <Sell />
+                          </el-icon>
                           <span class="active">Buy Units</span>
                         </router-link>
                       </span>
@@ -127,7 +151,7 @@
           </div>
 
           <!-- Bigger row -->
-          <div class="col-md-9 col-xl-8 px-0 px-md-3" style="margin: auto">
+          <div class="col-md-12 col-xl-12 px-0 px-md-3" style="margin: auto">
             <router-view> </router-view>
           </div>
         </div>
@@ -168,15 +192,14 @@ export default {
 </script>
 
 <style scoped>
-
 .main {
   border: 1px solid #02172e30;
   border-radius: 30px;
 }
 
-.side-menu {
+/* .side-menu {
   border-right: 1px solid #02172e30;
-}
+} */
 
 .search-div {
   width: fit-content;
@@ -240,8 +263,8 @@ export default {
 }
 
 .active-link {
-  background: rgba(19, 106, 205, 0.05);
-  border-left: 2px solid #136acd;
+  /* background: rgba(19, 106, 205, 0.05); */
+  border-bottom: 2px solid #136acd;
 }
 
 .router-link-exact-active .active {
@@ -351,5 +374,4 @@ export default {
   .menu-item-div {
     padding-left: 40px;
   }
-}
-</style>
+}</style>

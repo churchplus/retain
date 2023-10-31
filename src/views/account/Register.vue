@@ -9,10 +9,10 @@
           <div class="header">
             <!-- <h1>Your all in one church management solution</h1> -->
             <h1>Get started for <span class="free">FREE</span></h1>
-            <h3 class="intro">
+            <!-- <h3 class="intro">
               A church software that automates your entire <br />
               church management processes.
-            </h3>
+            </h3> -->
           </div>
         </div>
       </div>

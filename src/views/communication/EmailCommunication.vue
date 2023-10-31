@@ -15,23 +15,24 @@
       <main class="mt-md-3" :class="{ 'main' : mdAndUp || lgAndUp || xlAndUp }">
         <div class="container-fluid">
           <div class="row">
-            <!-- Side mennu -->
-            <div class="col-md-3" :class="{ 'side-menu' : mdAndUp || lgAndUp || xlAndUp }" >
-              <div class="row">
-                <div class="col-md-12 px-0 px-md-3 d-flex flex-column mt-4">
-                  <div class="mt-2" v-show="xsOnly || smAndUp">
+            <!-- <div class="row"> -->
+                <div class="col-md-3 col-12 px-0 px-md-3 d-flex flex-column mt-4">
+                  <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
                     <i class="pi pi-bars" @click="toggleMenu"></i>
-                  </div>
+                  </div> -->
                   <router-link to="/tenant/email/compose" class="no-decoration">
                   <el-button round class="font-weight-bold w-100 mb-3" size="large" :color="primarycolor" >
                     Compose Email
                   </el-button>
                 </router-link>
                 </div>
-              </div>
-              <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu' : !menuShouldShow }">
-                <div class="col-md-12">
-                  <div class="row menu-item-con py-2" :class="{ 'active-link': route.path === '/tenant/email/sent'}">
+              <!-- </div> -->
+            <!-- Side mennu -->
+            <div class="col-md-9 col-12 mt-4" :class="{ 'side-menu' : mdAndUp || lgAndUp || xlAndUp }" >
+              <!-- <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu' : !menuShouldShow }"> -->
+              <div class="row" >
+                <div class="col-md-12 d-flex flex-wrap">
+                  <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/email/sent'}">
                     <div class="col-md-12 menu-item-div m-auto">
                       <a class="btn btn-default font-weight-bold">
                         <span class="menu-item">
@@ -44,7 +45,7 @@
                     </div>
                   </div>
 
-                  <div class="row menu-item-con py-2" :class="{ 'active-link': route.path === '/tenant/email/draft'}">
+                  <!-- <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/email/draft'}">
                     <div class="col-md-12 menu-item-div m-auto">
                       <a class="btn btn-default font-weight-bold">
                         <span class="menu-item">
@@ -55,9 +56,9 @@
                         </span>
                     </a>
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="row menu-item-con py-2" :class="{ 'active-link': route.path === '/tenant/email/schedules'}">
+                  <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/email/schedules'}">
                     <div class="col-md-12 menu-item-div m-auto">
                       <a class="btn btn-default font-weight-bold">
                         <span class="menu-item"
@@ -70,7 +71,7 @@
                       </a>
                     </div>
                   </div>
-                  <div class="row menu-item-con py-2" :class="{ 'active-link': route.path === '/tenant/buyunits'}">
+                  <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/buyunits'}">
                     <div class="col-md-12 menu-item-div m-auto">
                       <a class="btn btn-default font-weight-bold">
                         <span class="menu-item"
@@ -91,7 +92,7 @@
             </div>
 
             <!-- Bigger row -->
-            <div class="col-md-9 px-0 px-md-2">
+            <div class="col-md-12 px-0 px-md-2">
                 <router-view></router-view>
             </div>
           </div>
@@ -203,13 +204,13 @@ export default {
 }
 
 .active-link {
+  /* background: rgba(19, 106, 205, 0.05) ; */
+  border-bottom: 2px solid #136acd;
+}
+/* .active-link2 {
   background: rgba(19, 106, 205, 0.05) ;
   border-left: 2px solid #136acd;
-}
-.active-link2 {
-  background: rgba(19, 106, 205, 0.05) ;
-  border-left: 2px solid #136acd;
-}
+} */
 
 .router-link-exact-active .active {
    opacity: 1 !important;
@@ -344,7 +345,7 @@ export default {
 
 @media screen and (min-width: 1300px) {
   .menu-item-div {
-    padding-left: 40px;
+    padding-left: 30px;
   }
 }
 </style>

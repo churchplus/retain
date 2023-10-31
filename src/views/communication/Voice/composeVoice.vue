@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="" @click="closeDropdownIfOpen">
+    <div class="container-fluid" @click="closeDropdownIfOpen">
       <div class="row">
         <div class="col-12 col-md-12 mt-3 px-0">
           <h4 class="font-weight-bold text-center text-md-left mb-0">
