@@ -44,14 +44,14 @@
             <el-button size="large" color="#17c5cf" @click="register" class="w-100" :loading="loading" round>
               Get Started
             </el-button>
-            <el-divider>
+            <!-- <el-divider>
               or
             </el-divider>
             <div class="facebook-btn btn-logo sign-in-btn" @click="facebookLogin">
               <img src="../../assets/facebook-small.png" class="fb-icon" alt="Facebook Icon" />
               <span>Sign in with Facebook</span>
               <span></span>
-            </div>
+            </div> -->
           </el-form-item>
         </el-form>
 
