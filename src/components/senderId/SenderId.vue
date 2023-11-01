@@ -18,7 +18,7 @@
                 </template></el-input>
             <el-icon class="el-icon--right"><arrow-down /></el-icon>
             <template #dropdown>
-                <el-dropdown-menu>
+                <el-dropdown-menu class=" ">
                     <el-dropdown-item v-for="(item, index) in searchSenderIDs" :key="index" @click="setIdToSubject(item)">
                         {{ item.mask }}
                     </el-dropdown-item>

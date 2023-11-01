@@ -3,7 +3,9 @@
     <div class="container pb-5">
       <div class="row mt-3 mb-4">
         <div class="col-md-12">
-            <span class="mr-2 c-pointer" @click="router.go(-1)"><el-icon class="back-icon text-white"><Back /></el-icon> Back</span>
+          <span class="mr-2 c-pointer" @click="router.go(-1)"><el-icon class="back-icon text-white">
+              <Back />
+            </el-icon> Back</span>
         </div>
       </div>
 
@@ -32,13 +34,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <ReportChart
-            domId="reportChart"
-            title=""
-            :height="250"
-            :summary="statsData"
-            :percentage="false"
-          />
+          <ReportChart domId="reportChart" title="" :height="250" :summary="statsData" :percentage="false" />
         </div>
         <!-- <div class="col-md-4">
           <SecondChart
@@ -75,40 +71,36 @@
           <hr class="hr mt-0" />
         </div>
       </div> -->
-<div class="row">
-      <Table
-        :data="messages"
-        :headers="reportHeaders"
-        :checkMultipleItem="false"
-        v-loading="loading"
-        class="mt-4 w-100"
-        v-if="messages.length > 0"
-      >
-        <template v-slot:recipient="{ item }">
-          <div>
-            {{ item.recipient }}
-          </div>
-        </template>
-        <template v-slot:name="{ item }">
-          <div>
-            {{ item.name }}
-          </div>
-        </template>
-        <template v-slot:deliveryReport="{ item }">
-          <div>
-            <span
-                class="badge badge-pill"
-                :class="{ 'badge-success' : item.deliveryReport.toLowerCase().includes('sent'), 'badge-warning' : item.deliveryReport.toLowerCase().includes('processed'), 'badge-danger' : item.deliveryReport.toLowerCase().includes('fail'),  'badge-info' : item.deliveryReport.toLowerCase().includes('queue') }"
-                >{{ item.deliveryReport }}</span>
-          </div>
-        </template>
-        <template v-slot:date="{ item }">
-          <div>
-            {{ formatDate(item.date) }}
-          </div>
-        </template>
-      </Table>
-    </div>
+      <div class="row mt-3">
+        <div class="col-md-12 px-0">
+          <Table :data="messages" :headers="reportHeaders" :checkMultipleItem="false" v-loading="loading" class="mt-4 "
+            v-if="messages.length > 0">
+            <template v-slot:recipient="{ item }">
+              <div>
+                {{ item.recipient }}
+              </div>
+            </template>
+            <template v-slot:name="{ item }">
+              <div>
+                {{ item.name }}
+              </div>
+            </template>
+            <template v-slot:deliveryReport="{ item }">
+              <div>
+                <span class="badge badge-pill"
+                  :class="{ 'badge-success': item.deliveryReport.toLowerCase().includes('sent'), 'badge-warning': item.deliveryReport.toLowerCase().includes('processed'), 'badge-danger': item.deliveryReport.toLowerCase().includes('fail'), 'badge-info': item.deliveryReport.toLowerCase().includes('queue') }">{{
+                    item.deliveryReport }}</span>
+              </div>
+            </template>
+            <template v-slot:date="{ item }">
+              <div>
+                {{ formatDate(item.date) }}
+              </div>
+            </template>
+          </Table>
+
+        </div>
+      </div>
 
 
       <!-- <div class="row" v-for="(message, index) in messages" :key="index">
@@ -152,18 +144,12 @@
           <hr class="hr" />
         </div>
       </div> -->
-      <div
-        class="col-md-12 px-0 text-center"
-        v-if="messages.length == 0 && loading"
-      >
+      <div class="col-md-12 px-0 text-center" v-if="messages.length == 0 && loading">
         <ProgressSpinner style="width: 50px" />
       </div>
-      <div
-        class="row text-center mt-3 font-weight-700"
-        v-if="messages.length == 0 && !loading"
-      >
-      <el-alert title="No data for this report" type="warning" effect="dark" />
-        
+      <div class="row text-center mt-3 font-weight-700" v-if="messages.length == 0 && !loading">
+        <el-alert title="No data for this report" type="warning" effect="dark" />
+
       </div>
     </div>
   </div>
