@@ -4,9 +4,9 @@ const composerObj = {
     searchingMembers: true,
 
     possibleEmailDestinations: [
-        "All contacts",
-        "Select group from database",
-        "Select person from membership database",
+        // "All contacts",
+        "Select from Contact",
+        // "Select person from membership database",
         "Emails",
         
     ],
@@ -26,10 +26,10 @@ const composerObj = {
     ],
 
     possibleSMSDestinations: [
-        "All contacts",
-        "Select group from database",
-        "Select person from membership database",
-        "Phone numbers",
+        // "All contacts",
+        "Select from contact",
+        // "Select person from membership database",
+        // "Phone numbers",
         "Upload contacts",
     ],
 

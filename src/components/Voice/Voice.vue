@@ -17,7 +17,7 @@
         <div class="row">
 
           <!-- <div class="row"> -->
-          <div class="col-md-3 col-12 mt-4">
+          <div class="col-md-3 col-12 px-0 mt-4">
             <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
               <i class="pi pi-bars" @click="toggleMenu"></i>
             </div> -->
@@ -37,9 +37,9 @@
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center "
                           to="/tenant/voice/voicelist">
-                          <el-icon class="mr-3  menu-icon">
+                          <!-- <el-icon class="mr-3  menu-icon">
                             <Tickets />
-                          </el-icon>
+                          </el-icon> -->
                           <span class="active">All Sent Voice</span>
                         </router-link>
                       </span>
@@ -51,7 +51,7 @@
           </div>
 
           <!-- Bigger row -->
-          <div class="col-md-12 col-xl-12 " style="margin: auto">
+          <div class="col-md-12 px-0  " >
             <router-view> </router-view>
           </div>
         </div>
@@ -110,10 +110,10 @@ export default {
   cursor: pointer;
 }
 
-.main {
+/* .main {
   border: 1px solid #02172e30;
   border-radius: 30px;
-}
+} */
 
 #main-tool {
   display: flex;
@@ -187,7 +187,8 @@ export default {
 
 .active-link {
   /* background: rgba(19, 106, 205, 0.05); */
-  border-bottom: 2px solid #136acd;
+  /* border-bottom: 2px solid #136acd; */
+  color: #136acd;
 }
 
 .router-link-exact-active .active {
@@ -223,7 +224,7 @@ export default {
 }
 
 .r-link {
-  color: #002044;
+  color: #136acd;
 }
 
 .router-link-exact-active i {

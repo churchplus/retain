@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container pb-5">
+    <div class="container-fluid pb-5">
       <div class="row mt-3 mb-4">
         <div class="col-md-12">
           <span class="mr-2 c-pointer" @click="router.go(-1)"><el-icon class="back-icon text-white">

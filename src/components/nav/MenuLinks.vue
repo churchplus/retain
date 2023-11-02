@@ -163,24 +163,25 @@ export default {
         submenu: [],
         id: 2
       }
+      const whatsapp = {
+        name: 'Whatsapp',
+        logo: require('../../assets/dashboardlinks/whatsapp-icon.svg'),
+        route: '/tenant/whatsapp',
+        submenu: [],
+        id: 3
+      }
+
       const  email = {
         name: 'Email',
         logo: require('../../assets/dashboardlinks/email-icon.svg'),
         route: '/tenant/email',
         submenu: [],
-        id: 3
+        id: 4
       }
       const voice = {
         name: 'Voice',
         logo: require('../../assets/dashboardlinks/voice-icon.svg'),
         route: '/tenant/voice/voicelist',
-        submenu: [],
-        id: 4
-      }
-      const whatsapp = {
-        name: 'Whatsapp',
-        logo: require('../../assets/dashboardlinks/whatsapp-icon.svg'),
-        route: '/tenant/whatsapp',
         submenu: [],
         id: 5
       }
@@ -498,7 +499,7 @@ export default {
         }
 
         if (i.toLowerCase() == 'admin') {
-          menuLink.value.push(dashboard, sms, email, voice, whatsapp, contactlist )
+          menuLink.value.push(dashboard, sms,  whatsapp,  email, voice, contactlist )
           // menuLink.value.push(dashboard, people, communication, event, financial,  report, more)
           // menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(members, firsttimers, groups, families)
           // menuLink.value.find(i => i.name.toLowerCase() == 'more').submenu.push(media, branch, settings)

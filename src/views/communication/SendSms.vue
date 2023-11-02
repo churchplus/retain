@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" @click="closeDropdownIfOpen">
+    <div class="container-fluid" @click="closeDropdownIfOpen">
       <!-- <div class="container" @click="closeDropdownIfOpen"> -->
       <div class="row">
         <div class="col-md-12 mt-3 px-0">
@@ -13,9 +13,19 @@
           <hr class="hr" />
         </div>
       </div>
+      <!-- <div class="col-md-12 my-1 px-0" v-if="phoneNumberSelectionTab"> -->
+      <div class="row">
+        <div class="col-md-2 px-0 col-lg-2 mt-2 align-self-start">
+          <span class="small-text">Send to : </span>
+        </div>
+        <div class="col-md-10 py-2 px-0">
+          <el-input type="textarea" class="w-100" rows="3" placeholder="Enter phone number(s)" v-model="phoneNumber" />
+        </div>
+      </div>
+      <!-- </div> -->
       <div class="row">
         <div class="col-md-2 px-0 col-lg-2 align-self-center">
-          <span class="small-text">Send to : </span>
+          <span class="small-text"> </span>
         </div>
         <div class="p-0 col-md-10 col-lg-10 form-group mb-0">
           <el-dropdown trigger="click" class="w-100">
@@ -58,7 +68,7 @@
               <input type="text" class="border-0 dd-item" ref="groupSelectInput" :class="{
                 'w-100': selectedGroups.length === 0,
                 'minimized-input-width': selectedGroups.length > 0,
-              }" @focus="showGroupList" @click="showGroupList" style="padding: 0.5rem" :placeholder="`${selectedGroups.length > 0 ? '' : 'Select groups'
+              }" @focus="showGroupList" @click="showGroupList" style="padding: 0.5rem" :placeholder="`${selectedGroups.length > 0 ? '' : 'Select'
   }`" />
             </li>
           </ul>
@@ -68,20 +78,19 @@
                 <p class="small-text">No groups yet</p>
               </div>
             </div>
-            <div class="row dd-item" v-for="(category, index) in categories" :key="index">
-              <div class="col-md-12 dd-item" v-if="allGroups[index].length > 0">
+            <div class="row dd-item" >
+              <div class="col-md-12 dd-item" v-if="allGroups.length > 0">
                 <div class="row dd-item">
                   <div class="col-md-12 dd-item">
                     <h6 class="text-uppercase dd-item font-weight-bold">
-                      {{ category }}
+                      {{ categories }}
                     </h6>
-                    <a class="dropdown-item px-1 c-pointer dd-item small-text" v-for="(group, indx) in allGroups[index]"
+                    <a class="dropdown-item px-1 c-pointer dd-item small-text" v-for="(group, indx) in allGroups"
                       @click="
                         selectGroup(
                           group.category,
                           group.id,
                           group.name,
-                          index,
                           indx
                         )
                         " :key="indx">
@@ -208,7 +217,7 @@
       </div>
 
       <!-- Enter phone numbers -->
-      <div class="col-md-12 my-1 px-0" v-if="phoneNumberSelectionTab">
+      <!-- <div class="col-md-12 my-1 px-0" v-if="phoneNumberSelectionTab">
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-10 py-2 px-0">
@@ -230,7 +239,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Start upload contact -->
       <div v-if="contactUpload" class="row my-1">
@@ -421,7 +430,8 @@
         align-center class="px-4">
         <div class="row" v-if="!nigerian">
           <div class="col-md-12 text-center">
-            <el-button :loading="loading" :disabled="disableBtn" :color="primarycolor" class="w-100" @click="contructScheduleMessageBody(1, '')" round>Send SMS
+            <el-button :loading="loading" :disabled="disableBtn" :color="primarycolor" class="w-100"
+              @click="contructScheduleMessageBody(1, '')" round>Send SMS
               now</el-button>
             <!-- <button class=" primary-btn default-btn px-4 my-2 border-0 primary-bg text-white outline-none extra-btn"
               data-dismiss="modal" @click="contructScheduleMessageBody(1, '')">
@@ -679,17 +689,17 @@ export default {
 
 
     const showSection = (index) => {
-      if (index === 1) groupSelectionTab.value = true;
-      if (index === 2) membershipSelectionTab.value = true;
-      if (index === 3) phoneNumberSelectionTab.value = true;
-      if (index === 4) contactUpload.value = true;
-      if (index === 0) {
-        groupSelectionTab.value = true;
-        selectedGroups.value.push({
-          data: "membership_00000000-0000-0000-0000-000000000000",
-          name: "All Contacts",
-        });
-      }
+      if (index === 0) groupSelectionTab.value = true;
+      // if (index === 2) membershipSelectionTab.value = true;
+      // if (index === 3) phoneNumberSelectionTab.value = true;
+      if (index === 1) contactUpload.value = true;
+      // if (index === 0) {
+      //   groupSelectionTab.value = true;
+      //   selectedGroups.value.push({
+      //     data: "membership_00000000-0000-0000-0000-000000000000",
+      //     name: "All Contacts",
+      //   });
+      // }
     };
 
     const sendOptionsIsShown = ref(false);
@@ -711,12 +721,11 @@ export default {
       category,
       id,
       name,
-      indexInCategories,
       indexInGroup
     ) => {
       selectedGroups.value.push({ data: `${category}_${id}`, name });
       groupsAreVissible.value = false;
-      allGroups.value[indexInCategories].splice(indexInGroup, 1);
+      allGroups.value.splice(indexInGroup, 1);
       groupListShown.value = false;
     };
 
@@ -776,7 +785,7 @@ export default {
 
     const subject = ref("");
     const phoneNumber = ref("");
-    
+
     // const isPersonalized = ref(false);
 
     const isoCode = ref("");
@@ -787,17 +796,17 @@ export default {
     const setSelectedSenderIdCheckin = (payload) => {
       searchSenderText.value = payload
       subject.value = payload;
-      if(searchSenderIDs.value || subject.value ){
+      if (searchSenderIDs.value || subject.value) {
         disableBtn.value = false
-      }else{
+      } else {
         disableBtn.value = true
       }
     }
 
     const sendSMS = (data) => {
-      
+
       // disableBtn.value = true;
-      
+
       invalidDestination.value = false;
       invalidMessage.value = false;
       loading.value = true
@@ -1125,10 +1134,15 @@ export default {
       composeService
         .getCommunicationGroups()
         .then((res) => {
+          console.log(res.phoneNumberGroups, 'jjjjjj')
           for (let prop in res) {
             categories.value.push(prop);
             allGroups.value.push(res[prop]);
           }
+          allGroups.value = allGroups.value[6]
+          categories.value = categories.value[6]
+          console.log(allGroups.value, 'hhhf');
+          console.log(categories.value[6], 'hhhf');
         })
         .catch((err) => console.log(err));
     });

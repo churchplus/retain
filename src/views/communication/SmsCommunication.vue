@@ -1,19 +1,18 @@
 <template>
   <div class="container-top" :class="{ 'container-slim': lgAndUp || xlAndUp }">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="head-text">SMS</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <hr class="hr" />
-      </div>
-    </div>
-
     <!-- Content Box -->
     <main class="mt-md-3" :class="{ 'main': mdAndUp || lgAndUp || xlAndUp }">
       <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="head-text">SMS</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr class="hr" />
+          </div>
+        </div>
         <div class="row ">
           <div class="col-md-3 col-12 px-0 px-md-3  mt-4">
             <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
@@ -27,7 +26,7 @@
           </div>
           <!-- Side mennu -->
           <div class="col-md-9 col-12  mt-4  " :class="{ 'side-menu': mdAndUp || lgAndUp || xlAndUp }">
-          <!-- <div class="col-md-9  mt-3  " :class="{ 'side-menu': mdAndUp || lgAndUp || xlAndUp }"> -->
+            <!-- <div class="col-md-9  mt-3  " :class="{ 'side-menu': mdAndUp || lgAndUp || xlAndUp }"> -->
             <!-- <div class="row">
               <div class="col-md-12 col-12 px-0 px-md-3  mt-4">
                 <div class="mt-2" v-show="xsOnly || smAndUp">
@@ -40,8 +39,8 @@
                 </router-link>
               </div>
             </div> -->
-            <div class="row" >
-            <!-- <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }"> -->
+            <div class="row mt-1">
+              <!-- <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }"> -->
               <div class="col-md-12 d-flex flex-wrap ">
                 <div class="row menu-item-con " :class="{
                   'active-link':
@@ -51,9 +50,9 @@
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms/sent">
-                          <el-icon class="mr-3">
+                          <!-- <el-icon class="mr-3">
                             <Top />
-                          </el-icon>
+                          </el-icon> -->
                           <span class="active">Sent</span>
                         </router-link>
                       </span>
@@ -79,40 +78,6 @@
                   </div>
                 </div> -->
 
-                <!-- <div class="row menu-item-con py-1" :class="{
-                  'active-link':
-                    route.path === '/tenant/sms/draft',
-                }">
-                  <div class="col-md-12 menu-item-div m-auto">
-                    <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item">
-                        <router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms/draft">
-                          <el-icon class="mr-3">
-                            <Message />
-                          </el-icon>
-                          <span class="active">Draft</span>
-                        </router-link>
-                      </span>
-                    </a>
-                  </div>
-                </div> -->
-
-                <!-- <div class="row menu-item-con py-2" :class="{
-                  'active-link':
-                    route.path === '/tenant/sms/contacts',
-                }">
-                  <div class="col-md-12 menu-item-div m-auto">
-                    <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item">
-                        <router-link class="r-link text-decoration-none d-flex align-items-center" to="/tenant/sms/contacts">
-                          <el-icon class="mr-3"><Document /></el-icon>
-                          <span class="active">Contact List</span>
-                        </router-link>
-                      </span>
-                    </a>
-                  </div>
-                </div> -->
-
                 <div class="row menu-item-con " :class="{
                   'active-link':
                     route.path === '/tenant/sms/scheduled',
@@ -122,9 +87,9 @@
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center"
                           to="/tenant/sms/scheduled">
-                          <el-icon class="mr-3">
+                          <!-- <el-icon class="mr-3">
                             <Clock />
-                          </el-icon>
+                          </el-icon> -->
                           <span class="active">Scheduled</span>
                         </router-link>
                       </span>
@@ -137,21 +102,33 @@
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center"
                           :to="{ name: 'BuyUnits', path: '/tenant/buyunits' }">
-                          <el-icon class="mr-3">
+                          <!-- <el-icon class="mr-3">
                             <Sell />
-                          </el-icon>
+                          </el-icon> -->
                           <span class="active">Buy Units</span>
                         </router-link>
                       </span>
                     </a>
                   </div>
                 </div>
+                <!-- <div class="row menu-item-con ">
+                  <div class="col-md-12 menu-item-div m-auto">
+                    <a class="btn btn-default font-weight-bold">
+                      <span class="menu-item">
+                        <router-link class="r-link text-decoration-none d-flex align-items-center"
+                          :to="{ name: 'BuyUnits', path: '/tenant/buyunits' }">
+                          <span class="active">SenderID</span>
+                        </router-link>
+                      </span>
+                    </a>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
 
           <!-- Bigger row -->
-          <div class="col-md-12 col-xl-12 px-0 px-md-3" style="margin: auto">
+          <div class="col-md-12 ">
             <router-view> </router-view>
           </div>
         </div>
@@ -192,10 +169,10 @@ export default {
 </script>
 
 <style scoped>
-.main {
+/* .main {
   border: 1px solid #02172e30;
   border-radius: 30px;
-}
+} */
 
 /* .side-menu {
   border-right: 1px solid #02172e30;
@@ -264,7 +241,8 @@ export default {
 
 .active-link {
   /* background: rgba(19, 106, 205, 0.05); */
-  border-bottom: 2px solid #136acd;
+  /* border-bottom: 2px solid #136acd; */
+  color: #136acd !important;
 }
 
 .router-link-exact-active .active {
@@ -300,11 +278,12 @@ export default {
 }
 
 .r-link {
-  color: #002044;
+  color: #136acd;
 }
 
 .router-link-exact-active i {
-  color: #136acd;
+  /* color: #136acd; */
+  color: #002044;
   opacity: 1;
 }
 
@@ -374,4 +353,5 @@ export default {
   .menu-item-div {
     padding-left: 40px;
   }
-}</style>
+}
+</style>
