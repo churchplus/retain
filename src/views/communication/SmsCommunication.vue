@@ -111,18 +111,18 @@
                     </a>
                   </div>
                 </div>
-                <!-- <div class="row menu-item-con ">
+                <div class="row menu-item-con ">
                   <div class="col-md-12 menu-item-div m-auto">
                     <a class="btn btn-default font-weight-bold">
                       <span class="menu-item">
                         <router-link class="r-link text-decoration-none d-flex align-items-center"
-                          :to="{ name: 'BuyUnits', path: '/tenant/buyunits' }">
+                          :to="{ name: 'SenderId', path: '/tenant/senderid' }">
                           <span class="active">SenderID</span>
                         </router-link>
                       </span>
                     </a>
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -147,7 +147,6 @@ export default {
     const menuShouldShow = ref(false);
     const { xsOnly, smAndUp, mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint();
     const primarycolor = inject('primarycolor')
-
 
     const toggleMenu = () => {
       menuShouldShow.value = !menuShouldShow.value

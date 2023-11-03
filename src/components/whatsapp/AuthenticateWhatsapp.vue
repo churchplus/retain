@@ -7,9 +7,9 @@
       <img src="../../assets/whatsapp-churchplus.svg" />
     </div>
     <h1 class="send-text s-20 mt-3 text-center">
-      Send Whatsapp Message <br />to Members easily
+      Send Whatsapp Message <br /> easily
     </h1>
-    <p class="text-center">Sync ChurchPlus with Whatsapp</p>
+    <p class="text-center">Sync SendiT with Whatsapp</p>
     <el-alert
       v-if="serverBusy"
       title="Server status"

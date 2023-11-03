@@ -947,6 +947,15 @@ const routes = [
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/ContactList')
         },
         {
+            path: 'senderid',
+            name: 'SenderId',
+            meta: {
+                title: 'SendiT - Communication - Phone Groups',
+            },
+            component: () =>
+                import( /* webpackChunkName: "contactlist" */ '@/views/communication/SenderID')
+        },
+        {
             path: 'sms',
             name: 'SmsCommunication',
             component: () =>
