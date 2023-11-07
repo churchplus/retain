@@ -7,6 +7,11 @@
       <div class="header">
         <h1>Sign in</h1>
       </div>
+      <div class="row">
+        <div class="col-md-12 kick-start d-flex justify-content-center ">
+          <img src="../../assets/KickStart.jpg" alt="">
+        </div>
+      </div>
 
       <div class="form-container">
         <div class="error-div" v-if="state.showError && !state.notAUser">
@@ -228,6 +233,10 @@ export default {
 </script>
 
 <style scoped>
+
+.kick-start img{
+  height: 10rem;
+}
 .logo-con {
   display: flex;
   margin-top: 24px;
@@ -246,7 +255,7 @@ export default {
 
 .header {
   text-align: center;
-  margin-bottom: 41px;
+  margin-bottom: 10px;
   margin-top: 41px;
 }
 

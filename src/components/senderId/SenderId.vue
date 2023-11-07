@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dropdown trigger="click" class="w-100 mt-3">
+        <el-dropdown trigger="click" class="w-100  mt-3">
             <el-input v-model="searchSenderText" placeholder="Search sender id">
                 <template #suffix>
                     <el-button style="padding: 5px; height: 22px;" @click.prevent="searchSenderText = ''">
@@ -19,7 +19,7 @@
             <el-icon class="el-icon--right"><arrow-down /></el-icon>
             <template #dropdown>
                 <el-dropdown-menu class=" ">
-                    <el-dropdown-item v-for="(item, index) in searchSenderIDs" :key="index" @click="setIdToSubject(item)">
+                    <el-dropdown-item class="" v-for="(item, index) in searchSenderIDs" :key="index" @click="setIdToSubject(item)">
                         {{ item.mask }}
                     </el-dropdown-item>
                     <el-dropdown-item class="primary--text" data-toggle="modal" data-target="#senderIdModal" divided>

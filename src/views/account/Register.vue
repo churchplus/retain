@@ -16,6 +16,11 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12 kick-start d-flex justify-content-center ">
+          <img src="../../assets/KickStart.jpg" alt="">
+        </div>
+      </div>
 
       <div class="form-container">
         <div class="error-div" v-if="showError">
@@ -201,6 +206,10 @@ export default {
 </script>
 
 <style scoped>
+
+.kick-start img{
+  height: 10rem;
+}
 .logo-con {
   display: flex;
   margin-top: 42px 0;
