@@ -1,2 +1,2 @@
-# sms-app
-It help in managing messages going out and coming in 
+# Retain
+An All in One app for seamless communication with your audience.
