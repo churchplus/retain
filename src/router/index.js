@@ -22,7 +22,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "login" */ '../views/account/TermsOfService.vue'),
         meta: {
-            title: 'SendiT - Terms Of Use',
+            title: 'Retain - Terms Of Use',
         }
     },
 
@@ -32,7 +32,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "login" */ '../views/account/Login.vue'),
         meta: {
-            title: 'SendiT - Login',
+            title: 'Retain - Login',
         }
     },
     {
@@ -41,7 +41,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "PublicResetPassword" */ '../views/account/PublicResetPassword.vue'),
         meta: {
-            title: 'SendiT - Admin Reset Password',
+            title: 'Retain - Admin Reset Password',
         }
     },
     {
@@ -50,7 +50,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "register" */ '../views/account/Register.vue'),
         meta: {
-            title: 'SendiT - Register',
+            title: 'Retain - Register',
         }
     },
 
@@ -60,7 +60,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "onboarding" */ '../views/account/OnboardingForm.vue'),
         meta: {
-            title: 'SendiT - Onboarding',
+            title: 'Retain - Onboarding',
         }
     },
     {
@@ -69,7 +69,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "startingpoint" */ '../views/onboarding/StartingPoint.vue'),
         meta: {
-            title: 'SendiT - Start Point',
+            title: 'Retain - Start Point',
         }
     },
     {
@@ -78,7 +78,7 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "startingdashboard" */ '../views/onboarding/StartingDashboard.vue'),
         meta: {
-            title: 'SendiT - Starting Board',
+            title: 'Retain - Starting Board',
         }
     },
     {
@@ -91,7 +91,7 @@ const routes = [
         path: '/forgotpassword',
         name: 'ForgotPassword',
         meta: {
-            title: 'SendiT - Forgot Password',
+            title: 'Retain - Forgot Password',
         },
         component: () =>
             import( /* webpackChunkName: "forgotpassword" */ '../views/account/ForgotPassword.vue')
@@ -100,7 +100,7 @@ const routes = [
         path: '/resetpassword',
         name: 'ResetPassword',
         meta: {
-            title: 'SendiT - Reset Password',
+            title: 'Retain - Reset Password',
         },
         component: () =>
             import( /* webpackChunkName: "resetpassword" */ '../views/account/ResetPassword.vue')
@@ -109,7 +109,7 @@ const routes = [
         path: '/emailsent/:email',
         name: 'EmailSent',
         meta: {
-            title: 'SendiT - Reset Email Confirmation',
+            title: 'Retain - Reset Email Confirmation',
         },
         component: () =>
             import( /* webpackChunkName: "emailsent" */ '../views/account/EmailSent.vue')
@@ -126,10 +126,10 @@ const routes = [
             component: () =>
                 import( /* webpackChunkName: "dashboard" */ '../views/dashboard/ChurchDashboard.vue'),
             meta: {
-                title: 'SendiT - Dashboard',
+                title: 'Retain - Dashboard',
                 metaTags: [{
                     name: 'description',
-                    content: 'The home page of SendiT app.'
+                    content: 'The home page of Retain app.'
                 },
                     // {
                     // property: 'og:description',
@@ -143,7 +143,7 @@ const routes = [
             path: 'subscription',
             name: 'Subscription',
             meta: {
-                title: 'SendiT - Subscription',
+                title: 'Retain - Subscription',
             },
             component: () =>
                 import( /* webpackChunkName: "dashboard" */ '../views/dashboard/Subscription.vue')
@@ -152,7 +152,7 @@ const routes = [
             path: 'contacts',
             name: 'Contacts',
             meta: {
-                title: 'SendiT - SMS Communication - Contacts',
+                title: 'Retain - SMS Communication - Contacts',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/Contacts')
@@ -161,7 +161,7 @@ const routes = [
             path: 'contactsegment',
             name: 'ContactList',
             meta: {
-                title: 'SendiT - SMS Communication - Phone Groups',
+                title: 'Retain - SMS Communication - Phone Groups',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/ContactList')
@@ -179,7 +179,7 @@ const routes = [
             path: 'smstemplate',
             name: 'SMSTemplate',
             meta: {
-                title: 'SendiT - SMS Communication - SMS Template',
+                title: 'Retain - SMS Communication - SMS Template',
             },
             component: () =>
                 import( /* webpackChunkName: "smstemplate" */ '@/views/communication/SMSTemplate')
@@ -188,7 +188,7 @@ const routes = [
             path: 'senderid',
             name: 'SenderId',
             meta: {
-                title: 'SendiT - Communication - Phone Groups',
+                title: 'Retain - Communication - Phone Groups',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/SenderID')
@@ -197,7 +197,7 @@ const routes = [
             path: 'url-shortener',
             name: 'URLShortner',
             meta: {
-                title: 'SendiT - SMS - URL Shortner',
+                title: 'Retain - SMS - URL Shortner',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/URLShortner')
@@ -206,7 +206,7 @@ const routes = [
             path: 'wallets',
             name: 'Wallet',
             meta: {
-                title: 'SendiT - SMS - Wallet',
+                title: 'Retain - SMS - Wallet',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/Wallet')
@@ -221,7 +221,7 @@ const routes = [
                     path: 'sms',
                     name: 'SMSReport',
                     meta: {
-                        title: 'SendiT - SMS Report',
+                        title: 'Retain - SMS Report',
                     },
                     component: () =>
                         import( /* webpackChunkName: "inbox" */ '@/views/communication/SMSReport')
@@ -230,7 +230,7 @@ const routes = [
                     path: 'email',
                     name: 'EmailReport',
                     meta: {
-                        title: 'SendiT - Email Report',
+                        title: 'Retain - Email Report',
                     },
                     component: () =>
                         import( /* webpackChunkName: "inbox" */ '@/views/communication/EmailReport')
@@ -247,7 +247,7 @@ const routes = [
                     path: 'profile',
                     name: 'AccountProfile',
                     meta: {
-                        title: 'SendiT - Account Profile',
+                        title: 'Retain - Account Profile',
                     },
                     component: () =>
                         import( /* webpackChunkName: "inbox" */ '@/views/communication/AccountProfile')
@@ -256,7 +256,7 @@ const routes = [
                     path: 'changepassword',
                     name: 'ChangePassword',
                     meta: {
-                        title: 'SendiT - Change Password',
+                        title: 'Retain - Change Password',
                     },
                     component: () =>
                         import( /* webpackChunkName: "inbox" */ '@/views/communication/ChangePassword')
@@ -265,7 +265,7 @@ const routes = [
                     path: 'apisetting',
                     name: 'APISetting',
                     meta: {
-                        title: 'SendiT - API Key Settings',
+                        title: 'Retain - API Key Settings',
                     },
                     component: () =>
                         import( /* webpackChunkName: "inbox" */ '@/views/communication/APISetting')
@@ -281,7 +281,7 @@ const routes = [
                 path: '',
                 name: 'Inbox',
                 meta: {
-                    title: 'SendiT - SMS Inbox',
+                    title: 'Retain - SMS Inbox',
                 },
                 component: () =>
                     import( /* webpackChunkName: "inbox" */ '@/views/communication/MessageInbox')
@@ -290,7 +290,7 @@ const routes = [
                 path: 'sent',
                 name: 'SentMessages',
                 meta: {
-                    title: 'SendiT - SMS Communication - Sent Messages',
+                    title: 'Retain - SMS Communication - Sent Messages',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sentmessages" */ '@/views/communication/SentMessages'),
@@ -299,7 +299,7 @@ const routes = [
                 path: 'draft',
                 name: 'DraftMessages',
                 meta: {
-                    title: 'SendiT - SMS Communication - Drafts',
+                    title: 'Retain - SMS Communication - Drafts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "draftmessages" */ '@/views/communication/DraftMessages')
@@ -308,7 +308,7 @@ const routes = [
             //     path: 'contacts',
             //     name: 'ContactList',
             //     meta: {
-            //         title: 'SendiT - SMS Communication - Phone Groups',
+            //         title: 'Retain - SMS Communication - Phone Groups',
             //     },
             //     component: () =>
             //         import( /* webpackChunkName: "contactlist" */ '@/views/communication/ContactList')
@@ -317,7 +317,7 @@ const routes = [
                 path: 'sent/:messageId',
                 name: 'MessageDetails',
                 meta: {
-                    title: 'SendiT - SMS Communication - Message Details',
+                    title: 'Retain - SMS Communication - Message Details',
                 },
                 component: () =>
                     import( /* webpackChunkName: "contactlist" */ '@/views/communication/MessageDetails')
@@ -326,7 +326,7 @@ const routes = [
                 path: 'addgroup',
                 name: 'Phongroup',
                 meta: {
-                    title: 'SendiT - Create | Edit Phone Group',
+                    title: 'Retain - Create | Edit Phone Group',
                 },
                 component: () =>
                     import( /* webpackChunkName: "phonegroup" */ '@/views/communication/PhoneGroup')
@@ -335,7 +335,7 @@ const routes = [
                 path: 'editcontact/:groupId',
                 name: 'EditContactList',
                 meta: {
-                    title: 'SendiT - SMS Communication - Edit Phone group',
+                    title: 'Retain - SMS Communication - Edit Phone group',
                 },
                 component: () =>
                     import( /* webpackChunkName: "editcontactlist" */ '@/views/communication/EditGroup')
@@ -344,7 +344,7 @@ const routes = [
             //     path: 'report/:messageId',
             //     name: 'DeliveryReport',
             //     meta: {
-            //         title: 'SendiT - SMS Communication - Delivery Report',
+            //         title: 'Retain - SMS Communication - Delivery Report',
             //     },
             //     component: () =>
             //         import( /* webpackChunkName: "deliveryreport" */ '@/views/communication/DeliveryReport')
@@ -353,7 +353,7 @@ const routes = [
                 path: 'compose',
                 name: 'SendMessage',
                 meta: {
-                    title: 'SendiT - SMS Communication - Compose message',
+                    title: 'Retain - SMS Communication - Compose message',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sendmessage" */ '@/views/communication/SendSms')
@@ -362,7 +362,7 @@ const routes = [
                 path: 'scheduled',
                 name: 'ScheduledSMS',
                 meta: {
-                    title: 'SendiT - SMS Communication - Scheduled',
+                    title: 'Retain - SMS Communication - Scheduled',
                 },
                 component: () =>
                     import( /* webpackChunkName: "scheduled" */ '@/views/communication/ScheduledSMS')
@@ -378,7 +378,7 @@ const routes = [
                 path: '',
                 name: 'Sent',
                 meta: {
-                    title: 'SendiT - Email Communication - Sent Emails',
+                    title: 'Retain - Email Communication - Sent Emails',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sentemails" */ '@/views/communication/SentEmails')
@@ -387,7 +387,7 @@ const routes = [
                 path: 'sent',
                 name: 'SentEmails',
                 meta: {
-                    title: 'SendiT - Email Communication - Sent Emails',
+                    title: 'Retain - Email Communication - Sent Emails',
                 },
                 component: () =>
                     import( /* webpackChunkName: "sentemails" */ '@/views/communication/SentEmails')
@@ -396,7 +396,7 @@ const routes = [
                 path: 'sent/:messageId',
                 name: 'EmailDetails',
                 meta: {
-                    title: 'SendiT - Email Communication - Email Details',
+                    title: 'Retain - Email Communication - Email Details',
                 },
                 component: () =>
                     import( /* webpackChunkName: "emaildetails" */ '@/views/communication/EmailDetails')
@@ -405,7 +405,7 @@ const routes = [
                 path: 'draft',
                 name: 'EmailDraft',
                 meta: {
-                    title: 'SendiT - Email Communication - Email Drafts',
+                    title: 'Retain - Email Communication - Email Drafts',
                 },
                 component: () =>
                     import( /* webpackChunkName: "emaildraft" */ '@/views/communication/EmailDraft')
@@ -416,7 +416,7 @@ const routes = [
                 path: 'compose',
                 name: 'ComposeEmail',
                 meta: {
-                    title: 'SendiT - Email Communication - Compose',
+                    title: 'Retain - Email Communication - Compose',
                 },
                 component: () =>
                     import( /* webpackChunkName: "compose" */ '@/views/communication/ComposeEmail')
@@ -425,7 +425,7 @@ const routes = [
                 path: 'schedules',
                 name: 'Schedules',
                 meta: {
-                    title: 'SendiT - Email Communication - Scheduled',
+                    title: 'Retain - Email Communication - Scheduled',
                 },
                 component: () =>
                     import( /* webpackChunkName: "compose" */ '@/views/communication/ScheduledEmails')
@@ -436,7 +436,7 @@ const routes = [
             path: 'whatsapp',
             name: 'Whatsapp',
             meta: {
-                title: 'SendiT - Whatsapp Communication',
+                title: 'Retain - Whatsapp Communication',
             },
             component: () =>
                 import( /* webpackChunkName: "whatsappmodule" */ '@/components/whatsapp/whatsapp'),
@@ -445,7 +445,7 @@ const routes = [
                     path: 'auth',
                     name: 'ConnectWhatsapp',
                     meta: {
-                        title: 'SendiT - Connect Whatsapp',
+                        title: 'Retain - Connect Whatsapp',
                     },
                     component: () =>
                         import( /* webpackChunkName: "connectwhatsapp" */ '@/views/communication/whatsapp/ConnectWhatsapp')
@@ -454,7 +454,7 @@ const routes = [
                     path: '',
                     name: 'Compose',
                     meta: {
-                        title: 'SendiT - Whatsapp Compose',
+                        title: 'Retain - Whatsapp Compose',
                     },
                     component: () =>
                         import( /* webpackChunkName: "composewhatsapp" */ '@/views/communication/whatsapp/composeWhatsapp')
@@ -463,7 +463,7 @@ const routes = [
                     path: 'scheduledmessages',
                     name: 'ScheduledList',
                     meta: {
-                        title: 'SendiT - Whatsapp Scheduled Messages',
+                        title: 'Retain - Whatsapp Scheduled Messages',
                     },
                     component: () =>
                         import( /* webpackChunkName: "scheduledwhatsapp" */ '@/views/communication/whatsapp/ScheduledList')
@@ -474,7 +474,7 @@ const routes = [
             path: 'voice',
             name: 'Voice',
             meta: {
-                title: 'SendiT - Voice Communication',
+                title: 'Retain - Voice Communication',
             },
             component: () =>
                 import( /* webpackChunkName: "voicemodule" */ '@/components/Voice/Voice'),
@@ -483,7 +483,7 @@ const routes = [
                     path: 'voicelist',
                     name: 'VoiceList',
                     meta: {
-                        title: 'SendiT -Voice List',
+                        title: 'Retain -Voice List',
                     },
                     component: () =>
                         import( /* webpackChunkName: "voicelist" */ '@/views/communication/Voice/VoiceList')
@@ -492,7 +492,7 @@ const routes = [
                     path: 'sendvoicemessage',
                     name: 'composeVoice',
                     meta: {
-                        title: 'SendiT - Send Voice Message',
+                        title: 'Retain - Send Voice Message',
                     },
                     component: () =>
                         import( /* webpackChunkName: "sendvoicemessage" */ '@/views/communication/Voice/composeVoice')
@@ -501,7 +501,7 @@ const routes = [
                 //     path: 'report/:messageId',
                 //     name: 'VoiceDeliveryReport',
                 //     meta: {
-                //         title: 'SendiT - Voice Communication - Delivery Report',
+                //         title: 'Retain - Voice Communication - Delivery Report',
                 //     },
                 //     component: () =>
                 //         import( /* webpackChunkName: "deliveryreport" */ '@/views/communication/DeliveryReport')
@@ -512,7 +512,7 @@ const routes = [
             path: 'units',
             name: 'BuyUnits',
             meta: {
-                title: 'SendiT - Purchase SMS Units',
+                title: 'Retain - Purchase SMS Units',
             },
             component: () =>
                 import( /* webpackChunkName: "buyunits" */ '@/views/payment/BuyUnits')
@@ -523,7 +523,7 @@ const routes = [
             component: () =>
                 import( /* webpackChunkName: "workflow" */ '../views/workflow/Index.vue'),
             meta: {
-                title: 'SendiT - Ministry Workflow',
+                title: 'Retain - Ministry Workflow',
             },
             children: [{
                 path: 'list',
@@ -531,7 +531,7 @@ const routes = [
                 component: () =>
                     import( /* webpackChunkName: "workflows" */ '../views/workflow/pages/Workflows.vue'),
                 meta: {
-                    title: 'SendiT - Add Workflow',
+                    title: 'Retain - Add Workflow',
                 }
             },
             {
@@ -540,7 +540,7 @@ const routes = [
                 component: () =>
                     import( /* webpackChunkName: "addworkflow" */ '../views/workflow/components/MainBoard.vue'),
                 meta: {
-                    title: 'SendiT - Add Workflow',
+                    title: 'Retain - Add Workflow',
                 }
             },
             ]
@@ -554,7 +554,7 @@ const routes = [
                 path: '',
                 name: 'Gallery',
                 meta: {
-                    title: 'SendiT - Media Gallery',
+                    title: 'Retain - Media Gallery',
                 },
                 component: () =>
                     import( /* webpackChunkName: "medialibrary" */ '@/views/media/library/components/Gallery')
@@ -563,7 +563,7 @@ const routes = [
                 path: 'file',
                 name: 'FileDetails',
                 meta: {
-                    title: 'SendiT - Media Library',
+                    title: 'Retain - Media Library',
                 },
                 component: () =>
                     import( /* webpackChunkName: "medialibrary" */ '@/views/media/file/Index')
@@ -574,7 +574,7 @@ const routes = [
             path: 'upload',
             name: 'UploadMedia',
             meta: {
-                title: 'SendiT - Upload Media',
+                title: 'Retain - Upload Media',
             },
             component: () =>
                 import( /* webpackChunkName: "uploadmedia" */ '@/views/media/upload/Index')
@@ -583,7 +583,7 @@ const routes = [
             path: 'payments/:editPayment?',
             name: 'PaymentTransaction',
             meta: {
-                title: 'SendiT - Payment',
+                title: 'Retain - Payment',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/donation/PaymentTransaction')
@@ -598,7 +598,7 @@ const routes = [
             path: 'payment',
             name: 'Payment',
             meta: {
-                title: 'SendiT - Payment',
+                title: 'Retain - Payment',
             },
             component: () =>
                 import( /* webpackChunkName: "defaultmessage" */ '@/views/donation/Payment')
@@ -609,7 +609,7 @@ const routes = [
         path: '/pricing',
         name: 'PricingPage',
         meta: {
-            title: 'SendiT - Pricing ',
+            title: 'Retain - Pricing ',
         },
         component: () =>
             import( /* webpackChunkName: "dashboard" */ '../views/dashboard/PricingPage.vue')
@@ -633,7 +633,7 @@ const routes = [
         path: '/signinpayment/:userId?',
         name: 'SignInPayment',
         meta: {
-            title: 'SendiT - Payment',
+            title: 'Retain - Payment',
         },
         component: () =>
             import( /* webpackChunkName: "defaultmessage" */ '@/views/donation/SignInPayment')
