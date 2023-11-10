@@ -302,7 +302,7 @@ a {
 .start-option {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   justify-self: center;
   width: 97%;
   text-align: center;

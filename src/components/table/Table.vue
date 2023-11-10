@@ -1,90 +1,95 @@
 <template>
-  <el-dropdown trigger="click" class="el-dropdown w-100 py-2 d-flex justify-content-end">
-    <span class="el-dropdown-link">
-      <el-tooltip
-        class="box-item"
-        effect="dark"
-        content="Export data on table to excel"
-        placement="top-start"
-      >
-      <el-button type="" class="mr-3" text bg>
-      Export to excel<el-icon class="el-icon--right"><Download /></el-icon>
-    </el-button>
-      </el-tooltip>
-    </span>
-    <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item v-for="(bookType, index) in bookTypeList" :key="index">
-          <div @click="downloadFile(bookType)">
-            {{ bookType.name }}
-          </div>
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </template>
-  </el-dropdown>
-  <div ref="scrollRef">
-    <div class="table-parent">
-      <table class="table-border w-100">
-        <thead class="table-head mobile">
-          <tr>
-            <th v-if="checkMultipleItem">
-              <el-checkbox
-                v-model="checked"
-                @change="checkAllRows"
-                :indeterminate="isIndeterminate"
-                :checked="data.length > 0 && data.length === checkedRow.length"
-                size="large"
-              />
-            </th>
-          </tr>
-        </thead>
-        <thead class="table-head desktop">
-          <tr>
-            <th v-if="checkMultipleItem">
-              <el-checkbox
-                v-model="checked"
-                @change="checkAllRows"
-                :indeterminate="isIndeterminate"
-                :checked="data.length > 0 && data.length === checkedRow.length"
-                size="large"
-              />
-            </th>
-            <th
-              v-for="(head, index) in headers"
-              :key="index"
-              :class="{ 'py-3': !checkMultipleItem }"
-            >
-              <h2>{{ head.name }}</h2>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in dataInView" :key="index">
-            <td v-if="checkMultipleItem">
-              <el-checkbox
-                v-model="item.check"
-                @change="checkSingleRow(index)"
-                size="large"
-              />
-            </td>
-            <td
-              v-for="(head, index) in headers"
-              :key="index"
-              :class="{ 'py-2': !checkMultipleItem }"
-            >
-              <span>
+  <div>
+    <el-dropdown
+      trigger="click"
+      class="el-dropdown w-100 py-2 d-flex justify-content-end"
+    >
+      <span class="el-dropdown-link">
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="Export data on table to excel"
+          placement="top-start"
+        >
+          <el-button type="" class="mr-3" text bg>
+            Export to excel<el-icon class="el-icon--right"><Download /></el-icon>
+          </el-button>
+        </el-tooltip>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item v-for="(bookType, index) in bookTypeList" :key="index">
+            <div @click="downloadFile(bookType)">
+              {{ bookType.name }}
+            </div>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <div ref="scrollRef">
+      <div class="table-parent">
+        <table class="table-border w-100">
+          <thead class="table-head mobile">
+            <tr>
+              <th v-if="checkMultipleItem">
+                <el-checkbox
+                  v-model="checked"
+                  @change="checkAllRows"
+                  :indeterminate="isIndeterminate"
+                  :checked="data.length > 0 && data.length === checkedRow.length"
+                  size="large"
+                />
+              </th>
+            </tr>
+          </thead>
+          <thead class="table-head desktop">
+            <tr>
+              <th v-if="checkMultipleItem">
+                <el-checkbox
+                  v-model="checked"
+                  @change="checkAllRows"
+                  :indeterminate="isIndeterminate"
+                  :checked="data.length > 0 && data.length === checkedRow.length"
+                  size="large"
+                />
+              </th>
+              <th
+                v-for="(head, index) in headers"
+                :key="index"
+                :class="{ 'py-3': !checkMultipleItem }"
+              >
                 <h2>{{ head.name }}</h2>
-              </span>
-              <slot :name="head.value" v-bind:item="item">-</slot>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="infinite-loader" v-if="tableInfiniteLoading">
-      <el-icon class="is-loading">
-        <Loading />
-      </el-icon>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in dataInView" :key="index">
+              <td v-if="checkMultipleItem">
+                <el-checkbox
+                  v-model="item.check"
+                  @change="checkSingleRow(index)"
+                  size="large"
+                />
+              </td>
+              <td
+                v-for="(head, index) in headers"
+                :key="index"
+                :class="{ 'py-2': !checkMultipleItem }"
+              >
+                <span>
+                  <h2>{{ head.name }}</h2>
+                </span>
+                <slot :name="head.value" v-bind:item="item">-</slot>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="infinite-loader" v-if="tableInfiniteLoading">
+        <el-icon class="is-loading">
+          <Loading />
+        </el-icon>
+      </div>
     </div>
   </div>
 </template>
@@ -211,14 +216,14 @@ export default {
         dataInView.value = getData(foo_data.value, 10).filter((i) => i !== null);
 
         setTimeout(() => {
-          fileHeaderToExport.value = props.headers.map(i => i.value)
-          fileToExport.value = props.data.map(obj => {
+          fileHeaderToExport.value = props.headers.map((i) => i.value);
+          fileToExport.value = props.data.map((obj) => {
             let newObj = {};
             props.headers.forEach((prop, index) => {
-                newObj[index] = obj[prop.value];
+              newObj[index] = obj[prop.value];
             });
             return newObj;
-        })
+          });
         }, 1000);
       }
     });
@@ -238,7 +243,7 @@ export default {
       bookTypeList,
       downloadFile,
       fileHeaderToExport,
-      fileToExport
+      fileToExport,
     };
   },
 };
@@ -369,7 +374,7 @@ thead.mobile {
 }
 
 div.el-dropdown {
-    border: 1px solid #e0e0e0;
-    border-bottom: none;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
 }
 </style>
