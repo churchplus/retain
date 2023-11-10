@@ -1,2 +1,2 @@
 # Retain
-A communication app that helps users send and receive messages easily
+An All in One app for seamless communication with your audience.

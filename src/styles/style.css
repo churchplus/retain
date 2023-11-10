@@ -620,7 +620,7 @@ rect.highcharts-background[fill] {
 
   .input-field {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: flex-end;
     margin: 0 10px 10px 10px;
   }
@@ -1029,7 +1029,7 @@ rect.highcharts-background[fill] {
 
     .input-field {
       flex-direction: column;
-      justify-content: start;
+      justify-content: flex-start;
     }
 
     .inputs, .input {
