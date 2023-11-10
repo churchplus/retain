@@ -1,0 +1,301 @@
+/* Element plus component restyle */
+
+
+/* ====================================================== */
+
+/* Primary reusable classes */
+
+.primary--text {
+  color: #136acd !important;
+}
+/* Button */
+
+.secondary-button {
+  border-color: #136acd !important;
+  color: #136acd !important;
+  transition: all .5s ease-in-out;
+}
+
+.secondary-button:hover {
+  background: #136acd0f !important;
+  border-color: #136acd !important;
+  color: #136acd !important;
+  transition: all .2s ease-in-out;
+}
+
+.secondary-button:focus {
+  background: #136acd0f !important;
+  border-color: #136acd0f !important;
+  color: #136acd !important;
+  transition: all .2s ease-in-out;
+}
+
+/* Pagination */
+
+.el-pagination.is-background li.is-active.number {
+  background-color: #136acd !important;
+}
+
+/* Split button */
+
+.el-dropdown.split-button .el-button.el-button--large:not(.el-dropdown__caret-button) {
+  border-radius: 25px 0 0 25px;
+  background: #136acd;
+  color: #ffffff
+}
+
+.el-dropdown.split-button .el-dropdown__caret-button {
+  border-radius: 0 25px 25px 0;
+  background: #136acd;
+  color: #ffffff
+}
+
+.el-select-group__title {
+  text-transform: uppercase !important;
+  font-weight: 700;
+  color: #4e4e4e !important;
+  font-size: 18px !important
+}
+
+/* Checkbox */
+
+.el-checkbox.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #136acd !important;
+  border-color: #136acd !important;
+}
+
+.el-checkbox__inner:hover {
+  border-color: #136acd !important;
+}
+/* ====================================================== */
+
+.el-input__wrapper {
+  padding: 6px 11px !important;
+}
+
+/* button.el-button:hover {
+  color: #409eff;
+  background-color: #ecf5ff;
+  border-color: #c6e2ff; 
+} */
+
+button.el-button {
+  font-weight: 800
+}
+
+button.el-button.el-button--primary.start-option>span {
+  width: 100% !important
+}
+
+button.el-button.is-round {
+  padding: 17px;
+  min-width: 100px;
+}
+
+/* button.el-button.is-plain, button.el-button.is-round {
+    min-width: 130px;
+} */
+
+.no-decoration {
+  text-decoration: none !important;
+}
+
+.el-card.person-image .el-card__body {
+  padding: 0
+}
+
+.el-form-item.validate-email .el-form-item__error,
+.el-form-item.validate-phone .el-form-item__error {
+  position: absolute;
+  top: 107% !important;
+  right: 0 !important;
+  left: unset !important;
+}
+
+/* Nav menu items */
+
+.el-sub-menu__title,
+li.el-menu-item.w-100,
+.el-menu.el-menu--inline>li.el-menu-item {
+  height: 40px !important;
+}
+
+.el-sub-menu div.el-sub-menu__title {
+  font-size: 16px;
+}
+
+.el-menu-item-group li.el-menu-item {
+  height: 34px;
+  /* padding-left: 60px !important; */
+}
+
+.el-sub-menu.is-active>div.el-sub-menu__title {
+  font-weight: 800 !important;
+}
+
+li.el-menu-item-group div.el-menu-item-group__title {
+  display: none;
+}
+
+li.el-menu-item:hover{
+  background: #d6e7f4;
+}
+
+.el-dialog.is-align-center.person-image-dialog div.el-dialog__body {
+  padding: 10px 0 !important;
+}
+
+.dialog-footer.person-image-dialog-footer {
+  text-align: left;
+}
+
+div.el-dialog.is-align-center.QRCodeDialog, div.el-dialog.is-align-center.pastorsDialog {
+  border-radius: 25px;
+}
+
+.el-dropdown-menu {
+  max-height: 400px;
+  overflow: auto;
+}
+
+
+.phone-input>div.el-input__wrapper {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #cbd6e2;
+  border-radius: 0;
+}
+
+.phone-input div.el-select-v2__wrapper {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  /* border-bottom: 1px solid #cbd6e2; */
+  border-radius: 0;
+}
+
+.comment-bg .el-textarea__inner {
+  background: #fef8f0 !important;
+}
+
+/* Error Confirm modal */
+
+.el-overlay-message-box[aria-label="Confirm delete"] .el-message-box {
+  border: none !important;
+  border-radius: 10px 10px 0 0;
+}
+
+.el-overlay-message-box[aria-label="Confirm delete"] .el-message-box__header {
+  background: #f56c6c;
+  margin-bottom: 20px;
+}
+
+.el-overlay-message-box[aria-label="Confirm delete"] .el-message-box__title,
+.el-overlay-message-box[aria-label="Confirm delete"] .el-icon.el-message-box__close {
+  color: #ffffff !important
+}
+
+.el-overlay-message-box[aria-label="Confirm delete"] .el-button {
+  border-radius: 25px;
+}
+
+.el-overlay-message-box[aria-label="Confirm delete"] .el-button.el-button--primary {
+  background: #f56c6c;
+  border: none;
+  outline: none;
+}
+
+.el-dialog.is-align-center.smsUnitSuccess .el-dialog__body {
+  padding: 0;
+}
+
+.el-dialog.is-align-center.smsUnitSuccess .el-dialog__header {
+  display: none;
+}
+
+.el-checkbox.align-checkbox-totop {
+  align-items: start !important;
+}
+
+main.el-main {
+  overflow: inherit;
+}
+
+/* @media (max-width: 400px){
+  div.input-adjustno.el-input-group_prepend.el-select{
+    height: calc(1.2em + 0.895rem + 2px) !important;
+
+  }
+} */
+@media (max-width: 400px){
+  div.input-adjustnos .el-input__wrapper{
+    height: calc(1.2em + 0.895rem + 2px) !important;
+    /* width: 30% !important; */
+
+  }
+  div.input-adjustno .el-input-group__prepend{
+    /* height: calc(1.2em + 0.895rem + 2px) !important; */
+    width: 40% !important;
+
+  }
+}
+
+@media (max-width: 421px) {
+  .el-button+.el-button.add-member {
+    margin-left: 0;
+  }
+}
+
+.el-dialog.is-align-center.smsUnitSuccess .el-dialog__header {
+  display: none;
+}
+
+div.groupTree table {
+  width: 100% !important;
+}
+
+div.groupTree div.cell {
+  display: flex !important;
+  align-items: center !important;
+  color: #47545c;
+  font-size: 16px
+}
+
+div.groupTree {
+  border: 1px solid #E0E0E0;
+}
+
+div.firsttimersearchmember.el-drawer {
+  height: 40% !important;
+}
+
+div.firsttimersearchmember.el-drawer .el-drawer__header {
+  margin-bottom: 0;
+}
+div.uploadvoice div.el-upload.el-upload--text {
+  width: 100%
+}
+
+div.sender-id-input .el-form-item__content {
+  margin-left: 0 !important
+}
+
+div.whatsappdrawer.el-drawer .el-drawer__footer {
+  text-align: left
+}
+
+/* =============================================================================== */
+/* El tooltip */
+.el-popper.is-customized {
+  /* Set padding to ensure the height is 32px */
+  padding: 6px 12px;
+  background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
+}
+
+.el-popper.is-customized .el-popper__arrow::before {
+  background: linear-gradient(45deg, #b2e68d, #bce689);
+  right: 0;
+}
+
+
