@@ -8,7 +8,7 @@ const getContributionList = async () => {
                 resolve(res.data);
             })
             .catch(error => {
-                 /*eslint no-undef: "warn"*/
+                 // eslint-disable-next-line
                  NProgress.done();
                 if (error.response) {
                     reject(error.response);
@@ -25,7 +25,7 @@ const getContributionItem = async () => {
                 resolve(res.data);
             })
             .catch(error => {
-                 /*eslint no-undef: "warn"*/
+                // eslint-disable-next-line
                  NProgress.done();
                 if (error.response) {
                     reject(error.response);

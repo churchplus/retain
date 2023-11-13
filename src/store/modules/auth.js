@@ -80,7 +80,7 @@ export default {
         const res = await axios.get("/api/Membership/GetCurrentSignedInUser");
         commit("setCurrentUser", res.data)
       } catch (err) {
-        /*eslint no-undef: "warn"*/
+        // eslint-disable-next-line
         NProgress.done();
         console.log(err, "in store");
       }

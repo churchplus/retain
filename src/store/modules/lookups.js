@@ -43,7 +43,7 @@ export default {
                 commit("setCurrentUser", res.data)
                 router.push(`/tenant/${res.data.tenantId}`)
             } catch (err) {
-                /*eslint no-undef: "warn"*/
+               // eslint-disable-next-line
                 NProgress.done();
                 console.log(err, "in store");
             }
@@ -56,6 +56,7 @@ export default {
                     commit("setMaritalStatus", res.maritalStatus);
                 })
                 .catch(err => {
+                    // eslint-disable-next-line
                     NProgress.done();
                     console.log(err);
                 })

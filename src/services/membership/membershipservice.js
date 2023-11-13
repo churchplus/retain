@@ -11,7 +11,7 @@ const membershipService = {
                     // store.dispatch("setMembers", res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -29,7 +29,7 @@ const membershipService = {
                     // store.dispatch("setMembers", res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -47,7 +47,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -65,7 +65,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -83,7 +83,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                   // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -107,7 +107,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                   // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -125,7 +125,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -145,7 +145,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(err => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (err.response) reject(err.response);
                     if (!err.response) reject(err);
@@ -197,7 +197,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -214,7 +214,7 @@ const membershipService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                    /*eslint no-undef: "warn"*/
+                    // eslint-disable-next-line
                     NProgress.done();
                     if (error.response) {
                         reject(error.response);

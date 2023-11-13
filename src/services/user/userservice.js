@@ -1,5 +1,5 @@
 import axios from "@/gateway/backendapi";
-// import store from '../../store/store'
+import store from '../../store/store'
 
 const userService = {
     getCurrentUser() {
@@ -10,7 +10,7 @@ const userService = {
                     store.dispatch("setCurrentUser", res.data);
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
