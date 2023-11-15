@@ -171,8 +171,12 @@ rect.highcharts-background[fill] {
     border-bottom: 1px solid #4762f01f;
   }
 
-  .primary-text {
-    color: #136ACD;
+  .secondary-text {
+    color: #9DA8B6 !important;
+  }
+
+  .thick-secondary {
+    color: #4B5563 !important;
   }
 
   .adjust-network {
@@ -245,28 +249,6 @@ rect.highcharts-background[fill] {
     border-radius: 10px;
   }
 
-  /* .table {
-    width: 95%;
-    margin: 24px auto;
-    box-shadow: 0px 3px 6px #2c28281c;
-    border-radius: 30px;
-  } */
-
-  /* .table-top,
-  .table-header,
-  .table-body .data-row {
-    display: flex;
-    padding: 4px;
-    align-items: center;
-  } */
-
-  /* .table-top {
-    background: #fff;
-    color: #172b4d;
-    font-size: 11px;
-    border-radius: 22px 22px 0px 0px;
-    margin-top: 2em;
-  } */
   .table-header {
     background: #f1f3f9;
     color: #8898aa;
@@ -289,16 +271,6 @@ rect.highcharts-background[fill] {
     background: #fff;
     color: #172b4d;
   }
-
-  /* .filter,
-  .search-text {
-    width: 10%;
-  } */
-
-
-  /* .search {
-    width: 20%
-  } */
 
   .label-search {
     width: 0;
@@ -1025,6 +997,11 @@ rect.highcharts-background[fill] {
   }
   /* End Typo */
 
+  .seperation-bar {
+    border: 1px solid #EBEBEB;
+    height: 30px
+  }
+
   @media screen and (max-width: 620px) {
 
     .input-field {
@@ -1193,4 +1170,8 @@ rect.highcharts-background[fill] {
     border: 1.6px solid rgb(229, 232, 237);
     border-radius: 4px;
     padding: 11px 7px;
+}
+
+.table-link, .table-link:active, .table-link:hover {
+  color: #47545c;
 }

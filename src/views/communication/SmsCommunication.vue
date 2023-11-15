@@ -1,5 +1,5 @@
 <template>
-  <div class="container-top" :class="{ 'container-slim': lgAndUp || xlAndUp }">
+  <div class="container-top">
     <!-- Content Box -->
     <main class="mt-md-3" :class="{ 'main': mdAndUp || lgAndUp || xlAndUp }">
       <div class="container-fluid">

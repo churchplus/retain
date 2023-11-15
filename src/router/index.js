@@ -323,15 +323,6 @@ const routes = [
                     import( /* webpackChunkName: "contactlist" */ '@/views/communication/MessageDetails')
             },
             {
-                path: 'addgroup',
-                name: 'Phongroup',
-                meta: {
-                    title: 'Retain - Create | Edit Phone Group',
-                },
-                component: () =>
-                    import( /* webpackChunkName: "phonegroup" */ '@/views/communication/PhoneGroup')
-            },
-            {
                 path: 'editcontact/:groupId',
                 name: 'EditContactList',
                 meta: {
@@ -516,6 +507,15 @@ const routes = [
             },
             component: () =>
                 import( /* webpackChunkName: "buyunits" */ '@/views/payment/BuyUnits')
+        },
+        {
+            path: 'addgroup',
+            name: 'Phongroup',
+            meta: {
+                title: 'Retain - Create | Edit Phone Group',
+            },
+            component: () =>
+                import( /* webpackChunkName: "phonegroup" */ '@/views/communication/PhoneGroup')
         },
         {
             path: 'workflow',

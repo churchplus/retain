@@ -1,23 +1,23 @@
 <template>
   <div class="container-fluid connectionbar">
-      <div class="row">
-        <div class="col-md-12 px-0">
-          <ConnectionBar />
-        </div>
+    <div class="row">
+      <div class="col-md-12 px-0">
+        <!-- <ConnectionBar /> -->
       </div>
     </div>
+  </div>
   <router-view />
 </template>
 
 <script>
-import ConnectionBar from "@/components/connectivity/ConnectionStatus.vue";
-import setupService from "./services/setup/setupservice"
-import mixin from "@/mixins/currentUser.mixin.js"
+// import ConnectionBar from "@/components/connectivity/ConnectionStatus.vue";
+import setupService from "./services/setup/setupservice";
+import mixin from "@/mixins/currentUser.mixin.js";
 
 export default {
   name: "App",
 
-  components: { ConnectionBar },
+  // components: { ConnectionBar },
   mixins: [mixin],
   data() {
     return {
@@ -26,13 +26,12 @@ export default {
   },
   created() {
     if (localStorage.getItem("token")) {
-      
       const expiryDate = localStorage.getItem("expiryDate");
       if (expiryDate && new Date(expiryDate) < Date.now()) {
-        localStorage.removeItem("token")
-        localStorage.removeItem("expiryDate")
+        localStorage.removeItem("token");
+        localStorage.removeItem("expiryDate");
         setupService.clearStore();
-      }   
+      }
       this.getCurrentUser();
       setupService.setup();
     }

@@ -1,21 +1,22 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside width="266px" class="links-menu" :class="{ 'show': menuShouldShow }" >
-        <div >
-          <MenuLinks @linkclicked="hideNav" @tenantname="setChurchName"/>
+      <el-aside width="266px" class="links-menu" :class="{ show: menuShouldShow }">
+        <div>
+          <MenuLinks @linkclicked="hideNav" @tenantname="setChurchName" />
         </div>
       </el-aside>
       <el-container>
         <el-header class="nav-header p-0 hidden-md-and-up">
           <div class="toggle d-flex" @click="toggleMenu">
             <div class="pa-3 menu-icon">
-              <i class="pi pi-bars"></i> 
+              <!-- <i class="pi pi-bars"></i> -->
+              <el-icon size="30" color="#4B5563"><Expand /></el-icon>
             </div>
-            <div class="pa-3 font-weight-600">{{ tenantName.churchName }}</div>
+            <!-- <div class="pa-3 font-weight-600"></div> -->
           </div>
         </el-header>
-        <el-main>
+        <el-main class="main-bg p-0">
           <div class="h-100" @click="hideMenu">
             <router-view />
           </div>
@@ -24,9 +25,7 @@
     </el-container>
   </div>
 
-
   <!-- :class="{ 'main-con dim': !route.fullPath.includes('/mobileonboarding') && !route.fullPath.includes('/onboardingsuccessful'), 'top-router': route.query.fw }" -->
-
 
   <!-- <el-container>
     <el-row>
@@ -69,15 +68,15 @@
 <script>
 import { ref } from "vue";
 import MenuLinks from "../../components/nav/MenuLinks.vue";
-import { useRoute } from "vue-router"
+import { useRoute } from "vue-router";
 
 export default {
   components: { MenuLinks },
 
   setup() {
     const menuShouldShow = ref(false);
-    const fullPath = ref("")
-    const tenantName = ref({})
+    const fullPath = ref("");
+    const tenantName = ref({});
 
     const toggleMenu = () => (menuShouldShow.value = !menuShouldShow.value);
 
@@ -89,17 +88,17 @@ export default {
       if (val && menuShouldShow.value) {
         menuShouldShow.value = false;
       }
-    }
+    };
 
-    const route = useRoute()
+    const route = useRoute();
     const getRoute = () => {
-      fullPath.value = route.fullPath
-    }
-    getRoute()
+      fullPath.value = route.fullPath;
+    };
+    getRoute();
 
     const setChurchName = (payload) => {
       tenantName.value = payload;
-    }
+    };
 
     return {
       menuShouldShow,
@@ -109,7 +108,7 @@ export default {
       fullPath,
       route,
       setChurchName,
-      tenantName
+      tenantName,
     };
   },
 };
@@ -120,18 +119,15 @@ export default {
   box-sizing: border-box;
 }
 
-.whole-page {
-  position: relative;
-  display: flex;
+.main-bg {
+  background-color: #fafafa;
   min-height: 100vh;
-  overflow: auto;
-  background: #fff;
 }
 
 .links-menu {
   width: 266px;
   min-height: 100vh !important;
-  background: #ebeff4;
+  background: #ffffff;
   height: inherit;
   overflow: auto;
   z-index: 1;
@@ -148,7 +144,6 @@ export default {
 .show-menu {
   display: block;
 }
-
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .links-menu::-webkit-scrollbar {
@@ -183,8 +178,7 @@ export default {
 }
 
 .nav-header {
-  border-bottom: 1px solid #BCCCDD;
-
+  /* border-bottom: 1px solid #bcccdd; */
 }
 
 .toggle {
@@ -194,13 +188,12 @@ export default {
 }
 
 .menu-icon {
-  border-right: 1px solid #BCCCDD;
-  background: #F1F5F8;
+  /* border-right: 1px solid #bcccdd; */
+  /* background: #f1f5f8; */
 }
 
 .pa-3 {
   padding: 1.1rem;
-
 }
 
 .toggle:hover {
@@ -215,7 +208,8 @@ export default {
   .links-menu {
     z-index: 999;
     position: fixed;
-    left: -266px;
+    left: -280px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 

@@ -6,47 +6,47 @@
 /* Primary reusable classes */
 
 .primary--text {
-  color: #136acd !important;
+  color: #F92439 !important;
 }
 /* Button */
 
 .secondary-button {
-  border-color: #136acd !important;
-  color: #136acd !important;
+  border-color: #F92439 !important;
+  color: #F92439 !important;
   transition: all .5s ease-in-out;
 }
 
 .secondary-button:hover {
-  background: #136acd0f !important;
-  border-color: #136acd !important;
-  color: #136acd !important;
+  background: #F924390f !important;
+  border-color: #F92439 !important;
+  color: #F92439 !important;
   transition: all .2s ease-in-out;
 }
 
 .secondary-button:focus {
-  background: #136acd0f !important;
-  border-color: #136acd0f !important;
-  color: #136acd !important;
+  background: #F924390f !important;
+  border-color: #F924390f !important;
+  color: #F92439 !important;
   transition: all .2s ease-in-out;
 }
 
 /* Pagination */
 
 .el-pagination.is-background li.is-active.number {
-  background-color: #136acd !important;
+  background-color: #F92439 !important;
 }
 
 /* Split button */
 
 .el-dropdown.split-button .el-button.el-button--large:not(.el-dropdown__caret-button) {
   border-radius: 25px 0 0 25px;
-  background: #136acd;
+  background: #F92439;
   color: #ffffff
 }
 
 .el-dropdown.split-button .el-dropdown__caret-button {
   border-radius: 0 25px 25px 0;
-  background: #136acd;
+  background: #F92439;
   color: #ffffff
 }
 
@@ -60,12 +60,12 @@
 /* Checkbox */
 
 .el-checkbox.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-  background-color: #136acd !important;
-  border-color: #136acd !important;
+  background-color: #F92439 !important;
+  border-color: #F92439 !important;
 }
 
 .el-checkbox__inner:hover {
-  border-color: #136acd !important;
+  border-color: #F92439 !important;
 }
 /* ====================================================== */
 
@@ -114,10 +114,14 @@ button.el-button.is-round {
 
 /* Nav menu items */
 
+.el-menu {
+  border-right: none !important;
+}
+
 .el-sub-menu__title,
 li.el-menu-item.w-100,
 .el-menu.el-menu--inline>li.el-menu-item {
-  height: 40px !important;
+  height: 50px !important;
 }
 
 .el-sub-menu div.el-sub-menu__title {
@@ -138,7 +142,14 @@ li.el-menu-item-group div.el-menu-item-group__title {
 }
 
 li.el-menu-item:hover{
-  background: #d6e7f4;
+  background: #f9243916;
+}
+
+li.el-menu-item.is-active {
+  border-radius: 3px;
+  background-color: #f9243907;
+  border-left: 3px solid #F92439;
+
 }
 
 .el-dialog.is-align-center.person-image-dialog div.el-dialog__body {

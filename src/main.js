@@ -17,6 +17,7 @@ import Toaster from '@meforma/vue-toaster';
 // import 'vue3-tel-input/dist/vue3-tel-input.css'
 import VueTelInput from 'vue-tel-input';
 import 'vue-tel-input/dist/vue-tel-input.css';
+import VueApexCharts from "vue3-apexcharts";
 
 const VueTelInputOptions = {
   mode: "international",
@@ -57,7 +58,6 @@ NProgress.configure({ showSpinner: false });
 axios.interceptors.request.use((config) => {
   if (typeof window === 'undefined') return config;
   const token = localStorage.getItem('token');
-  const checkinToken = localStorage.getItem('checkinToken');
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -119,8 +119,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
-app.provide('primarycolor', '#136acd')
-// app.provide('primarycolor', '#ff8200')
+// app.provide('primarycolor', '#136acd')
+app.provide('primarycolor', '#F92439')
 
 
-app.use(store).use(router).use(VueHighcharts, { Highcharts }).use(CKEditor).use(Toaster).use(PrimeVue).use(ToastService).use(ConfirmationService).use(ElementPlus).use(VueTelInput, VueTelInputOptions).mount('#app')
+app.use(store).use(router).use(VueHighcharts, { Highcharts }).use(CKEditor).use(Toaster).use(PrimeVue).use(ToastService).use(ConfirmationService).use(ElementPlus).use(VueTelInput, VueTelInputOptions).use(VueApexCharts).mount('#app')

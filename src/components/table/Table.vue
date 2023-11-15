@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-white">
     <el-dropdown
       trigger="click"
       class="el-dropdown w-100 py-2 d-flex justify-content-end"
@@ -105,17 +105,14 @@ export default {
     data: {
       type: Array,
       required: true,
-      default: () => ({}),
     },
     headers: {
       type: Array,
       required: true,
-      default: () => ({}),
     },
     checkMultipleItem: {
       type: Boolean,
       required: false,
-      default: () => ({}),
     },
   },
   setup(props, { emit }) {
@@ -134,7 +131,6 @@ export default {
       { name: "Excel (.xlsx)", value: "xlsx" },
       { name: "Comma Seperated Value (.csv)", value: "csv" },
       { name: "Text (.txt)", value: "txt" },
-      // { name: "pdf" },
     ]);
 
     const checkSingleRow = (index) => {
@@ -187,7 +183,7 @@ export default {
       }
     };
 
-    const handleScroll = (e) => {
+    const handleScroll = () => {
       const element = scrollRef.value;
       setTimeout(() => {
         if (element !== null) {
@@ -268,17 +264,16 @@ export default {
 
 .table-head h2 {
   font-weight: 600;
-  /* font-weight: bold; */
+  font-weight: 800;
   font-size: 15px;
   font-style: normal;
   text-transform: lowercase;
   margin: 0;
   color: #646464;
-  /* color: #172B4D; */
 }
 .table-head h2:first-letter,
 .table-head h2:first-line {
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 tbody tr td {

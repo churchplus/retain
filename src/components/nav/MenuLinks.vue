@@ -1,32 +1,30 @@
 <template>
   <el-row @click="linkClicked">
     <el-col :span="24">
-      <div class="user mr-3 mt-4">
-        <img :src="churchLogo" v-if="churchLogo" class="link-image" alt="" />
-        <img
-          src="../../assets/dashboardlinks/churchcloud.png"
-          v-else
-          class="link-image"
-          alt=""
-        />
-        <a class="user-link"
-          >{{ tenantDisplayName }}
-          <span class="user-link-icon c-pointer"><i class="pi pi-angle-right"></i></span
-        ></a>
-      </div>
+      <div class="ml-4 mt-4 head-text s-24">Retain</div>
       <el-menu
         default-active="1"
         :active-text-color="primarycolor"
-        background-color="#ebeff4"
+        background-color="#ffffff"
         class="el-menu-vertical-demo mt-3"
         text-color="#02172e"
         :unique-opened="true"
       >
-        <div v-for="(item, index) in menuLink" :key="index">
+        <div
+          v-for="(item, index) in menuLink"
+          :key="index"
+          class="font-weight-700 secondary-text"
+        >
           <el-sub-menu :index="`${index + 1}`" v-if="item.submenu.length > 0">
             <template #title>
               <el-icon>
-                <img :src="item.logo" class="link-icon" alt="" v-if="item.logo" />
+                <img
+                  :src="item.logo"
+                  class="link-icon"
+                  width="30"
+                  alt=""
+                  v-if="item.logo"
+                />
                 <More color="#76787A" v-else />
               </el-icon>
               <span>{{ item.name }}</span>
@@ -59,7 +57,7 @@
             v-else
           >
             <el-icon>
-              <img :src="item.logo" class="link-icon" alt="" />
+              <img :src="item.logo" class="link-icon" width="30" alt="" />
             </el-icon>
             <span>{{ item.name }}</span>
           </el-menu-item>
@@ -197,7 +195,7 @@ export default {
 
       const dashboard = {
         name: "Dashboard",
-        logo: require("../../assets/dashboardlinks/dashboard-icon.svg"),
+        logo: require("../../assets/retain/home.png"),
         route: "/tenant",
         submenu: [],
         id: 1,
@@ -250,26 +248,21 @@ export default {
       const contacts = {
         id: 2,
         name: "Contacts",
-        logo: require("../../assets/dashboardlinks/com-icon.svg"),
+        logo: require("../../assets/retain/usergroup.png"),
         route: "/",
         submenu: [
           {
-            name: "Contacts",
-            logo: "/",
-            route: "/tenant/contacts",
-          },
-          {
-            name: "Contact Segment",
+            name: "Contact List",
             logo: "/",
             route: "/tenant/contactsegment",
           },
         ],
       };
-      
+
       const reports = {
         id: 3,
         name: "Reports",
-        logo: require("../../assets/dashboardlinks/com-icon.svg"),
+        logo: require("../../assets/retain/report.png"),
         route: "/",
         submenu: [
           {
@@ -288,7 +281,7 @@ export default {
       const campaigns = {
         id: 4,
         name: "Campaigns",
-        logo: require("../../assets/dashboardlinks/events-icon.svg"),
+        logo: require("../../assets/retain/campaign.png"),
         route: "/",
         submenu: [
           {
@@ -333,15 +326,15 @@ export default {
           // },
         ],
       };
-      
+
       const wallets = {
         name: "Wallets",
-        logo: require("../../assets/dashboardlinks/contact-list.svg"),
+        logo: require("../../assets/retain/wallet.png"),
         route: "/tenant/wallets",
         submenu: [],
         id: 5,
       };
-      
+
       // const profile = {
       //   name: "Account Profile",
       //   logo: require("../../assets/dashboardlinks/contact-list.svg"),
@@ -349,11 +342,11 @@ export default {
       //   submenu: [],
       //   id: 10,
       // };
-      
+
       const settings = {
         id: 6,
         name: "Settings",
-        logo: require("../../assets/dashboardlinks/events-icon.svg"),
+        logo: require("../../assets/retain/settings.png"),
         route: "/",
         submenu: [
           {
@@ -370,12 +363,12 @@ export default {
             name: "API Settings",
             logo: "/",
             route: "/tenant/settings/apisetting",
-          }
+          },
         ],
       };
-      
+
       // const financial = {
-        //   id: 5,
+      //   id: 5,
       //   name: 'Financials',
       //   logo: require('../../assets/dashboardlinks/acc-icon.svg'),
       //   route: '/',
@@ -630,7 +623,7 @@ export default {
         reports,
         wallets,
         // profile,
-        settings,
+        settings
         // sms,
         // whatsapp,
         // email,
@@ -694,14 +687,6 @@ export default {
 <style scoped>
 * {
   box-sizing: border-box;
-  font-size: 16px;
-}
-
-.user {
-  background: #d7e0ea;
-  padding: 0.5rem;
-  border-radius: 29px;
-  margin-left: 16px;
 }
 
 .nav .link {
@@ -712,18 +697,6 @@ export default {
   margin: 0 0 0 10px;
   font-size: 0.9em;
   cursor: pointer;
-}
-
-.nav .user {
-  opacity: 1;
-  display: flex;
-}
-
-.user a {
-  text-decoration: none;
-  color: #1d262d;
-  font-size: 17px;
-  font-weight: bold;
 }
 
 .link-icon {

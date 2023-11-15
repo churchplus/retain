@@ -1,91 +1,96 @@
 <template>
   <div>
-    <div class="container">
-      <!-- Content Box -->
-      <main id="main" class="mt-3">
-        <div class="container-fluid px-0">
-          <div class="row px-0">
-            <div class="col-md-12 px-0">
-              <div class="row d-md-flex align-items-center mt-2 mb-4">
-                <div class="col-md-12">
-                  <router-link to="/tenant/sms/addgroup" class="create-btn">
-                  <el-button color="#EBEFF4" round class="head-btn">Create new group</el-button>
-                  </router-link>
-                </div>
-              </div>
-              <div>
-              </div>
-
-              <div class="table-options" v-if="markedContact.length > 0">
-                <el-icon class="text-danger c-pointer" @click="showConfirmModal1">
-                  <Delete />
-                </el-icon>
-              </div>
-              <Table :data="groups" :headers="contactListHeaders" :checkMultipleItem="true"
-                @checkedrow="handleSelectionChange" v-loading="loading">
-                <template #name="{ item }">
-                  <span>
-                    <router-link class="font-weight-600 no-decoration primary--text" :to="{
+    <Header headerName="Contact List" />
+    <div class="">
+      <el-main id="main">
+        <div class="d-flex justify-content-end">
+          <router-link to="/tenant/addgroup">
+            <el-button :color="primarycolor" size="large" class="">
+              Create contact group
+            </el-button>
+          </router-link>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <div class="table-options bg-white" v-if="markedContact.length > 0">
+              <el-icon class="text-danger c-pointer" @click="showConfirmModal1">
+                <Delete />
+              </el-icon>
+            </div>
+            <Table
+              :data="groups"
+              :headers="contactListHeaders"
+              :checkMultipleItem="true"
+              @checkedrow="handleSelectionChange"
+              v-loading="loading"
+            >
+              <template #name="{ item }">
+                <span>
+                  <router-link
+                    class="font-weight-600 table-link"
+                    :to="{
                       name: 'EditContactList',
                       params: { groupId: item.id },
-                    }">{{ item.name }}</router-link>
-                  </span>
-                </template>
-                <template #numbers="{ item }">
-                  <span class="small-text">{{ item.numbers }}</span>
-                </template>
-                <template #dateEntered="{ item }">
-                  <span class="small-text">{{
-                    formatDate(item.dateEntered)
-                  }}</span>
-                </template>
-                <template v-slot:action="{ item }">
-                  <span @click="showConfirmModal(item.id)">
-                    <el-icon class="text-danger c-pointer">
-                      <Delete />
-                    </el-icon>
-                  </span>
-                </template>
-              </Table>
-            </div>
+                    }"
+                    >{{ item.name }}</router-link
+                  >
+                </span>
+              </template>
+              <template #numbers="{ item }">
+                <span class="small-text">{{ item.numbers }}</span>
+              </template>
+              <template #dateEntered="{ item }">
+                <span class="small-text">{{ formatDate(item.dateEntered) }}</span>
+              </template>
+              <template v-slot:action="{ item }">
+                <span @click="showConfirmModal(item.id)">
+                  <el-icon class="text-danger c-pointer">
+                    <Delete />
+                  </el-icon>
+                </span>
+              </template>
+            </Table>
           </div>
         </div>
-      </main>
+      </el-main>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, inject } from "vue";
 import axios from "@/gateway/backendapi";
-import dateFormatter from "../../services/dates/dateformatter"
-import finish from "../../services/progressbar/progress"
-import { ElMessage, ElMessageBox } from 'element-plus'
-import Table from "@/components/table/Table"
+import dateFormatter from "../../services/dates/dateformatter";
+import finish from "../../services/progressbar/progress";
+import { ElMessage, ElMessageBox } from "element-plus";
+import Table from "@/components/table/Table";
+import Header from "@/components/header/Header.vue";
 
 export default {
   components: {
-    Table
+    Table,
+    Header,
   },
   setup() {
+    const primarycolor = inject("primarycolor");
     const groups = ref([]);
     const loading = ref(false);
     const contactListHeaders = ref([
-      { name: 'NAME', value: 'name' },
-      { name: 'TOTAL NUMBERS', value: 'numbers' },
-      { name: 'DATE CREATED', value: 'dateEntered' },
-      { name: 'ACTION', value: 'action' },
-    ])
+      { name: "NAME", value: "name" },
+      { name: "TOTAL NUMBERS", value: "numbers" },
+      { name: "DATE CREATED", value: "dateEntered" },
+      { name: "ACTION", value: "action" },
+    ]);
 
     const getGroups = async () => {
       try {
         loading.value = true;
         const res = await axios.get("/api/Messaging/getPhoneGroups");
-        finish()
+        finish();
         loading.value = false;
         groups.value = res.data;
       } catch (error) {
-        finish()
+        finish();
         console.log(error);
       }
     };
@@ -93,40 +98,39 @@ export default {
     const deletePhoneGroup = async (id) => {
       try {
         await axios.delete(`/api/Messaging/DeletePhoneGroup?phoneGroupIdList=${id}`);
-        groups.value = groups.value.filter(i => i.id !== id)
+        groups.value = groups.value.filter((i) => i.id !== id);
         ElMessage({
-          type: 'success',
-          message: 'Phone group deleted',
-          duration: 5000
-        })
-      }
-      catch (err) {
-        finish()
-        console.log(err)
-        if (err.toString().toLowerCase().includes('network error')) {
+          type: "success",
+          message: "Phone group deleted",
+          duration: 5000,
+        });
+      } catch (err) {
+        finish();
+        console.log(err);
+        if (err.toString().toLowerCase().includes("network error")) {
           ElMessage({
-            type: 'error',
-            message: 'Network error, please ensure you have a strong internet',
-            duration: 5000
-          })
-        } else if (err.toString().toLowerCase().includes('timeout')) {
+            type: "error",
+            message: "Network error, please ensure you have a strong internet",
+            duration: 5000,
+          });
+        } else if (err.toString().toLowerCase().includes("timeout")) {
           ElMessage({
-            type: 'warning',
-            message: 'Response took too long to respond',
-            duration: 5000
-          })
+            type: "warning",
+            message: "Response took too long to respond",
+            duration: 5000,
+          });
         }
       }
-    }
+    };
 
     const showConfirmModal = (id) => {
       ElMessageBox.confirm(
-        'This delete action cannot be reversed. do you want to continue?',
-        'Confirm delete',
+        "This delete action cannot be reversed. do you want to continue?",
+        "Confirm delete",
         {
-          confirmButtonText: 'OK',
-          cancelButtonText: 'Cancel',
-          type: 'error',
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "error",
         }
       )
         .then(() => {
@@ -134,15 +138,15 @@ export default {
         })
         .catch(() => {
           ElMessage({
-            type: 'info',
-            message: 'Delete canceled',
-          })
-        })
-    }
+            type: "info",
+            message: "Delete canceled",
+          });
+        });
+    };
 
     const formatDate = (date) => {
-      return dateFormatter.monthDayYear(date)
-    }
+      return dateFormatter.monthDayYear(date);
+    };
 
     onMounted(() => {
       getGroups();
@@ -162,36 +166,34 @@ export default {
             if (w >= 0) return false;
             return true;
           });
-          markedContact.value = []
+          markedContact.value = [];
           ElMessage({
-            type: 'success',
-            message: 'Phone group deleted',
-            duration: 5000
-          })
-
+            type: "success",
+            message: "Phone group deleted",
+            duration: 5000,
+          });
         })
         .catch((err) => {
           ElMessage({
-            type: 'error',
-            message: 'Phone group delete failed, please try again',
-            duration: 5000
-          })
+            type: "error",
+            message: "Phone group delete failed, please try again",
+            duration: 5000,
+          });
           console.log(err);
         });
     };
-
 
     // code to mark single contact in group
     const markedContact = ref([]);
 
     const showConfirmModal1 = () => {
       ElMessageBox.confirm(
-        'This delete action cannot be reversed. do you want to continue?',
-        'Confirm delete',
+        "This delete action cannot be reversed. do you want to continue?",
+        "Confirm delete",
         {
-          confirmButtonText: 'OK',
-          cancelButtonText: 'Cancel',
-          type: 'error',
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "error",
         }
       )
         .then(() => {
@@ -199,15 +201,15 @@ export default {
         })
         .catch(() => {
           ElMessage({
-            type: 'info',
-            message: 'Delete canceled',
-          })
-        })
+            type: "info",
+            message: "Delete canceled",
+          });
+        });
     };
 
     const handleSelectionChange = (val) => {
-      markedContact.value = val
-    }
+      markedContact.value = val;
+    };
 
     return {
       groups,
@@ -219,7 +221,8 @@ export default {
       deleteContactList,
       showConfirmModal1,
       contactListHeaders,
-      handleSelectionChange
+      handleSelectionChange,
+      primarycolor,
     };
   },
 };
@@ -233,7 +236,7 @@ export default {
 .table-options {
   border: 1px solid rgb(212, 221, 227);
   border-bottom: none;
-  padding: 7px 7px 0 7px
+  padding: 7px 7px 0 7px;
 }
 
 .search-div {
