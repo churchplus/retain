@@ -188,7 +188,7 @@ const routes = [
             path: 'senderid',
             name: 'SenderId',
             meta: {
-                title: 'Retain - Communication - Phone Groups',
+                title: 'Retain - Communication - Sender IDs',
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/SenderID')
@@ -322,15 +322,24 @@ const routes = [
                 component: () =>
                     import( /* webpackChunkName: "contactlist" */ '@/views/communication/MessageDetails')
             },
-            // {
-            //     path: 'report/:messageId',
-            //     name: 'DeliveryReport',
-            //     meta: {
-            //         title: 'Retain - SMS Communication - Delivery Report',
-            //     },
-            //     component: () =>
-            //         import( /* webpackChunkName: "deliveryreport" */ '@/views/communication/DeliveryReport')
-            // },
+            {
+                path: 'buyunit',
+                name: 'BuyUnitSms',
+                meta: {
+                    title: 'Retain - SMS Communication - Buy SMS Unit',
+                },
+                component: () =>
+                    import( /* webpackChunkName: "Buy unit" */ '@/views/communication/BuyUnitSms')
+            },
+            {
+                path: 'senderids',
+                name: 'SenderIDSms',
+                meta: {
+                    title: 'Retain - SMS Communication - Buy SMS Unit',
+                },
+                component: () =>
+                    import( /* webpackChunkName: "Buy unit" */ '@/views/communication/SenderIDSms')
+            },
             {
                 path: 'compose',
                 name: 'SendMessage',

@@ -2,17 +2,22 @@
   <div>
     <div class="container-fluid">
       <!-- Content Box -->
-      <main id="main" class="mt-3">
+      <main id="main">
         <div class="container-fluid px-0">
           <div class="row px-0">
             <div class="col-md-12 px-0">
-              <div class="row d-md-flex align-items-center justify-content-between mt-3 mb-4">
+              <div class="row d-md-flex align-items-center justify-content-between mb-4">
                 <div class="col-md-8 col-sm-12">
                   <div class="search-div">
                     <el-icon style="vertical-align: middle" class="search-sms mr-1">
                       <Search />
                     </el-icon>
-                    <input type="text" placeholder="Search here..." v-model="scheduledMssg" class="pl-4 w-100" />
+                    <input
+                      type="text"
+                      placeholder="Search here..."
+                      v-model="scheduledMssg"
+                      class="pl-4 w-100"
+                    />
                   </div>
                 </div>
                 <div class="col-sm-5 col-md-4 mt-sm-2 units-container">
@@ -25,21 +30,25 @@
                   <Delete />
                 </el-icon>
               </div>
-              <Table :data="searchScheduleMssg" :headers="scheduledSMSHeader" :checkMultipleItem="true"
-                @checkedrow="handleSelectionChange" v-loading="loading">
+              <Table
+                :data="searchScheduleMssg"
+                :headers="scheduledSMSHeader"
+                :checkMultipleItem="true"
+                @checkedrow="handleSelectionChange"
+                v-loading="loading"
+              >
                 <template #subject="{ item }">
                   <span>
                     <span class="font-weight-600">{{
-                    !item.subject ? "(no subject)" : item.subject
+                      !item.subject ? "(no subject)" : item.subject
                     }}</span>
                   </span>
                 </template>
                 <template #message="{ item }">
-                  <span class="font-weight-600 ">{{
-                  `${item.message ? item.message
-                      .split("")
-                      .slice(0, 30)
-                      .join("") : ''}...`
+                  <span class="font-weight-600">{{
+                    `${
+                      item.message ? item.message.split("").slice(0, 30).join("") : ""
+                    }...`
                   }}</span>
                 </template>
                 <template #isExecuted="{ item }">
@@ -75,8 +84,8 @@ import communicationService from "../../services/communication/communicationserv
 import dateFormatter from "../../services/dates/dateformatter";
 import axios from "@/gateway/backendapi";
 import stopProgressBar from "../../services/progressbar/progress";
-import { ElMessage, ElMessageBox } from 'element-plus'
-import Table from "@/components/table/Table"
+import { ElMessage, ElMessageBox } from "element-plus";
+import Table from "@/components/table/Table";
 
 export default {
   components: { UnitsArea, Table },
@@ -85,12 +94,12 @@ export default {
     const loading = ref(false);
     const scheduledMssg = ref("");
     const scheduledSMSHeader = ref([
-      { name: 'SUBJECT', value: 'subject' },
-      { name: 'MESSAGE', value: 'message' },
-      { name: 'IS EXECUTED', value: 'isExecuted' },
-      { name: 'EXECUTION DATE', value: 'executionDate' },
-      { name: 'ACTION', value: 'action' },
-    ])
+      { name: "SUBJECT", value: "subject" },
+      { name: "MESSAGE", value: "message" },
+      { name: "IS EXECUTED", value: "isExecuted" },
+      { name: "EXECUTION DATE", value: "executionDate" },
+      { name: "ACTION", value: "action" },
+    ]);
 
     const getScheduledSMS = async () => {
       try {
@@ -123,7 +132,6 @@ export default {
     // code to mark single item in schedules
     const markedSchedules = ref([]);
 
-
     // function to delete schedules
     const mainone = (k) => {
       return k.map((i) => i.id).join(",");
@@ -133,62 +141,64 @@ export default {
       let sub = mainone(markedSchedules.value);
       axios
         .delete(
-          `/api/Messaging/DeleteSMSScheduledMessages?ScheduledMessageIdList=${sub ? sub : id}`
+          `/api/Messaging/DeleteSMSScheduledMessages?ScheduledMessageIdList=${
+            sub ? sub : id
+          }`
         )
         .then(() => {
           if (sub) {
             schedules.value = schedules.value.filter((item) => {
-            const p = markedSchedules.value.findIndex((i) => i.id === item.id);
-            if (p >= 0) return false;
-            return true;
-          });
-          markedSchedules.value = [];
+              const p = markedSchedules.value.findIndex((i) => i.id === item.id);
+              if (p >= 0) return false;
+              return true;
+            });
+            markedSchedules.value = [];
           } else {
             schedules.value = schedules.value.filter((del) => {
-              return del.id != id
-            })
+              return del.id != id;
+            });
           }
           ElMessage({
-            type: 'success',
-            message: 'Draft deleted successfully',
-            duration: 5000
-          })
+            type: "success",
+            message: "Draft deleted successfully",
+            duration: 5000,
+          });
         })
         .catch((err) => {
           stopProgressBar();
           ElMessage({
-            type: 'error',
-            message: 'Draft delete failed',
-            duration: 5000
-          })
+            type: "error",
+            message: "Draft delete failed",
+            duration: 5000,
+          });
           console.log(err);
         });
     };
 
     const showConfirmModal = (id) => {
       ElMessageBox.confirm(
-        'This delete action cannot be reversed. do you want to continue?',
-        'Confirm delete',
+        "This delete action cannot be reversed. do you want to continue?",
+        "Confirm delete",
         {
-          confirmButtonText: 'OK',
-          cancelButtonText: 'Cancel',
-          type: 'error',
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "error",
         }
       )
         .then(() => {
-          deleteSchedules(id)
+          deleteSchedules(id);
         })
         .catch(() => {
           ElMessage({
-            type: 'info',
-            message: 'Delete canceled',
-          })
-        })
+            type: "info",
+            message: "Delete canceled",
+          });
+        });
     };
 
     const handleSelectionChange = (val) => {
-      markedSchedules.value = val
-    }
+      markedSchedules.value = val;
+    };
 
     return {
       schedules,
@@ -200,7 +210,7 @@ export default {
       deleteSchedules,
       showConfirmModal,
       scheduledSMSHeader,
-      handleSelectionChange
+      handleSelectionChange,
     };
   },
 };
@@ -209,7 +219,7 @@ export default {
 <style scoped>
 .search-div {
   padding: 10px;
-  background: #f5f8f9;
+  background: white;
   border-radius: 200px;
 }
 
@@ -227,7 +237,7 @@ export default {
 .table-options {
   border: 1px solid rgb(212, 221, 227);
   border-bottom: none;
-  padding: 7px 7px 0 7px
+  padding: 7px 7px 0 7px;
 }
 
 .compose-btn {

@@ -1,11 +1,9 @@
 <template>
   <div class="">
-    <div class="d-sm-flex align-items-center flex-column units-div mt-3">
+    <div class="d-sm-flex align-items-center flex-column units-div">
       <div class="col-sm-12">
         <h4 class="font-weight-bold mb-0 center-flexed">{{ balance.toFixed(2) }}</h4>
-        <p class="font-weight-bold mb-0 center-flexed">
-          SMS Units
-        </p>
+        <p class="font-weight-bold mb-0 center-flexed">SMS Units</p>
       </div>
       <div class="col-sm-12 d-flex justify-content-center mt-2">
         <el-button class="btn buy-btn center-flexed" @click="goToBuyUnit">
@@ -17,41 +15,44 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
-import userService from "../../services/user/userservice"
+import { ref, computed } from "vue";
+import userService from "../../services/user/userservice";
 import router from "@/router/index";
-import { useStore } from "vuex"
+import { useStore } from "vuex";
 
 export default {
   setup() {
     const store = useStore();
-    const currentUser = ref(store.getters.currentUser && store.getters.currentUser.smsBalance ? store.getters.currentUser.smsBalance : 0)
+    const currentUser = ref(
+      store.getters.currentUser && store.getters.currentUser.smsBalance
+        ? store.getters.currentUser.smsBalance
+        : 0
+    );
     const getCurrentUserBalance = async () => {
-
       try {
         const data = await userService.getCurrentUser();
         currentUser.value = data.smsBalance;
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     if (!currentUser.value || currentUser.value === 0) getCurrentUserBalance();
 
     const balance = computed(() => {
       return currentUser.value;
-    })
+    });
 
     const goToBuyUnit = () => {
-      router.push("/tenant/units")
+      router.push("/tenant/units");
     };
 
     return {
       balance,
       goToBuyUnit,
-      currentUser
-    }
-  }
-}
+      currentUser,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -59,7 +60,7 @@ export default {
   border: 1px solid #dde2e6;
   border-radius: 7px;
   padding: 15px 0;
-  background: #f5ebeb1c !important;
+  background: #ffffff;
 }
 
 .buy-btn {
