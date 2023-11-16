@@ -322,15 +322,6 @@ const routes = [
                 component: () =>
                     import( /* webpackChunkName: "contactlist" */ '@/views/communication/MessageDetails')
             },
-            {
-                path: 'editcontact/:groupId',
-                name: 'EditContactList',
-                meta: {
-                    title: 'Retain - SMS Communication - Edit Phone group',
-                },
-                component: () =>
-                    import( /* webpackChunkName: "editcontactlist" */ '@/views/communication/EditGroup')
-            },
             // {
             //     path: 'report/:messageId',
             //     name: 'DeliveryReport',
@@ -516,6 +507,15 @@ const routes = [
             },
             component: () =>
                 import( /* webpackChunkName: "phonegroup" */ '@/views/communication/PhoneGroup')
+        },
+        {
+            path: 'editcontact/:groupId',
+            name: 'EditContactList',
+            meta: {
+                title: 'Retain - SMS Communication - Edit Phone group',
+            },
+            component: () =>
+                import( /* webpackChunkName: "editcontactlist" */ '@/views/communication/EditGroup')
         },
         {
             path: 'workflow',

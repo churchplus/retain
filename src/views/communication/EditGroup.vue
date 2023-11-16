@@ -1,123 +1,109 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row mainHeada mt-5">
-        <div class="col-md-6 col-sm-10">
-          <h1>Contact List</h1>
-        </div>
-      </div>
-      <div class="row">
+    <Header headerName="Update contact list" />
+    <!-- Content of the Box -->
+    <el-main>
+      <div class="mb-4">
+        <!-- Group Name row -->
         <div class="col-md-12">
-          <hr class="hr mb-md-5" />
-        </div>
-      </div>
-
-      <!-- Content of the Box -->
-      <main class="">
-        <div id="main" class="container-fluid col-sm-12">
-          <div class="row mb-4">
-            <!-- Group Name row -->
+          <div class="row d-md-flex align-items-center mt-2">
             <div class="col-md-12">
-              <div class="row d-md-flex align-items-center mt-2">
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-12 gName">
-                      <h3 class="ml-md-n3 mb-n2">Group Name</h3>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col-md-6 offset-md-3 gName">
+                  <h3 class="mb-n2 mb-sm-2 mb-lg-n2 ml-sm-n3">Group Name</h3>
+                </div>
+              </div>
 
-                  <!-- Context Area -->
-                  <div
-                    class="row amazing mt-lg-3 mb-4"
+              <!-- Context Area -->
+              <div class="row mt-lg-3 mb-4">
+                <div class="offset-md-3 col-md-6 form-group px-0">
+                  <el-input
+                    type="text"
+                    class="w-100"
+                    id="groupName"
+                    v-model="groupNameValue"
+                    v-bind:disabled="groupNameDisabled"
+                    ref="groupName"
+                  />
+                </div>
+
+                <div class="col-sm-2 px-0 px-sm-3">
+                  <el-button
+                    type="primary"
+                    v-on:click="enableGroupName"
+                    size="large"
+                    plain
                   >
-                    <!-- <h4 class="ml-md-n3 mt-lg-1">Amazing Group</h4> -->
-                    <div class="col-sm-9 form-group px-0">
-                      <input
-                        type="text"
-                        class="p-0"
-                        :class="{ 'form-control' : !groupNameDisabled, 'inputWithDisable' : groupNameDisabled }"
-                        id="groupName"
-                        v-model="groupNameValue"
-                        v-bind:disabled="groupNameDisabled"
-                        ref="groupName"
-                      />
-                    </div>
+                    <el-icon class="el-icon--left"><EditPen /></el-icon>
+                    Edit
+                  </el-button>
+                </div>
+              </div>
 
-                    <div class="col-sm-2 amazingE">
-                      <button
-                        v-on:click="enableGroupName"
-                        class="btnIcons btn-secondary"
-                      >
-                        <i class="pi pi-pencil-alt icons"></i>
-                        Edit
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="row mb-lg-1">
-                    <h3>Phone Numbers</h3>
-                  </div>
-                  <div class="row mdiv">
-                    <div class="col-sm-9 form-group px-0">
-                      <textarea class="form-control" v-model="groupNumbers" rows="4" ref="iframeLink"></textarea>
-                    </div>
-                    <div class="col-sm-2 addIconarea">
-                      <button
-                        v-on:click="copyIframeLink"
-                        class="btnIcons align-self-end btn-secondary mb-2"
-                      >
-                        <i class="pi pi-copy icon" aria-hidden="true"></i>
-                        Copy
-                      </button>
-                    </div>
-                  </div>
-                  <div class="row mt-md-5">
-                    <div class="col-md-11 ml-4">
-                      <div class="row d-flex align-items-center justify-content-end">
- 
-                          <button
-                            v-on:click="resetInputFields"
-                            class="btn default-btn"
-                          >
-                            cancel
-                          </button>
-                          <button
-                            v-on:click="saveDetails"
-                            class="btn default-btn border-0 primary-bg ml-md-4"
-                          >
-                            <i
-                              class="fas fa-circle-notch fa-spin mr-2 text-white"
-                              v-if="loading"
-                            ></i>
-                            <span class="text-white">Save</span>
-                            <span></span>
-                          </button>
-                      </div>
-                    </div>
+              <div class="row mb-lg-1">
+                <div class="offset-md-3 col-md-6">
+                  <h3 class="ml-n3">Phone Numbers</h3>
+                </div>
+              </div>
+              <div class="row mdiv">
+                <div class="col-md-6 offset-md-3 form-group px-0">
+                  <el-input
+                    v-model="groupNumbers"
+                    :rows="5"
+                    type="textarea"
+                    placeholder="Please input"
+                    ref="iframeLink"
+                  />
+                </div>
+                <div class="col-sm-2  addIconarea">
+                  <el-button type="primary" v-on:click="copyIframeLink" size="large" plain>
+                    <el-icon class="el-icon--left"><CopyDocument /></el-icon>
+                    Copy
+                  </el-button>
+                </div>
+              </div>
+              <div class="row mt-4 mt-md-5">
+                <div class="col-md-6 offset-md-3">
+                  <div class="row d-flex flex-column flex-sm-row justify-content-end">
+                    <el-button v-on:click="resetInputFields" size="large" class="secondary-button">
+                      Cancel
+                    </el-button>
+                    <el-button
+                      v-on:click="saveDetails"
+                      :color="primarycolor"
+                      :loading="loading"
+                      size="large"
+                      class="ml-0 ml-sm-2 mt-2 mt-sm-0"
+                    >
+                      Save
+                    </el-button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
-    <Toast />
+      </div>
+    </el-main>
   </div>
 </template>
 
 <script>
 import axios from "@/gateway/backendapi";
-import communicationService from "../../services/communication/communicationservice"
+import communicationService from "../../services/communication/communicationservice";
+import Header from "@/components/header/Header.vue";
+import { ElMessage } from "element-plus";
 
 export default {
+  components: { Header },
+  inject: ['primarycolor'],
   data() {
     return {
       groupNameValue: "",
       groupNameDisabled: true,
       groupNumbers: "",
       loading: false,
-      phoneNumbers: []
+      phoneNumbers: [],
     };
   },
 
@@ -125,36 +111,33 @@ export default {
     enableGroupName() {
       this.groupNameDisabled = false;
       this.$nextTick(() => {
-        this.$refs.groupName.focus()
-      })
-      console.log(this.$refs.groupName)
+        this.$refs.groupName.focus();
+      });
+      console.log(this.$refs.groupName);
     },
 
     saveDetails() {
-      if (this.groupNumbers.includes(',')) {
-          this.groupNumbers.split(',').forEach(i => {
-            
-            let match = /\r|\n/.exec(i);
-            if (match) {
-              i.split('\n').forEach(j => {
-                this.phoneNumbers.push(j)
-              })
-          } 
-          else {
-            this.phoneNumbers.push(i)
-          }
-            })
+      if (this.groupNumbers.includes(",")) {
+        this.groupNumbers.split(",").forEach((i) => {
+          let match = /\r|\n/.exec(i);
+          if (match) {
+            i.split("\n").forEach((j) => {
+              this.phoneNumbers.push(j);
+            });
           } else {
-            let match = /\r|\n/.exec(this.groupNumbers);
-            if (match) {
-              this.groupNumbers.split('\n').forEach(i => {
-                this.phoneNumbers.push(i)
-            })
-          } else {
-            this.phoneNumbers.push(this.groupNumbers)
+            this.phoneNumbers.push(i);
           }
-            
-          }
+        });
+      } else {
+        let match = /\r|\n/.exec(this.groupNumbers);
+        if (match) {
+          this.groupNumbers.split("\n").forEach((i) => {
+            this.phoneNumbers.push(i);
+          });
+        } else {
+          this.phoneNumbers.push(this.groupNumbers);
+        }
+      }
 
       let details = {
         id: this.$route.params.groupId,
@@ -162,51 +145,52 @@ export default {
         phoneNumbers: this.phoneNumbers.join(","),
       };
       console.log(details);
-        this.loading = true;
+      this.loading = true;
       axios
         .put("/api/Messaging/editPhoneGroups", details)
         .then((res) => {
-            this.loading = false;
-            console.log(res);
-            this.$router.push({ name: "ContactList" })
+          this.loading = false;
+          console.log(res);
+          this.$router.push({ name: "ContactList" });
         })
         .catch((err) => {
-            this.loading = false;
-            console.log(err);
+          this.loading = false;
+          console.log(err);
         });
     },
 
     resetInputFields() {
-      this.$router.push({ name: "ContactList" })
+      this.$router.push({ name: "ContactList" });
     },
-    copyIframeLink () {
-          this.$refs.iframeLink.select();
-          this.$refs.iframeLink.setSelectionRange(0, this.$refs.iframeLink.value.length); /* For mobile devices */
+    copyIframeLink() {
+      this.$refs.iframeLink.ref.select();
+      this.$refs.iframeLink.ref.setSelectionRange(
+        0,
+        this.$refs.iframeLink.ref.value.length
+      ); /* For mobile devices */
 
-          /* Copy the text inside the text field */
-          document.execCommand("copy");
-          this.$toast.add({
-              severity: "info",
-              summary: "Number Copied",
-              detail: "Group phone numbers copied to your clipboard",
-              life: 3000,
-          });
-      }
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+      ElMessage({
+        type: "success",
+        message: `Group phone numbers copied to your clipboard`,
+        duration: 3000,
+      });
+    },
   },
 
   created() {
     const groupId = this.$route.params.groupId;
-    console.log(groupId);
-    communicationService.getOnePhoneGroup(`/api/Messaging/getPhoneGroupById?phoneGroupId=${groupId}`)
+    communicationService
+      .getOnePhoneGroup(`/api/Messaging/getPhoneGroupById?phoneGroupId=${groupId}`)
       .then((res) => {
-        console.log(res)
-        this.groupNameValue = res.name
-        this.groupNumbers = res.numbers
-        
+        console.log(res);
+        this.groupNameValue = res.name;
+        this.groupNumbers = res.numbers;
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   },
 };
 </script>
@@ -233,8 +217,8 @@ export default {
   outline: transparent;
   display: block;
   width: 100%;
-  height: calc(1.5em + .75rem + 2px);
-  padding: .375rem;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -322,12 +306,6 @@ h4 {
   h3 {
     font-size: 17px;
     font-weight: bold;
-  }
-
-  .amazing {
-    margin: 0 0 2rem -2rem;
-    display: flex;
-    flex-direction: row;
   }
 
   .amazingG {

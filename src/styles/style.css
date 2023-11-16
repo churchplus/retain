@@ -1175,3 +1175,8 @@ rect.highcharts-background[fill] {
 .table-link, .table-link:active, .table-link:hover {
   color: #47545c;
 }
+
+.card-shadow {
+  border-radius: 4px!important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06)!important;
+}

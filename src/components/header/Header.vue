@@ -1,5 +1,5 @@
 <template>
-  <div class="create-btn-div px-3 bg-white">
+  <div class="header-wrapper px-3 bg-white">
     <div class="d-flex align-items-center">
       <h2 class="">{{ headerName }}</h2>
       <slot name="button" />
@@ -33,11 +33,17 @@ export default {
 </script>
 
 <style scoped>
-.create-btn-div {
+.header-wrapper {
   display: flex;
   padding: 15px 0;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+}
+
+@media(max-width: 500px) {
+    .header-wrapper {
+        flex-direction: column;
+    }
 }
 </style>

@@ -17,7 +17,7 @@
         v-for="(item, index) in accountUtil"
         :key="index"
       >
-        <div class="d-flex align-items-center rounded-lg bg-white px-3 py-4">
+        <div class="d-flex align-items-center rounded-lg bg-white px-3 py-4 card-shadow">
           <div
             class="d-flex justify-content-center align-items-center"
             :style="`background: ${item.color}; border-radius: 50%; width: 40px; height: 40px`"
@@ -33,7 +33,8 @@
     </div>
     <div class="row chart-parent">
       <div class="col-md-6">
-        <div class="bg-white p-3">
+        <div class="bg-white p-3 card-shadow">
+          <div class="font-weight-700">SMS in the last <span class="primary--text">7 days</span></div>
           <apexchart
             width="100%"
             type="area"
@@ -43,7 +44,8 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="bg-white p-3">
+        <div class="bg-white p-3 card-shadow">
+        <div class="font-weight-700">Contact in the last <span class="primary--text">7 days</span></div>
           <apexchart
             width="100%"
             type="area"
@@ -558,10 +560,10 @@ export default {
         name: "Series 1",
         data: [45, 52, 38, 45, 19, 23, 2],
       },
-      {
-        name: "Series 2",
-        data: [35, 12, 53, 9, 15, 33, 20],
-      },
+      // {
+      //   name: "Series 2",
+      //   data: [35, 12, 53, 9, 15, 33, 20],
+      // },
     ]);
 
     return {
