@@ -176,15 +176,6 @@ const routes = [
                 import( /* webpackChunkName: "deliveryreport" */ '@/views/communication/DeliveryReport')
         },
         {
-            path: 'smstemplate',
-            name: 'SMSTemplate',
-            meta: {
-                title: 'Retain - SMS Communication - SMS Template',
-            },
-            component: () =>
-                import( /* webpackChunkName: "smstemplate" */ '@/views/communication/SMSTemplate')
-        },
-        {
             path: 'senderid',
             name: 'SenderId',
             meta: {
@@ -192,15 +183,6 @@ const routes = [
             },
             component: () =>
                 import( /* webpackChunkName: "contactlist" */ '@/views/communication/SenderID')
-        },
-        {
-            path: 'url-shortener',
-            name: 'URLShortner',
-            meta: {
-                title: 'Retain - SMS - URL Shortner',
-            },
-            component: () =>
-                import( /* webpackChunkName: "contactlist" */ '@/views/communication/URLShortner')
         },
         {
             path: 'wallets',
@@ -348,6 +330,24 @@ const routes = [
                 },
                 component: () =>
                     import( /* webpackChunkName: "sendmessage" */ '@/views/communication/SendSms')
+            },
+            {
+                path: 'template',
+                name: 'SMSTemplate',
+                meta: {
+                    title: 'Retain - SMS Communication - SMS Template',
+                },
+                component: () =>
+                    import( /* webpackChunkName: "smstemplate" */ '@/views/communication/SMSTemplate')
+            },
+            {
+                path: 'url',
+                name: 'URLShortner',
+                meta: {
+                    title: 'Retain - SMS - URL Shortner',
+                },
+                component: () =>
+                    import( /* webpackChunkName: "contactlist" */ '@/views/communication/URLShortner')
             },
             {
                 path: 'scheduled',

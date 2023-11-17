@@ -26,11 +26,11 @@ const composerObj = {
     ],
 
     possibleSMSDestinations: [
-        // "All contacts",
-        "Select from contact",
-        // "Select person from membership database",
-        // "Phone numbers",
+        "Phone numbers",
+        "Select from contact list",
         "Upload contacts",
+        // "All contacts",
+        // "Select person from membership database",
     ],
 
     getCommunicationGroups() {

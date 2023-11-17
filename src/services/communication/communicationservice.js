@@ -99,7 +99,7 @@ const communicationService = {
                     resolve( res.data );
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -136,7 +136,7 @@ const communicationService = {
         })
     },
 
-    getSchedules(url) {
+    getSchedules() {
         return new Promise((resolve, reject) => {
             axios.get('/api/Messaging/getSmsSchedules')
                 .then(res => {

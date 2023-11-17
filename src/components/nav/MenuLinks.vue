@@ -287,7 +287,7 @@ export default {
           {
             name: "SMS",
             logo: "/",
-            route: "/tenant/sms/sent",
+            route: "/tenant/sms/compose",
           },
           {
             name: "Email",
@@ -304,20 +304,20 @@ export default {
             logo: "/",
             route: "/tenant/whatsapp",
           },
-          {
-            name: "Templates",
-            logo: "/",
-            route: "/tenant/smstemplate",
-          },
-          {
-            name: "Sender IDs",
-            logo: "/",
-            route: "/tenant/senderid",
-          },
+          // {
+          //   name: "Templates",
+          //   logo: "/",
+          //   route: "/tenant/smstemplate",
+          // },
+          // {
+          //   name: "Sender IDs",
+          //   logo: "/",
+          //   route: "/tenant/senderid",
+          // },
           {
             name: "URLs",
             logo: "/",
-            route: "/tenant/url-shortener",
+            route: "/tenant/url",
           },
           // {
           //   name: "Manage Campaigns",

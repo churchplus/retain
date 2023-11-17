@@ -175,6 +175,10 @@ rect.highcharts-background[fill] {
     color: #9DA8B6 !important;
   }
 
+  .medium-secondary {
+    color: #808080 !important;
+  }
+
   .thick-secondary {
     color: #4B5563 !important;
   }
@@ -1001,6 +1005,11 @@ rect.highcharts-background[fill] {
     border: 1px solid #EBEBEB;
     height: 30px
   }
+  
+  .seperation-bar2 {
+    border: .8px solid #CCCCCC;
+    height: 30px
+  }
 
   @media screen and (max-width: 620px) {
 
@@ -1167,9 +1176,16 @@ rect.highcharts-background[fill] {
   }
 
   .border-contribution {
-    border: 1.6px solid rgb(229, 232, 237);
-    border-radius: 4px;
-    padding: 11px 7px;
+    /* border: 1.6px solid rgb(229, 232, 237); */
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(204, 204, 204);
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+    min-height: 42px;
+    /* border-radius: 4px; */
+    padding: 8px 11px;
 }
 
 .table-link, .table-link:active, .table-link:hover {

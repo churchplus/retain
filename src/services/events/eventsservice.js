@@ -8,7 +8,7 @@ const eventsService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -25,7 +25,7 @@ const eventsService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -43,7 +43,7 @@ const eventsService = {
                     resolve(res.data);
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -64,7 +64,7 @@ const eventsService = {
                     resolve( data );
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -82,7 +82,7 @@ const eventsService = {
                     resolve( res.data );
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -99,7 +99,7 @@ const eventsService = {
                     resolve( res.data );
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -117,7 +117,7 @@ const eventsService = {
                     resolve( res.data );
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
@@ -135,7 +135,7 @@ const eventsService = {
                     resolve( res.data );
                 })
                 .catch(error => {
-                     /*eslint no-undef: "warn"*/
+                     // eslint-disable-next-line
                      NProgress.done();
                     if (error.response) {
                         reject(error.response);
