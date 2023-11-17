@@ -71,6 +71,8 @@
 
 .el-input__wrapper {
   padding: 6px 11px !important;
+  border: .5px solid rgb(204, 204, 204) !important;
+  border-radius: 0.5rem !important;
 }
 
 /* button.el-button:hover {

@@ -5,18 +5,12 @@
   <el-main>
       <!-- <div class="row"> -->
         <!-- Group Name row -->
-        <div class="col-md-12">
+        <div class="col-md-12 bg-white">
           <div class="row d-md-flex align-items-center mt-4">
             <div class="col-md-12">
               <div class="row">
-                <div class="offset-md-3 col-md-6">
-                  <h3 class="ml-n3 mb-n2">Group Name</h3>
-                </div>
-              </div>
-
-              <!-- Context Area -->
-              <div class="row d-flex flex-row justify-content-between mt-lg-1">
-                <div class="offset-md-3 col-md-6 mt-3 form-group px-0">
+                <div class="col-md-8">
+                  <h3 class="mt-4">Group Name</h3>
                   <el-input
                     type="text"
                     id="groupName"
@@ -27,13 +21,9 @@
                 </div>
               </div>
 
-              <div class="row mt-lg-3 mb-lg-1">
-                <div class="offset-md-3 col-md-6">
-                  <h3 class="ml-n3">Phone Numbers</h3>
-                </div>
-              </div>
-              <div class="row d-flex flex-row justify-content-between mdiv">
-                <div class="offset-md-3 col-md-6 form-group px-0">
+              <div class="row mt-4 mb-lg-1">
+                <div class="col-md-8">
+                  <h3 class="">Phone Numbers</h3>
                   <el-input
                     type="textarea"
                     class="w-100"
@@ -44,11 +34,12 @@
                   />
                 </div>
               </div>
+      
 
               <!-- Button Area -->
-              <div class="row mt-3 mb-4">
+              <div class="row mt-4 mb-4">
                 <div
-                  class="col-md-6 offset-md-3 d-flex flex-column flex-sm-row justify-content-end p-0"
+                  class="col-md-8 d-flex flex-column flex-sm-row justify-content-end"
                 >
                   <el-button
                     v-on:click="resetInputFields"
