@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <el-dropdown
+    <!-- <el-dropdown
       trigger="click"
       class="el-dropdown w-100 py-2 d-flex justify-content-end"
     >
@@ -25,7 +25,7 @@
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>
-    </el-dropdown>
+    </el-dropdown> -->
     <div ref="scrollRef">
       <div class="table-parent">
         <table class="table-border w-100">
@@ -257,10 +257,10 @@ export default {
   box-sizing: border-box;
 }
 
-/* .table-head {
-    background: #ecf0f3;
-    height: 56px;
-} */
+.table-head {
+    background: rgb(245,245,245);
+    /* height: 56px; */
+}
 
 .table-head h2 {
   font-weight: 600;
@@ -308,9 +308,9 @@ table tbody tr:hover {
   background-color: #fafafa;
 }
 
-table tbody tr:nth-child(even) {
+/* table tbody tr:nth-child(even) {
   background-color: #fafafa;
-}
+} */
 
 table tbody tr td:first-child input {
   width: 20px;

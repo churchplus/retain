@@ -172,6 +172,10 @@ div.el-dialog.is-align-center.QRCodeDialog, div.el-dialog.is-align-center.pastor
   overflow: auto;
 }
 
+/* .el-dropdown-menu.w-100 {
+  border: 2px solid red !important;
+} */
+
 
 .phone-input>div.el-input__wrapper {
   background: transparent;

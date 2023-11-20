@@ -58,9 +58,13 @@ export default {
         name: "Buy SMS Units",
         path: "/tenant/sms/buyunit",
       },
+      // {
+      //   name: "Templates",
+      //   path: "/tenant/sms/template",
+      // },\
       {
         name: "Templates",
-        path: "/tenant/sms/template",
+        path: "/tenant/sms/draft",
       },
       {
         name: "Sender IDs",

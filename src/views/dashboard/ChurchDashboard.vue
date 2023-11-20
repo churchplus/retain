@@ -1,19 +1,19 @@
 <template>
   <div>
-  <Header headerName="Dashboard" >
-  <template #button>
-    <div class="seperation-bar ml-3"></div>
-    <el-button :color="primarycolor" size="large" class="py-3 ml-3 w-100">
-        Add Fund
-      </el-button>
-  </template>
-  </Header>
+    <Header headerName="Dashboard">
+      <template #button>
+        <div class="seperation-bar ml-3"></div>
+        <el-button :color="primarycolor" size="large" class="py-3 ml-3 w-100">
+          Add Fund
+        </el-button>
+      </template>
+    </Header>
   </div>
   <el-main>
     <div class="row">
       <div class="col-12 thick-secondary head-text mb-4">Welcome, Ihesie</div>
       <div
-        class="col-12 col-sm-6 col-lg-3 mt-2 pr-0"
+        class="col-12 col-sm-6 col-lg-3 mt-2"
         v-for="(item, index) in accountUtil"
         :key="index"
       >
@@ -32,9 +32,11 @@
       </div>
     </div>
     <div class="row chart-parent">
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="bg-white p-3 card-shadow">
-          <div class="font-weight-700">SMS in the last <span class="primary--text">7 days</span></div>
+          <div class="font-weight-700">
+            SMS in the last <span class="primary--text">7 days</span>
+          </div>
           <apexchart
             width="100%"
             type="area"
@@ -43,15 +45,23 @@
           ></apexchart>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="bg-white p-3 card-shadow">
-        <div class="font-weight-700">Contact in the last <span class="primary--text">7 days</span></div>
+      <div class="col-md-5 h-100">
+        <div class="bg-white p-3 card-shadow h-100">
+          <div class="font-weight-700">
+            Contact in the last <span class="primary--text">7 days</span>
+          </div>
           <apexchart
+            width="100%"
+            type="donut"
+            :options="donutOption"
+            :series="donutSeries"
+          ></apexchart>
+          <!-- <apexchart
             width="100%"
             type="area"
             :options="areaOptions"
             :series="seriesarea"
-          ></apexchart>
+          ></apexchart> -->
         </div>
       </div>
     </div>
@@ -73,12 +83,12 @@ import deviceBreakpoint from "../../mixins/deviceBreakpoint";
 import store from "../../store/store";
 import swal from "sweetalert";
 import { ElMessage } from "element-plus";
-import Header from "@/components/header/Header.vue"
+import Header from "@/components/header/Header.vue";
 
 export default {
   mixins: [mixin],
   components: {
-    Header
+    Header,
   },
   data() {
     return {};
@@ -511,13 +521,19 @@ export default {
         value: "50",
       },
       {
-        name: "Account Balance",
+        name: "Total Spending",
         icon: require("../../assets/retain/money.png"),
         color: "#D1FAE5",
         value: "NGN 250",
       },
       {
-        name: "Total SMS",
+        name: "Unit Balance",
+        icon: require("../../assets/retain/envelop.png"),
+        color: "#DBEAFE",
+        value: "36",
+      },
+      {
+        name: "SMS sent",
         icon: require("../../assets/retain/envelop.png"),
         color: "#DBEAFE",
         value: "36",
@@ -565,6 +581,17 @@ export default {
       //   data: [35, 12, 53, 9, 15, 33, 20],
       // },
     ]);
+
+    const donutOption = ref({
+      chart: {
+        id: "vuechart-example",
+      },
+      xaxis: {
+      },
+      labels: ["sent", "delivered", "failed", "rejected"],
+    });
+
+    const donutSeries = ref([44, 2, 1, 17]);
 
     return {
       celebrations,
@@ -633,6 +660,8 @@ export default {
       accountUtil,
       seriesarea,
       areaOptions,
+      donutOption,
+      donutSeries,
     };
   },
 };

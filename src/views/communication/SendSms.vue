@@ -26,8 +26,8 @@
                 optionLabel="mask"
                 @selectedvalue="setSelectedSenderId"
               />
-              <div class="mt-2 d-flex flex-column flex-md-row small-text" v-if="senderIDs.length > 0">
-                <div v-if="senderIDs.length == 0">
+              <div class="mt-2 d-flex flex-column flex-md-row small-text" v-if="senderIDs.length == 0">
+                <div>
                   <div>You do not have an approved sender ID.</div>
                   <div class="text-danger">Sender ID is required</div>
                 </div>
