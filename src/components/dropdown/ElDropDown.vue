@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click" class="w-100">
-    <div class="d-flex justify-content-between border-contribution text-dark w-100">
+    <div class="d-flex justify-content-between border-contribution text-dark w-100" ref="dropdownToggle">
       <span class="medium-secondary font-weight-600 s-16">{{
         selectedValue ? selectedValue : placeholder
       }}</span>
@@ -11,8 +11,8 @@
         </el-icon>
       </div>
     </div>
-    <template #dropdown>
-      <el-dropdown-menu>
+    <template class="w-100" #dropdown>
+      <el-dropdown-menu class="w-100">
         <el-dropdown-item v-for="(item, index) in options" :key="index">
           <div @click="onValueSelect(item)">
             {{ optionLabel ? item[optionLabel] : item }}
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 export default {
   props: {
@@ -44,6 +44,7 @@ export default {
   emits: ["selectedvalue"],
   setup(props, { emit }) {
     const selectedValue = ref("");
+    const dropdownToggle = ref("");
 
     const onValueSelect = (item) => {
       if (props.optionLabel) {
@@ -54,10 +55,27 @@ export default {
       //   Emit selected value to parent component
       emit("selectedvalue", item);
     };
+
+    watchEffect(() => {
+        let childElement = dropdownToggle.value
+        // Create a style tag
+        var styleTag = document.createElement('style');
+
+        // Append the style tag to the document head
+        document.head.appendChild(styleTag);
+
+        // Define the CSS rule with the desired style
+        var cssRule = `.el-popper.el-dropdown__popper {width: ${childElement.offsetWidth}px}`
+
+        // Add the CSS rule to the style tag
+        styleTag.textContent = cssRule;
+    })
     return {
       selectedValue,
       onValueSelect,
+      dropdownToggle
     };
   },
 };
 </script>
+
