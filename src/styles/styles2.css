@@ -8,6 +8,11 @@
 .primary--text {
   color: #F92439 !important;
 }
+
+.primary--textII {
+  color: #0755B9 !important;
+}
+
 /* Button */
 
 .secondary-button {

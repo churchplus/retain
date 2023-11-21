@@ -130,7 +130,7 @@
       </div>
     </div>
     <div class="logo">
-      <img src="../../assets/sendit-logo.png" alt="" />
+      <img src="https://retain.dochase.co/logo.png" alt="Retain Logo" />
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="logo-con">
-      <a class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo" /></a>
+      <a class="logo-link"><img src="https://retain.dochase.co/logo.png" alt="Retain Logo" /></a>
     </div>
     <div class="main-con">
       <div class="main-section">

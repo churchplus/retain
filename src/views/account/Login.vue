@@ -2,16 +2,16 @@
   <div>
     <div class="main-section">
       <div class="logo-con">
-        <a class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo" /></a>
+        <a class="logo-link"><img src="https://retain.dochase.co/logo.png" alt="Retain Logo" /></a>
       </div>
       <div class="header">
         <h1>Sign in</h1>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12 kick-start d-flex justify-content-center ">
           <img src="../../assets/KickStart.jpg" alt="">
         </div>
-      </div>
+      </div> -->
 
       <div class="form-container">
         <div class="error-div" v-if="state.showError && !state.notAUser">
@@ -24,7 +24,7 @@
             <a href="/register" class="primary-text font-weight-bold text-decoration-none">Register now</a>
           </p>
         </div>
-        <el-form :model="state" class="mt-3" @keyup.enter.native="login">
+        <el-form :model="state" class="mt-3" @keyup.enter="login">
           <el-form-item>
             <el-input type="email" placeholder="Email" v-model="state.credentials.userName" />
           </el-form-item>
@@ -32,7 +32,7 @@
             <el-input type="password" placeholder="Password" v-model="state.credentials.password" show-password/>
           </el-form-item>
           <div class="f-password-div">
-            <router-link to="/forgotpassword" class="forgot-password primary--text">Forgot it?</router-link>
+            <router-link to="/forgotpassword" class="forgot-password primary--textII">Forgot it?</router-link>
           </div>
           <el-form-item>
             <el-button size="large" :color="primarycolor" @click="login" class="w-100" :loading="signInLoading" round>Sign
@@ -53,7 +53,7 @@
         <div>
           <p class="sign-up-prompt">
             Don't have an account yet?
-            <router-link to="/register" class="sign-up primary--text"><strong>Sign up now</strong></router-link>
+            <router-link to="/register" class="sign-up primary--textII"><strong>Sign up now</strong></router-link>
           </p>
         </div>
       </div>
@@ -194,9 +194,9 @@ export default {
         }
         loading.value = false
       } catch (err) {
-        /*eslint no-undef: "warn"*/
         signInLoading.value = false
         console.log(err, "login error");
+        // eslint-disable-next-line
         NProgress.done();
         loading.value = false;
         const { status } = err.response;

@@ -2,7 +2,7 @@
   <div>
     <div class="fp-con">
       <div class="logo-con">
-        <a href="" class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo"></a>
+        <a href="" class="logo-link"><img src="https://retain.dochase.co/logo.png" alt="Retain Logo"></a>
       </div>
       <div class="fp-header mt-5">
           <h2>Forgot Your Password?</h2>

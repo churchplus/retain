@@ -2,7 +2,7 @@
   <div>
     <div class="main-section">
       <div class="logo-con">
-        <a class="logo-link"><img src="../../assets/sendit-logo.png" alt="Churchplus Logo" /></a>
+        <a class="logo-link"><img src="https://retain.dochase.co/logo.png" alt="Retain Logo" /></a>
       </div>
       <div class="header">
         <div class="top-con">
@@ -16,11 +16,11 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12 kick-start d-flex justify-content-center ">
           <img src="../../assets/KickStart.jpg" alt="">
         </div>
-      </div>
+      </div> -->
 
       <div class="form-container">
         <div class="error-div" v-if="showError">
@@ -31,11 +31,11 @@
                 <a class="font-weight-bold text-decoration-none c-pointer" @click="resetPassword">click here to reset
                   your password</a></span></span>
             <span v-else>
-              <a href="mailto:support@churchplus.co" class="font-weight-700 primary-text">Contact Support</a>
+              <a href="mailto:support@churchplus.co" class="font-weight-700 primary--textII">Contact Support</a>
             </span>
           </p>
         </div>
-        <el-form :model="credentials" class="mt-3" @keyup.enter.native="register">
+        <el-form :model="credentials" class="mt-3" @keyup.enter="register">
           <el-form-item>
             <el-input type="email" placeholder="Email" v-model="credentials.email" />
           </el-form-item>
@@ -46,7 +46,7 @@
             <span class="password-tip password-help">At least 6 characters, but longer is better.</span>
           </div>
           <el-form-item>
-            <el-button size="large" color="#17c5cf" @click="register" class="w-100" :loading="loading" round>
+            <el-button size="large" :color="primarycolor" @click="register" class="w-100" :loading="loading" round>
               Get Started
             </el-button>
             <!-- <el-divider>
@@ -74,7 +74,7 @@
           <div>
             <p class="sign-up-prompt">
               Already have an account?
-              <router-link to="/" class="sign-up"><span class="primary--text"> Sign in now</span></router-link>
+              <router-link to="/" class="sign-up"><span class="primary--textII"> Sign in now</span></router-link>
             </p>
           </div>
         </div>
@@ -144,7 +144,7 @@ export default {
           router.push("/onboarding");
         })
         .catch((err) => {
-          /*eslint no-undef: "warn"*/
+          // eslint-disable-next-line
           NProgress.done();
           loading.value = false;
           console.log(err.response);
@@ -170,7 +170,7 @@ export default {
 
     const resetPassword = async() => {
       try {
-        const { data } = await axios.post(
+        await axios.post(
           `/forgotpassword/${credentials.email}`
         );
         router.push({
@@ -178,6 +178,7 @@ export default {
           params: { email: credentials.email }
         });
       } catch (error) {
+        // eslint-disable-next-line
         NProgress.done();
         console.log(error);
       }
