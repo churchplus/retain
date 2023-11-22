@@ -1,11 +1,14 @@
 <template>
   <el-dropdown trigger="click" class="w-100">
-    <div class="d-flex justify-content-between border-contribution text-dark w-100" ref="dropdownToggle">
+    <div
+      class="d-flex justify-content-between border-contribution text-dark w-100"
+      ref="dropdownToggle"
+    >
       <span class="medium-secondary font-weight-600 s-16">{{
         selectedValue ? selectedValue : placeholder
       }}</span>
       <div class="d-flex align-items-center">
-        <div class="seperation-bar2 mr-1"></div>
+        <div class="seperation-bar2 ml-3 mr-1"></div>
         <el-icon color="#CCCCCC" size="20" class="el-icon--right">
           <arrow-down />
         </el-icon>
@@ -57,25 +60,24 @@ export default {
     };
 
     watchEffect(() => {
-        let childElement = dropdownToggle.value
-        // Create a style tag
-        var styleTag = document.createElement('style');
+      let childElement = dropdownToggle.value;
+      // Create a style tag
+      var styleTag = document.createElement("style");
 
-        // Append the style tag to the document head
-        document.head.appendChild(styleTag);
+      // Append the style tag to the document head
+      document.head.appendChild(styleTag);
 
-        // Define the CSS rule with the desired style
-        var cssRule = `.el-popper.el-dropdown__popper {width: ${childElement.offsetWidth}px}`
+      // Define the CSS rule with the desired style
+      var cssRule = `.el-popper.el-dropdown__popper {width: ${childElement.offsetWidth}px}`;
 
-        // Add the CSS rule to the style tag
-        styleTag.textContent = cssRule;
-    })
+      // Add the CSS rule to the style tag
+      styleTag.textContent = cssRule;
+    });
     return {
       selectedValue,
       onValueSelect,
-      dropdownToggle
+      dropdownToggle,
     };
   },
 };
 </script>
-

@@ -252,9 +252,14 @@ export default {
         route: "/",
         submenu: [
           {
-            name: "Contact List",
+            name: "Contacts",
             logo: "/",
-            route: "/tenant/contactsegment",
+            route: "/tenant/people",
+          },
+          {
+            name: "Contact Segment",
+            logo: "/",
+            route: "/tenant/peoplegroups",
           },
         ],
       };

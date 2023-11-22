@@ -3,15 +3,25 @@
     <Header headerName="Dashboard">
       <template #button>
         <div class="seperation-bar ml-3"></div>
-        <el-button :color="primarycolor" size="large" class="py-3 ml-3 w-100">
-          Add Fund
-        </el-button>
+        <router-link :to="{ name: 'BuyUnitSms', path: '/tenant/sms/buyunit' }">
+          <el-button :color="primarycolor" size="large" class="py-3 ml-3 w-100">
+            Buy SMS Unit
+          </el-button>
+        </router-link>
       </template>
     </Header>
   </div>
   <el-main>
     <div class="row">
-      <div class="col-12 thick-secondary head-text mb-4">Welcome, Ihesie</div>
+      <div class="col-12 mb-4">
+        <div class="d-flex justify-content-between">
+          <div class="thick-secondary head-text">Welcome, Ihesie</div>
+          <!-- @selectedvalue="setSelectedSenderId" -->
+          <div>
+            <ElDropDown :options="dateRange" placeholder="Choose date range" />
+          </div>
+        </div>
+      </div>
       <div
         class="col-12 col-sm-6 col-lg-3 mt-2"
         v-for="(item, index) in accountUtil"
@@ -25,7 +35,7 @@
             <img :src="item.icon" width="20" alt="logo" />
           </div>
           <div class="ml-2">
-            <div>{{ item.name }}</div>
+            <div class="font-weight-600 thick-secondary">{{ item.name }}</div>
             <div class="s-24 font-weight-700">{{ item.value }}</div>
           </div>
         </div>
@@ -33,35 +43,33 @@
     </div>
     <div class="row chart-parent">
       <div class="col-md-7">
-        <div class="bg-white p-3 card-shadow">
+        <div class="bg-white p-3 card-shadow stretch-card">
           <div class="font-weight-700">
             SMS in the last <span class="primary--text">7 days</span>
           </div>
-          <apexchart
-            width="100%"
-            type="area"
-            :options="areaOptions"
-            :series="seriesarea"
-          ></apexchart>
+          <ApexArea />
         </div>
       </div>
-      <div class="col-md-5 h-100">
-        <div class="bg-white p-3 card-shadow h-100">
-          <div class="font-weight-700">
-            Contact in the last <span class="primary--text">7 days</span>
-          </div>
+      <div class="col-md-5 mt-3 mt-md-0">
+        <div class="bg-white p-3 card-shadow stretch-card">
+          <div class="font-weight-700">Delivery Status</div>
+          <!-- <div class=""> -->
           <apexchart
             width="100%"
+            height="100%"
             type="donut"
             :options="donutOption"
             :series="donutSeries"
           ></apexchart>
-          <!-- <apexchart
-            width="100%"
-            type="area"
-            :options="areaOptions"
-            :series="seriesarea"
-          ></apexchart> -->
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="col-md-12 mt-3 align-items-center">
+        <div class="bg-white p-3 card-shadow stretch-card">
+          <div class="font-weight-700">
+            Contact in the last <span class="primary--text">7 days</span>
+          </div>
+          <ApexArea />
         </div>
       </div>
     </div>
@@ -84,11 +92,15 @@ import store from "../../store/store";
 import swal from "sweetalert";
 import { ElMessage } from "element-plus";
 import Header from "@/components/header/Header.vue";
+import ApexArea from "@/components/chart/AreaChart.vue";
+import ElDropDown from "@/components/dropdown/ElDropDown";
 
 export default {
   mixins: [mixin],
   components: {
     Header,
+    ApexArea,
+    ElDropDown,
   },
   data() {
     return {};
@@ -540,58 +552,24 @@ export default {
       },
     ]);
 
-    const areaOptions = ref({
-      chart: {
-        height: 280,
-        type: "area",
-      },
-      dataLabels: {
-        enabled: false,
-      },
-
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.7,
-          opacityTo: 0.9,
-          stops: [0, 90, 100],
-        },
-      },
-      xaxis: {
-        categories: [
-          "01 Jan",
-          "02 Jan",
-          "03 Jan",
-          "04 Jan",
-          "05 Jan",
-          "06 Jan",
-          "07 Jan",
-        ],
-      },
-    });
-
-    const seriesarea = ref([
-      {
-        name: "Series 1",
-        data: [45, 52, 38, 45, 19, 23, 2],
-      },
-      // {
-      //   name: "Series 2",
-      //   data: [35, 12, 53, 9, 15, 33, 20],
-      // },
-    ]);
-
     const donutOption = ref({
       chart: {
         id: "vuechart-example",
       },
-      xaxis: {
-      },
+      xaxis: {},
       labels: ["sent", "delivered", "failed", "rejected"],
     });
 
     const donutSeries = ref([44, 2, 1, 17]);
+
+    const dateRange = ref([
+      "3 months",
+      "6 months",
+      "1 year",
+      "2 years",
+      "5 years",
+      "10 years",
+    ]);
 
     return {
       celebrations,
@@ -658,10 +636,9 @@ export default {
       savingPastorData,
       setImage,
       accountUtil,
-      seriesarea,
-      areaOptions,
       donutOption,
       donutSeries,
+      dateRange,
     };
   },
 };
@@ -1181,9 +1158,13 @@ tbody tr:nth-child(even) {
 .chart-parent {
   margin-top: 50px;
 }
-@media (min-width: 400px) {
-  .chart-parent {
-    margin-top: 100px;
+
+.stretch-card {
+  min-height: 400px;
+}
+@media (max-width: 500px) {
+  .stretch-card {
+    min-height: 250px;
   }
 }
 </style>

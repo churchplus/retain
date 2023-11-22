@@ -6,33 +6,52 @@
           <div class="onboarding-form-container">
             <div class="title-div">
               <div class="main-title">
-                <h1>Welcome to SendiT !</h1>
+                <h1>
+                  Welcome to <span class="font-weight-700 text-danger">Retain</span>
+                </h1>
               </div>
               <div class="sub-title">
                 <p>Tell us about you and your business</p>
               </div>
             </div>
-            <el-form ref="ruleFormRef" :rules="rules" :model="userDetails" style="width: 100%">
+            <el-form
+              ref="ruleFormRef"
+              :rules="rules"
+              :model="userDetails"
+              style="width: 100%"
+            >
               <div class="input-div">
                 <label class="mb-0">What's your name?</label>
                 <el-row :gutter="15">
                   <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item prop="firstName">
-                      <el-input type="text" v-model="userDetails.firstName" placeholder="First name" />
+                      <el-input
+                        type="text"
+                        v-model="userDetails.firstName"
+                        placeholder="First name"
+                      />
                     </el-form-item>
                   </el-col>
                   <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item prop="lastName">
-                      <el-input type="text" v-model="userDetails.lastName" placeholder="Last name" />
+                      <el-input
+                        type="text"
+                        v-model="userDetails.lastName"
+                        placeholder="Last name"
+                      />
                     </el-form-item>
                   </el-col>
                 </el-row>
               </div>
 
-              <div class="input-div">
+              <div class="input-div" v-if="false">
                 <label class="mb-0">What's the name of your business?</label>
                 <el-form-item prop="churchName">
-                  <el-input type="text" v-model="userDetails.churchName" placeholder="Name of business" />
+                  <el-input
+                    type="text"
+                    v-model="userDetails.churchName"
+                    placeholder="Name of business"
+                  />
                 </el-form-item>
               </div>
 
@@ -41,43 +60,84 @@
                 <div class="w-100">
                   <!-- <vue-tel-input :value="userDetails.phoneNumber" @input="onInput" mode="international"
                     style="height: 40px" @blur="invalidResponse"></vue-tel-input> -->
-                    <vue-tel-input style="height: 40px" @blur="invalidResponse" v-model="userDetails.phoneNumber" @input="onInput" mode="international"></vue-tel-input>
+                  <vue-tel-input
+                    style="height: 40px"
+                    @blur="invalidResponse"
+                    v-model="userDetails.phoneNumber"
+                    @input="onInput"
+                    mode="international"
+                  ></vue-tel-input>
                 </div>
               </div>
-              
+
               <div class="input-div">
                 <label class="mb-0">Select your country</label>
                 <div class="w-100">
-                  <el-select-v2 v-model="selectedCountryId" :options="countries.map(i => ({label: i.name, value: i.id}))" @change="setSelectedCountry" filterable
-                    placeholder="Select country" size="large" class="w-100" />
+                  <el-select-v2
+                    v-model="selectedCountryId"
+                    :options="countries.map((i) => ({ label: i.name, value: i.id }))"
+                    @change="setSelectedCountry"
+                    filterable
+                    placeholder="Select country"
+                    size="large"
+                    class="w-100"
+                  />
                 </div>
               </div>
 
-              <div class="input-div cstm-select w-100">
+              <div class="input-div cstm-select w-100" v-if="false">
                 <label class="mb-0">How many client did you serve?</label>
                 <el-form-item prop="churchSize">
-                  <el-select-v2 v-model="userDetails.churchSize" :options="membershipSizeList"
-                    placeholder="Select size range" size="large" class="w-100" />
+                  <el-select-v2
+                    v-model="userDetails.churchSize"
+                    :options="membershipSizeList"
+                    placeholder="Select size range"
+                    size="large"
+                    class="w-100"
+                  />
                 </el-form-item>
               </div>
-              <el-button class="w-100" :color="primarycolor" size="large" :disabled="!disableNext" :loading="loading"
-                @click="submitForm(ruleFormRef)" round>Next</el-button>
+              <el-button
+                class="w-100"
+                :color="primarycolor"
+                size="large"
+                :disabled="!disableNext"
+                :loading="loading"
+                @click="submitForm(ruleFormRef)"
+                round
+                >Next</el-button
+              >
             </el-form>
           </div>
         </div>
-        <div class="col-xs-12 col-md-6" id="onboarding-visuals" :class="{ 'swap-box2': toggle }" ref="box2">
-          <div class="step">
-            <h3>STEP 1 OF 2</h3>
-          </div>
-
-          <div>
-            <div>
-              <div class="onboarding-image-con">
-                <!-- <img src="../../assets/onboarding.png" alt="Image" /> -->
-                <span class="reactive-text text-white">{{ churchName }}</span>
-              </div>
+        <div
+          class="col-12 col-md-6"
+          id="onboarding-visuals"
+          :class="{ 'swap-box2': toggle }"
+          ref="box2"
+        >
+          <div class="h-100 d-flex justify-content-center align-items-center">
+            <div class="onboarding-image-con">
+              <!-- <img
+                  src="https://retain.dochase.co/logo.png"
+                  alt="Retain Logo"
+                  class="w-50"
+                /> -->
+              <h1 class="text-center d-flex">
+                <div style="font-size: 200px" class="text-white font-weight-bold">R</div>
+                <div
+                  style="font-size: 200px"
+                  class="text-white font-weight-bold inline rotate"
+                >
+                  e
+                </div>
+              </h1>
+              <!-- <span class="reactive-text text-white">{{ churchName }}</span> -->
             </div>
           </div>
+          <!-- <div class="step">
+            <h3>STEP 1 OF 2</h3>
+          </div> -->
         </div>
       </div>
     </div>
@@ -91,7 +151,7 @@ import router from "../../router/index";
 // import "vue3-tel-input/dist/vue3-tel-input.css";
 import { ref, reactive, inject } from "vue";
 import finish from "../../services/progressbar/progress";
-import { ElNotification } from 'element-plus'
+import { ElNotification } from "element-plus";
 export default {
   components: {
     // VueTelInput,
@@ -106,27 +166,27 @@ export default {
   },
 
   setup() {
-    const primarycolor = inject('primarycolor')
-    const ruleFormRef = ref()
+    const primarycolor = inject("primarycolor");
+    const ruleFormRef = ref();
     const rules = reactive({
       firstName: [
-        { required: true, message: 'Please input your first name', trigger: 'blur' },
+        { required: true, message: "Please input your first name", trigger: "blur" },
       ],
       lastName: [
-        { required: true, message: 'Please input your last name', trigger: 'blur' },
+        { required: true, message: "Please input your last name", trigger: "blur" },
       ],
       churchName: [
-        { required: true, message: 'Please input your church name', trigger: 'blur' },
+        { required: true, message: "Please input your church name", trigger: "blur" },
       ],
       churchSize: [
-        { required: true, message: 'Please input your church size', trigger: 'change' },
+        { required: true, message: "Please input your church size", trigger: "change" },
       ],
-    })
+    });
     return {
       ruleFormRef,
       rules,
-      primarycolor
-    }
+      primarycolor,
+    };
   },
 
   data() {
@@ -146,14 +206,20 @@ export default {
       loading: false,
       codeUrl: {},
       disableNext: false,
-      membershipSizeList: ['1 - 100', '101 - 200', '201 - 500', '501 - 2000', '2001 - 10,000'].map(i => ({ value: i, label: i })),
-      usersPhoneCode: '',
-      selectedCountryId: null
+      membershipSizeList: [
+        "1 - 100",
+        "101 - 200",
+        "201 - 500",
+        "501 - 2000",
+        "2001 - 10,000",
+      ].map((i) => ({ value: i, label: i })),
+      usersPhoneCode: "",
+      selectedCountryId: null,
     };
   },
   methods: {
-    onInput(phone, phoneObject, input) {
-      this.usersPhoneCode = phoneObject ? phoneObject.country.dialCode : ''
+    onInput(phone, phoneObject) {
+      this.usersPhoneCode = phoneObject ? phoneObject.country.dialCode : "";
       if (phoneObject?.formatted) {
         this.userDetails.phoneNumber = phoneObject.formatted;
         this.selectedCountry = this.countries.find(
@@ -163,19 +229,19 @@ export default {
     },
 
     async submitForm(formEl) {
-      if (!formEl) return
+      if (!formEl) return;
       await formEl.validate((valid, fields) => {
         if (valid) {
           this.next();
         } else {
-          console.log('error submit!', fields)
+          console.log("error submit!", fields);
           ElNotification({
-            title: 'Some fields empty',
-            message: 'Fill all fields and submit again',
-            type: 'warning',
-          })
+            title: "Some fields empty",
+            message: "Fill all fields and submit again",
+            type: "warning",
+          });
         }
-      })
+      });
     },
 
     next() {
@@ -187,10 +253,10 @@ export default {
         .then((res) => {
           if (res.data.isOnboarded) {
             ElNotification({
-              title: 'Well done',
-              message: 'Onboarding successful',
-              type: 'success',
-            })
+              title: "Well done",
+              message: "Onboarding successful",
+              type: "success",
+            });
           }
           if (!res.data.token) {
             const preToken = localStorage.getItem("pretoken");
@@ -205,7 +271,7 @@ export default {
           this.$router.push("/onboarding/step2");
         })
         .catch((err) => {
-          finish()
+          finish();
           this.loading = false;
           console.log(err.response);
         });
@@ -218,9 +284,9 @@ export default {
         this.disableNext = true;
       }
     },
-    setSelectedCountry () {
-      this.selectedCountry = this.countries.find(i => i.id === this.selectedCountryId)
-    }
+    setSelectedCountry() {
+      this.selectedCountry = this.countries.find((i) => i.id === this.selectedCountryId);
+    },
   },
 
   computed: {
@@ -233,7 +299,7 @@ export default {
     valid() {
       let regex = /[0-9]{11}/;
       return regex.test(this.userDetails.phoneNumber);
-    }
+    },
   },
 
   beforeCreate() {
@@ -244,14 +310,16 @@ export default {
     this.userDetails.email = localStorage.getItem("email");
     setTimeout(() => {
       axios.get("/api/GetAllCountries").then((res) => {
-      this.countries = res.data;
-      this.selectedCountry = this.countries.find(
-        (i) => i.phoneCode && i.phoneCode.toString() === this.usersPhoneCode.toString()
-      );
-      this.selectedCountryId = this.selectedCountry ? this.selectedCountry.id : this.selectedCountry
-    });
+        this.countries = res.data;
+        this.selectedCountry = this.countries.find(
+          (i) => i.phoneCode && i.phoneCode.toString() === this.usersPhoneCode.toString()
+        );
+        this.selectedCountryId = this.selectedCountry
+          ? this.selectedCountry.id
+          : this.selectedCountry;
+      });
     }, 2000);
-  }
+  },
 };
 </script>
 
@@ -321,7 +389,6 @@ export default {
   margin: 4px 0;
 }
 
-
 .step {
   text-align: center;
   color: #fff;
@@ -330,8 +397,8 @@ export default {
 }
 
 .onboarding-image-con {
-  width: 80%;
-  margin-left: auto;
+  /* width: 80%;
+  margin-left: auto; */
   position: relative;
 }
 

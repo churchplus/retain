@@ -1196,3 +1196,23 @@ rect.highcharts-background[fill] {
   border-radius: 4px!important;
   box-shadow: 0 6px 18px rgba(0,0,0,.06)!important;
 }
+
+.card-border {
+  padding: 6px 11px !important;
+  border: 2px solid rgba(204, 204, 204, 0.613) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rotate {
+  animation: rotate 4s infinite ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+
+  to {
+      transform: rotate(360deg);
+  }
+}

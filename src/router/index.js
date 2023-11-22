@@ -500,6 +500,41 @@ const routes = [
             ]
         },
         {
+            path: 'people',
+            component: () =>
+                import( /* webpackChunkName: "people" */ '../views/people/People.vue'),
+            children: [
+
+                {
+                    path: '',
+                    meta: {
+                        title: 'Retain - Church Members',
+                    },
+                    component: () =>
+                        import( /* webpackChunkName: "peopleempty" */ '../views/people/PeopleEmpty.vue')
+                },
+                {
+                    path: 'import',
+                    meta: {
+                        title: 'Retain - Import Members',
+                    },
+                    component: () =>
+                        import( /* webpackChunkName: "importpeople" */ '../views/people/ImportPeople.vue'),
+                    name: 'ImportPeople'
+                },
+                {
+                    path: 'add/:personId?',
+                    name: 'AddPerson',
+                    meta: {
+                        title: 'Retain - Member Form',
+                    },
+                    component: () =>
+                        import( /* webpackChunkName: "addperson" */ '../views/people/AddPerson.vue')
+                }
+            ]
+
+        },
+        {
             path: 'units',
             name: 'BuyUnits',
             meta: {
@@ -525,6 +560,42 @@ const routes = [
             },
             component: () =>
                 import( /* webpackChunkName: "editcontactlist" */ '@/views/communication/EditGroup')
+        },
+        {
+            path: 'peoplegroups:actionType?',
+            name: 'Groups',
+            meta: {
+                title: 'Retain - Groups',
+            },
+            component: () =>
+                import( /* webpackChunkName: "groups" */ '@/views/groups/GroupsList')
+        },
+        {
+            path: 'sidemodal',
+            name: 'SideModal',
+            meta: {
+                title: 'Retain - Groups',
+            },
+            component: () =>
+                import( /* webpackChunkName: "groups" */ '@/views/groups/sidemodal/SideModal.vue')
+        },
+        {
+            path: 'createpeoplegroup/:groupId?',
+            name: 'CreateGroup',
+            meta: {
+                title: 'Retain - Create | Edit Group',
+            },
+            component: () =>
+                import( /* webpackChunkName: "createpeoplegroup" */ '@/views/groups/CreateGroup')
+        },
+        {
+            path: 'importinstruction',
+            name: 'ImportInstruction',
+            meta: {
+                title: 'Retain - Import Members',
+            },
+            component: () =>
+                import( /* webpackChunkName: "addfirsttimer" */ '../views/people/ImportInstruction.vue')
         },
         {
             path: 'workflow',
