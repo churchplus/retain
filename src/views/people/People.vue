@@ -1,7 +1,6 @@
 <template>
   <div>
     <Header headerName="Contacts" />
-
     <el-main>
       <div>
         <div class="d-flex justify-content-end" v-if="!isFormPage">
@@ -20,45 +19,8 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row">
-      <div class="col-md-2 mt-2  " v-if="route.fullPath == '/tenant/people'" >
-        <div class="font-weight-bold py-md-2 mt-4">QR Code</div>
-        <div class=" image" @click="getQrCode" >
-          <img
-            src="../../assets/group2.svg"
-            alt="Member image"
-          />
-        </div>
-      </div>
-      <div class="col-md-10 pl-0 py-md-4 mt-3" v-if="route.fullPath == '/tenant/people'">
-        <div class="font-weight-bold">Share the link to your members to enable them to add their details to your
-          church .</div>
-        <div class="p-inputgroup form-group mt-2">
-          <el-input v-model="memberlink" placeholder="Click the copy button when the link appears" ref="selectedLink" class="input-with-select" >
-            <template #append>
-              <el-button @click="copylink">
-                <el-icon>
-                  <CopyDocument />
-                </el-icon>
-              </el-button>
-            </template>
-          </el-input>
-        </div>
-    </div> -->
-
       <router-view />
     </el-main>
-    <!-- <el-dialog v-model="QRCodeDialog" title="" :width="mdAndUp || lgAndUp || xlAndUp ? `30%` : xsOnly ? `90%` : `70%`"  class="QRCodeDialog" align-center>
-        
-        <div class="d-flex align-items-center flex-column" >
-          <h4 class="text-capitalize font-weight-bold"> Members QR Code For Registration</h4>
-        </div>
-        <div class=" d-flex justify-content-center " >
-            <div class="img-wrapper  ">
-                <img  v-if="qrCode" :src="qrCode" class="image-wrapper w-100"  />
-            </div>
-        </div>
-    </el-dialog> -->
   </div>
 </template>
 
