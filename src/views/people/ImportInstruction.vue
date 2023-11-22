@@ -44,11 +44,6 @@
                   </div>
                 </template>
               </el-upload>
-              <!-- <el-input
-                type="file"
-                @change="imageSelected"
-                class="form-control w-100 c-pointer"
-              /> -->
             </div>
             <div class="col-12 d-flex justify-content-center text-center my-4">
               <el-button
@@ -254,7 +249,6 @@ export default {
     const uploadLoading = ref(false);
 
     const imageSelected = async (e) => {
-      console.log(e);
         image.value = e.raw
     };
 
