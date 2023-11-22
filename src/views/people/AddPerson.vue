@@ -388,6 +388,11 @@ export default {
             store.dispatch("membership/setMembers").then(() => {
               router.push("/tenant/people");
             });
+            ElMessage({
+              type: "success",
+              message: "Contact created successfully",
+              duration: 5000,
+            });
           }
         } catch (err) {
           console.log(err);
@@ -431,6 +436,11 @@ export default {
             store.dispatch("dashboard/getDashboard");
             store.dispatch("membership/setMembers").then(() => {
               router.push("/tenant/people");
+            });
+            ElMessage({
+              type: "success",
+              message: "Contact created successfully",
+              duration: 5000,
             });
           }
         } catch (err) {
