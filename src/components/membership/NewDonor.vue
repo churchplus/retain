@@ -1,168 +1,33 @@
 <template>
     <div class="container main">
         <div class="row">
-            <div class="col-md-12 px-0">
+            <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Membership</label>
-                            </div>
-                            <div class="col-md-8">
-                                <el-select-v2 v-model="memberClassificationId" @change="setSelectedMem"
-                                    :options="memberships.map(i => ({ label: i.name, value: i.id }))" placeholder="--Select membership--"
-                                    size="large" class="w-100" />
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Firstname<span class="text-danger">*</span></label>
-                            </div>
-                            <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="row my-3">   
+                            <div class="col-md-12">
                                 <el-input type="text" v-model="donor.firstName" placeholder="Enter first name" />
                             </div>
                         </div>
                         <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Last Name</label>
-                            </div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <el-input type="text" v-model="donor.lastName" placeholder="Enter last name" />
                             </div>
                         </div>
                         <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Phone Number</label>
-                            </div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <el-input type="text" v-model="donor.mobilePhone" placeholder="Enter phone number" />
                             </div>
                         </div>
                         <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Email</label>
-                            </div>
-                            <div class="col-md-8">
-                                <el-input type="text" v-model="donor.email" placeholder="Email" />
+                            <div class="col-md-12">
+                                <el-input type="text" v-model="donor.email" placeholder="Enter email" />
                             </div>
                         </div>
-                        <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Gender</label>
-                            </div>
-                            <div class="col-md-8">
-                                <el-dropdown trigger="click" class="w-100">
-                                    <div class="d-flex justify-content-between border-contribution text-dark w-100"
-                                        size="large">
-                                        <span>{{ Object.keys(genderType).length > 0 ? genderType.value : 'Gender'
-                                        }} </span>
-                                        <div>
-                                            <el-icon class="el-icon--right">
-                                                <arrow-down />
-                                            </el-icon>
-                                        </div>
-                                    </div>
-                                    <template #dropdown>
-                                        <el-dropdown-menu>
-                                            <el-dropdown-item v-for="(gender, index) in genders" :key="index">
-                                                <a class="no-decoration text-dark" @click="addGenderType(gender)">
-                                                    {{ gender.value }}
-                                                </a>
-                                            </el-dropdown-item>
-                                        </el-dropdown-menu>
-                                    </template>
-                                </el-dropdown>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-md-4 text-md-right pr-md-0">
-                                <label for="" class="font-weight-700">Date of birth</label>
-                            </div>
-                            <div class="col-md-8 ">
-                                <div class="row">
-                                    <div class="col-12 col-md-4">
-                                        <el-dropdown trigger="click" class="w-100">
-                                            <div class="d-flex justify-content-between border-contribution text-dark w-100"
-                                                size="large">
-                                                <span>{{ birthDay ? birthDay : 'Day' }}</span>
-                                                <div>
-                                                    <el-icon class="el-icon--right">
-                                                        <arrow-down />
-                                                    </el-icon>
-                                                </div>
-                                            </div>
-                                            <template #dropdown>
-                                                <el-dropdown-menu>
-                                                    <el-dropdown-item v-for="(birthDay, index) in birthDaysArr"
-                                                        :key="index">
-                                                        <a class="no-decoration text-dark" @click="addbirthDays(birthDay)">
-                                                            {{ birthDay }}
-                                                        </a>
-                                                    </el-dropdown-item>
-                                                </el-dropdown-menu>
-                                            </template>
-                                        </el-dropdown>
-                                    </div>
-                                    <div class="col-12 col-md-4 px-md-0 my-2 my-md-0">
-                                        <el-dropdown trigger="click" class="w-100">
-                                            <div class="d-flex justify-content-between border-contribution text-dark w-100"
-                                                size="large">
-                                                <span>{{ birthMonth ? birthMonth : 'Month' }}</span>
-                                                <div>
-                                                    <el-icon class="el-icon--right">
-                                                        <arrow-down />
-                                                    </el-icon>
-                                                </div>
-                                            </div>
-                                            <template #dropdown>
-                                                <el-dropdown-menu>
-                                                    <el-dropdown-item v-for="(month, index) in months" :key="index">
-                                                        <a class="no-decoration text-dark" @click="addBirthMonth(month)">
-                                                            {{ month }}
-                                                        </a>
-                                                    </el-dropdown-item>
-                                                </el-dropdown-menu>
-                                            </template>
-                                        </el-dropdown>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <el-dropdown trigger="click" class="w-100">
-                                            <div class="d-flex justify-content-between border-contribution text-dark w-100"
-                                                size="large">
-                                                <span>{{ birthYear ? birthYear : 'Year' }}</span>
-                                                <div>
-                                                    <el-icon class="el-icon--right">
-                                                        <arrow-down />
-                                                    </el-icon>
-                                                </div>
-                                            </div>
-                                            <template #dropdown>
-                                                <el-dropdown-menu>
-                                                    <el-dropdown-item v-for="(birthYear, index) in birthYearsArr"
-                                                        :key="index">
-                                                        <a class="no-decoration text-dark"
-                                                            @click="addBirthYears(birthYears)">
-                                                            {{ birthYear }}
-                                                        </a>
-                                                    </el-dropdown-item>
-                                                </el-dropdown-menu>
-                                            </template>
-                                        </el-dropdown>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <ImageForm @image="setImage" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 text-md-right">
-                        <h4 class="header4 text-md-right"></h4>
-                    </div>
-                    <div class="col-md-5 px-0 mt-3">
+                    <div class="col-md-12 mt-3">
                         <el-button @click="onCancel" class="secondary-button w-100" round>Cancel</el-button>
                         <el-button :color="primarycolor" :loading="loading" class="w-100 ml-0 mt-2" @click="saveDonor"
                             round>Save</el-button>
@@ -177,12 +42,12 @@
 import moment from "moment";
 import { reactive, ref, computed, inject } from 'vue'
 import { useRoute } from "vue-router";
-import router from "@/router/index";
+// import router from "@/router/index";
 import axios from "@/gateway/backendapi";
 import { useStore } from "vuex";
-import ImageForm from './ImageForm'
+// import ImageForm from './ImageForm'
 export default {
-    components: { ImageForm },
+    // components: { ImageForm },
 
     setup(props, { emit }) {
         const primarycolor = inject('primarycolor')
@@ -207,24 +72,24 @@ export default {
         const daysInBirthMonth = ref(birthDate.daysInMonth());
         let memberships = ref(store.getters["lookups/peopleClassifications"]);
 
-        const getPeopleClassifications = async () => {
-            try {
-                const response = await axios.get(
-                "/api/Settings/GetTenantPeopleClassification"
-                );
-                const { data } = response;
-                memberships.value = data;
-                console.log(memberships.value, 'kkkhhh');
-            } catch (err) {
-                if (err.response && err.response.status === 401) {
-                localStorage.removeItem("token");
+        // const getPeopleClassifications = async () => {
+        //     try {
+        //         const response = await axios.get(
+        //         "/api/Settings/GetTenantPeopleClassification"
+        //         );
+        //         const { data } = response;
+        //         memberships.value = data;
+        //         console.log(memberships.value, 'kkkhhh');
+        //     } catch (err) {
+        //         if (err.response && err.response.status === 401) {
+        //         localStorage.removeItem("token");
 
-                router.push("/");
-                }
-                console.log(err);
-            }
-            };
-            getPeopleClassifications()
+        //         router.push("/");
+        //         }
+        //         console.log(err);
+        //     }
+        //     };
+        //     getPeopleClassifications()
 
             const setSelectedMem = () => {
                 selectedMembership.value = memberships.value.find((i) => i.id == memberClassificationId.value )
@@ -290,12 +155,6 @@ export default {
             formData.append("lastName", donor.lastName ? donor.lastName : "")
             formData.append("mobilePhone", donor.mobilePhone ? donor.mobilePhone : "")
             formData.append("email", donor.email ? donor.email : "")
-            formData.append("gender", genderType.value.id ? genderType.value.id : "")
-            formData.append("peopleClassificationID", selectedMembership.value ? selectedMembership.value.id : "" );
-            formData.append("dayOfBirth", birthDay.value ? birthDay.value : "")
-            formData.append("monthOfBirth", months.value.indexOf(birthMonth.value) + 1 ? months.value.indexOf(birthMonth.value) + 1 : "")
-            formData.append("yearOfBirth", birthYear.value ? birthYear.value : "")
-            formData.append("picture", image.value ? image.value : "")
             try {
                 return new Promise((resolve, reject) => {
                     axios.post("/api/People/createPerson", formData)

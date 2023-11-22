@@ -37,8 +37,8 @@
               </div>
             </div>
           </div>
-          <div class="screensize">
-            <el-table
+          <div>
+            <!-- <el-table
               :data="searchGroup"
               v-loading="loading"
               stripe
@@ -99,7 +99,136 @@
                   </div>
                 </template>
               </el-table-column>
-            </el-table>
+            </el-table> -->
+            <Table
+              :data="searchGroup"
+              :headers="groupHeaders"
+              :checkMultipleItem="false"
+              v-loading="loading"
+              v-if="searchGroup.length > 0"
+            >
+              <template #name="{ item }">
+                <div class="c-pointer" @click="groupClick(item.id)">
+                  {{ item.name }}
+                </div>
+              </template>
+              <template v-slot:peopleInGroupsCount="{ item }">
+                <div class="c-pointer" @click="groupClick(item.id)">
+                  {{ item.peopleInGroupsCount }}
+                </div>
+              </template>
+              <template v-slot:action>
+                <div>
+                  <!-- <div class="dropdown">
+                    <el-icon data-toggle="dropdown" aria-expanded="false">
+                      <MoreFilled />
+                    </el-icon>
+                    <ul class="dropdown-menu">
+                      <li class="dropdown-item">
+                        <a>
+                          <router-link
+                            :to="
+                              item.mobilePhone
+                                ? `/tenant/sms/compose?phone=${item.mobilePhone}`
+                                : ''
+                            "
+                            :class="{
+                              'fade-text': !item.mobilePhone,
+                              'text-color': item.mobilePhone,
+                            }"
+                            >Send SMS</router-link
+                          >
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          <router-link
+                            :to="
+                              item.email
+                                ? `/tenant/email/compose?phone=${item.email}`
+                                : ''
+                            "
+                            :class="{
+                              'fade-text': !item.email,
+                              'text-color': item.email,
+                            }"
+                            >Send Email</router-link
+                          >
+                        </a>
+                      </li>
+                       <li @click="displayWhatsappDrawer(item)">
+                        <a class="dropdown-item" href="#"> Send Whatsapp </a>
+                      </li>
+                     <li @click="archive(item.id, 'single')">
+                        <a class="dropdown-item" href="#">
+                          <div class="text-color">Archive</div>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          <router-link
+                            :to="`/tenant/firsttimermanagement/${item.id}?memberType=1`"
+                            class="text-color"
+                          >
+                            Follow Up
+                          </router-link>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          <router-link
+                            :to="`/tenant/people/add/${item.id}`"
+                            class="text-color"
+                            >Edit</router-link
+                          >
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          <div
+                            @click.prevent="showConfirmModal(item.id, index)"
+                            class="text-color"
+                          >
+                            Delete
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div> -->
+                  <el-dropdown trigger="click">
+                    <el-icon>
+                      <MoreFilled />
+                    </el-icon>
+                    <template #dropdown>
+                      <el-dropdown-menu>
+                        <el-dropdown-item>
+                          <a
+                            class="no-decoration text-dark"
+                            @click="sendGroupSms(scope.row)"
+                            >Send SMS</a
+                          >
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a
+                            class="no-decoration text-dark"
+                            @click="sendGroupEmail(scope.row)"
+                          >
+                            Send Email
+                          </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a
+                            class="no-decoration text-dark"
+                            @click="confirmDelete(scope.row.id)"
+                            >Delete</a
+                          >
+                        </el-dropdown-item>
+                      </el-dropdown-menu>
+                    </template>
+                  </el-dropdown>
+                </div>
+              </template>
+            </Table>
             <div class="d-flex justify-content-end my-3">
               <el-pagination
                 v-model:current-page="serverOptions.page"
@@ -159,12 +288,14 @@ import deviceBreakpoint from "../../mixins/deviceBreakpoint";
 import { ElMessage, ElMessageBox } from "element-plus";
 import axios from "@/gateway/backendapi";
 import Header from "@/components/header/Header.vue";
+import Table from "@/components/table/Table";
 
 export default {
   components: {
     smsComponent,
     emailComponent,
     Header,
+    Table,
   },
 
   setup() {
@@ -182,6 +313,11 @@ export default {
     const route = useRoute();
     const serverItemsLength = ref(0);
     const getGroupSummary = ref(0);
+    const groupHeaders = ref([
+      { name: "Name", value: "name" },
+      { name: "Total Contact", value: "peopleInGroupsCount" },
+      { name: "Actions", value: "action" },
+    ]);
 
     const handleSizeChange = (val) => {
       console.log(`${val} items per page`);
@@ -364,6 +500,7 @@ export default {
       route,
       router,
       primarycolor,
+      groupHeaders,
     };
   },
 };
@@ -410,11 +547,6 @@ export default {
 @media screen and (max-width: 600px) {
   .table-container {
     overflow: auto;
-  }
-
-  .screensize,
-  .table-top {
-    min-width: 500px;
   }
 }
 @media screen and (min-width: 580px) {

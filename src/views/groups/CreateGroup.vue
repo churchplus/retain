@@ -1,48 +1,73 @@
 <template>
   <div>
-    <Header :headerName="!route.params.groupId ? 'Create segment' : 'Update Segment'" />
+    <Header :headerName="!route.params.groupId ? 'Create segment' : `${groupData.name}`" />
 
-<el-main>
-    <div class="row py-3">
-      <div class="col-md-12">
-        <div class="py-4 my-4 bg-white">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row">
-                  <!-- <div class="col-md-2 text-lg-right">
+    <el-main>
+      <div class="row py-3">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12 col-12">
+
+              <div class="d-flex justify-content-end">
+                <el-button
+                class="c-pointer secondary-button"
+                :data-toggle="route.params.groupId ? 'modal' : ''"
+                data-target="#importgroup"
+                @click="importMember"
+                size="large"
+              >
+                Import
+              </el-button>
+              <el-button
+                class="secondary-button"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                ref="modalBtn"
+                size="large"
+              >
+                Add contact
+              </el-button>
+              </div>
+            </div>
+          </div>
+          <div class="py-4 my-4 bg-white">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+                    <!-- <div class="col-md-2 text-lg-right">
                     <label for="groupName" class="font-weight-600">Group name</label>
                   </div> -->
-                  <div class="col-md-8">
-                    <el-input
-                      type="text"
-                      v-model="groupData.name"
-                      class="w-100"
-                      id="formGroup"
-                      placeholder="Enter contact segment name"
-                    />
+                    <div class="col-md-8">
+                      <el-input
+                        type="text"
+                        v-model="groupData.name"
+                        class="w-100"
+                        id="formGroup"
+                        placeholder="Enter contact segment name"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="row mb-2 mt-4">
-              <div class="col-md-12">
-                <div class="row">
-                  <!-- <div class="col-md-2 text-lg-right">
+              <!-- <div class="row mb-2 mt-4">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-2 text-lg-right">
                     <label for="description" class="font-weight-600">Description</label>
-                  </div> -->
-                  <div class="col-md-8">
-                    <el-input
-                      v-model="groupData.description"
-                      name="description"
-                      id="description"
-                      :rows="3"
-                      type="textarea"
-                      placeholder="Enter segment description {optional}"
-                    />
+                  </div>
+                    <div class="col-md-8">
+                      <el-input
+                        v-model="groupData.description"
+                        name="description"
+                        id="description"
+                        :rows="3"
+                        type="textarea"
+                        placeholder="Enter segment description {optional}"
+                      />
 
-                    <!-- <div class="d-flex mt-3">
+                      <div class="d-flex mt-3">
                       <div class="input-width">
                         <el-checkbox
                           v-model="groupData.isMobileGroup"
@@ -54,91 +79,57 @@
                       <label for="description" class="font-weight-600 ml-3">
                         Enable on Mobile App
                       </label>
-                    </div> -->
+                    </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-12 btnn">
-            <el-button
-              v-if="route.params.groupId"
-              class="default-btn border outline-none font-weight-bold c-pointer text-center text-dark"
-              data-toggle="collapse"
-              data-dismiss="modal"
-              data-target="#collapseExample"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-              round
-            >
-              Sub-group
-            </el-button>
-            <el-button
-              class="default-btn border outline-none font-weight-bold c-pointer text-center text-dark"
-              :data-toggle="route.params.groupId ? 'modal' : ''"
-              data-target="#importgroup"
-              @click="importMember"
-              round
-            >
-              Import
-            </el-button>
-            <el-button
-              class="default-btn outline-none font-weight-bold border c-pointer header-btn text-dark add-member"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              ref="modalBtn"
-              size="large"
-              round
-            >
-              Add contact
-            </el-button>
-          </div>
-        </div>
+         
 
-        <div class="row">
-          <div class="col-12">
-            <div>
-              <div class="collapse" id="collapseExample">
-                <div class="row">
-                  <div class="col-12 col-md-12 mt-2">
-                    <div
-                      class="mb-3 border outline-none font-weight-bold mr-3 text-center"
-                      style="border-radius: 3rem; padding: 0.5rem 1.25rem; width: 167px"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#addsubgroup"
-                      aria-expanded="false"
-                      aria-controls="collapseExample"
-                    >
-                      Add sub-group
-                    </div>
+          <!-- <div class="row">
+            <div class="col-12">
+              <div>
+                <div class="collapse" id="collapseExample">
+                  <div class="row">
+                    <div class="col-12 col-md-12 mt-2">
+                      <div
+                        class="mb-3 border outline-none font-weight-bold mr-3 text-center"
+                        style="border-radius: 3rem; padding: 0.5rem 1.25rem; width: 167px"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#addsubgroup"
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+                      >
+                        Add sub-group
+                      </div>
 
-                    <div class="collapse" id="addsubgroup">
-                      <div class="card card-body">
-                        <div class="font-weight-700 mb-3">
-                          Select the group or sub-group you want to be a child of this
-                          group.
-                        </div>
-
-                        <div class="row w-100">
-                          <div class="col-12 col-sm-6 col-md-4">
-                            <div class="">
-                              <div class="mb-1 font-weight-600 w-100">Parent Group</div>
-
-                              <el-input
-                                type="text"
-                                v-model="groupData.name"
-                                size="large"
-                                disabled
-                              />
-                            </div>
+                      <div class="collapse" id="addsubgroup">
+                        <div class="card card-body">
+                          <div class="font-weight-700 mb-3">
+                            Select the group or sub-group you want to be a child of this
+                            group.
                           </div>
-                          <div class="col-12 col-sm-6 col-md-5 mt-3 mt-sm-0">
-                            <div class="mb-1 font-weight-600 w-100">Child group</div>
-                            <div>
-                              <!-- <el-tree-select
+
+                          <div class="row w-100">
+                            <div class="col-12 col-sm-6 col-md-4">
+                              <div class="">
+                                <div class="mb-1 font-weight-600 w-100">Parent Group</div>
+
+                                <el-input
+                                  type="text"
+                                  v-model="groupData.name"
+                                  size="large"
+                                  disabled
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-5 mt-3 mt-sm-0">
+                              <div class="mb-1 font-weight-600 w-100">Child group</div>
+                              <div>
+                              <el-tree-select
                                 v-model="selectedTree"
                                 class="w-100"
                                 placeholder="Select group"
@@ -148,702 +139,696 @@
                                 @change="setGroupValue"
                                 filterable
                                 check-strictly
-                              /> -->
-                              <div
-                                class="border-contribution d-flex justify-content-between align-items-center exempt-hide"
-                                @click="setGroupProp"
-                              >
-                                <span class="exempt-hide">
-                                  <el-tag
-                                    type="info"
-                                    v-for="item in selectedTree"
-                                    :key="item.id"
-                                    >{{ item && item.name }}</el-tag
-                                  >
-                                  <span v-if="selectedTree.length === 0"
-                                    >Select group</span
-                                  >
-                                </span>
-                                <el-icon class="el-icon--right pr-1">
-                                  <arrow-down />
-                                </el-icon>
-                              </div>
-                              <div
-                                class="div-card p-2 exempt-hide"
-                                :class="{
-                                  'd-none': hideDiv,
-                                  'd-block': !hideDiv,
-                                }"
-                              >
-                                <el-icon
-                                  class="is-loading"
-                                  v-if="grouploading && getAllGroup.length === 0"
+                              /> 
+                                <div
+                                  class="border-contribution d-flex justify-content-between align-items-center exempt-hide"
+                                  @click="setGroupProp"
                                 >
-                                  <Loading />
-                                </el-icon>
-                                <el-input
-                                  type="text"
-                                  class="w-100 exempt-hide"
-                                  v-model="searchGroupText"
-                                  ref="searchGroupRef"
-                                  placeholder="Search for group"
-                                />
-                                <GroupTree2
-                                  :items="searchForGroups"
-                                  :addGroupValue="true"
-                                  @filteredGroup="setFilterGroups"
-                                  @newgroup="setNewGroup"
-                                />
+                                  <span class="exempt-hide">
+                                    <el-tag
+                                      type="info"
+                                      v-for="item in selectedTree"
+                                      :key="item.id"
+                                      >{{ item && item.name }}</el-tag
+                                    >
+                                    <span v-if="selectedTree.length === 0"
+                                      >Select group</span
+                                    >
+                                  </span>
+                                  <el-icon class="el-icon--right pr-1">
+                                    <arrow-down />
+                                  </el-icon>
+                                </div>
+                                <div
+                                  class="div-card p-2 exempt-hide"
+                                  :class="{
+                                    'd-none': hideDiv,
+                                    'd-block': !hideDiv,
+                                  }"
+                                >
+                                  <el-icon
+                                    class="is-loading"
+                                    v-if="grouploading && getAllGroup.length === 0"
+                                  >
+                                    <Loading />
+                                  </el-icon>
+                                  <el-input
+                                    type="text"
+                                    class="w-100 exempt-hide"
+                                    v-model="searchGroupText"
+                                    ref="searchGroupRef"
+                                    placeholder="Search for group"
+                                  />
+                                  <GroupTree2
+                                    :items="searchForGroups"
+                                    :addGroupValue="true"
+                                    @filteredGroup="setFilterGroups"
+                                    @newgroup="setNewGroup"
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          <div class="col-12 col-md-3">
-                            <div class="mb-1 mt-3 mt-md-4">
-                              <el-button
-                                class="default-btn primary-bg border-0 text-white align-self-center mt-2"
-                                size="large"
-                                @click="addSubGroup"
-                                round
-                              >
-                                Add sub group
-                              </el-button>
+                            <div class="col-12 col-md-3">
+                              <div class="mb-1 mt-3 mt-md-4">
+                                <el-button
+                                  class="default-btn primary-bg border-0 text-white align-self-center mt-2"
+                                  size="large"
+                                  @click="addSubGroup"
+                                  round
+                                >
+                                  Add sub group
+                                </el-button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12">
-                    <GroupTree
-                      :items="groupData.children"
-                      @removesubgroup="removeSubGroup"
-                    />
+                    <div class="col-12">
+                      <GroupTree
+                        :items="groupData.children"
+                        @removesubgroup="removeSubGroup"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> -->
 
-        <div class="row pb-4">
-          <div class="col-md-2" v-if="route.params.groupId">
-            <div class="font-weight-bold py-md-2 mt-4">QR Code</div>
-            <div class="image" @click="getQrCode">
-              <img src="../../assets/group2.svg" alt="Member image" />
+          <div class="row pb-4">
+            <!-- <div class="col-md-2" v-if="route.params.groupId">
+              <div class="font-weight-bold py-md-2 mt-4">QR Code</div>
+              <div class="image" @click="getQrCode">
+                <img src="../../assets/group2.svg" alt="Member image" />
+              </div>
             </div>
-          </div>
-          <div class="col-md-10" v-if="route.params.groupId">
-            <div class="font-weight-bold py-md-2 mt-4">Copy and Share the link</div>
-            <div class="p-inputgroup form-group mt-1">
-              <el-input
-                v-model="groupLink"
-                placeholder="Click the copy button when the link appears"
-                ref="selectedLink"
-                class="input-with-select border-0 w-100"
-              >
-                <template #append>
-                  <el-button @click="copylink">
-                    <el-icon>
-                      <CopyDocument />
-                    </el-icon>
-                  </el-button>
-                </template>
-              </el-input>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between py-3">
-              <el-input
-                v-model="searchGroupMemberText"
-                placeholder="Search for group member by name"
-                class="input-with-select"
-                type="text"
-                v-if="groupMembers.length > 0"
-              >
-                <template #append>
-                  <el-button>
-                    <el-icon :size="13">
-                      <Search />
-                    </el-icon>
-                  </el-button>
-                </template>
-              </el-input>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <!-- Add Member To Group Modal -->
-                <div
-                  class="modal fade"
-                  id="exampleModal"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
+            <div class="col-md-10" v-if="route.params.groupId">
+              <div class="font-weight-bold py-md-2 mt-4">Copy and Share the link</div>
+              <div class="p-inputgroup form-group mt-1">
+                <el-input
+                  v-model="groupLink"
+                  placeholder="Click the copy button when the link appears"
+                  ref="selectedLink"
+                  class="input-with-select border-0 w-100"
                 >
-                  <div class="modal-dialog" role="document" ref="modal">
-                    <div class="modal-content pr-2">
-                      <div class="modal-header py-3">
-                        <h5 class="modal-title font-weight-700" id="exampleModalLabel">
-                          Group membership
-                        </h5>
-                        <button
-                          type="button"
-                          class="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="row my-3">
-                              <div
-                                class="col-md-4 align-items-center justify-content-md-end"
-                              >
-                                <label class="font-weight-600">Select Members</label>
-                              </div>
+                  <template #append>
+                    <el-button @click="copylink">
+                      <el-icon>
+                        <CopyDocument />
+                      </el-icon>
+                    </el-button>
+                  </template>
+                </el-input>
+              </div>
+            </div> -->
+            <div class="col-md-12">
+              <div class="d-flex flex-column flex-sm-row justify-content-sm-between py-3">
+                <el-input
+                  v-model="searchGroupMemberText"
+                  placeholder="Search for contact member by name"
+                  class="input-with-select"
+                  type="text"
+                  v-if="groupMembers.length > 0"
+                >
+                  <template #append>
+                    <el-button>
+                      <el-icon :size="13">
+                        <Search />
+                      </el-icon>
+                    </el-button>
+                  </template>
+                </el-input>
+              </div>
 
-                              <div class="col-md-7 col-sm-12 px-1">
-                                <ul
-                                  class="px-1 mb-0 m-dd-item d-flex border rounded-lg flex-wrap"
-                                  @click="() => memberSelectInput.focus()"
-                                >
-                                  <li
-                                    style="list-style: none; min-width: 100px"
-                                    v-for="(member, indx) in selectedMembers"
-                                    :key="indx"
-                                    class="email-destination d-flex justify-content-between m-1"
-                                  >
-                                    <span>{{ member.name }}</span>
-                                    <span
-                                      class="ml-2 remove-email"
-                                      @click="removeMember(indx)"
-                                      >x</span
-                                    >
-                                  </li>
-                                  <li style="list-style: none" class="m-dd-item">
-                                    <input
-                                      type="text"
-                                      class="border-0 m-dd-item text outline-none"
-                                      ref="memberSelectInput"
-                                      @input="searchForMembers"
-                                      autocomplete="off"
-                                      :class="{
-                                        'w-100': selectedMembers.length === 0,
-                                        'minimized-input-width':
-                                          selectedMembers.length > 0,
-                                      }"
-                                      @focus="showMemberList"
-                                      @click="showMemberList"
-                                      v-model="searchText"
-                                      style="padding: 0.5rem"
-                                      :placeholder="`${
-                                        selectedMembers.length > 0
-                                          ? ''
-                                          : 'Select from members'
-                                      }`"
-                                      @blur="() => (inputBlurred = true)"
-                                    />
-                                  </li>
-                                </ul>
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- Add Member To Group Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document" ref="modal">
+                      <div class="modal-content pr-2">
+                        <div class="modal-header py-3">
+                          <h5 class="modal-title font-weight-700" id="exampleModalLabel">
+                            Add a contact
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="row my-3">
                                 <div
-                                  class="col-md-12 px-0 select-groups-dropdown m-dd-item"
-                                  v-if="memberListShown"
+                                  class="col-md-4 align-items-center justify-content-md-end"
                                 >
-                                  <div class="dropdownmenu pt-0 w-100 m-dd-item">
-                                    <a
-                                      class="dropdown-item px-1 c-pointer m-dd-item"
-                                      v-for="(member, index) in memberSearchResults"
-                                      :key="index"
-                                      @click="selectMember(member, index)"
-                                      >{{ member.nameResult }}</a
-                                    >
+                                  <label class="font-weight-600">Select contact</label>
+                                </div>
 
-                                    <p class="bg-secondary p-1 mb-0">
-                                      Enter 3 or more characters
-                                    </p>
-                                    <!-- v-if="
+                                <div class="col-md-7 col-sm-12 px-1">
+                                  <ul
+                                    class="px-1 mb-0 m-dd-item d-flex border rounded-lg flex-wrap"
+                                    @click="() => memberSelectInput.focus()"
+                                  >
+                                    <li
+                                      style="list-style: none; min-width: 100px"
+                                      v-for="(member, indx) in selectedMembers"
+                                      :key="indx"
+                                      class="email-destination d-flex justify-content-between m-1"
+                                    >
+                                      <span>{{ member.name }}</span>
+                                      <span
+                                        class="ml-2 remove-email"
+                                        @click="removeMember(indx)"
+                                        >x</span
+                                      >
+                                    </li>
+                                    <li style="list-style: none" class="m-dd-item">
+                                      <input
+                                        type="text"
+                                        class="border-0 m-dd-item text outline-none"
+                                        ref="memberSelectInput"
+                                        @input="searchForMembers"
+                                        autocomplete="off"
+                                        :class="{
+                                          'w-100': selectedMembers.length === 0,
+                                          'minimized-input-width':
+                                            selectedMembers.length > 0,
+                                        }"
+                                        @focus="showMemberList"
+                                        @click="showMemberList"
+                                        v-model="searchText"
+                                        style="padding: 0.5rem"
+                                        :placeholder="`${
+                                          selectedMembers.length > 0
+                                            ? ''
+                                            : 'Select from contacts'
+                                        }`"
+                                        @blur="() => (inputBlurred = true)"
+                                      />
+                                    </li>
+                                  </ul>
+                                  <div
+                                    class="col-md-12 px-0 select-groups-dropdown m-dd-item"
+                                    v-if="memberListShown"
+                                  >
+                                    <div class="dropdownmenu pt-0 w-100 m-dd-item">
+                                      <a
+                                        class="dropdown-item px-1 c-pointer m-dd-item"
+                                        v-for="(member, index) in memberSearchResults"
+                                        :key="index"
+                                        @click="selectMember(member, index)"
+                                        >{{ member.nameResult }}</a
+                                      >
+
+                                      <p class="bg-secondary p-1 mb-0">
+                                        Enter 3 or more characters
+                                      </p>
+                                      <!-- v-if="
                                                   wardSearchString.length < 3 &&
                                                   wardSearchedMembers.length === 0
                                                 " -->
 
-                                    <p
-                                      aria-disabled="true"
-                                      class="btn btn-default p-1 mb-0 disable m-dd-item"
-                                      v-if="
-                                        memberSearchResults.length === 0 &&
-                                        searchText.length >= 3 &&
-                                        !loading
-                                      "
-                                    >
-                                      No match found
-                                    </p>
-                                    <p
-                                      class="btn btn-default p-1 mb-0 disable m-dd-item"
-                                      v-if="loading && searchText.length >= 3"
-                                    >
-                                      <i
-                                        class="fas fa-circle-notch fa-spin m-dd-item"
-                                      ></i>
-                                    </p>
-                                    <a
-                                      class="font-weight-bold small-text d-flex justify-content-center py-2 text-decoration-none primary--text c-pointer"
-                                      style="
-                                        border-top: 1px solid #002044;
-                                        color: #136acd;
-                                      "
-                                      @click="showAddMemberForm"
-                                      data-dismiss="modal"
-                                    >
-                                      <el-icon
-                                        class="primary--text d-flex align-self-center mr-2"
+                                      <p
+                                        aria-disabled="true"
+                                        class="btn btn-default p-1 mb-0 disable m-dd-item"
+                                        v-if="
+                                          memberSearchResults.length === 0 &&
+                                          searchText.length >= 3 &&
+                                          !loading
+                                        "
                                       >
-                                        <CirclePlusFilled />
-                                      </el-icon>
-                                      Add new member
-                                    </a>
+                                        No match found
+                                      </p>
+                                      <p
+                                        class="btn btn-default p-1 mb-0 disable m-dd-item"
+                                        v-if="loading && searchText.length >= 3"
+                                      >
+                                        <i
+                                          class="fas fa-circle-notch fa-spin m-dd-item"
+                                        ></i>
+                                      </p>
+                                      <a
+                                        class="font-weight-bold small-text d-flex justify-content-center py-2 text-decoration-none primary--text c-pointer"
+                                        style="
+                                          border-top: 1px solid #002044;
+                                          color: #136acd;
+                                        "
+                                        @click="showAddMemberForm"
+                                        data-dismiss="modal"
+                                      >
+                                        <el-icon
+                                          class="primary--text d-flex align-self-center mr-2"
+                                        >
+                                          <CirclePlusFilled />
+                                        </el-icon>
+                                        Add new contact
+                                      </a>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row mb-3 px-1">
-                              <div
-                                class="col-md-4 text-right d-flex align-items-center justify-content-md-end"
-                              >
-                                <label class="font-weight-600">Position in group</label>
+                              <!-- <div class="row mb-3 px-1">
+                                <div
+                                  class="col-md-4 text-right d-flex align-items-center justify-content-md-end"
+                                >
+                                  <label class="font-weight-600">Position in group</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 px-1">
+                                  <el-input
+                                    type="text px-1"
+                                    placeholder="e.g Member"
+                                    v-model="position"
+                                  />
+                                </div>
                               </div>
-                              <div class="col-md-7 col-sm-12 px-1">
-                                <el-input
-                                  type="text px-1"
-                                  placeholder="e.g Member"
-                                  v-model="position"
-                                />
-                              </div>
-                            </div>
-                            <div class="row ml-4">
-                              <div class="col-sm-6 d-flex mt-2">
-                                <label for="description" class="font-weight-600">
-                                  Is Group Leader
-                                </label>
-                                <el-checkbox
-                                  v-model="isGroupLeader"
-                                  :binary="true"
-                                  class="ml-3"
-                                />
-                              </div>
+                              <div class="row ml-4">
+                                <div class="col-sm-6 d-flex mt-2">
+                                  <label for="description" class="font-weight-600">
+                                    Is Group Leader
+                                  </label>
+                                  <el-checkbox
+                                    v-model="isGroupLeader"
+                                    :binary="true"
+                                    class="ml-3"
+                                  />
+                                </div>
 
-                              <div class="col-sm-6 d-flex mt-2">
-                                <label for="description" class="font-weight-600">
-                                  Enable Login
-                                </label>
-                                <el-checkbox
-                                  v-model="enableLogin"
-                                  :binary="true"
-                                  class="ml-3"
-                                />
-                              </div>
+                                <div class="col-sm-6 d-flex mt-2">
+                                  <label for="description" class="font-weight-600">
+                                    Enable Login
+                                  </label>
+                                  <el-checkbox
+                                    v-model="enableLogin"
+                                    :binary="true"
+                                    class="ml-3"
+                                  />
+                                </div>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer mb-2">
+                          <el-button class="secondary-button" data-dismiss="modal" round>
+                            Cancel
+                          </el-button>
+
+                          <el-button
+                            :color="primarycolor"
+                            @click="addSelectedMembersToGroup"
+                            :data-dismiss="modalStatus"
+                            round
+                          >
+                            Add member
+                          </el-button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Import Member To Group Modal -->
+
+                  <div
+                    class="modal fade"
+                    id="importgroup"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="importgroupModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div
+                      class="modal-dialog modal-lg modal-dialog-centered"
+                      role="document"
+                      ref="modal"
+                    >
+                      <div class="modal-content pr-2">
+                        <div class="modal-header py-3">
+                
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                            ref="closeGroupModal"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <ImportToGroup @uploadtogroup="uploadToGroup" />
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="modal-footer mb-2">
-                        <el-button class="secondary-button" data-dismiss="modal" round>
-                          Cancel
-                        </el-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="container">
+                <!-- Button to Open the Modal -->
 
+                <!-- The Modal -->
+                <div class="modal fade" id="myModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">
+                          <label class="font-weight-900 w-100"
+                            >Move Members To Groups</label
+                          >
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                        </button>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class="col-md-12"></div>
+                        <div class="col-md-12 form-group w-100">
+                          <el-tree-select
+                            v-model="moveSelectedTree"
+                            class="w-100"
+                            placeholder="Select group"
+                            :data="groupMappedTree"
+                            :render-after-expand="false"
+                            :filter-node-method="filterNodeMethod"
+                            @change="setSelectedGroupToMove"
+                            filterable
+                            check-strictly
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <el-button
+                          class="secondary-button"
+                          data-dismiss="modal"
+                          ref="dismissMoveModal"
+                          round
+                          >Close</el-button
+                        >
                         <el-button
                           :color="primarycolor"
-                          @click="addSelectedMembersToGroup"
-                          :data-dismiss="modalStatus"
+                          @click="moveMembers"
+                          :loading="moveLoading"
                           round
+                          >Move</el-button
                         >
-                          Add member
-                        </el-button>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              <!-- Modal -->
+              <div class="container">
+                <!-- Button to Open the Modal -->
+                <!-- The Modal2 -->
+                <div class="modal fade" id="myModal1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">
+                          <label class="font-weight-900 w-100"
+                            >Copy Members To Groups</label
+                          >
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                        </button>
+                      </div>
 
-                <!-- Import Member To Group Modal -->
+                      <!-- Modal body2 -->
+                      <div class="modal-body">
+                        <div class="col-md-12"></div>
+                        <div class="col-md-12 form-group w-100">
+                          <button
+                            @click="setCopyGroupProp"
+                            class="btn border d-flex justify-content-between align-items-center w-100"
+                          >
+                            <div>
+                              {{
+                                copyGroupTo && Object.keys(copyGroupTo).length > 0
+                                  ? copyGroupTo.name
+                                  : "Select group"
+                              }}
+                            </div>
+                            <i class="pi pi-chevron-down"></i>
+                          </button>
+                          <div
+                            class="move-card p-2 exempt-hide"
+                            :class="{
+                              'd-none': copyHideDiv,
+                              'd-block': !copyHideDiv,
+                            }"
+                          >
+                            <i
+                              class="pi pi-spin pi-spinner text-center exempt-hide"
+                              v-if="grouploading && getAllGroup.length === 0"
+                            ></i>
+                            <input
+                              type="text"
+                              class="form-control exempt-hide"
+                              v-model="searchGroupText"
+                              ref="searchGroupRef"
+                              placeholder="Search for group"
+                            />
+                            <GroupTree
+                              :items="searchForGroups"
+                              :addGroupValue="true"
+                              @group="setSelectedGroupToCopy"
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-                <div
-                  class="modal fade"
-                  id="importgroup"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="importgroupModalLabel"
-                  aria-hidden="true"
-                >
-                  <div
-                    class="modal-dialog modal-lg modal-dialog-centered"
-                    role="document"
-                    ref="modal"
-                  >
-                    <div class="modal-content pr-2">
-                      <div class="modal-header py-3">
-                        <h5
-                          class="modal-title font-weight-700"
-                          id="importgroupModalLabel"
-                        >
-                          Import to group
-                        </h5>
+                      <!-- Modal footer2 -->
+                      <div class="modal-footer">
                         <button
                           type="button"
-                          class="close"
+                          class="btn primary-bg default-btn border-0 text-white"
                           data-dismiss="modal"
-                          aria-label="Close"
-                          ref="closeGroupModal"
+                          @click="copyMemberToGroup"
                         >
-                          <span aria-hidden="true">&times;</span>
+                          Copy
                         </button>
                       </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <!-- <ImportToGroup @uploadtogroup="uploadToGroup" /> -->
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- Modal -->
-            <div class="container">
-              <!-- Button to Open the Modal -->
+              <div class="row" v-if="marked.length > 0 && groupMembers.length > 0">
+                <div class="col-md-12 d-flex align-content-between pb-2">
+                  <div class="c-pointer" @click="confirmMultipleDelete">
+                    <el-tooltip
+                      class="box-item"
+                      effect="dark"
+                      content="Remove member(s) from group"
+                      placement="top-start"
+                    >
+                      <el-icon :size="20">
+                        <Delete />
+                      </el-icon>
+                    </el-tooltip>
+                  </div>
 
-              <!-- The Modal -->
-              <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                      <h4 class="modal-title">
-                        <label class="font-weight-900 w-100"
-                          >Move Members To Groups</label
-                        >
-                      </h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                        &times;
-                      </button>
-                    </div>
+                  <div data-toggle="modal" data-target="#myModal" class="ml-2 c-pointer">
+                    <el-tooltip
+                      class="box-item"
+                      effect="dark"
+                      content="Move to group"
+                      placement="top-start"
+                    >
+                      <el-icon :size="20">
+                        <Rank />
+                      </el-icon>
+                    </el-tooltip>
+                  </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                      <div class="col-md-12"></div>
-                      <div class="col-md-12 form-group w-100">
-                        <el-tree-select
-                          v-model="moveSelectedTree"
-                          class="w-100"
-                          placeholder="Select group"
-                          :data="groupMappedTree"
-                          :render-after-expand="false"
-                          :filter-node-method="filterNodeMethod"
-                          @change="setSelectedGroupToMove"
-                          filterable
-                          check-strictly
-                        />
-                      </div>
-                    </div>
+                  <div class="ml-2 c-pointer" data-toggle="modal" data-target="#myModal1">
+                    <el-tooltip
+                      class="box-item"
+                      effect="dark"
+                      content="Copy to group"
+                      placement="top-start"
+                    >
+                      <el-icon :size="20">
+                        <CopyDocument />
+                      </el-icon>
+                    </el-tooltip>
+                  </div>
 
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                      <el-button
-                        class="secondary-button"
-                        data-dismiss="modal"
-                        ref="dismissMoveModal"
-                        round
-                        >Close</el-button
-                      >
-                      <el-button
-                        :color="primarycolor"
-                        @click="moveMembers"
-                        :loading="moveLoading"
-                        round
-                        >Move</el-button
-                      >
-                    </div>
+                  <div class="ml-2 c-pointer" @click="openPositionArchive('center')">
+                    <el-tooltip
+                      class="box-item"
+                      effect="dark"
+                      content="Archive member(s)"
+                      placement="top-start"
+                    >
+                      <el-icon :size="20">
+                        <DocumentRemove />
+                      </el-icon>
+                    </el-tooltip>
+                  </div>
+
+                  <div class="ml-2 c-pointer" @click="sendMarkedMemberSms">
+                    <el-tooltip
+                      class="box-item"
+                      effect="dark"
+                      content="Send SMS"
+                      placement="top-start"
+                    >
+                      <img
+                        src="../../assets/sms.png"
+                        style="width: 18px; margin-top: -5px"
+                        class="ml-2 c-pointer"
+                        alt="Send SMS"
+                      />
+                    </el-tooltip>
+                  </div>
+
+                  <div class="ml-2 c-pointer" @click="sendMarkedMemberEmail">
+                    <el-tooltip
+                      class="box-item"
+                      effect="dark"
+                      content="Send Email"
+                      placement="top-start"
+                    >
+                      <el-icon :size="20" class="ml-2 c-pointer">
+                        <Message />
+                      </el-icon>
+                    </el-tooltip>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- Modal -->
-            <div class="container">
-              <!-- Button to Open the Modal -->
-              <!-- The Modal2 -->
-              <div class="modal fade" id="myModal1">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                      <h4 class="modal-title">
-                        <label class="font-weight-900 w-100"
-                          >Copy Members To Groups</label
-                        >
-                      </h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                        &times;
-                      </button>
-                    </div>
 
-                    <!-- Modal body2 -->
-                    <div class="modal-body">
-                      <div class="col-md-12"></div>
-                      <div class="col-md-12 form-group w-100">
-                        <button
-                          @click="setCopyGroupProp"
-                          class="btn border d-flex justify-content-between align-items-center w-100"
-                        >
-                          <div>
-                            {{
-                              copyGroupTo && Object.keys(copyGroupTo).length > 0
-                                ? copyGroupTo.name
-                                : "Select group"
-                            }}
-                          </div>
-                          <i class="pi pi-chevron-down"></i>
-                        </button>
-                        <div
-                          class="move-card p-2 exempt-hide"
-                          :class="{
-                            'd-none': copyHideDiv,
-                            'd-block': !copyHideDiv,
-                          }"
-                        >
-                          <i
-                            class="pi pi-spin pi-spinner text-center exempt-hide"
-                            v-if="grouploading && getAllGroup.length === 0"
-                          ></i>
-                          <input
-                            type="text"
-                            class="form-control exempt-hide"
-                            v-model="searchGroupText"
-                            ref="searchGroupRef"
-                            placeholder="Search for group"
-                          />
-                          <GroupTree
-                            :items="searchForGroups"
-                            :addGroupValue="true"
-                            @group="setSelectedGroupToCopy"
-                          />
-                        </div>
-                      </div>
-                    </div>
+        
+              <Table
+                :data="searchGroupMembers"
+                :headers="createGroupHeaders"
+                :checkMultipleItem="true"
+                @checkedrow="handleSelectionChange"
+                v-loading="loadingMembers"
+                v-if="groupMembers.length > 0 || loadingMembers == true"
+              >
+                <template #name="{ item }">
+                  <span>{{ item.name }}</span>
+                </template>
+                <template v-slot:email="{ item }">
+                  <span>{{ item.email }}</span>
+                </template>
+                <template v-slot:phone="{ item }">
+                  <span>{{ item.phone }}</span>
+                </template>
+                <template v-slot:action="{ item }">
+                  <el-dropdown>
+                    <el-icon id="dropdownMenuButton" data-toggle="dropdown">
+                      <MoreFilled />
+                    </el-icon>
+                    <template #dropdown>
+                      <el-dropdown-menu>
+                        <el-dropdown-item>
+                          <a @click="displaySMSDialog(item)"> Send SMS</a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a @click="displayEmailDialog(item)">Send Email</a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a @click="archive(item.personID, 'single')"> Archive </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a @click="confirmDelete(item.id, index)">Remove</a>
+                        </el-dropdown-item>
+                      </el-dropdown-menu>
+                    </template>
+                  </el-dropdown>
+                </template>
+              </Table>
 
-                    <!-- Modal footer2 -->
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn primary-bg default-btn border-0 text-white"
-                        data-dismiss="modal"
-                        @click="copyMemberToGroup"
-                      >
-                        Copy
-                      </button>
+              <div class="row" v-if="awaitingApprovals.length > 0">
+                <div class="col text-center p-3 text-warning font-weight-700">
+                  Waiting Approval
+                </div>
+              </div>
+              <Table
+                :data="awaitingApprovals"
+                :headers="createGroupHeaders"
+                :checkMultipleItem="true"
+                @checkedrow="handleSelectionChange"
+                v-if="awaitingApprovals.length > 0"
+              >
+                <template #name="{ item }">
+                  <span>{{ item.name }}</span>
+                </template>
+                <template v-slot:position="{ item }">
+                  <span>{{ item.position }}</span>
+                </template>
+                <template v-slot:email="{ item }">
+                  <span>{{ item.email }}</span>
+                </template>
+                <template v-slot:phone="{ item }">
+                  <span>{{ item.phone }}</span>
+                </template>
+                <template v-slot:action="{ item }">
+                  <el-dropdown>
+                    <el-icon id="dropdownMenuButton" data-toggle="dropdown">
+                      <MoreFilled />
+                    </el-icon>
+                    <template #dropdown>
+                      <el-dropdown-menu>
+                        <el-dropdown-item>
+                          <a @click="displaySMSDialog(item)"> Send SMS</a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a @click="displayEmailDialog(item)">Send Email</a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a @click="archive(item.personID, 'single')"> Archive </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                          <a @click="confirmDelete(item.id, index)">Remove</a>
+                        </el-dropdown-item>
+                      </el-dropdown-menu>
+                    </template>
+                  </el-dropdown>
+                </template>
+              </Table>
+
+              <div
+                class="row"
+                v-if="loadingMembers == false && groupMembers.length === 0"
+              >
+                <div class="col-md-12">
+                  <div class="row">
+                    <div
+                      class="col-md-12 d-flex align-items-center justify-content-center"
+                    >
+                      <p class="text-center font-weight-bold py-2">No contacts yet</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="row" v-if="marked.length > 0 && groupMembers.length > 0">
-              <div class="col-md-12 d-flex align-content-between pb-2">
-                <div class="c-pointer" @click="confirmMultipleDelete">
-                  <el-tooltip
-                    class="box-item"
-                    effect="dark"
-                    content="Remove member(s) from group"
-                    placement="top-start"
-                  >
-                    <el-icon :size="20">
-                      <Delete />
-                    </el-icon>
-                  </el-tooltip>
-                </div>
-
-                <div data-toggle="modal" data-target="#myModal" class="ml-2 c-pointer">
-                  <el-tooltip
-                    class="box-item"
-                    effect="dark"
-                    content="Move to group"
-                    placement="top-start"
-                  >
-                    <el-icon :size="20">
-                      <Rank />
-                    </el-icon>
-                  </el-tooltip>
-                </div>
-
-                <div class="ml-2 c-pointer" data-toggle="modal" data-target="#myModal1">
-                  <el-tooltip
-                    class="box-item"
-                    effect="dark"
-                    content="Copy to group"
-                    placement="top-start"
-                  >
-                    <el-icon :size="20">
-                      <CopyDocument />
-                    </el-icon>
-                  </el-tooltip>
-                </div>
-
-                <div class="ml-2 c-pointer" @click="openPositionArchive('center')">
-                  <el-tooltip
-                    class="box-item"
-                    effect="dark"
-                    content="Archive member(s)"
-                    placement="top-start"
-                  >
-                    <el-icon :size="20">
-                      <DocumentRemove />
-                    </el-icon>
-                  </el-tooltip>
-                </div>
-
-                <div class="ml-2 c-pointer" @click="sendMarkedMemberSms">
-                  <el-tooltip
-                    class="box-item"
-                    effect="dark"
-                    content="Send SMS"
-                    placement="top-start"
-                  >
-                    <img
-                      src="../../assets/sms.png"
-                      style="width: 18px; margin-top: -5px"
-                      class="ml-2 c-pointer"
-                      alt="Send SMS"
-                    />
-                  </el-tooltip>
-                </div>
-
-                <div class="ml-2 c-pointer" @click="sendMarkedMemberEmail">
-                  <el-tooltip
-                    class="box-item"
-                    effect="dark"
-                    content="Send Email"
-                    placement="top-start"
-                  >
-                    <el-icon :size="20" class="ml-2 c-pointer">
-                      <Message />
-                    </el-icon>
-                  </el-tooltip>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" v-if="groupMembers.length > 0">
-              <div class="col text-center px-3 pb-2 text-success font-weight-700">
-                Approved
-              </div>
-            </div>
-            <Table
-              :data="searchGroupMembers"
-              :headers="createGroupHeaders"
-              :checkMultipleItem="true"
-              @checkedrow="handleSelectionChange"
-              v-loading="loadingMembers"
-              v-if="groupMembers.length > 0"
-            >
-              <template #name="{ item }">
-                <span>{{ item.name }}</span>
-              </template>
-              <template v-slot:position="{ item }">
-                <span>{{ item.position }}</span>
-              </template>
-              <template v-slot:email="{ item }">
-                <span>{{ item.email }}</span>
-              </template>
-              <template v-slot:phone="{ item }">
-                <span>{{ item.phone }}</span>
-              </template>
-              <template v-slot:action="{ item }">
-                <el-dropdown>
-                  <el-icon id="dropdownMenuButton" data-toggle="dropdown">
-                    <MoreFilled />
-                  </el-icon>
-                  <template #dropdown>
-                    <el-dropdown-menu>
-                      <el-dropdown-item>
-                        <a @click="displaySMSDialog(item)"> Send SMS</a>
-                      </el-dropdown-item>
-                      <el-dropdown-item>
-                        <a @click="displayEmailDialog(item)">Send Email</a>
-                      </el-dropdown-item>
-                      <el-dropdown-item>
-                        <a @click="archive(item.personID, 'single')"> Archive </a>
-                      </el-dropdown-item>
-                      <el-dropdown-item>
-                        <a @click="confirmDelete(item.id, index)">Remove</a>
-                      </el-dropdown-item>
-                    </el-dropdown-menu>
-                  </template>
-                </el-dropdown>
-              </template>
-            </Table>
-
-            <div class="row" v-if="awaitingApprovals.length > 0">
-              <div class="col text-center p-3 text-warning font-weight-700">
-                Waiting Approval
-              </div>
-            </div>
-            <Table
-              :data="awaitingApprovals"
-              :headers="createGroupHeaders"
-              :checkMultipleItem="true"
-              @checkedrow="handleSelectionChange"
-              v-if="awaitingApprovals.length > 0"
-            >
-              <template #name="{ item }">
-                <span>{{ item.name }}</span>
-              </template>
-              <template v-slot:position="{ item }">
-                <span>{{ item.position }}</span>
-              </template>
-              <template v-slot:email="{ item }">
-                <span>{{ item.email }}</span>
-              </template>
-              <template v-slot:phone="{ item }">
-                <span>{{ item.phone }}</span>
-              </template>
-              <template v-slot:action="{ item }">
-                <el-dropdown>
-                  <el-icon id="dropdownMenuButton" data-toggle="dropdown">
-                    <MoreFilled />
-                  </el-icon>
-                  <template #dropdown>
-                    <el-dropdown-menu>
-                      <el-dropdown-item>
-                        <a @click="displaySMSDialog(item)"> Send SMS</a>
-                      </el-dropdown-item>
-                      <el-dropdown-item>
-                        <a @click="displayEmailDialog(item)">Send Email</a>
-                      </el-dropdown-item>
-                      <el-dropdown-item>
-                        <a @click="archive(item.personID, 'single')"> Archive </a>
-                      </el-dropdown-item>
-                      <el-dropdown-item>
-                        <a @click="confirmDelete(item.id, index)">Remove</a>
-                      </el-dropdown-item>
-                    </el-dropdown-menu>
-                  </template>
-                </el-dropdown>
-              </template>
-            </Table>
-
-            <div class="row" v-if="loadingMembers == false && groupMembers.length === 0">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12 d-flex align-items-center justify-content-center">
-                    <p class="text-center font-weight-bold py-2">No contacts yet</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 px-0">
-                    <hr class="hr my-0" />
+                  <div class="row">
+                    <div class="col-md-12 px-0">
+                      <hr class="hr my-0" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -851,33 +836,35 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row py-3 my-3">
-      <div class="col-md-12">
-        <p class="text-right text-danger font-weight-bold pr-2" v-if="groupNameIsInvalid">
-          Please enter group name
-        </p>
+      <div class="row py-3 my-3">
+        <div class="col-md-12">
+          <p
+            class="text-right text-danger font-weight-bold pr-2"
+            v-if="groupNameIsInvalid"
+          >
+            Please enter group name
+          </p>
+        </div>
+        <div class="col-md-12 d-flex justify-content-end action-btns">
+          <router-link to="/tenant/peoplegroups" class="no-decoration">
+            <el-button class="mr-2 secondary-button" size="large">Discard</el-button>
+          </router-link>
+          <el-button
+            :color="primarycolor"
+            :loading="savingGroup"
+            @click="saveGroupData"
+            :disabled="savingGroup"
+            size="large"
+            >{{ buttonText }}</el-button
+          >
+        </div>
       </div>
-      <div class="col-md-12 d-flex justify-content-end action-btns">
-        <router-link to="/tenant/peoplegroups" class="no-decoration">
-          <el-button class="mr-2 secondary-button" round>Discard</el-button>
-        </router-link>
-        <el-button
-          :color="primarycolor"
-          :loading="savingGroup"
-          @click="saveGroupData"
-          :disabled="savingGroup"
-          round
-          >{{ buttonText }}</el-button
-        >
-      </div>
-    </div>
-</el-main>
+    </el-main>
 
     <el-dialog
       v-model="display"
-      title="Create new member"
+      title="Create new contact"
       :width="lgAndUp || xlAndUp ? `50%` : `90%`"
     >
       <NewPerson
@@ -974,9 +961,9 @@ import smsComponent from "./component/smsComponent.vue";
 import emailComponent from "./component/emailComponent.vue";
 // import Attendancecheckin from "../event/attendance&checkin/AttendanceAndCheckinList.vue";
 // import attendanceservice from "../../services/attendance/attendanceservice";
-// import ImportToGroup from "../people/ImportInstruction";
+import ImportToGroup from "../people/ImportInstruction";
 import GroupTree from "./component/GroupTree.vue";
-import GroupTree2 from "./component/GroupTreeCheckboxParent.vue";
+// import GroupTree2 from "./component/GroupTreeCheckboxParent.vue";
 import collector from "../../services/groupArray/mapTree";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { useStore } from "vuex";
@@ -996,11 +983,11 @@ export default {
     // Attendancecheckin,
     smsComponent,
     emailComponent,
-    // ImportToGroup,
+    ImportToGroup,
     GroupTree,
-    GroupTree2,
+    // GroupTree2,
     Table,
-    Header
+    Header,
   },
   setup() {
     const primarycolor = inject("primarycolor");
@@ -1057,7 +1044,6 @@ export default {
     const dismissMoveModal = ref(null);
     const createGroupHeaders = ref([
       { name: "NAME", value: "name" },
-      { name: "POSITION", value: "position" },
       { name: "EMAIL", value: "email" },
       { name: "PHONE", value: "phone" },
       { name: "ACTION", value: "action" },
@@ -1068,14 +1054,8 @@ export default {
       try {
         let data = await grousService.getGroups();
         getAllGroup.value = data.response.groupResonseDTO;
-        console.log(getAllGroup.value, "jkhjh");
         grouploading.value = false;
-        //  let arrayOfObj = [
-        //             {label: "Add Group", value : 1, id: "1" }
-        //             ]
-        //  getAllGroup.value =  getAllGroup.value.concat(arrayOfObj)
         flattenedTree.value = flattenTree(getAllGroup.value);
-        console.log(flattenedTree.value, "falt");
       } catch (error) {
         console.log(error);
         grouploading.value = false;
@@ -1102,16 +1082,6 @@ export default {
         searchGroupRef.value.focus();
       });
     };
-    // const setGroupValue = () => {
-    //   const response = flattenedTree.value.find(
-    //     (i) => i.value == selectedTree.value
-    //   );
-    //   console.log(response, 'llllll');
-    //   selectedIntendedSubGroup.value = {
-    //     name: response.label,
-    //     id: response.value,
-    //   };
-    // };
 
     const groupLink = computed(() => {
       if (!tenantID.value) return "";
@@ -1281,23 +1251,12 @@ export default {
     };
 
     const setFilterGroups = (payload) => {
-      // console.log(payload[0].id, 'fsddsd');
-      console.log(payload, "here");
       selectedTree.value = payload;
       selectedIntendedSubGroup.value = payload.map((i) => i.id).join(",");
-      // const response = flattenedTree.value.find(
-      //   (i) => i.value == selectedTree.value
-      // );
-      // console.log(response, 'llllll');
-      // selectedIntendedSubGroup.value = {
-      //   name: response.label,
-      //   id: response.value,
-      // };
     };
 
     const setNewGroup = (payload) => {
       getAllGroup.value.push(payload);
-      console.log(payload, "kkkkk");
     };
 
     const confirmDelete = (id, index) => {
@@ -1548,8 +1507,8 @@ export default {
             router.push("/tenant/peoplegroups");
           } else {
             ElMessage({
-              message: "Group members updated successfully",
               type: "success",
+              message: "Contact added to this segment",
               duration: 5000,
             });
           }
