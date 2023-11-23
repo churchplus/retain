@@ -14,11 +14,19 @@
   <el-main>
     <div class="row">
       <div class="col-12 mb-4">
-        <div class="d-flex justify-content-between">
-          <div class="thick-secondary head-text">{{ dashboardData.userName ? `Welcome, ${dashboardData.userName}` : "" }}</div>
-          
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+          <div class="thick-secondary head-text">
+            {{ dashboardData.userName ? `Welcome, ${dashboardData.userName}` : "" }}
+          </div>
+
           <div>
-            <ElDropDown :options="dateRange" optionLabel="name"  placeholder="Choose date range" @selectedvalue="setSelectedDateRange" :setcurrentvalue="setcurrentvalue" />
+            <ElDropDown
+              :options="dateRange"
+              optionLabel="name"
+              placeholder="Choose date range"
+              @selectedvalue="setSelectedDateRange"
+              :setcurrentvalue="setcurrentvalue"
+            />
           </div>
         </div>
       </div>
@@ -224,9 +232,11 @@ export default {
     });
 
     const getBasicDashboard = (payload) => {
-      console.log(moment().format('l'))
+      console.log(moment().format("l"));
       dashboardLoading.value = true;
-      let url = payload ? `/dashboard/retain?startDate=${payload.value}&&endDate=${moment().format('l')}` : "/dashboard/retain"
+      let url = payload
+        ? `/dashboard/retain?startDate=${payload.value}&&endDate=${moment().format("l")}`
+        : "/dashboard/retain";
       axios
         .get(url)
         .then(({ data }) => {
@@ -252,8 +262,11 @@ export default {
           );
 
           // Set date range value
-          setcurrentvalue.value = { name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(3), "DDMMYYYY").format("l") }
-          console.log(setcurrentvalue.value)
+          setcurrentvalue.value = {
+            name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(),
+            value: moment(returnDates(3), "DDMMYYYY").format("l"),
+          };
+          console.log(setcurrentvalue.value);
 
           // tenantInfoBasic.value = res.data.returnObject;
           // tenantInfoExtra.value.hasMobileApp = res.data.returnObject.hasMobileApp;
@@ -571,13 +584,17 @@ export default {
           name: "Total Contacts",
           icon: require("../../assets/retain/user.png"),
           color: "#F9AFB4",
-          value: dashboardData.value.totalContacts ? dashboardData.value.totalContacts : 0,
+          value: dashboardData.value.totalContacts
+            ? dashboardData.value.totalContacts
+            : 0,
         },
         {
           name: "Total Spending",
           icon: require("../../assets/retain/money.png"),
           color: "#D1FAE5",
-          value: dashboardData.value.totalSpending ? dashboardData.value.totalSpending : 0,
+          value: `${getUser.value ? getUser.value.currencySymbol : ""} ${
+            dashboardData.value.totalSpending ? dashboardData.value.totalSpending : 0
+          }`,
         },
         {
           name: "Unit Balance",
@@ -626,32 +643,79 @@ export default {
     });
 
     const returnDoubleDigits = (str) => {
-      return str.length === 1 ? '0' + str : str;
-    }
+      return str.length === 1 ? "0" + str : str;
+    };
 
     const returnDates = (str) => {
-      if (str == 1) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1) - 3).toString()) + new Date().getFullYear();
-      if (str == 2) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1) - 6).toString()) + new Date().getFullYear();
-      if (str == 3) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 1);
-      if (str == 4) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 2);
-      if (str == 5) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 5);
-      if (str == 6) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 10);
-    }
-
+      if (str == 1)
+        return (
+          returnDoubleDigits(new Date().getDate().toString()) +
+          returnDoubleDigits((new Date().getMonth() + 1 - 3).toString()) +
+          new Date().getFullYear()
+        );
+      if (str == 2)
+        return (
+          returnDoubleDigits(new Date().getDate().toString()) +
+          returnDoubleDigits((new Date().getMonth() + 1 - 6).toString()) +
+          new Date().getFullYear()
+        );
+      if (str == 3)
+        return (
+          returnDoubleDigits(new Date().getDate().toString()) +
+          returnDoubleDigits((new Date().getMonth() + 1).toString()) +
+          (new Date().getFullYear() - 1)
+        );
+      if (str == 4)
+        return (
+          returnDoubleDigits(new Date().getDate().toString()) +
+          returnDoubleDigits((new Date().getMonth() + 1).toString()) +
+          (new Date().getFullYear() - 2)
+        );
+      if (str == 5)
+        return (
+          returnDoubleDigits(new Date().getDate().toString()) +
+          returnDoubleDigits((new Date().getMonth() + 1).toString()) +
+          (new Date().getFullYear() - 5)
+        );
+      if (str == 6)
+        return (
+          returnDoubleDigits(new Date().getDate().toString()) +
+          returnDoubleDigits((new Date().getMonth() + 1).toString()) +
+          (new Date().getFullYear() - 10)
+        );
+    };
 
     const dateRange = ref([
-      { name: moment(`${returnDates(1)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(1), "DDMMYYYY").format("l") },
-      { name: moment(`${returnDates(2)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(2), "DDMMYYYY").format("l") },
-      { name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(3), "DDMMYYYY").format("l") },
-      { name: moment(`${returnDates(4)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(4), "DDMMYYYY").format("l") },
-      { name: moment(`${returnDates(5)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(5), "DDMMYYYY").format("l") },
-      { name: moment(`${returnDates(6)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(6), "DDMMYYYY").format("l") },
+      {
+        name: moment(`${returnDates(1)}`, "DDMMYYYY").fromNow(),
+        value: moment(returnDates(1), "DDMMYYYY").format("l"),
+      },
+      {
+        name: moment(`${returnDates(2)}`, "DDMMYYYY").fromNow(),
+        value: moment(returnDates(2), "DDMMYYYY").format("l"),
+      },
+      {
+        name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(),
+        value: moment(returnDates(3), "DDMMYYYY").format("l"),
+      },
+      {
+        name: moment(`${returnDates(4)}`, "DDMMYYYY").fromNow(),
+        value: moment(returnDates(4), "DDMMYYYY").format("l"),
+      },
+      {
+        name: moment(`${returnDates(5)}`, "DDMMYYYY").fromNow(),
+        value: moment(returnDates(5), "DDMMYYYY").format("l"),
+      },
+      {
+        name: moment(`${returnDates(6)}`, "DDMMYYYY").fromNow(),
+        value: moment(returnDates(6), "DDMMYYYY").format("l"),
+      },
     ]);
 
     const setSelectedDateRange = (payload) => {
-      console.log(payload)
+      console.log(payload);
       getBasicDashboard(payload);
-    }
+    };
 
     return {
       celebrations,
@@ -727,7 +791,8 @@ export default {
       contactXaxis,
       contactSeries,
       setSelectedDateRange,
-      setcurrentvalue
+      setcurrentvalue,
+      getUser,
     };
   },
 };

@@ -176,10 +176,10 @@ export default {
         { required: true, message: "Please input your last name", trigger: "blur" },
       ],
       churchName: [
-        { required: true, message: "Please input your church name", trigger: "blur" },
+        { required: false, message: "Please input your church name", trigger: "blur" },
       ],
       churchSize: [
-        { required: true, message: "Please input your church size", trigger: "change" },
+        { required: false, message: "Please input your church size", trigger: "change" },
       ],
     });
     return {

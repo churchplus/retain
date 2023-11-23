@@ -341,15 +341,6 @@ const routes = [
                     import( /* webpackChunkName: "smstemplate" */ '@/views/communication/SMSTemplate')
             },
             {
-                path: 'url',
-                name: 'URLShortner',
-                meta: {
-                    title: 'Retain - SMS - URL Shortner',
-                },
-                component: () =>
-                    import( /* webpackChunkName: "contactlist" */ '@/views/communication/URLShortner')
-            },
-            {
                 path: 'scheduled',
                 name: 'ScheduledSMS',
                 meta: {
@@ -569,6 +560,15 @@ const routes = [
             },
             component: () =>
                 import( /* webpackChunkName: "groups" */ '@/views/groups/GroupsList')
+        },
+        {
+            path: 'url',
+            name: 'URLShortner',
+            meta: {
+                title: 'Retain - SMS - URL Shortner',
+            },
+            component: () =>
+                import( /* webpackChunkName: "sms url tracker" */ '@/views/communication/URLShortner')
         },
         {
             path: 'sidemodal',

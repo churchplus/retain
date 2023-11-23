@@ -105,7 +105,7 @@
               :headers="groupHeaders"
               :checkMultipleItem="false"
               v-loading="loading"
-              v-if="searchGroup.length > 0"
+              v-if="searchGroup.length > 0 || loading == true"
             >
               <template #name="{ item }">
                 <div class="c-pointer" @click="groupClick(item.id)">

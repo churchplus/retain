@@ -2,7 +2,9 @@
   <div>
     <div class="main-section">
       <div class="logo-con">
-        <a class="logo-link"><img src="https://retain.dochase.co/logo.png" alt="Retain Logo" /></a>
+        <a class="logo-link"
+          ><img src="https://retain.dochase.co/logo.png" alt="Retain Logo"
+        /></a>
       </div>
       <div class="header">
         <h1>Sign in</h1>
@@ -21,22 +23,41 @@
         <div class="error-div" v-if="state.notAUser">
           <p class="error-message">
             Not a registered user,
-            <a href="/register" class="primary-text font-weight-bold text-decoration-none">Register now</a>
+            <a href="/register" class="primary-text font-weight-bold text-decoration-none"
+              >Register now</a
+            >
           </p>
         </div>
         <el-form :model="state" class="mt-3" @keyup.enter="login">
           <el-form-item>
-            <el-input type="email" placeholder="Email" v-model="state.credentials.userName" />
+            <el-input
+              type="email"
+              placeholder="Email"
+              v-model="state.credentials.userName"
+            />
           </el-form-item>
           <el-form-item>
-            <el-input type="password" placeholder="Password" v-model="state.credentials.password" show-password/>
+            <el-input
+              type="password"
+              placeholder="Password"
+              v-model="state.credentials.password"
+              show-password
+            />
           </el-form-item>
           <div class="f-password-div">
-            <router-link to="/forgotpassword" class="forgot-password primary--textII">Forgot it?</router-link>
+            <router-link to="/forgotpassword" class="forgot-password primary--textII"
+              >Forgot it?</router-link
+            >
           </div>
           <el-form-item>
-            <el-button size="large" :color="primarycolor" @click="login" class="w-100" :loading="signInLoading">Sign
-              In</el-button>
+            <el-button
+              size="large"
+              :color="primarycolor"
+              @click="login"
+              class="w-100"
+              :loading="signInLoading"
+              >Sign In</el-button
+            >
             <!-- <el-divider>
               or
             </el-divider> -->
@@ -53,11 +74,18 @@
         <div>
           <p class="sign-up-prompt">
             Don't have an account yet?
-            <router-link to="/register" class="sign-up primary--textII"><strong>Sign up now</strong></router-link>
+            <router-link to="/register" class="sign-up primary--textII"
+              ><strong>Sign up now</strong></router-link
+            >
           </p>
         </div>
       </div>
-      <el-dialog v-model="displayModal" title="Please enter your email" width="80%" align-center>
+      <el-dialog
+        v-model="displayModal"
+        title="Please enter your email"
+        width="80%"
+        align-center
+      >
         <div class="container">
           <div class="row mt-2">
             <div class="col-12"></div>
@@ -71,8 +99,16 @@
         </div>
         <template #footer>
           <span class="dialog-footer">
-            <el-button @click="displayModal = false" class="secondary-button" round>Cancel</el-button>
-            <el-button type="primary" @click="saveEmail" :loading="emailLoading" :color="primarycolor" round>
+            <el-button @click="displayModal = false" class="secondary-button" round
+              >Cancel</el-button
+            >
+            <el-button
+              type="primary"
+              @click="saveEmail"
+              :loading="emailLoading"
+              :color="primarycolor"
+              round
+            >
               Confirm
             </el-button>
           </span>
@@ -84,25 +120,25 @@
 
 <script>
 import axios from "@/gateway/backendapi";
-import { ElNotification } from 'element-plus'
+import { ElNotification } from "element-plus";
 import { reactive, ref, inject } from "vue";
 import router from "../../router/index";
 import setupService from "../../services/setup/setupservice";
 import { useGtag } from "vue-gtag-next";
-import FBlogin from "@/mixins/facebookLogin"
+import FBlogin from "@/mixins/facebookLogin";
 
 export default {
   setup() {
-    const { event } = useGtag()
+    const { event } = useGtag();
     const track = () => {
-      event('aaa', {
-        'event_category': 'login',
-        'event_label': 'ccc'
-      })
+      event("aaa", {
+        event_category: "login",
+        event_label: "ccc",
+      });
     };
     track();
-    const signInLoading = ref(false)
-    const primarycolor = inject('primarycolor')
+    const signInLoading = ref(false);
+    const primarycolor = inject("primarycolor");
 
     const state = reactive({
       passwordType: "password",
@@ -112,10 +148,16 @@ export default {
       notAUser: false,
     });
     const loading = ref(false);
-    const {facebookLogin, displayModal, saveEmail, emailLoading, invalidEmailObj} = FBlogin()
+    const {
+      facebookLogin,
+      displayModal,
+      saveEmail,
+      emailLoading,
+      invalidEmailObj,
+    } = FBlogin();
 
     const login = async () => {
-      signInLoading.value = true
+      signInLoading.value = true;
       localStorage.setItem("email", state.credentials.userName);
       state.showError = false;
       state.notUser = false;
@@ -123,7 +165,7 @@ export default {
         loading.value = true;
         const res = await axios.post("/login", state.credentials);
         const { data } = res;
-        signInLoading.value = false
+        signInLoading.value = false;
         if (!data || !data.token) {
           router.push({
             name: "EmailSent",
@@ -133,45 +175,45 @@ export default {
         }
         localStorage.setItem("token", data.token);
         localStorage.setItem("expiryDate", data.expiryTime);
-        localStorage.setItem('roles', JSON.stringify(data.roles))
+        localStorage.setItem("roles", JSON.stringify(data.roles));
         if (data.roles.length > 0) {
-          let roleIndex = data.roles.findIndex(i => {
-            return i.toLowerCase() == "family" || i.toLowerCase() == "mobileuser"
-          })
+          let roleIndex = data.roles.findIndex((i) => {
+            return i.toLowerCase() == "family" || i.toLowerCase() == "mobileuser";
+          });
 
-          let adminIndex = data.roles.findIndex(i => {
-            return i.toLowerCase() == "admin"
-          })
+          let adminIndex = data.roles.findIndex((i) => {
+            return i.toLowerCase() == "admin";
+          });
 
           if (adminIndex !== -1) {
             setTimeout(() => {
               setupService.setup();
             }, 5000);
             if (data.churchSize >= data.subscribedChurchSize) {
-              router.push("/errorpage/member-capacity-reached")
+              router.push("/errorpage/member-capacity-reached");
             } else {
-              if (data.churchSize > 0) {
-                router.push("/tenant");
-              } else {
-                router.push("/next");
-              }
+              // if (data.churchSize > 0) {
+              router.push("/tenant");
+              // } else {
+              //   router.push("/next");
+              // }
             }
           } else if (adminIndex === -1 && roleIndex !== -1) {
-            localStorage.clear()
+            localStorage.clear();
             ElNotification({
-              title: 'Unauthorized',
-              message: 'You do not have access to this page, contact your church admin',
-              type: 'error',
-            })
+              title: "Unauthorized",
+              message: "You do not have access to this page, contact your church admin",
+              type: "error",
+            });
           } else {
             if (data.churchSize >= data.subscribedChurchSize) {
-              router.push("/errorpage/member-capacity-reached")
+              router.push("/errorpage/member-capacity-reached");
             } else {
               if (data.roles.indexOf("GroupLeader") !== -1) {
                 router.push({
-                  name: "GroupLeaderDashboard"
+                  name: "GroupLeaderDashboard",
                 });
-              } else if (data.roles.length === 1 && data.roles[0] === 'FollowUp') {
+              } else if (data.roles.length === 1 && data.roles[0] === "FollowUp") {
                 router.push("/tenant/followup");
               } else if (data.roles.indexOf("FinancialAccount") !== -1) {
                 router.push("/tenant/offering");
@@ -180,11 +222,11 @@ export default {
               } else if (data.roles.indexOf("Reports") !== -1) {
                 router.push("/tenant/reports");
               } else {
-                if (data.churchSize > 0) {
-                  router.push("/tenant");
-                } else {
-                  router.push("/next");
-                }
+                // if (data.churchSize > 0) {
+                router.push("/tenant");
+                // } else {
+                //   router.push("/next");
+                // }
               }
             }
             setTimeout(() => {
@@ -192,9 +234,9 @@ export default {
             }, 5000);
           }
         }
-        loading.value = false
+        loading.value = false;
       } catch (err) {
-        signInLoading.value = false
+        signInLoading.value = false;
         console.log(err, "login error");
         // eslint-disable-next-line
         NProgress.done();
@@ -214,7 +256,6 @@ export default {
         }
       }
     };
-    
 
     return {
       signInLoading,
@@ -226,15 +267,14 @@ export default {
       emailLoading,
       facebookLogin,
       saveEmail,
-      primarycolor
+      primarycolor,
     };
   },
 };
 </script>
 
 <style scoped>
-
-.kick-start img{
+.kick-start img {
   height: 10rem;
 }
 .logo-con {
@@ -248,10 +288,9 @@ export default {
   margin-top: 36px;
 }
 
-.logo-link img{
+.logo-link img {
   height: 4.2rem;
 }
-
 
 .header {
   text-align: center;
