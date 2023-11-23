@@ -35,7 +35,7 @@
             <router-link to="/forgotpassword" class="forgot-password primary--textII">Forgot it?</router-link>
           </div>
           <el-form-item>
-            <el-button size="large" :color="primarycolor" @click="login" class="w-100" :loading="signInLoading" round>Sign
+            <el-button size="large" :color="primarycolor" @click="login" class="w-100" :loading="signInLoading">Sign
               In</el-button>
             <!-- <el-divider>
               or

@@ -159,6 +159,7 @@ export default {
             try {
                 const data = await communicationService.getDrafts();
                 if (data) commit("setSMSDrafts", data);
+                return data;
             } catch (error) {
                 console.log(error);
             }

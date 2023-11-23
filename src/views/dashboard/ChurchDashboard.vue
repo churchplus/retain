@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-12 mb-4">
         <div class="d-flex justify-content-between">
-          <div class="thick-secondary head-text">Welcome, Ihesie</div>
+          <div class="thick-secondary head-text">{{ dashboardData.userName ? `Welcome, ${dashboardData.userName}` : "" }}</div>
           <!-- @selectedvalue="setSelectedSenderId" -->
           <div>
             <ElDropDown :options="dateRange" placeholder="Choose date range" />
@@ -43,39 +43,45 @@
     </div>
     <div class="row chart-parent">
       <div class="col-md-7">
-        <div class="bg-white p-3 card-shadow stretch-card">
-          <div class="font-weight-700">
-            SMS in the last <span class="primary--text">7 days</span>
-          </div>
-          <ApexArea />
+        <div class="bg-white p-3 card-shadow stretch-card" v-loading="dashboardLoading">
+          <div class="font-weight-700">SMS</div>
+          <ApexArea :series="smsSeries" :xaxis="smsXaxis" v-if="smsSeries.length > 0" />
         </div>
       </div>
       <div class="col-md-5 mt-3 mt-md-0">
-        <div class="bg-white p-3 card-shadow stretch-card">
-          <div class="font-weight-700">Delivery Status</div>
-          <!-- <div class=""> -->
+        <div
+          class="bg-white p-3 card-shadow stretch-card d-flex flex-column align-items-center justify-content-center"
+          v-loading="dashboardLoading"
+        >
+          <div
+            class="font-weight-700 align-self-start"
+            v-if="donutOption && donutOption.labels.length > 0"
+          >
+            Delivery Status
+          </div>
           <apexchart
             width="100%"
             height="100%"
             type="donut"
             :options="donutOption"
             :series="donutSeries"
+            v-if="donutOption && donutOption.labels.length > 0"
           ></apexchart>
-          <!-- </div> -->
+          <div class="font-weight-700 thick-secondary" v-else>No data</div>
         </div>
       </div>
       <div class="col-md-12 mt-3 align-items-center">
-        <div class="bg-white p-3 card-shadow stretch-card">
-          <div class="font-weight-700">
-            Contact in the last <span class="primary--text">7 days</span>
-          </div>
-          <ApexArea />
+        <div class="bg-white p-3 card-shadow stretch-card" v-loading="dashboardLoading">
+          <div class="font-weight-700">Contact</div>
+          <ApexArea
+            :series="contactSeries"
+            :xaxis="contactXaxis"
+            v-if="contactSeries.length > 0"
+          />
         </div>
       </div>
     </div>
   </el-main>
-  <!-- <main :class="{ 'container-slim': lgAndUp || xlAndUp }" class="px-3" id="main">
-  </main> -->
 </template>
 
 <script>
@@ -94,6 +100,7 @@ import { ElMessage } from "element-plus";
 import Header from "@/components/header/Header.vue";
 import ApexArea from "@/components/chart/AreaChart.vue";
 import ElDropDown from "@/components/dropdown/ElDropDown";
+import dateFormatter from "@/services/dates/dateformatter";
 
 export default {
   mixins: [mixin],
@@ -205,36 +212,62 @@ export default {
       return monthXaxis.value;
     });
 
-    // onMounted(() => {
-    //   getBasicDashboard()
-    // })
+    const dashboardData = ref({});
+    const smsSeries = ref([]);
+    const smsXaxis = ref([]);
+    const contactSeries = ref([]);
+    const contactXaxis = ref([]);
 
-    // const getBasicDashboard = () => {
-    //   dashboardLoading.value = true
-    //   axios
-    //     .get("/dashboard/basic")
-    //     .then((res) => {
-    //       dashboardLoading.value = false
-    //       tenantInfoBasic.value = res.data.returnObject;
-    //       tenantInfoExtra.value.hasMobileApp = res.data.returnObject.hasMobileApp;
-    //       tenantInfoExtra.value.hasOnlineGiving = res.data.returnObject.hasOnlineGiving;
-    //       tenantInfoExtra.value.hasWebsite = res.data.returnObject.hasWebsite;
-    //       let sum = 0;
-    //       tenantInfo.value.firstTimerSummary.invitationSource.forEach((i) => {
-    //         sum += +i.value;
-    //       });
-    //       summed.value = sum;
-    //     })
-    //     .catch((err) => {
-    //       stopProgressBar();
-    //       if (err.response && err.response.status === 401) {
-    //         dashboardLoading.value = false
-    //         localStorage.removeItem("token");
-    //         setupService.clearStore();
-    //         router.push("/");
-    //       }
-    //     });
-    // };
+    onMounted(() => {
+      getBasicDashboard();
+    });
+
+    const getBasicDashboard = () => {
+      dashboardLoading.value = true;
+      axios
+        .get("/dashboard/retain")
+        .then(({ data }) => {
+          dashboardLoading.value = false;
+          console.log(data);
+          dashboardData.value = data.returnObject;
+
+          donutOption.value.labels = dashboardData.value.deliveryTrend.map((i) => i.name);
+          smsSeries.value.push({
+            name: "SMS",
+            data: dashboardData.value.smsTrend.map((i) => i.value),
+          });
+          smsXaxis.value = dashboardData.value.smsTrend.map((i) =>
+            dateFormatter.monthDayYear(i.name.split(" ")[0])
+          );
+
+          contactSeries.value.push({
+            name: "Contacts",
+            data: dashboardData.value.contactsTrend.map((i) => i.value),
+          });
+          contactXaxis.value = dashboardData.value.contactsTrend.map((i) =>
+            dateFormatter.monthDayYear(i.name.split(" ")[0])
+          );
+
+          // tenantInfoBasic.value = res.data.returnObject;
+          // tenantInfoExtra.value.hasMobileApp = res.data.returnObject.hasMobileApp;
+          // tenantInfoExtra.value.hasOnlineGiving = res.data.returnObject.hasOnlineGiving;
+          // tenantInfoExtra.value.hasWebsite = res.data.returnObject.hasWebsite;
+          // let sum = 0;
+          // tenantInfo.value.firstTimerSummary.invitationSource.forEach((i) => {
+          //   sum += +i.value;
+          // });
+          // summed.value = sum;
+        })
+        .catch((err) => {
+          // stopProgressBar();
+          // if (err.response && err.response.status === 401) {
+          dashboardLoading.value = false;
+          //   localStorage.removeItem("token");
+          //   setupService.clearStore();
+          //   router.push("/");
+          // }
+        });
+    };
 
     function getCelebDashboard() {
       store.dispatch("dashboard/getCelebration").then((response) => {
@@ -525,42 +558,65 @@ export default {
       }
     });
 
-    const accountUtil = ref([
-      {
-        name: "Total Contacts",
-        icon: require("../../assets/retain/user.png"),
-        color: "#F9AFB4",
-        value: "50",
-      },
-      {
-        name: "Total Spending",
-        icon: require("../../assets/retain/money.png"),
-        color: "#D1FAE5",
-        value: "NGN 250",
-      },
-      {
-        name: "Unit Balance",
-        icon: require("../../assets/retain/envelop.png"),
-        color: "#DBEAFE",
-        value: "36",
-      },
-      {
-        name: "SMS sent",
-        icon: require("../../assets/retain/envelop.png"),
-        color: "#DBEAFE",
-        value: "36",
-      },
-    ]);
-
-    const donutOption = ref({
-      chart: {
-        id: "vuechart-example",
-      },
-      xaxis: {},
-      labels: ["sent", "delivered", "failed", "rejected"],
+    const accountUtil = computed(() => {
+      return [
+        {
+          name: "Total Contacts",
+          icon: require("../../assets/retain/user.png"),
+          color: "#F9AFB4",
+          value: dashboardData.value.totalContacts ? dashboardData.value.totalContacts : 0,
+        },
+        {
+          name: "Total Spending",
+          icon: require("../../assets/retain/money.png"),
+          color: "#D1FAE5",
+          value: dashboardData.value.totalSpending ? dashboardData.value.totalSpending : 0,
+        },
+        {
+          name: "Unit Balance",
+          icon: require("../../assets/retain/envelop.png"),
+          color: "#DBEAFE",
+          value: dashboardData.value.unitBalance ? dashboardData.value.unitBalance : 0,
+        },
+        {
+          name: "SMS sent",
+          icon: require("../../assets/retain/envelop.png"),
+          color: "#DBEAFE",
+          value: dashboardData.value.totalSMSSent ? dashboardData.value.totalSMSSent : 0,
+        },
+      ];
     });
 
-    const donutSeries = ref([44, 2, 1, 17]);
+    // const donutOption = ref({
+    //   chart: {
+    //     id: "vuechart-example",
+    //   },
+    //   xaxis: {},
+    //   // labels: ["sent", "delivered", "failed", "rejected"],
+    //   labels: [],
+    // });
+    const donutOption = ref({
+      chart: { type: "donut" },
+      labels: [],
+      legend: { position: "bottom" },
+      responsive: [
+        {
+          // breakpoint: 480
+          // options: { chart: { width: 200 }, legend: { position: "bottom" } },
+        },
+      ],
+    });
+
+    const donutSeries = computed(() => {
+      if (
+        dashboardData.value.deliveryTrend &&
+        dashboardData.value.deliveryTrend.length > 0
+      ) {
+        return dashboardData.value.deliveryTrend.map((i) => i.value);
+      } else {
+        return [];
+      }
+    });
 
     const dateRange = ref([
       "3 months",
@@ -639,6 +695,11 @@ export default {
       donutOption,
       donutSeries,
       dateRange,
+      dashboardData,
+      smsXaxis,
+      smsSeries,
+      contactXaxis,
+      contactSeries,
     };
   },
 };

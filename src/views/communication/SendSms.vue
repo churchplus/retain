@@ -13,8 +13,10 @@
           <div class="row">
             <div class="col-md-8 mt-3 mt-md-5">
               <ElDropDown
-                :options="['template', 'not', 'yet', 'available']"
+                :options="drafts"
+                optionLabel="body"
                 placeholder="Choose template"
+                @selectedvalue="setSelectedDraft"
               />
             </div>
           </div>
@@ -1228,6 +1230,20 @@ export default {
       }
     };
     getContactList();
+    
+    const drafts = ref([])
+    const getSMSDrafts = async () => {
+        await store.dispatch("communication/getSMSDrafts").then(response => {
+          drafts.value = response
+        }).catch (error => {
+        console.log(error);
+      })
+    };
+    getSMSDrafts();
+
+    const setSelectedDraft = (payload) => {
+      editorData.value += payload.body
+    }
 
     return {
       primarycolor,
@@ -1315,6 +1331,8 @@ export default {
       groupMultipleIDs,
       contactlist,
       checkList,
+      drafts,
+      setSelectedDraft
     };
   },
 };

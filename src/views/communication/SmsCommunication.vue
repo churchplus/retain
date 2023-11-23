@@ -46,10 +46,10 @@ export default {
         name: "Compose SMS",
         path: "/tenant/sms/compose",
       },
-      {
-        name: "Sent",
-        path: "/tenant/sms/sent",
-      },
+      // {
+      //   name: "Sent",
+      //   path: "/tenant/sms/sent",
+      // },
       {
         name: "Scheduled",
         path: "/tenant/sms/scheduled",
