@@ -16,8 +16,8 @@
     </div>
     <template class="w-100" #dropdown>
       <el-dropdown-menu class="w-100">
-        <el-dropdown-item v-for="(item, index) in options" :key="index">
-          <div @click="onValueSelect(item)">
+        <el-dropdown-item v-for="(item, index) in options" :key="index" @click="onValueSelect(item)">
+          <div>
             {{ optionLabel ? item[optionLabel] : item }}
           </div>
         </el-dropdown-item>
@@ -43,6 +43,9 @@ export default {
       type: String,
       required: false,
     },
+    setcurrentvalue: {
+      required: false
+    }
   },
   emits: ["selectedvalue"],
   setup(props, { emit }) {
@@ -59,6 +62,7 @@ export default {
       emit("selectedvalue", item);
     };
 
+
     watchEffect(() => {
       let childElement = dropdownToggle.value;
       // Create a style tag
@@ -72,6 +76,15 @@ export default {
 
       // Add the CSS rule to the style tag
       styleTag.textContent = cssRule;
+
+      // set current value
+   if (props.setcurrentvalue) {
+      if (props.optionLabel) {
+      selectedValue.value = props.setcurrentvalue[props.optionLabel]
+    } else {
+        selectedValue.value = props.setcurrentvalue
+      }
+   }
     });
     return {
       selectedValue,

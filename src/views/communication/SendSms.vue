@@ -40,8 +40,8 @@
           <div class="row">
             <div class="col-md-8 mt-3">
               <ElDropDown
-                :options="contactlist"
-                placeholder="Choose contact list"
+                :options="contactSegment"
+                placeholder="Choose contact segment"
                 optionLabel="name"
               />
             </div>
@@ -62,6 +62,10 @@
           </div>
           <div class="row">
             <div class="col-md-8 mt-3">
+              <div>
+                <el-checkbox label="Track url" size="large" />
+              </div>
+
               <el-input
                 type="textarea"
                 placeholder="Enter your message"
@@ -74,9 +78,6 @@
             <div class="col-12">
               <div>
                 <el-checkbox label="Schedule" @change="showScheduleModal" size="large" />
-              </div>
-              <div>
-                <el-checkbox label="Track url" size="large" />
               </div>
               <div>
                 <el-checkbox label="Create a new template from this" size="large" />
@@ -413,7 +414,7 @@
 
       <el-dialog
         v-model="display"
-        title=""
+        title="Select date and time"
         :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
         align-center
         class="p-4"
@@ -853,7 +854,7 @@ export default {
       disableBtn.value = true;
       console.log(disableBtn.value, "disablesd");
       const data = {
-        subject: subject.value,
+        subject: subject.value.mask,
         message: editorData.value,
         contacts: [],
         isPersonalized: isPersonalized.value,
@@ -1220,11 +1221,11 @@ export default {
       selectedGroups.value = selectedGroups.value.filter((i) => !i.data.includes(value));
     };
 
-    const contactlist = ref([]);
+    const contactSegment = ref([]);
     const getContactList = async () => {
       try {
-        const res = await axios.get("/api/Messaging/getPhoneGroups");
-        contactlist.value = res.data;
+        const res = await axios.get("/api/GetAllGroupBasicInformation");
+        contactSegment.value = res.data.response.groupResonseDTO;
       } catch (error) {
         console.log(error);
       }
@@ -1329,7 +1330,7 @@ export default {
       submitSenderForm,
       removeTag,
       groupMultipleIDs,
-      contactlist,
+      contactSegment,
       checkList,
       drafts,
       setSelectedDraft

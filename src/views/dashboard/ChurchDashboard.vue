@@ -16,9 +16,9 @@
       <div class="col-12 mb-4">
         <div class="d-flex justify-content-between">
           <div class="thick-secondary head-text">{{ dashboardData.userName ? `Welcome, ${dashboardData.userName}` : "" }}</div>
-          <!-- @selectedvalue="setSelectedSenderId" -->
+          
           <div>
-            <ElDropDown :options="dateRange" placeholder="Choose date range" />
+            <ElDropDown :options="dateRange" optionLabel="name"  placeholder="Choose date range" @selectedvalue="setSelectedDateRange" :setcurrentvalue="setcurrentvalue" />
           </div>
         </div>
       </div>
@@ -90,8 +90,8 @@ import mixin from "@/mixins/currentUser.mixin.js";
 import router from "@/router/index";
 import axios from "@/gateway/backendapi";
 import moment from "moment";
-import stopProgressBar from "../../services/progressbar/progress";
-import setupService from "../../services/setup/setupservice";
+// import stopProgressBar from "../../services/progressbar/progress";
+// import setupService from "../../services/setup/setupservice";
 import formatDate from "../../services/dates/dateformatter";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
 import store from "../../store/store";
@@ -217,15 +217,18 @@ export default {
     const smsXaxis = ref([]);
     const contactSeries = ref([]);
     const contactXaxis = ref([]);
+    const setcurrentvalue = ref({});
 
     onMounted(() => {
       getBasicDashboard();
     });
 
-    const getBasicDashboard = () => {
+    const getBasicDashboard = (payload) => {
+      console.log(moment().format('l'))
       dashboardLoading.value = true;
+      let url = payload ? `/dashboard/retain?startDate=${payload.value}&&endDate=${moment().format('l')}` : "/dashboard/retain"
       axios
-        .get("/dashboard/retain")
+        .get(url)
         .then(({ data }) => {
           dashboardLoading.value = false;
           console.log(data);
@@ -248,6 +251,10 @@ export default {
             dateFormatter.monthDayYear(i.name.split(" ")[0])
           );
 
+          // Set date range value
+          setcurrentvalue.value = { name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(3), "DDMMYYYY").format("l") }
+          console.log(setcurrentvalue.value)
+
           // tenantInfoBasic.value = res.data.returnObject;
           // tenantInfoExtra.value.hasMobileApp = res.data.returnObject.hasMobileApp;
           // tenantInfoExtra.value.hasOnlineGiving = res.data.returnObject.hasOnlineGiving;
@@ -269,45 +276,45 @@ export default {
         });
     };
 
-    function getCelebDashboard() {
-      store.dispatch("dashboard/getCelebration").then((response) => {
-        celeb.value = response;
-      });
-    }
+    // function getCelebDashboard() {
+    //   store.dispatch("dashboard/getCelebration").then((response) => {
+    //     celeb.value = response;
+    //   });
+    // }
 
-    let tenantInfoCeleb = computed(() => {
-      if (celeb.value.length === 0) return [];
-      return celeb.value.sort((b, a) => new Date(b.date) - new Date(a.date));
-    });
+    // let tenantInfoCeleb = computed(() => {
+    //   if (celeb.value.length === 0) return [];
+    //   return celeb.value.sort((b, a) => new Date(b.date) - new Date(a.date));
+    // });
 
-    const getDashboard = async () => {
-      try {
-        dashboardLoading.value = true;
-        await store.dispatch("dashboard/getDashboard").then((response) => {
-          tenantInfoBasic.value = response;
-          dashboardLoading.value = false;
-          tenantInfoExtra.value.hasMobileApp = response.hasMobileApp;
-          tenantInfoExtra.value.hasOnlineGiving = response.hasOnlineGiving;
-          tenantInfoExtra.value.hasWebsite = response.hasWebsite;
-        });
-      } catch (error) {
-        stopProgressBar();
-        dashboardLoading.value = false;
+    // const getDashboard = async () => {
+    //   try {
+    //     dashboardLoading.value = true;
+    //     await store.dispatch("dashboard/getDashboard").then((response) => {
+    //       tenantInfoBasic.value = response;
+    //       dashboardLoading.value = false;
+    //       tenantInfoExtra.value.hasMobileApp = response.hasMobileApp;
+    //       tenantInfoExtra.value.hasOnlineGiving = response.hasOnlineGiving;
+    //       tenantInfoExtra.value.hasWebsite = response.hasWebsite;
+    //     });
+    //   } catch (error) {
+    //     stopProgressBar();
+    //     dashboardLoading.value = false;
 
-        if (error.response && error.response.status === 401) {
-          localStorage.removeItem("token");
-          setupService.clearStore();
-          router.push("/");
-        }
-      }
-    };
+    //     if (error.response && error.response.status === 401) {
+    //       localStorage.removeItem("token");
+    //       setupService.clearStore();
+    //       router.push("/");
+    //     }
+    //   }
+    // };
 
-    onMounted(() => {
-      if (tenantInfoBasic.value && Object.keys(tenantInfoBasic.value).length == 0)
-        getDashboard();
-      if (celeb.value && celeb.value.length == 0) getCelebDashboard();
-      getSubscriptionData();
-    });
+    // onMounted(() => {
+    //   if (tenantInfoBasic.value && Object.keys(tenantInfoBasic.value).length == 0)
+    //     getDashboard();
+    //   if (celeb.value && celeb.value.length == 0) getCelebDashboard();
+    //   getSubscriptionData();
+    // });
 
     onMounted(() => {
       axios
@@ -355,74 +362,74 @@ export default {
         });
     });
 
-    const showPieChart = computed(() => {
-      if (!tenantInfo.value || tenantInfo.value.firstTimerSummary) return [];
-      return tenantInfo.value.firstTimerSummary;
-    });
+    // const showPieChart = computed(() => {
+    //   if (!tenantInfo.value || tenantInfo.value.firstTimerSummary) return [];
+    //   return tenantInfo.value.firstTimerSummary;
+    // });
 
-    onMounted(() => {
-      for (let i = 1; i <= 52; i++) {
-        xAxis.value.push(i);
-      }
-    });
+    // onMounted(() => {
+    //   for (let i = 1; i <= 52; i++) {
+    //     xAxis.value.push(i);
+    //   }
+    // });
 
-    const weeklyAttendance = () => {
-      attendanceSeries.value = "weekly";
-      attendanceBoolean.value = true;
-    };
+    // const weeklyAttendance = () => {
+    //   attendanceSeries.value = "weekly";
+    //   attendanceBoolean.value = true;
+    // };
 
-    const monthlyAttendance = () => {
-      attendanceBoolean.value = false;
-      attendanceSeries.value = "monthly";
-    };
+    // const monthlyAttendance = () => {
+    //   attendanceBoolean.value = false;
+    //   attendanceSeries.value = "monthly";
+    // };
 
-    const weeklyFirstTimer = () => {
-      firstTimerSeries.value = "weekly";
-      firstTimerBoolean.value = true;
-    };
+    // const weeklyFirstTimer = () => {
+    //   firstTimerSeries.value = "weekly";
+    //   firstTimerBoolean.value = true;
+    // };
 
-    const monthlyFirstTimer = () => {
-      firstTimerBoolean.value = false;
-      firstTimerSeries.value = "monthly";
-    };
+    // const monthlyFirstTimer = () => {
+    //   firstTimerBoolean.value = false;
+    //   firstTimerSeries.value = "monthly";
+    // };
 
-    const chartData = computed(() => {
-      if (!tenantInfoAttendanceWeekly.value) return [];
-      let chartWeekly = [];
-      let chartObj = tenantInfoAttendanceWeekly.value.find(
-        (i) => i.name === "Attendance"
-      );
-      chartObj["color"] = "#002044";
-      chartWeekly.push(chartObj);
-      return chartWeekly;
-    });
-    const monthlyAttendanceObj = computed(() => {
-      if (!tenantInfoAttendanceMonthly.value) return [];
-      let chartMonthly = [];
-      let chartObj = tenantInfoAttendanceMonthly.value.find(
-        (i) => i.name === "Attendance"
-      );
-      chartObj["color"] = "#002044";
-      chartMonthly.push(chartObj);
-      return chartMonthly;
-    });
+    // const chartData = computed(() => {
+    //   if (!tenantInfoAttendanceWeekly.value) return [];
+    //   let chartWeekly = [];
+    //   let chartObj = tenantInfoAttendanceWeekly.value.find(
+    //     (i) => i.name === "Attendance"
+    //   );
+    //   chartObj["color"] = "#002044";
+    //   chartWeekly.push(chartObj);
+    //   return chartWeekly;
+    // });
+    // const monthlyAttendanceObj = computed(() => {
+    //   if (!tenantInfoAttendanceMonthly.value) return [];
+    //   let chartMonthly = [];
+    //   let chartObj = tenantInfoAttendanceMonthly.value.find(
+    //     (i) => i.name === "Attendance"
+    //   );
+    //   chartObj["color"] = "#002044";
+    //   chartMonthly.push(chartObj);
+    //   return chartMonthly;
+    // });
 
-    const chartData2 = computed(() => {
-      if (!tenantInfoFirstTimerWeekly.value) return [];
-      tenantInfoFirstTimerWeekly.value[0].color = "#002044";
-      return tenantInfoFirstTimerWeekly.value;
-    });
+    // const chartData2 = computed(() => {
+    //   if (!tenantInfoFirstTimerWeekly.value) return [];
+    //   tenantInfoFirstTimerWeekly.value[0].color = "#002044";
+    //   return tenantInfoFirstTimerWeekly.value;
+    // });
 
-    const monthlyFirstTimerObj = computed(() => {
-      if (!tenantInfoFirstTimerMonthly.value) return [];
-      tenantInfoFirstTimerMonthly.value[0].color = "#002044";
-      return tenantInfoFirstTimerMonthly.value;
-    });
+    // const monthlyFirstTimerObj = computed(() => {
+    //   if (!tenantInfoFirstTimerMonthly.value) return [];
+    //   tenantInfoFirstTimerMonthly.value[0].color = "#002044";
+    //   return tenantInfoFirstTimerMonthly.value;
+    // });
 
-    const chartDataNewConvert = computed(() => {
-      if (!tenantInfo.value.eventAttendanceChartData) return [];
-      return tenantInfo.value.eventAttendanceChartData[2];
-    });
+    // const chartDataNewConvert = computed(() => {
+    //   if (!tenantInfo.value.eventAttendanceChartData) return [];
+    //   return tenantInfo.value.eventAttendanceChartData[2];
+    // });
 
     const dateFormat = (payload) => {
       return formatDate.monthDayYear(payload);
@@ -574,8 +581,8 @@ export default {
         },
         {
           name: "Unit Balance",
-          icon: require("../../assets/retain/envelop.png"),
-          color: "#DBEAFE",
+          icon: require("../../assets/retain/money.png"),
+          color: "#D1FAE5",
           value: dashboardData.value.unitBalance ? dashboardData.value.unitBalance : 0,
         },
         {
@@ -618,14 +625,33 @@ export default {
       }
     });
 
+    const returnDoubleDigits = (str) => {
+      return str.length === 1 ? '0' + str : str;
+    }
+
+    const returnDates = (str) => {
+      if (str == 1) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1) - 3).toString()) + new Date().getFullYear();
+      if (str == 2) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1) - 6).toString()) + new Date().getFullYear();
+      if (str == 3) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 1);
+      if (str == 4) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 2);
+      if (str == 5) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 5);
+      if (str == 6) return returnDoubleDigits(new Date().getDate().toString()) + returnDoubleDigits(((new Date().getMonth() + 1)).toString()) + (new Date().getFullYear() - 10);
+    }
+
+
     const dateRange = ref([
-      "3 months",
-      "6 months",
-      "1 year",
-      "2 years",
-      "5 years",
-      "10 years",
+      { name: moment(`${returnDates(1)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(1), "DDMMYYYY").format("l") },
+      { name: moment(`${returnDates(2)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(2), "DDMMYYYY").format("l") },
+      { name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(3), "DDMMYYYY").format("l") },
+      { name: moment(`${returnDates(4)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(4), "DDMMYYYY").format("l") },
+      { name: moment(`${returnDates(5)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(5), "DDMMYYYY").format("l") },
+      { name: moment(`${returnDates(6)}`, "DDMMYYYY").fromNow(), value: moment(returnDates(6), "DDMMYYYY").format("l") },
     ]);
+
+    const setSelectedDateRange = (payload) => {
+      console.log(payload)
+      getBasicDashboard(payload);
+    }
 
     return {
       celebrations,
@@ -635,27 +661,27 @@ export default {
       getRenewalDate,
       tenantInfo,
       tenantInfoBasic,
-      tenantInfoCeleb,
+      // tenantInfoCeleb,
       moreLinksVissible,
       toggleMoreLinkVissibility,
       offering,
       moment,
       attendanceBoolean,
-      weeklyAttendance,
-      monthlyAttendance,
+      // weeklyAttendance,
+      // monthlyAttendance,
       firstTimerBoolean,
-      weeklyFirstTimer,
-      monthlyFirstTimer,
-      chartData,
-      monthlyAttendanceObj,
+      // weeklyFirstTimer,
+      // monthlyFirstTimer,
+      // chartData,
+      // monthlyAttendanceObj,
       xAxis,
       monthXaxis,
       series,
-      showPieChart,
-      chartData2,
+      // showPieChart,
+      // chartData2,
       series2,
-      monthlyFirstTimerObj,
-      chartDataNewConvert,
+      // monthlyFirstTimerObj,
+      // chartDataNewConvert,
       firstTimerSeries,
       attendanceDataExist,
       firstTimerDataExist,
@@ -700,6 +726,8 @@ export default {
       smsSeries,
       contactXaxis,
       contactSeries,
+      setSelectedDateRange,
+      setcurrentvalue
     };
   },
 };
