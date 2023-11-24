@@ -7,9 +7,10 @@
       <img src="../../assets/whatsapp-churchplus.svg" />
     </div>
     <h1 class="send-text s-20 mt-3 text-center">
-      Send Whatsapp Message <br /> easily
+      Send Whatsapp Message <br />
+      easily
     </h1>
-    <p class="text-center">Sync SendiT with Whatsapp</p>
+    <p class="text-center">Sync Retain with Whatsapp</p>
     <el-alert
       v-if="serverBusy"
       title="Server status"
@@ -90,7 +91,6 @@ import { useRoute } from "vue-router";
 import router from "../../router";
 import { ElMessage } from "element-plus";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
-import { ElNotification } from "element-plus";
 
 export default {
   components: {
@@ -107,7 +107,7 @@ export default {
     const isClientReady = ref(false);
     const connectingExistingSession = ref(false);
     const { mdAndUp, lgAndUp, xlAndUp, xsOnly } = deviceBreakpoint();
-    const serverBusy = ref(false)
+    const serverBusy = ref(false);
 
     const socketconnected = computed(() => {
       return state.connected;
@@ -237,16 +237,16 @@ export default {
       socket.on("processing", (data) => {
         connectingExistingSession.value = false;
         QRCodeDialog.value = false;
-        serverBusy.value = true
+        serverBusy.value = true;
         console.log(data.message);
-    });
-    
-    socket.on("readytoserve", (data) => {
+      });
+
+      socket.on("readytoserve", (data) => {
         connectingExistingSession.value = false;
         // QRCodeDialog.value = false;
         console.log(data.message);
-        serverBusy.value = false
-    });
+        serverBusy.value = false;
+      });
 
       // socket.on('newmessage', (data) => {
       //     console.log(data);
@@ -289,7 +289,7 @@ export default {
       lgAndUp,
       xlAndUp,
       xsOnly,
-      serverBusy
+      serverBusy,
     };
   },
 };

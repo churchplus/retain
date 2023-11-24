@@ -1,4 +1,5 @@
 <template>
+  {{ series }} {{ xaxis }}lll
   <apexchart
     width="100%"
     height="100%"
@@ -46,7 +47,9 @@ export default {
       },
     });
 
-    const seriesarea = ref(props.series && props.series.length > 0 ?[...props.series] : []);
+    const seriesarea = ref(
+      props.series && props.series.length > 0 ? [...props.series] : []
+    );
     return {
       areaOptions,
       seriesarea,

@@ -27,7 +27,7 @@
           </div>
 
           <div class="more-later hidden-md-and-up">
-            <span>What would you like to do in sendiT</span>
+            <span>What would you like to do in Retain</span>
           </div>
 
           <div class="all-options">

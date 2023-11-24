@@ -28,7 +28,10 @@
                 optionLabel="mask"
                 @selectedvalue="setSelectedSenderId"
               />
-              <div class="mt-2 d-flex flex-column flex-md-row small-text" v-if="senderIDs.length == 0">
+              <div
+                class="mt-2 d-flex flex-column flex-md-row small-text"
+                v-if="senderIDs.length == 0"
+              >
                 <div>
                   <div>You do not have an approved sender ID.</div>
                   <div class="text-danger">Sender ID is required</div>
@@ -43,6 +46,7 @@
                 :options="contactSegment"
                 placeholder="Choose contact segment"
                 optionLabel="name"
+                @selectedvalue="setSelectedGroup"
               />
             </div>
           </div>
@@ -80,11 +84,21 @@
                 <el-checkbox label="Schedule" @change="showScheduleModal" size="large" />
               </div>
               <div>
-                <el-checkbox label="Create a new template from this" size="large" />
+                <el-checkbox
+                  label="Create a new template from this"
+                  @change="draftModal = true"
+                  size="large"
+                />
               </div>
             </div>
             <div class="col-8 mt-4">
-              <el-button :color="primarycolor" size="large"  @click="sendSMSDialog = true" class="w-100">Send</el-button>
+              <el-button
+                :color="primarycolor"
+                size="large"
+                @click="sendSMSDialog = true"
+                class="w-100"
+                >Send</el-button
+              >
             </div>
           </div>
         </div>
@@ -444,6 +458,38 @@
         </template>
       </el-dialog>
 
+      <!-- Draft SMS modal -->
+
+      <el-dialog
+        v-model="draftModal"
+        title="Create a template"
+        :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
+        align-center
+        class="p-4"
+      >
+        <div class="row">
+          <div class="col-md-12">
+            <el-input
+              type="text"
+              class="my-3"
+              v-model="draftTitle"
+              placeholder="Enter a title for the template"
+            />
+          </div>
+          <div class="col-md-12">
+            <el-input v-model="editorData" id="description" :rows="3" type="textarea" />
+          </div>
+        </div>
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="draftModal = false" class="secondary-button" round
+              >Cancel</el-button
+            >
+            <el-button :color="primarycolor" :disabled="!draftTitle" @click="draftMessage" :loading="draftLoading" round>Create template</el-button>
+          </span>
+        </template>
+      </el-dialog>
+
       <!-- Create sender id modal -->
       <!-- Modal -->
       <div
@@ -577,6 +623,9 @@ export default {
     const { mdAndUp, lgAndUp, xlAndUp, xsOnly } = deviceBreakpoint();
     const groupMultipleIDs = ref([]);
     const checkList = ref([]);
+    const draftModal = ref(false);
+    const draftTitle = ref("");
+    const draftLoading = ref(false);
 
     const toggleGroupsVissibility = () => {
       groupsAreVissible.value = !groupsAreVissible.value;
@@ -827,24 +876,31 @@ export default {
     };
 
     const draftMessage = async () => {
+      draftLoading.value = true
       try {
         await composerObj.saveDraft(
           {
+            title: draftTitle.value,
+            sender: subject.value.mask,
             body: editorData.value,
             isDefaultBirthDayMessage: false,
           },
           "/api/Messaging/PostSmsDraft"
-        );
-        store.dispatch("communication/getSMSDrafts");
-        ElMessage({
-          type: "success",
-          message: "Message saved as draft",
-          duration: 6000,
-        });
-      } catch (error) {
+          );
+          draftModal.value = false
+          draftLoading.value = false
+          store.dispatch("communication/getSMSDrafts");
+          ElMessage({
+            type: "success",
+            message: "Template created successfully",
+            duration: 6000,
+          });
+        } catch (error) {
+          draftModal.value = false
+          draftLoading.value = false
         ElMessage({
           type: "warning",
-          message: "Message not saved as draft",
+          message: "Template not created, please try again",
           duration: 6000,
         });
       }
@@ -1231,19 +1287,26 @@ export default {
       }
     };
     getContactList();
-    
-    const drafts = ref([])
+
+    const drafts = ref([]);
     const getSMSDrafts = async () => {
-        await store.dispatch("communication/getSMSDrafts").then(response => {
-          drafts.value = response
-        }).catch (error => {
-        console.log(error);
-      })
+      await store
+        .dispatch("communication/getSMSDrafts")
+        .then((response) => {
+          drafts.value = response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
     getSMSDrafts();
 
     const setSelectedDraft = (payload) => {
-      editorData.value += payload.body
+      editorData.value += payload.body;
+    };
+
+    const setSelectedGroup = (payload) => {
+      selectGroup('group', payload.id, payload.name)
     }
 
     return {
@@ -1333,7 +1396,11 @@ export default {
       contactSegment,
       checkList,
       drafts,
-      setSelectedDraft
+      setSelectedDraft,
+      draftModal,
+      draftTitle,
+      draftLoading,
+      setSelectedGroup
     };
   },
 };
