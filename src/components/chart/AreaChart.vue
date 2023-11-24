@@ -1,5 +1,4 @@
 <template>
-  {{ series }} {{ xaxis }}lll
   <apexchart
     width="100%"
     height="100%"

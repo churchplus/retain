@@ -713,7 +713,11 @@ export default {
     ]);
 
     const setSelectedDateRange = (payload) => {
-      console.log(payload);
+      smsSeries.value = new Array();
+      smsXaxis.value = new Array();
+      contactSeries.value = new Array();
+      contactXaxis.value = new Array();
+      donutOption.value.labels = new Array();
       getBasicDashboard(payload);
     };
 
