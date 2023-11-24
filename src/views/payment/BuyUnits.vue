@@ -4,7 +4,7 @@
       <div class="row text-center">
         <div class="col-md-12 mb-4 mt-3" id="successDialog">
           <h2 class="font-weight-bold intro-text">
-            Choose a plan that's right for your church
+            Choose a plan
           </h2>
           <el-dialog v-model="purchaseIsSuccessful" class="smsUnitSuccess"
             :width="mdAndUp || lgAndUp || xlAndUp ? '60%' : '100%'" align-center>
@@ -49,7 +49,7 @@
                         <template #prepend>
                           <el-select v-model="selectedCurrency" placeholder="Select" style="width: 115px"
                             @change="resetCountryPricing" filterable>
-                            <el-option v-for="item in FLWupportedCurrencies" :label="item.value" :value="item.value" />
+                            <el-option v-for="item in FLWupportedCurrencies" :label="item.value" :value="item.value" :key="item.value" />
                           </el-select>
                         </template>
                       </el-input>
@@ -95,8 +95,8 @@
               <p class="text-danger font-weight-700 mb-1" v-if="invalidAmount">
                 Please enter amount
               </p>
-              <el-button :color="primarycolor" class="px-4" style="height: 43px; font-size: 1.06em" data-toggle="modal"
-                data-target="#PaymentOptionModal" round>Buy SMS Unit</el-button>
+              <el-button :color="primarycolor" class="px-4" size="large" data-toggle="modal"
+                data-target="#PaymentOptionModal">Buy SMS Unit</el-button>
             </div>
           </div>
         </div>
@@ -300,6 +300,7 @@ export default {
 
 
     const payWithPaystack = (responseObject) => {
+      // eslint-disable-next-line
       let handler = PaystackPop.setup({
         key: process.env.VUE_APP_PAYSTACK_PUBLIC_KEY_LIVE,
         // key: process.env.VUE_APP_PAYSTACK_API_KEY,
@@ -432,7 +433,7 @@ export default {
 
           }
         })
-        .catch((err) => {
+        .catch(() => {
           stopProgressBar();
           ElMessage({
             type: 'error',
