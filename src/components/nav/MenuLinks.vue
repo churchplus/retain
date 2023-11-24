@@ -273,12 +273,14 @@ export default {
           {
             name: "SMS Report",
             logo: "/",
-            route: "/tenant/report/sms",
+            // route: "/tenant/report/sms",
+            route: "/tenant/sms/sent",
           },
           {
             name: "Email Report",
             logo: "/",
-            route: "/tenant/report/email",
+            route: "/tenant/email",
+            // route: "/tenant/report/email",
           },
         ],
       };
