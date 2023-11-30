@@ -404,14 +404,23 @@ const routes = [
                     import( /* webpackChunkName: "compose" */ '@/views/communication/ComposeEmail')
             },
             {
-                path: 'schedules',
-                name: 'Schedules',
+                path: 'scheduled',
+                name: 'ScheduledEmails',
                 meta: {
-                    title: 'Retain - Email Communication - Scheduled',
+                    title: 'Retain - Email Communication - Scheduled Email',
                 },
                 component: () =>
                     import( /* webpackChunkName: "compose" */ '@/views/communication/ScheduledEmails')
-            }
+            },
+            {
+                path: 'buyunit',
+                name: 'BuyUnitEmail',
+                meta: {
+                    title: 'Retain - Communication - Buy Email Unit',
+                },
+                component: () =>
+                    import( /* webpackChunkName: "Buy unit" */ '@/views/communication/BuyUnitEmail')
+            },
             ]
         },
         {

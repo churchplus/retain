@@ -4,7 +4,22 @@
       class="d-flex justify-content-between border-contribution text-dark w-100"
       ref="dropdownToggle"
     >
-      <span class="medium-secondary font-weight-600 s-16">{{
+      <span class="medium-secondary font-weight-600 s-16" v-if="multiple">
+      <span v-if="multipleItems.length > 0">
+        <el-tag
+          class="m-1"
+          size="large"
+          @close="removeTag(index)"
+          type="info"
+          closable
+          v-for="(item, index) in multipleItems"
+          :key="index"
+          >{{ optionLabel ? item[optionLabel] : item }}</el-tag
+        >
+      </span>
+        <span v-else>{{ placeholder }}</span>
+      </span>
+      <span class="medium-secondary font-weight-600 s-16" v-else>{{
         selectedValue ? selectedValue : placeholder
       }}</span>
       <div class="d-flex align-items-center">
@@ -16,7 +31,11 @@
     </div>
     <template class="w-100" #dropdown>
       <el-dropdown-menu class="w-100">
-        <el-dropdown-item v-for="(item, index) in options" :key="index" @click="onValueSelect(item)">
+        <el-dropdown-item
+          v-for="(item, index) in options"
+          :key="index"
+          @click="onValueSelect(item)"
+        >
           <div>
             {{ optionLabel ? item[optionLabel] : item }}
           </div>
@@ -28,6 +47,7 @@
 
 <script>
 import { ref, watchEffect } from "vue";
+import { ElMessage } from "element-plus";
 
 export default {
   props: {
@@ -44,24 +64,49 @@ export default {
       required: false,
     },
     setcurrentvalue: {
-      required: false
-    }
+      required: false,
+    },
+    multiple: {
+      type: Boolean,
+      required: false,
+    },
   },
   emits: ["selectedvalue"],
   setup(props, { emit }) {
     const selectedValue = ref("");
     const dropdownToggle = ref("");
+    const multipleItems = ref([]);
 
     const onValueSelect = (item) => {
-      if (props.optionLabel) {
-        selectedValue.value = item[props.optionLabel];
+      if (props.multiple) {
+        const find_value = multipleItems.value.findIndex(i => i.id == item.id);
+        if (find_value < 0) {
+          multipleItems.value.push(item);
+        } else {
+          ElMessage({
+            type: "warning",
+            message: "Item already selected",
+            duration: 5000,
+          });
+        }
+        //   Emit selected value to parent component
+        emit("selectedvalue", multipleItems.value);
       } else {
-        selectedValue.value = item;
+        if (props.optionLabel) {
+          selectedValue.value = item[props.optionLabel];
+        } else {
+          selectedValue.value = item;
+        }
+        //   Emit selected value to parent component
+        emit("selectedvalue", item);
       }
-      //   Emit selected value to parent component
-      emit("selectedvalue", item);
     };
-
+    
+    const removeTag = (index) => {
+      multipleItems.value.splice(index, 1);
+      //   Emit selected value to parent component
+      emit("selectedvalue", multipleItems.value);
+    };
 
     watchEffect(() => {
       let childElement = dropdownToggle.value;
@@ -78,18 +123,20 @@ export default {
       styleTag.textContent = cssRule;
 
       // set current value
-   if (props.setcurrentvalue) {
-      if (props.optionLabel) {
-      selectedValue.value = props.setcurrentvalue[props.optionLabel]
-    } else {
-        selectedValue.value = props.setcurrentvalue
+      if (props.setcurrentvalue) {
+        if (props.optionLabel) {
+          selectedValue.value = props.setcurrentvalue[props.optionLabel];
+        } else {
+          selectedValue.value = props.setcurrentvalue;
+        }
       }
-   }
     });
     return {
       selectedValue,
       onValueSelect,
       dropdownToggle,
+      multipleItems,
+      removeTag,
     };
   },
 };

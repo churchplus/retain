@@ -17,6 +17,7 @@
                 optionLabel="body"
                 placeholder="Choose template"
                 @selectedvalue="setSelectedDraft"
+                :multiple="false"
               />
             </div>
           </div>
@@ -27,6 +28,7 @@
                 placeholder="Choose sender id"
                 optionLabel="mask"
                 @selectedvalue="setSelectedSenderId"
+                :multiple="false"
               />
               <div
                 class="mt-2 d-flex flex-column flex-md-row small-text"
@@ -47,6 +49,7 @@
                 placeholder="Choose contact segment"
                 optionLabel="name"
                 @selectedvalue="setSelectedGroup"
+                :multiple="true"
               />
             </div>
           </div>
@@ -465,7 +468,6 @@
         title="Create a template"
         :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
         align-center
-        class="p-4"
       >
         <div class="row">
           <div class="col-md-12">
@@ -477,7 +479,13 @@
             />
           </div>
           <div class="col-md-12">
-            <el-input v-model="editorData" id="description" :rows="3" type="textarea" />
+            <el-input
+              v-model="editorData"
+              id="description"
+              :rows="3"
+              type="textarea"
+              disabled
+            />
           </div>
         </div>
         <template #footer>
@@ -485,7 +493,14 @@
             <el-button @click="draftModal = false" class="secondary-button" round
               >Cancel</el-button
             >
-            <el-button :color="primarycolor" :disabled="!draftTitle" @click="draftMessage" :loading="draftLoading" round>Create template</el-button>
+            <el-button
+              :color="primarycolor"
+              :disabled="!draftTitle"
+              @click="draftMessage"
+              :loading="draftLoading"
+              round
+              >Create template</el-button
+            >
           </span>
         </template>
       </el-dialog>
@@ -666,25 +681,11 @@ export default {
       }
     };
 
-    const selectGroup = (
-      category,
-      id,
-      name
-      // indexInCategories
-    ) => {
-      const group_index = selectedGroups.value.findIndex(
-        (i) => i.data == `${category}_${id}`
-      );
-      if (group_index < 0) {
-        selectedGroups.value.push({ data: `${category}_${id}`, name });
-      } else {
-        selectedGroups.value.splice(group_index, 1);
-      }
-
-      // selectedGroups.value.push({ data: `${category}_${id}`, name });
-      // groupsAreVissible.value = false;
-      // allGroups.value.splice(indexInGroup, 1);
-      // groupListShown.value = false;
+    const selectGroup = (category, payload) => {
+      selectedGroups.value = payload.map((i) => ({
+        data: `${category}_${i.id}`,
+        name: i.name,
+      }));
     };
 
     const removeGroup = (index) => {
@@ -799,14 +800,24 @@ export default {
               title: "Success!",
               text: "Your sms has been sent successfully!",
               icon: "success",
-              buttons: ["Send another", "Good"],
+              buttons: ["Good"],
               confirmButtonColor: "#8CD4F5",
               dangerMode: true,
             });
+
+            // Route to sent SMS list after successfully sent
+            setTimeout(() => {
+              if (route.fullPath === "/sendsmsexpired") {
+                router.push("/errorpage/expiredSubscription");
+              } else {
+                router.push({ name: "SentMessages" });
+              }
+            }, 3500);
+
             disableBtn.value = false;
           } else if (res.data && !res.data.status) {
             ElMessage({
-              message: res.data.message || "An error Occur",
+              message: res.data.message || "Message not sent, please try again",
               type: "warning",
               duration: 6000,
             });
@@ -840,13 +851,6 @@ export default {
             report: res.data.sentMessageDTO ? res.data.sentMessageDTO.report : "",
           };
           store.dispatch("communication/addSmsToSentList", sentObj);
-          setTimeout(() => {
-            if (route.fullPath === "/sendsmsexpired") {
-              router.push("/errorpage/expiredSubscription");
-            } else {
-              router.push({ name: "SentMessages" });
-            }
-          }, 3500);
         })
         .catch((err) => {
           stopProgressBar();
@@ -876,7 +880,7 @@ export default {
     };
 
     const draftMessage = async () => {
-      draftLoading.value = true
+      draftLoading.value = true;
       try {
         await composerObj.saveDraft(
           {
@@ -886,18 +890,18 @@ export default {
             isDefaultBirthDayMessage: false,
           },
           "/api/Messaging/PostSmsDraft"
-          );
-          draftModal.value = false
-          draftLoading.value = false
-          store.dispatch("communication/getSMSDrafts");
-          ElMessage({
-            type: "success",
-            message: "Template created successfully",
-            duration: 6000,
-          });
-        } catch (error) {
-          draftModal.value = false
-          draftLoading.value = false
+        );
+        draftModal.value = false;
+        draftLoading.value = false;
+        store.dispatch("communication/getSMSDrafts");
+        ElMessage({
+          type: "success",
+          message: "Template created successfully",
+          duration: 6000,
+        });
+      } catch (error) {
+        draftModal.value = false;
+        draftLoading.value = false;
         ElMessage({
           type: "warning",
           message: "Template not created, please try again",
@@ -1306,8 +1310,8 @@ export default {
     };
 
     const setSelectedGroup = (payload) => {
-      selectGroup('group', payload.id, payload.name)
-    }
+      selectGroup("group", payload);
+    };
 
     return {
       primarycolor,
@@ -1400,7 +1404,7 @@ export default {
       draftModal,
       draftTitle,
       draftLoading,
-      setSelectedGroup
+      setSelectedGroup,
     };
   },
 };

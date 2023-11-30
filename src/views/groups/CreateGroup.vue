@@ -1,32 +1,35 @@
 <template>
   <div>
-    <Header :headerName="!route.params.groupId ? 'Create segment' : `${groupData.name}`" />
+    <Header
+      :headerName="
+        !route.params.groupId ? 'Create segment' : groupData.name ? groupData.name : ''
+      "
+    />
 
     <el-main>
       <div class="row py-3">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12 col-12">
-
               <div class="d-flex justify-content-end">
                 <el-button
-                class="c-pointer secondary-button"
-                :data-toggle="route.params.groupId ? 'modal' : ''"
-                data-target="#importgroup"
-                @click="importMember"
-                size="large"
-              >
-                Import
-              </el-button>
-              <el-button
-                class="secondary-button"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                ref="modalBtn"
-                size="large"
-              >
-                Add contact
-              </el-button>
+                  class="c-pointer secondary-button"
+                  :data-toggle="route.params.groupId ? 'modal' : ''"
+                  data-target="#importgroup"
+                  @click="importMember"
+                  size="large"
+                >
+                  Import
+                </el-button>
+                <el-button
+                  class="secondary-button"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  ref="modalBtn"
+                  size="large"
+                >
+                  Add contact
+                </el-button>
               </div>
             </div>
           </div>
@@ -86,7 +89,6 @@
               </div> -->
             </div>
           </div>
-         
 
           <!-- <div class="row">
             <div class="col-12">
@@ -476,7 +478,6 @@
                     >
                       <div class="modal-content pr-2">
                         <div class="modal-header py-3">
-                
                           <button
                             type="button"
                             class="close"
@@ -721,7 +722,6 @@
                 </div>
               </div>
 
-        
               <Table
                 :data="searchGroupMembers"
                 :headers="createGroupHeaders"
@@ -1620,7 +1620,7 @@ export default {
     const importMember = () => {
       if (!route.params.groupId) {
         ElMessage({
-          message: "Please ensure you create the group first before you import",
+          message: "Please ensure you create the contact segment first before you import",
           type: "warning",
           duration: 5000,
         });

@@ -2,25 +2,35 @@
   <div>
     <div class="container-fluid" @click="closeDropdownIfOpen">
       <div class="row">
-        <div class="col-md-12 mb-3 mt-3 offset-3 offset-md-0">
+        <div class="col-md-12 mt-4 px-0">
           <h4 class="font-weight-bold">Compose Email</h4>
           <el-dialog
             title="Select Date and Time"
             v-model="display"
-           :width="
-              mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`
-            "
+            :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
             align-center
           >
             <div class="row">
               <div class="col-md-12">
-                <input type="datetime-local" class="form-control my-3" v-model="executionDate" placeholder="Select date and time" />
+                <input
+                  type="datetime-local"
+                  class="form-control my-3"
+                  v-model="executionDate"
+                  placeholder="Select date and time"
+                />
               </div>
             </div>
             <template #footer>
               <span class="dialog-footer">
-                <el-button round @click="() => (display = false)"><el-icon><Close /></el-icon>Cancel</el-button>
-                <el-button round color='#136acd' :loading="loading" @click="contructScheduleMessageBody(2)">
+                <el-button round @click="() => (display = false)"
+                  ><el-icon><Close /></el-icon>Cancel</el-button
+                >
+                <el-button
+                  round
+                  color="#136acd"
+                  :loading="loading"
+                  @click="contructScheduleMessageBody(2)"
+                >
                   Schedule
                 </el-button>
               </span>
@@ -29,18 +39,96 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12 pr-0">
-          <hr class="hr my-1" />
+      <div class="row bg-white mt-3 mt-md-5 pb-3">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-8 mt-3">
+              <ElDropDown
+                :options="contactSegment"
+                placeholder="Choose contact segment"
+                optionLabel="name"
+                @selectedvalue="setSelectedGroup"
+                :multiple="true"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mt-3">
+              <el-input
+                type="textarea"
+                class="w-100"
+                rows="4"
+                placeholder="Enter comma seperated email address eg. johndoe@gmail.com,aliciakeys@outlook.co"
+                v-model="email"
+              />
+              <div
+                class="text-danger small-text mt-1"
+                v-if="email.length == 0 && selectedGroups.length == 0"
+              >
+                Email address is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mt-3">
+              <el-input
+                type="text"
+                class="w-100"
+                placeholder="Enter the subject"
+                v-model="subject"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mt-3">
+              <DecoupledEditor
+                v-model="editorData"
+                :loadedMessage="loadedMessage"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 mt-3">
+              <span class="hint small-text"
+                >Insert #name# any where you want the contact name to appear in the
+                message, it will be replaced by the actual name of the member when sending
+                the message.</span
+              >
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12">
+              <div>
+                <el-checkbox label="Schedule" @change="showScheduleModal" size="large" />
+              </div>
+              <!-- <div>
+                <el-checkbox
+                  label="Create a new template from this"
+                  @change="draftModal = true"
+                  size="large"
+                />
+              </div> -->
+            </div>
+            <div class="col-md-8 mt-4">
+              <!-- @click="sendSMSDialog = true" -->
+              <el-button
+                :color="primarycolor"
+                size="large"
+                class="w-100"
+                @click="contructScheduleMessageBody(1)"
+                >Send</el-button
+              >
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-2 pr-md-0 col-lg-2 align-self-center">
           <span class="small-text">Send to : </span>
         </div>
         <div class="p-0 col-md-10 col-lg-10 form-group mb-0">
-          <!-- <div class="dropdown">
+          <div class="dropdown">
             <button
               class="btn btn-default border dropdown-toggle small-text"
               type="button"
@@ -64,9 +152,12 @@
                 >{{ destination }}</a
               >
             </div>
-          </div> -->
+          </div>
           <el-dropdown trigger="click" class="w-100">
-            <div class="d-flex justify-content-between border-contribution text-dark w-100" size="large">
+            <div
+              class="d-flex justify-content-between border-contribution text-dark w-100"
+              size="large"
+            >
               <span>Select Destination</span>
               <div>
                 <el-icon class="el-icon--right">
@@ -76,7 +167,10 @@
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="(destination, index) in possibleEmailDestinations" :key="index">
+                <el-dropdown-item
+                  v-for="(destination, index) in possibleEmailDestinations"
+                  :key="index"
+                >
                   <a class="no-decoration text-dark" @click="showSection(index)">
                     {{ destination }}
                   </a>
@@ -85,94 +179,14 @@
             </template>
           </el-dropdown>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row mb-1">
+      <!-- <div class="row mb-1">
         <div class="col-md-12 pr-0">
           <hr class="hr my-1" />
         </div>
-      </div>
+      </div> -->
 
-
-      <div class="row mb-2" v-if="groupSelectionTab">
-        <div class="col-md-2"></div>
-        <div class="col-md-10 px-0 grey-rounded-border">
-          <ul
-            class="d-flex flex-wrap pl-1 mb-0 dd-item"
-            @click="() => groupSelectInput.focus()"
-          >
-            <li
-              style="list-style: none; min-width: 100px"
-              v-for="(group, index) in selectedGroups"
-              :key="index"
-              class="email-destination d-flex justify-content-between m-1 small-text align-items-center"
-            >
-              <span class="small-text">{{ group.name }}</span>
-              <span class="ml-2 remove-email" @click="removeGroup(index)"
-                >x</span
-              >
-            </li>
-            <li style="list-style: none" class="">
-              <input
-                type="text"
-                class="border-0 dd-item"
-                ref="groupSelectInput"
-                :class="{
-                  'w-100': selectedGroups.length === 0,
-                  'minimized-input-width': selectedGroups.length > 0,
-                }"
-                @focus="showGroupList"
-                @click="showGroupList"
-                style="padding: 0.5rem"
-                :placeholder="`${
-                  selectedGroups.length > 0 ? '' : 'Select groups'
-                }`"
-              />
-            </li>
-          </ul>
-          <div
-            class="col-md-12 px-2 select-groups-dropdown dd-item pt-2"
-            v-if="groupListShown"
-          >
-            <div class="row dd-item" v-if="categories.length === 0">
-              <div class="col-md-12 dd-item">
-                <p class="small-text">No groups yet</p>
-              </div>
-            </div>
-            <div
-              class="row dd-item"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
-              <div class="col-md-12 dd-item" v-if="allGroups[index].length > 0">
-                <div class="row dd-item">
-                  <div class="col-md-12 dd-item">
-                    <h6 class="text-uppercase dd-item font-weight-bold px-14">
-                      {{ category }}
-                    </h6>
-                    <a
-                      class="dropdown-item px-1 c-pointer dd-item"
-                      v-for="(group, indx) in allGroups[index]"
-                      @click="
-                        selectGroup(
-                          group.category,
-                          group.id,
-                          group.name,
-                          index,
-                          indx
-                        )
-                      "
-                      :key="indx"
-                    >
-                      {{ group.name }}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- End TEst -->
 
       <!-- Start member TEst -->
@@ -190,9 +204,7 @@
               class="email-destination d-flex justify-content-between m-1"
             >
               <span>{{ member.name }}</span>
-              <span class="ml-2 remove-email" @click="removeMember(indx)"
-                >x</span
-              >
+              <span class="ml-2 remove-email" @click="removeMember(indx)">x</span>
             </li>
             <li style="list-style: none" class="m-dd-item">
               <input
@@ -240,9 +252,7 @@
                 aria-disabled="true"
                 class="btn btn-default p-1 mb-0 disable m-dd-item"
                 v-if="
-                  memberSearchResults.length === 0 &&
-                  searchText.length >= 3 &&
-                  !loading
+                  memberSearchResults.length === 0 && searchText.length >= 3 && !loading
                 "
               >
                 No match found
@@ -270,16 +280,11 @@
               :key="indx"
             >
               <span class="small-text">{{ member.name }}</span>
-              <span class="ml-2 remove-email" @click="removeMember(indx)"
-                >x</span
-              >
+              <span class="ml-2 remove-email" @click="removeMember(indx)">x</span>
             </span>
 
             <div class="dropdown">
-              <div
-                class="dropdown-menu pt-0 w-100"
-                aria-labelledby="dropdownMenu"
-              >
+              <div class="dropdown-menu pt-0 w-100" aria-labelledby="dropdownMenu">
                 <a
                   class="dropdown-item px-1 c-pointer small-text"
                   v-for="(member, index) in memberSearchResults"
@@ -301,9 +306,7 @@
                   aria-disabled="true"
                   class="btn btn-default p-1 mb-0 disable small-text"
                   v-if="
-                    memberSearchResults.length === 0 &&
-                    searchText.length >= 3 &&
-                    !loading
+                    memberSearchResults.length === 0 && searchText.length >= 3 && !loading
                   "
                 >
                   No match found
@@ -314,31 +317,6 @@
                 >
                   <i class="fas fa-circle-notch fa-spin"></i>
                 </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-12 grey-rounded-border groups"
-            :class="{ hide: !groupsAreVissible }"
-          >
-            <div
-              class="row"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12 small-text">
-                    <h4>{{ category }}</h4>
-                    <p
-                      v-for="(group, indx) in allGroups[index]"
-                      @click="selectGroup(group.category, group.id, group.name)"
-                      :key="indx"
-                    >
-                      {{ group.name }}
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -356,31 +334,6 @@
               v-model="phoneNumber"
             ></textarea>
           </div>
-          <div
-            class="col-md-12 grey-rounded-border groups"
-            :class="{ hide: !groupsAreVissible }"
-          >
-            <div
-              class="row"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h4>{{ category }}</h4>
-                    <p
-                      v-for="(group, indx) in allGroups[index]"
-                      @click="selectGroup(group.category, group.id, group.name)"
-                      :key="indx"
-                    >
-                      {{ group.name }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -390,53 +343,17 @@
           <div class="col-md-2"></div>
           <div class="col-md-10 py-2 px-0">
             <el-input
-              class=" w-100 "
+              class="w-100"
               :rows="2"
               type="textarea"
               placeholder="Enter email(s)"
               v-model="email"
             />
           </div>
-          <div
-            class="col-md-12 grey-rounded-border groups"
-            :class="{ hide: !groupsAreVissible }"
-          >
-            <div
-              class="row"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h4>{{ category }}</h4>
-                    <p
-                      v-for="(group, indx) in allGroups[index]"
-                      @click="selectGroup(group.category, group.id, group.name)"
-                      :key="indx"
-                    >
-                      {{ group.name }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
-      <div
-        class="row mt-1"
-        v-if="
-          phoneNumberSelectionTab || membershipSelectionTab || groupSelectionTab || emailSelectionTab
-        "
-      >
-        <div class="col-md-12 pr-0">
-          <hr class="hr my-1" />
-        </div>
-      </div>
-
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-2">
           <span class="font-weight-600 small-text">Subject: </span>
         </div>
@@ -456,16 +373,19 @@
         <div class="col-md-10 px-0">
           <div class="row">
             <div class="col-md-12">
-              <div id="app">
-              </div>
-              <DecoupledEditor v-model="editorData" :loadedMessage="loadedMessage" :label="'you find me'" />
+              <div id="app"></div>
+              <DecoupledEditor
+                v-model="editorData"
+                :loadedMessage="loadedMessage"
+                :label="'you find me'"
+              />
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row my-3">
-        <!-- <div class="col-md-12 form-group">
+      <!-- <div class="row my-3"> -->
+      <!-- <div class="col-md-12 form-group">
           <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10 pl-0">
@@ -474,58 +394,62 @@
             </div>
           </div>
         </div> -->
-        <div class="col-md-12">
+      <!-- <div class="col-md-12">
           <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10 pl-0">
               <span class="hint small-text"
-                >Insert #name# any where you want the contact name to appear in
-                the message, it will be replaced by the actual name of the
-                member when sending the message.</span
+                >Insert #name# any where you want the contact name to appear in the
+                message, it will be replaced by the actual name of the member when sending
+                the message.</span
               >
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
 
-      <div class="row mt-4 mb-5">
-        <div class="col-md-12">
+      <!-- <div class="row mt-4 mb-5"> -->
+      <!-- <div class="col-md-12">
           <p
             class="mb-1 text-danger text-right font-weight-700"
             v-if="invalidDestination"
           >
             Please select destination
           </p>
-          <p
-            class="mb-1 text-danger text-right font-weight-700"
-            v-if="invalidMessage"
-          >
+          <p class="mb-1 text-danger text-right font-weight-700" v-if="invalidMessage">
             Enter your message
           </p>
-        </div>
-        <div class="col-md-12 d-flex justify-content-end">
+        </div> -->
+      <!-- <div class="col-md-12 d-flex justify-content-end">
           <span>
-            <el-dropdown size="large"  trigger="click" class="split-button"  @click="contructScheduleMessageBody(1)" split-button >
-                Send
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item @click="showScheduleModal"><el-icon><Clock /></el-icon>Schedule</el-dropdown-item>
-                    <el-dropdown-item @click="draftMessage"><el-icon><MessageBox /></el-icon>Safe as Draft</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
+            <el-dropdown
+              size="large"
+              trigger="click"
+              class="split-button"
+              @click="contructScheduleMessageBody(1)"
+              split-button
+            >
+              Send
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item @click="showScheduleModal"
+                    ><el-icon><Clock /></el-icon>Schedule</el-dropdown-item
+                  >
+                  <el-dropdown-item @click="draftMessage"
+                    ><el-icon><MessageBox /></el-icon>Safe as Draft</el-dropdown-item
+                  >
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </span>
-          <router-link
-          to="/tenant/email/sent"
-            class="no-decoration"
-          >
-            <el-button class="ml-3 secondary-button" size="large" @click="closeModal" round
+          <router-link to="/tenant/email/sent" class="no-decoration">
+            <el-button class="ml-3 secondary-button" size="large" round
               >Discard</el-button
             >
           </router-link>
-        </div>
+        </div> -->
 
-        <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12">
             <div
               class="modal fade"
@@ -568,8 +492,8 @@
                         <div class="row">
                           <div class="col-md-12 px-1">
                             <p>
-                              We are providing more options to reach and
-                              communicate with your members
+                              We are providing more options to reach and communicate with
+                              your members
                             </p>
                           </div>
                         </div>
@@ -585,9 +509,7 @@
                             <div class="container">
                               <div class="row">
                                 <div class="col-md-12">
-                                  <label
-                                    for=""
-                                    class="small-text font-weight-600 py-2"
+                                  <label for="" class="small-text font-weight-600 py-2"
                                     >NEW** BULK SMS - 100% SMS DELIVERY</label
                                   >
                                 </div>
@@ -607,10 +529,7 @@
                                 </div>
                                 <div class="col-md-12 px-0 d-flex flex-column">
                                   <span>Please note:</span>
-                                  <span
-                                    >100% delivery to all valid phone
-                                    numbers.</span
-                                  >
+                                  <span>100% delivery to all valid phone numbers.</span>
                                   <span>Not Affected by DND.</span>
                                   <span
                                     >Dedicated phone number: No sender
@@ -625,16 +544,14 @@
                             <div class="container">
                               <div class="row">
                                 <div class="col-md-12">
-                                  <label
-                                    for=""
-                                    class="small-text font-weight-600 py-2"
+                                  <label for="" class="small-text font-weight-600 py-2"
                                     >REGULAR BULK SMS- PROVIDER</label
                                   >
                                 </div>
                                 <div
                                   class="col-md-12 my-2 send-now-div py-2 d-flex justify-content-center"
                                 >
-                                  <!-- hostedsms_instant -->
+                                 
                                   <button
                                     class="primary-btn default-btn border-0 px-4 my-2 grey-background text-grey outline-none"
                                     data-dismiss="modal"
@@ -666,14 +583,14 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted, ref, watchEffect } from "vue";
+import { computed, onMounted, ref, watchEffect, inject } from "vue";
 import composeService from "../../services/communication/composer";
 import composerObj from "../../services/communication/composer";
 import { useRoute } from "vue-router";
@@ -682,51 +599,49 @@ import { useToast } from "primevue/usetoast";
 import store from "../../store/store";
 import axios from "@/gateway/backendapi";
 import stopProgressBar from "../../services/progressbar/progress";
-import communicationService from '../../services/communication/communicationservice';
+import communicationService from "../../services/communication/communicationservice";
 import dateFormatter from "../../services/dates/dateformatter";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
 import swal from "sweetalert";
-import MyUploadAdapter from "../../services/editor/editor_uploader"
-import { ElMessage } from 'element-plus'
-
-import DecoupledEditor from '@/components/RichEditor';
+import MyUploadAdapter from "../../services/editor/editor_uploader";
+import { ElMessage } from "element-plus";
+import DecoupledEditor from "@/components/RichEditor";
+import ElDropDown from "@/components/dropdown/ElDropDown";
 
 export default {
-  components: { 
+  components: {
     DecoupledEditor,
+    ElDropDown,
   },
   setup() {
-    const router = useRouter()
+    const primarycolor = inject("primarycolor");
+    const router = useRouter();
     const toast = useToast();
     const editorData = ref("");
     const { mdAndUp, lgAndUp, xlAndUp, xsOnly } = deviceBreakpoint();
 
     const onReady = (editor) => {
       // Customize upload picture plugin
-      editor.plugins.get("FileRepository").createUploadAdapter = loader => {
+      editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
         return new MyUploadAdapter(loader);
       };
-    }
+    };
 
     const possibleEmailDestinations = composeService.possibleEmailDestinations;
-    const groupsAreVissible = ref(false);
     const groupSelectionTab = ref(false);
     const membershipSelectionTab = ref(false);
     const phoneNumberSelectionTab = ref(false);
     const emailSelectionTab = ref(false);
-    const email = ref("")
+    const email = ref("");
     const selectedGroups = ref([]);
-    const executionDate = ref('');
-    const iSoStringFormat = ref('')
+    const executionDate = ref("");
+    const iSoStringFormat = ref("");
 
-    const toggleGroupsVissibility = () => {
-      groupsAreVissible.value = !groupsAreVissible.value;
-    };
-      watchEffect(() =>{
-      if(executionDate.value){
-       iSoStringFormat.value = dateFormatter.getISOStringGMT(executionDate.value)
+    watchEffect(() => {
+      if (executionDate.value) {
+        iSoStringFormat.value = dateFormatter.getISOStringGMT(executionDate.value);
       }
-  })
+    });
 
     const showSection = (index) => {
       if (index === 1) groupSelectionTab.value = true;
@@ -735,8 +650,10 @@ export default {
       if (index === 4) phoneNumberSelectionTab.value = true;
       if (index === 0) {
         groupSelectionTab.value = true;
-        selectedGroups.value.push({ data: "membership_00000000-0000-0000-0000-000000000000", name: "All Contacts"
-        })
+        selectedGroups.value.push({
+          data: "membership_00000000-0000-0000-0000-000000000000",
+          name: "All Contacts",
+        });
       }
     };
 
@@ -747,7 +664,6 @@ export default {
     const closeDropdownIfOpen = (e) => {
       if (!e.target.classList.contains("dd-item")) {
         sendOptionsIsShown.value = false;
-        groupListShown.value = false;
       }
 
       if (!e.target.classList.contains("m-dd-item")) {
@@ -755,18 +671,11 @@ export default {
       }
     };
 
-    const selectGroup = (
-      category,
-      id,
-      name,
-      indexInCategories,
-      indexInGroup
-    ) => {
-      selectedGroups.value.push({ data: `${category}_${id}`, name });
-      groupsAreVissible.value = false;
-      allGroups.value[indexInCategories].splice(indexInGroup, 1);
-      groupListShown.value = false;
-      console.log(selectedGroups);
+    const selectGroup = (category, payload) => {
+      selectedGroups.value = payload.map((i) => ({
+        data: `${category}_${i.id}`,
+        name: i.name,
+      }));
     };
 
     const removeGroup = (index) => {
@@ -788,7 +697,6 @@ export default {
     };
     const removeMember = (index) => {
       selectedMembers.value.splice(index, 1);
-      
     };
     const searchText = ref("");
     const filteredMembers = computed(() => {
@@ -822,7 +730,6 @@ export default {
       }
     };
 
-
     const subject = ref("");
     const phoneNumber = ref("");
     const loading = ref(false);
@@ -840,7 +747,8 @@ export default {
 
       if (
         selectedGroups.value.length === 0 &&
-        !phoneNumber.value && !email.value &&
+        !phoneNumber.value &&
+        !email.value &&
         selectedMembers.value.length === 0
       ) {
         invalidDestination.value = true;
@@ -853,41 +761,33 @@ export default {
       }
 
       ElMessage({
-              type: 'info',
-              message: 'Email is being sent....',
-              duration: 5000
-            })
-      
+        type: "info",
+        message: "Email is being sent....",
+        duration: 5000,
+      });
+
       composeService
         .sendMessage("/api/Messaging/sendEmail", data)
         .then((res) => {
-
-          if (res.data.status ) {
+          if (res.data.status) {
             // store.dispatch('communication/addToSentEmail', res.data.mail)
             swal({
               title: "Success!",
               text: res.data.response,
               icon: "success",
-              buttons: ["Send another", "Good"],
-              confirmButtonColor: '#8CD4F5',
+              buttons: ["Good"],
+              confirmButtonColor: "#8CD4F5",
               dangerMode: true,
-            })
-            .then((willDelete) => {
+            }).then((willDelete) => {
               if (willDelete) {
                 store.dispatch("communication/addToSentEmail").then(() => {
-                  router.push({ name: 'SentEmails' })
+                  router.push({ name: "SentEmails" });
                 });
-                
               }
             });
-            
-          } else if (
-            res.data &&
-            !res.data.status
-
-          ) {
+          } else if (res.data && !res.data.status) {
             ElMessage({
-              message: res.data.message || "An error Occur" ,
+              message: res.data.message || "An error Occur",
               type: "warning",
               duration: 6000,
             });
@@ -897,24 +797,24 @@ export default {
               message: "Message not sent, please try again",
               duration: 6000,
             });
-          }      
+          }
         })
         .catch((err) => {
           stopProgressBar();
           toast.removeAllGroups();
-          if (err.toString().toLowerCase().includes('network error')) {
-             ElMessage({
-              type: 'warning',
+          if (err.toString().toLowerCase().includes("network error")) {
+            ElMessage({
+              type: "warning",
               message: "Please ensure you have internet access",
               duration: 5000,
-            })
+            });
           } else {
             ElMessage({
-              type: 'error',
+              type: "error",
               message: "Email sending failed",
               duration: 5000,
-            })
-            console.log(err)
+            });
+            console.log(err);
           }
         });
     };
@@ -937,7 +837,6 @@ export default {
           </html>`,
         isPersonalized: isPersonalized.value,
         groupedContacts: selectedGroups.value.map((i) => i.data),
-
       };
 
       const emails = [];
@@ -950,14 +849,14 @@ export default {
       data.toOthers = emails.join();
 
       if (selectedMembers.value.length > 0) {
-        data.ToContacts = data && data.ToContacts ? data.ToContacts.length > 0 ? "," : "" : "";
+        data.ToContacts =
+          data && data.ToContacts ? (data.ToContacts.length > 0 ? "," : "") : "";
         data.ToContacts += selectedMembers.value
           .map((i) => {
             if (i.id) return i.id;
           })
           .join();
       }
-
 
       if (sendOrSchedule == 2) {
         data.executionDate = iSoStringFormat.value;
@@ -969,7 +868,6 @@ export default {
       }
     };
 
-
     const showScheduleModal = () => {
       display.value = true;
     };
@@ -978,23 +876,20 @@ export default {
       display.value = false;
       const formattedDate = dateFormatter.monthDayTime(data.executionDate);
       try {
-        await composerObj.sendMessage(
-          "/api/Messaging/saveEmailSchedule",
-          data
-        );
-        router.push('/tenant/email/schedules')
+        await composerObj.sendMessage("/api/Messaging/saveEmailSchedule", data);
+        router.push("/tenant/email/scheduled");
         ElMessage({
-              type: 'success',
-              message: `message Scheduled for  ${formattedDate}` ,
-              duration: 5000
-            })
+          type: "success",
+          message: `message Scheduled for  ${formattedDate}`,
+          duration: 5000,
+        });
       } catch (error) {
         console.log(error);
         ElMessage({
-              type: 'error',
-              message: "Could not Schedule message",
-              duration: 5000
-            })
+          type: "error",
+          message: "Could not Schedule message",
+          duration: 5000,
+        });
       }
     };
 
@@ -1007,17 +902,17 @@ export default {
         });
         store.dispatch("communication/getEmailDrafts");
         ElMessage({
-              type: 'success',
-              message: "Message saved as draft",
-              duration: 5000
-            })
+          type: "success",
+          message: "Message saved as draft",
+          duration: 5000,
+        });
       } catch (error) {
         console.log(error, "drafting error");
         ElMessage({
-              type: 'warning',
-              message: "Message not saved as draft",
-              duration: 5000,
-            })
+          type: "warning",
+          message: "Message not saved as draft",
+          duration: 5000,
+        });
       }
     };
 
@@ -1028,9 +923,9 @@ export default {
       phoneNumber.value = route.query.phone;
       phoneNumberSelectionTab.value = true;
     }
-    if(route.query.email){
-      email.value = route.query.email
-      emailSelectionTab.value = true
+    if (route.query.email) {
+      email.value = route.query.email;
+      emailSelectionTab.value = true;
     }
 
     if (route.query.group) {
@@ -1040,24 +935,21 @@ export default {
         name: route.query.group,
       });
       phoneNumberSelectionTab.value = true;
-      emailSelectionTab.value = true
+      emailSelectionTab.value = true;
     }
-
-    
 
     const onEditorReady = () => {
       if (route.query.emaildraft) {
-        communicationService.getEmailDraftById(route.query.emaildraft)
-          .then(res => {
-            console.log(res)
-            if (res) {
-              subject.value = res.subject;
-              editorData.value = res.body;
-            }
-          })
+        communicationService.getEmailDraftById(route.query.emaildraft).then((res) => {
+          console.log(res);
+          if (res) {
+            subject.value = res.subject;
+            editorData.value = res.body;
+          }
+        });
       }
-    }
-    onEditorReady()
+    };
+    onEditorReady();
 
     if (store.getters.currentUser && store.getters.currentUser.isoCode) {
       isoCode.value = store.getters.currentUser.isoCode;
@@ -1100,11 +992,6 @@ export default {
       display.value = !display.value;
     };
 
-    const groupListShown = ref(false);
-    const showGroupList = () => {
-      groupListShown.value = true;
-    };
-
     const memberListShown = ref(false);
     const showMemberList = () => {
       memberListShown.value = true;
@@ -1112,25 +999,40 @@ export default {
     const groupSelectInput = ref(null);
     const memberSelectInput = ref(null);
 
-    const loadedMessage = ref("")
-    const getMessage = async messageId => {
+    const loadedMessage = ref("");
+    const getMessage = async (messageId) => {
       try {
-          const { message, subject: subj } = await composeService.getSMSById(messageId);
-          loadedMessage.value = message;
-          subject.value = subj;
+        const { message, subject: subj } = await composeService.getSMSById(messageId);
+        loadedMessage.value = message;
+        subject.value = subj;
       } catch (error) {
-          console.log(error)
-          ElMessage({
-              type: 'error',
-              message: "Could not load email",
-              duration: 5000,
-            })
+        console.log(error);
+        ElMessage({
+          type: "error",
+          message: "Could not load email",
+          duration: 5000,
+        });
       }
-    }
+    };
 
     if (route.query.messageId) {
       getMessage(route.query.messageId);
     }
+
+    const contactSegment = ref([]);
+    const getContactList = async () => {
+      try {
+        const res = await axios.get("/api/GetAllGroupBasicInformation");
+        contactSegment.value = res.data.response.groupResonseDTO;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getContactList();
+
+    const setSelectedGroup = (payload) => {
+      selectGroup("group", payload);
+    };
 
     return {
       loadedMessage,
@@ -1138,8 +1040,6 @@ export default {
       showScheduleModal,
       editorData,
       possibleEmailDestinations,
-      groupsAreVissible,
-      toggleGroupsVissibility,
       selectedGroups,
       selectGroup,
       removeGroup,
@@ -1169,8 +1069,6 @@ export default {
       showDateTimeSelectionModal,
       scheduleMessage,
       draftMessage,
-      groupListShown,
-      showGroupList,
       groupSelectInput,
       memberListShown,
       showMemberList,
@@ -1188,6 +1086,9 @@ export default {
       xlAndUp,
       xsOnly,
       onReady,
+      contactSegment,
+      setSelectedGroup,
+      primarycolor,
     };
   },
 };

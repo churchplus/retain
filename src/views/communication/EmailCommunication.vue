@@ -1,103 +1,30 @@
 <template>
-  <div class="" :class="{ 'container-slim': lgAndUp || xlAndUp }">
-
-
-    <!-- Content Box -->
-    <main class="mt-md-3" :class="{ 'main': mdAndUp || lgAndUp || xlAndUp }">
+  <div>
+    <Header headerName="Email" />
+  </div>
+  <div>
+    <main class="mt-md-3" :class="{ main: mdAndUp || lgAndUp || xlAndUp }">
       <div class="container-fluid">
-        <div class="row mt-4">
-          <div class="col-md-12 d-flex justify-content-start">
-            <h2 class="head-text">Email</h2>
-          </div>
-        </div>
         <div class="row">
-          <div class="col-md-12">
-            <hr class="hr" />
-          </div>
-        </div>
-        <div class="row">
-          <!-- <div class="row"> -->
-          <div class="col-md-3 col-12 px-0 px-md-3 d-flex flex-column mt-4">
-            <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
-                    <i class="pi pi-bars" @click="toggleMenu"></i>
-                  </div> -->
-            <router-link to="/tenant/email/compose" class="no-decoration">
-              <el-button round class="font-weight-bold w-100 mb-3" size="large" :color="primarycolor">
-                Compose Email
+          <div
+            class="col-6 col-md-2 mt-4"
+            v-for="(item, index) in emailMenu"
+            :key="index"
+          >
+            <router-link :to="item.path" class="no-decoration">
+              <el-button
+                :class="{ 'active-link': route.path.includes(item.path) }"
+                :color="route.path.includes(item.path) ? '#F68479' : '#D9D9D9'"
+                class="font-weight-bold w-100 thick-secondary"
+                size="large"
+              >
+                {{ item.name }}
               </el-button>
             </router-link>
           </div>
-          <!-- </div> -->
-          <!-- Side mennu -->
-          <div class="col-md-9 col-12 mt-4" :class="{ 'side-menu': mdAndUp || lgAndUp || xlAndUp }">
-            <!-- <div class="row" :class="{ 'show mb-3': menuShouldShow, 'links-menu' : !menuShouldShow }"> -->
-            <div class="row">
-              <div class="col-md-12 d-flex flex-wrap">
-                <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/email/sent' }">
-                  <div class="col-md-12 menu-item-div m-auto">
-                    <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item">
-                        <router-link class="r-link text-decoration-none d-flex align-items-center "
-                          to="/tenant/email/sent">
-                          <!-- <el-icon class="mr-3  menu-icon ">
-                            <Top />
-                          </el-icon> -->
-                          <span class="active">Sent</span>
-                        </router-link>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-
-                <!-- <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/email/draft'}">
-                    <div class="col-md-12 menu-item-div m-auto">
-                      <a class="btn btn-default font-weight-bold">
-                        <span class="menu-item">
-                            <router-link class="r-link d-flex align-items-center text-decoration-none" to="/tenant/email/draft">
-                              <el-icon class="mr-3  menu-icon"><Message /></el-icon>
-                              <span class="active">Draft</span>
-                            </router-link>
-                        </span>
-                    </a>
-                    </div>
-                  </div> -->
-
-                <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/email/schedules' }">
-                  <div class="col-md-12 menu-item-div m-auto">
-                    <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item"><router-link class="r-link d-flex align-items-center text-decoration-none"
-                          to="/tenant/email/schedules">
-                          <!-- <el-icon class=" mr-3 menu-icon">
-                            <Clock />
-                          </el-icon> -->
-                          <span class="active">Scheduled</span>
-                        </router-link>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-                <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/buyunits' }">
-                  <div class="col-md-12 menu-item-div m-auto">
-                    <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item">
-                        <router-link class="r-link text-decoration-none d-flex align-items-center"
-                          :to="{ name: 'BuyUnits', path: '/tenant/buyunits' }">
-                          <!-- <el-icon class="mr-3">
-                            <Sell />
-                          </el-icon> -->
-                          <span class="active">Buy Units</span>
-                        </router-link>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
 
           <!-- Bigger row -->
-          <div class="col-md-12  ">
+          <div class="col-md-12">
             <router-view></router-view>
           </div>
         </div>
@@ -108,17 +35,36 @@
 
 <script>
 import { ref, inject } from "vue";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
+import Header from "@/components/header/Header.vue";
 export default {
+  components: {
+    Header,
+  },
   setup() {
-    const primarycolor = inject('primarycolor')
+    const primarycolor = inject("primarycolor");
     const route = useRoute();
     const menuShouldShow = ref(false);
-    const { xsOnly, smAndUp, mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint()
+    const { xsOnly, smAndUp, mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint();
     const toggleMenu = () => {
-      menuShouldShow.value = !menuShouldShow.value
+      menuShouldShow.value = !menuShouldShow.value;
     };
+
+    const emailMenu = ref([
+      {
+        name: "Compose Email",
+        path: "/tenant/email/compose",
+      },
+      {
+        name: "Scheduled",
+        path: "/tenant/email/scheduled",
+      },
+      {
+        name: "Buy Units",
+        path: "/tenant/email/buyunit",
+      },
+    ]);
 
     return {
       menuShouldShow,
@@ -129,9 +75,10 @@ export default {
       mdAndUp,
       xsOnly,
       smAndUp,
-      primarycolor
-    }
-  }
+      primarycolor,
+      emailMenu,
+    };
+  },
 };
 </script>
 
@@ -208,7 +155,8 @@ export default {
 
 .active-link {
   /* background: rgba(19, 106, 205, 0.05) ; */
-  color: #136acd !important;
+  /* color: #136acd !important; */
+  color: #ffffff !important;
 }
 
 /* .active-link2 {
@@ -221,7 +169,7 @@ export default {
 }
 
 .buy-btn {
-  background: rgb(112, 142, 177, .33);
+  background: rgb(112, 142, 177, 0.33);
   border-radius: 22px;
 }
 
@@ -238,7 +186,7 @@ export default {
 }
 
 .view-btn {
-  background: #EBEFF4;
+  background: #ebeff4;
   border-radius: 21px;
   padding: 4px 18px;
   height: 40px;
@@ -253,14 +201,13 @@ export default {
 }
 
 .router-link-exact-active i {
-  color: #136ACD;
+  color: #136acd;
   opacity: 1;
 }
 
 * {
   box-sizing: border-box;
 }
-
 
 .toggle {
   display: none;
@@ -307,7 +254,6 @@ export default {
   .header-row {
     display: none;
   }
-
 
   #menu-items {
     flex-direction: row !important;
@@ -357,4 +303,5 @@ export default {
   .menu-item-div {
     padding-left: 30px;
   }
-}</style>
+}
+</style>

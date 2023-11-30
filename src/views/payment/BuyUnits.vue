@@ -3,11 +3,13 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12 mb-4 mt-3" id="successDialog">
-          <h2 class="font-weight-bold intro-text">
-            Choose a plan
-          </h2>
-          <el-dialog v-model="purchaseIsSuccessful" class="smsUnitSuccess"
-            :width="mdAndUp || lgAndUp || xlAndUp ? '60%' : '100%'" align-center>
+          <h2 class="font-weight-bold intro-text">Choose a plan</h2>
+          <el-dialog
+            v-model="purchaseIsSuccessful"
+            class="smsUnitSuccess"
+            :width="mdAndUp || lgAndUp || xlAndUp ? '60%' : '100%'"
+            align-center
+          >
             <PaymentSuccessModal @close-modal="closeModal" :amount="amount" />
           </el-dialog>
         </div>
@@ -16,9 +18,8 @@
       <div class="row text-center mb-4">
         <div class="col-lg-8 offset-lg-2">
           <p class="font-weight-noraml small-text">
-            There is no maximum limit or expiry date for your units which you
-            may purchase at any time. With our pricing system you get more SMS
-            units the more you buy.
+            There is no maximum limit or expiry date for your units which you may purchase
+            at any time. With our pricing system, the more you buy, you get more units.
           </p>
         </div>
       </div>
@@ -27,9 +28,7 @@
         <div class="col-lg-8 offset-lg-2 buy-box">
           <div class="row mb-5">
             <div class="col-md-12 calc-con">
-              <h2 class="font-weight-700 plan-header text-white">
-                Buy SMS Units
-              </h2>
+              <h2 class="font-weight-700 plan-header text-white">Buy SMS Units</h2>
             </div>
           </div>
 
@@ -37,19 +36,35 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-3 d-flex align-items-center justify-content-md-end">
-                  <label for="">Amount: <el-icon class="is-loading" v-show="checkingCoutryData">
-                      <Loading />
-                    </el-icon></label>
+                  <label for=""
+                    >Amount:
+                    <el-icon class="is-loading" v-show="checkingCoutryData">
+                      <Loading /> </el-icon
+                  ></label>
                 </div>
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-12">
-                      <el-input v-model="amount" placeholder="Enter amount" class="input-with-select"
-                        :disabled="checkingCoutryData">
+                      <el-input
+                        v-model="amount"
+                        placeholder="Enter amount"
+                        class="input-with-select"
+                        :disabled="checkingCoutryData"
+                      >
                         <template #prepend>
-                          <el-select v-model="selectedCurrency" placeholder="Select" style="width: 115px"
-                            @change="resetCountryPricing" filterable>
-                            <el-option v-for="item in FLWupportedCurrencies" :label="item.value" :value="item.value" :key="item.value" />
+                          <el-select
+                            v-model="selectedCurrency"
+                            placeholder="Select"
+                            style="width: 115px"
+                            @change="resetCountryPricing"
+                            filterable
+                          >
+                            <el-option
+                              v-for="item in FLWupportedCurrencies"
+                              :label="item.value"
+                              :value="item.value"
+                              :key="item.value"
+                            />
                           </el-select>
                         </template>
                       </el-input>
@@ -68,7 +83,12 @@
                   <label for="">SMS Units:</label>
                 </div>
                 <div class="col-md-6">
-                  <el-input type="text" v-model="totalSMSUnits" disabled class="flat-left-border" />
+                  <el-input
+                    type="text"
+                    v-model="totalSMSUnits"
+                    disabled
+                    class="flat-left-border"
+                  />
                 </div>
                 <div class="col-md-3"></div>
               </div>
@@ -82,8 +102,13 @@
                   <label for="">Total:</label>
                 </div>
                 <div class="col-md-6">
-                  <el-input type="text" v-model="totalAmount" disabled class="flat-left-border"
-                    @input="userCurrencyConversion()" />
+                  <el-input
+                    type="text"
+                    v-model="totalAmount"
+                    disabled
+                    class="flat-left-border"
+                    @input="userCurrencyConversion()"
+                  />
                 </div>
                 <div class="col-md-3"></div>
               </div>
@@ -95,22 +120,32 @@
               <p class="text-danger font-weight-700 mb-1" v-if="invalidAmount">
                 Please enter amount
               </p>
-              <el-button :color="primarycolor" class="px-4" size="large" data-toggle="modal"
-                data-target="#PaymentOptionModal">Buy SMS Unit</el-button>
+              <el-button
+                :color="primarycolor"
+                class="px-4"
+                size="large"
+                data-toggle="modal"
+                data-target="#PaymentOptionModal"
+                >Buy SMS Unit</el-button
+              >
             </div>
           </div>
         </div>
       </div>
 
       <!-- payment modal for paystack and flutterwave  -->
-      <div class="modal fade" id="PaymentOptionModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div
+        class="modal fade"
+        id="PaymentOptionModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header bg-modal">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Payment methods
-              </h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Payment methods</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" ref="close">&times;</span>
               </button>
@@ -121,15 +156,29 @@
                   Continue payment with
                 </div>
               </div>
-              <div class="row row-button c-pointer d-flex justify-content-center" @click="initializePayment(0)"
-                v-if="selectedCurrency == 'NGN' || selectedCurrency == 'GHS'">
+              <div
+                class="row row-button c-pointer d-flex justify-content-center"
+                @click="initializePayment(0)"
+                v-if="selectedCurrency == 'NGN' || selectedCurrency == 'GHS'"
+              >
                 <div>
-                  <img style="width: 150px" src="../../assets/4PaystackLogo.png" alt="paystack" />
+                  <img
+                    style="width: 150px"
+                    src="../../assets/4PaystackLogo.png"
+                    alt="paystack"
+                  />
                 </div>
               </div>
-              <div class="row row-button c-pointer d-flex justify-content-center" @click="initializePayment(1)">
+              <div
+                class="row row-button c-pointer d-flex justify-content-center"
+                @click="initializePayment(1)"
+              >
                 <div>
-                  <img style="width: 150px" src="../../assets/flutterwave_logo_color@2x.png" alt="flutterwave" />
+                  <img
+                    style="width: 150px"
+                    src="../../assets/flutterwave_logo_color@2x.png"
+                    alt="flutterwave"
+                  />
                 </div>
               </div>
               <div class="row row-button mb-1 c-pointer d-flex justify-content-center">
@@ -138,18 +187,28 @@
                 </div>
               </div>
               <div class="row justify-content-center">
-                
-                <div class="col-md-8 rounded  shadow" :class="{ 'showDropdownMenu': showTransferDetail, 'hideDropdownMenu': !showTransferDetail }">
-                  <div class="col-md-12 d-flex justify-content-center"> <el-icon :size="18"><Bottom /></el-icon> </div>
-                  <div class="row   ">
-                    <div class="col-md-12 d-flex justify-content-between ">
-                      <div>Account Name: </div> <span class="font-weight-bold ">Complustech Limited</span>
+                <div
+                  class="col-md-8 rounded shadow"
+                  :class="{
+                    showDropdownMenu: showTransferDetail,
+                    hideDropdownMenu: !showTransferDetail,
+                  }"
+                >
+                  <div class="col-md-12 d-flex justify-content-center">
+                    <el-icon :size="18"><Bottom /></el-icon>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 d-flex justify-content-between">
+                      <div>Account Name:</div>
+                      <span class="font-weight-bold">Complustech Limited</span>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between">
-                      <div>Account Number: </div> <span class="font-weight-bold ">0017934252</span>
+                      <div>Account Number:</div>
+                      <span class="font-weight-bold">0017934252</span>
                     </div>
-                    <div class="col-md-12 d-flex justify-content-between ">
-                      <div>Bank: </div> <span class="font-weight-bold ">Access</span>
+                    <div class="col-md-12 d-flex justify-content-between">
+                      <div>Bank:</div>
+                      <span class="font-weight-bold">Access</span>
                     </div>
                   </div>
                 </div>
@@ -173,61 +232,67 @@
 <script>
 import { computed, ref, inject } from "vue";
 import axios from "@/gateway/backendapi";
-import PaymentSuccessModal from "@/components/payment/PaymentSuccessful.vue"
-import store from '../../store/store'
-import stopProgressBar from "../../services/progressbar/progress"
-import supportedCurrencies from "../../services/user/flutterwaveSupportedCurrency"
+import PaymentSuccessModal from "@/components/payment/PaymentSuccessful.vue";
+import store from "../../store/store";
+import stopProgressBar from "../../services/progressbar/progress";
+import supportedCurrencies from "../../services/user/flutterwaveSupportedCurrency";
 import productPricing from "../../services/user/productPricing";
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from "element-plus";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
-import { ElLoading } from 'element-plus';
+import { ElLoading } from "element-plus";
 import membershipService from "../../services/membership/membershipservice";
 
 export default {
   components: { PaymentSuccessModal },
   setup() {
-    const primarycolor = inject('primarycolor')
+    const primarycolor = inject("primarycolor");
     const amount = ref(0);
     const smsUnits = ref(0);
     const invalidAmount = ref(false);
     const purchaseIsSuccessful = ref(false);
-    const isProduction = true
-    const churchLogo = ref('');
+    const isProduction = true;
+    const churchLogo = ref("");
     const close = ref(null);
     const pricePerUnitSMS = ref(0);
     const FLWupportedCurrencies = ref(supportedCurrencies);
-    const selectedCurrency = ref(null)
-    const UserSMSPricing = ref({})
-    const UserProductPricing = ref({})
-    const countries = ref([])
-    const checkingCoutryData = ref(false)
-    const showTransferDetail = ref(false)
-    const { mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint()
-
+    const selectedCurrency = ref(null);
+    const UserSMSPricing = ref({});
+    const UserProductPricing = ref({});
+    const countries = ref([]);
+    const checkingCoutryData = ref(false);
+    const showTransferDetail = ref(false);
+    const { mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint();
 
     const currentUser = computed(() => {
-      if (!store.getters.currentUser || (store.getters.currentUser && Object.keys(store.getters.currentUser).length == 0)) return ''
-      return store.getters.currentUser
-    })
+      if (
+        !store.getters.currentUser ||
+        (store.getters.currentUser && Object.keys(store.getters.currentUser).length == 0)
+      )
+        return "";
+      return store.getters.currentUser;
+    });
 
     const directTransfer = () => {
-      showTransferDetail.value = !showTransferDetail.value
-    }
+      showTransferDetail.value = !showTransferDetail.value;
+    };
 
     const setCurrentUser = async () => {
-      membershipService.getSignedInUser()
-        .then(res => {
-          store.dispatch("setCurrentUser", res);
-          setUserCurrency()
-        })
-    }
-    if (!currentUser.value || (currentUser.value && Object.keys(currentUser.value).length == 0)) setCurrentUser();
-
+      membershipService.getSignedInUser().then((res) => {
+        store.dispatch("setCurrentUser", res);
+        setUserCurrency();
+      });
+    };
+    if (
+      !currentUser.value ||
+      (currentUser.value && Object.keys(currentUser.value).length == 0)
+    )
+      setCurrentUser();
 
     const totalSMSUnits = computed(() => {
       if (amount.value <= 0) return "";
-      if (UserSMSPricing.value) return Math.round(amount.value / +UserSMSPricing.value.price);
-      return ""
+      if (UserSMSPricing.value)
+        return Math.round(amount.value / +UserSMSPricing.value.price);
+      return "";
     });
 
     const totalAmount = computed(() => {
@@ -236,68 +301,75 @@ export default {
     });
 
     const getAllCountries = () => {
-      axios.get("/api/GetAllCountries").then((res) => {
-        countries.value = res.data;
-      })
-        .catch(err => console.error(err))
-    }
+      axios
+        .get("/api/GetAllCountries")
+        .then((res) => {
+          countries.value = res.data;
+        })
+        .catch((err) => console.error(err));
+    };
 
     const getProductPricing = async (id) => {
-      let { data } = await productPricing.getProductPricing(id)
-      UserProductPricing.value = data
-      UserSMSPricing.value = data.find(i => i.product.name.toLowerCase() === 'sms')
+      let { data } = await productPricing.getProductPricing(id);
+      UserProductPricing.value = data;
+      UserSMSPricing.value = data.find((i) => i.product.name.toLowerCase() === "sms");
       if (!UserSMSPricing.value) {
         ElMessageBox.confirm(
-          'SMS Unit pricing is currently not available for this currency selected, we will make it available as soon as possible, you can reach out to us by sending an email to info@churchplus.co for us to address your specific needs. Thank you for choosing Churchplus',
-          'Notice',
+          "SMS Unit pricing is currently not available for this currency selected, we will make it available as soon as possible, you can reach out to us by sending an email to info@churchplus.co for us to address your specific needs. Thank you for choosing Churchplus",
+          "Notice",
           {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning',
+            confirmButtonText: "OK",
+            cancelButtonText: "Cancel",
+            type: "warning",
           }
         )
           .then(() => {
             ElMessage({
-              type: 'warning',
-              message: 'We await your feedback. Thank you',
-            })
+              type: "warning",
+              message: "We await your feedback. Thank you",
+            });
           })
           .catch(() => {
             ElMessage({
-              type: 'warning',
-              message: 'We await your feedback. Thank you',
-            })
-          })
+              type: "warning",
+              message: "We await your feedback. Thank you",
+            });
+          });
       }
-      checkingCoutryData.value = false
-    }
-
+      checkingCoutryData.value = false;
+    };
 
     const resetCountryPricing = () => {
-      checkingCoutryData.value = true
-      const countryIDObj = countries.value.find(i => i.currency == selectedCurrency.value)
-      getProductPricing(countryIDObj.id)
-    }
+      checkingCoutryData.value = true;
+      const countryIDObj = countries.value.find(
+        (i) => i.currency == selectedCurrency.value
+      );
+      getProductPricing(countryIDObj.id);
+    };
 
     const getChurchProfile = async () => {
       try {
-        let res = await axios.get(`/GetChurchProfileById?tenantId=${currentUser.value.tenantId}`)
-        churchLogo.value = res.data.returnObject.logo
-        getProductPricing(res.data.returnObject.countryID)
+        let res = await axios.get(
+          `/GetChurchProfileById?tenantId=${currentUser.value.tenantId}`
+        );
+        churchLogo.value = res.data.returnObject.logo;
+        getProductPricing(res.data.returnObject.countryID);
+      } catch (err) {
+        console.log(err);
       }
-      catch (err) {
-        console.log(err)
-      }
-    }
+    };
 
     const setUserCurrency = () => {
-      const userCurrencySupported = FLWupportedCurrencies.value.find(i => i.value === currentUser.value.currency)
-      selectedCurrency.value = userCurrencySupported ? userCurrencySupported.value : 'USD'
+      const userCurrencySupported = FLWupportedCurrencies.value.find(
+        (i) => i.value === currentUser.value.currency
+      );
+      selectedCurrency.value = userCurrencySupported
+        ? userCurrencySupported.value
+        : "USD";
       getAllCountries();
       getChurchProfile();
-    }
-    if (currentUser.value && Object.keys(currentUser.value).length > 0) setUserCurrency()
-
+    };
+    if (currentUser.value && Object.keys(currentUser.value).length > 0) setUserCurrency();
 
     const payWithPaystack = (responseObject) => {
       // eslint-disable-next-line
@@ -307,19 +379,19 @@ export default {
         email: currentUser.value.userEmail,
         amount: totalAmount.value * 100,
         currency: selectedCurrency.value,
-        channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money', 'bank_transfer'],
+        channels: ["card", "bank", "ussd", "qr", "mobile_money", "bank_transfer"],
         ref: responseObject.transactionReference,
         onClose: function () {
           ElMessage({
-            type: 'info',
+            type: "info",
             showClose: true,
             message: "You have cancelled the transaction",
-            duration: 5000
-          })
+            duration: 5000,
+          });
         },
         callback: function (response) {
-          let trans_id = response.trxref
-          let tx_ref = response.trxref
+          let trans_id = response.trxref;
+          let tx_ref = response.trxref;
           confirmSMSUnitPayment(tx_ref, trans_id);
           console.log(response);
         },
@@ -334,8 +406,8 @@ export default {
         ? "https://ravemodal-dev.herokuapp.com/v3.js"
         : "https://checkout.flutterwave.com/v3.js";
       document.getElementsByTagName("head")[0].appendChild(script);
-    }
-    getFlutterwaveModules()
+    };
+    getFlutterwaveModules();
 
     const payWithFlutterwave = (returnObject) => {
       window.FlutterwaveCheckout({
@@ -344,33 +416,33 @@ export default {
         tx_ref: returnObject.transactionReference,
         amount: totalAmount.value,
         currency: selectedCurrency.value,
-        payment_options: 'card,ussd',
+        payment_options: "card,ussd",
         customer: {
           name: currentUser.value.churchName,
           email: currentUser.value.userEmail,
         },
         callback: (response) => {
-          let trans_id = response.transaction_id
-          let tx_ref = response.tx_ref
+          let trans_id = response.transaction_id;
+          let tx_ref = response.tx_ref;
           confirmSMSUnitPayment(trans_id, tx_ref);
         },
         onclose: () => {
           ElMessage({
-            type: 'info',
+            type: "info",
             showClose: true,
             message: "Payment window closed",
-            duration: 5000
-          })
+            duration: 5000,
+          });
         },
         customizations: {
           title: currentUser.value.churchName,
           description: "Payment for SMS Unit ",
-          logo: churchLogo.value
+          logo: churchLogo.value,
         },
       });
-    }
+    };
 
-    const closeModal = () => purchaseIsSuccessful.value = false;
+    const closeModal = () => (purchaseIsSuccessful.value = false);
 
     const initializePayment = (paymentType) => {
       invalidAmount.value = false;
@@ -380,34 +452,34 @@ export default {
       }
       const loading = ElLoading.service({
         lock: true,
-        text: 'Please wait...',
-        background: 'rgba(255, 255, 255, 0.9)',
-      })
+        text: "Please wait...",
+        background: "rgba(255, 255, 255, 0.9)",
+      });
 
       const payload = {
         smsUnit: totalSMSUnits.value,
         amount: totalAmount.value,
         paymentGateway: paymentType == 0 ? "Paystack" : "Flutterwave",
-      }
+      };
       axios
         .post(`/api/Payment/InitializeSMSPayment`, payload)
         .then(({ data }) => {
           close.value.click();
-          loading.close()
-          console.log(data)
+          loading.close();
+          console.log(data);
           if (data.status) {
             if (paymentType == 0) {
-              payWithPaystack(data)
+              payWithPaystack(data);
             } else {
-              payWithFlutterwave(data)
+              payWithFlutterwave(data);
             }
           }
         })
         .catch((err) => {
           console.error(err);
           loading.close();
-        })
-    }
+        });
+    };
 
     const confirmSMSUnitPayment = async (trans_id, tx_ref) => {
       await axios
@@ -418,32 +490,31 @@ export default {
             purchaseIsSuccessful.value = true;
             store.dispatch("addPurchasedUnits", totalSMSUnits.value);
             // Reset SMS unit on dashboard
-            store.dispatch('dashboard/getDashboard');
+            store.dispatch("dashboard/getDashboard");
 
             // Reset SMS unit from current user in store
             store.dispatch("getUserData");
-
           } else {
             ElMessage({
-              type: 'error',
+              type: "error",
               showClose: true,
-              message: 'Confirming your SMS unit purchase failed, please contact support at info@churchplus.co',
-              duration: 20000
-            })
-
+              message:
+                "Confirming your SMS unit purchase failed, please contact support at info@churchplus.co",
+              duration: 20000,
+            });
           }
         })
         .catch(() => {
           stopProgressBar();
           ElMessage({
-            type: 'error',
+            type: "error",
             showClose: true,
-            message: 'Confirming your purchase failed, please contact support at info@churchplus.co',
-            duration: 5000
-          })
+            message:
+              "Confirming your purchase failed, please contact support at info@churchplus.co",
+            duration: 5000,
+          });
         });
-    }
-
+    };
 
     return {
       primarycolor,
@@ -471,7 +542,7 @@ export default {
       checkingCoutryData,
       mdAndUp,
       lgAndUp,
-      xlAndUp
+      xlAndUp,
     };
   },
 };
@@ -498,8 +569,6 @@ export default {
   height: 0px;
   transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-
-
 
 .plan-box {
   box-shadow: 7px 15px 25px #00000012;

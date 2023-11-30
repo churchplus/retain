@@ -299,7 +299,7 @@ export default {
           {
             name: "Email",
             logo: "/",
-            route: "/tenant/email",
+            route: "/tenant/email/compose",
           },
           {
             name: "Voice",
