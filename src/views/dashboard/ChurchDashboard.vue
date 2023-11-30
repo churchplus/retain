@@ -232,7 +232,6 @@ export default {
     });
 
     const getBasicDashboard = (payload) => {
-      console.log(moment().format("l"));
       dashboardLoading.value = true;
       let url = payload
         ? `/dashboard/retain?startDate=${payload.value}&&endDate=${moment().format("l")}`
@@ -247,19 +246,19 @@ export default {
           donutOption.value.labels = dashboardData.value.deliveryTrend.map((i) => i.name);
           smsSeries.value.push({
             name: "SMS",
-            data: dashboardData.value.smsTrend.map((i) => i.value),
+            data: dashboardData.value.smsTrend.map((i) => i.value).reverse(),
           });
           smsXaxis.value = dashboardData.value.smsTrend.map((i) =>
             dateFormatter.monthDayYear(i.name.split(" ")[0])
-          );
+          ).reverse();
 
           contactSeries.value.push({
             name: "Contacts",
-            data: dashboardData.value.contactsTrend.map((i) => i.value),
+            data: dashboardData.value.contactsTrend.map((i) => i.value).reverse(),
           });
           contactXaxis.value = dashboardData.value.contactsTrend.map((i) =>
             dateFormatter.monthDayYear(i.name.split(" ")[0])
-          );
+          ).reverse();
 
           // Set date range value
           setcurrentvalue.value = {

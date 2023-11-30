@@ -1,63 +1,37 @@
 <template>
-  <div class="container-top" :class="{ 'container-slim': lgAndUp || xlAndUp }">
-    <div class="create-btn-div">
-      <div>
-        <h2 class="head-text ">Voice</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <hr class="hr" />
-      </div>
-    </div>
-
+  <div>
+    <Header headerName="Voice" />
     <!-- Content Box -->
-    <main :class="{ 'main': mdAndUp || lgAndUp || xlAndUp }" class="mt-3">
+    <el-main class="mt-md-3">
       <div class="container-fluid">
         <div class="row">
-
-          <!-- <div class="row"> -->
-          <div class="col-md-3 col-12 px-0 mt-4">
-            <!-- <div class="mt-2" v-show="xsOnly || smAndUp">
-              <i class="pi pi-bars" @click="toggleMenu"></i>
-            </div> -->
-            <el-button round class="font-weight-bold w-100" size="large" :color="primarycolor" @click="nextPage">
-              Compose voice
-            </el-button>
-          </div>
-          <!-- </div> -->
-          <!-- Side menu -->
-          <div class="col-md-9 col-12" id="side-menu">
-            <div class="row mt-4">
-            <!-- <div class="row mt-4" :class="{ 'show mb-3': menuShouldShow, 'links-menu': !menuShouldShow }"> -->
-              <div class="col-md-12 d-flex flex-wrap">
-                <div class="row menu-item-con " :class="{ 'active-link': route.path === '/tenant/voice/voicelist' }">
-                  <div class="col-md-12 menu-item-div m-auto">
-                    <a class="btn btn-default font-weight-bold">
-                      <span class="menu-item">
-                        <router-link class="r-link text-decoration-none d-flex align-items-center "
-                          to="/tenant/voice/voicelist">
-                          <!-- <el-icon class="mr-3  menu-icon">
-                            <Tickets />
-                          </el-icon> -->
-                          <span class="active">All Sent Voice</span>
-                        </router-link>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div
+            class="col-6 col-md-2 mt-4"
+            v-for="(item, index) in voiceMenu"
+            :key="index"
+          >
+            <router-link :to="item.path" class="no-decoration">
+              <el-button
+                :class="{ 'active-link': route.path.includes(item.path) }"
+                :color="route.path.includes(item.path) ? '#F68479' : '#D9D9D9'"
+                class="font-weight-bold w-100 thick-secondary"
+                size="large"
+              >
+                {{ item.name }}
+              </el-button>
+            </router-link>
           </div>
 
           <!-- Bigger row -->
-          <div class="col-md-12 px-0  " >
-            <router-view> </router-view>
+          <div class="col-md-12 px-0">
+            <router-view></router-view>
           </div>
         </div>
       </div>
-    </main>
+    </el-main>
   </div>
+
+  <div></div>
 </template>
 
 <script>
@@ -65,19 +39,31 @@ import { ref, inject } from "vue";
 import { useRoute } from "vue-router";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
 import router from "../../router";
+import Header from "@/components/header/Header.vue";
 export default {
+  components: {
+    Header,
+  },
   setup() {
-    const primarycolor = inject('primarycolor')
+    const primarycolor = inject("primarycolor");
     const route = useRoute();
     const menuShouldShow = ref(false);
-    const { xsOnly, smAndUp, mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint()
+    const { xsOnly, smAndUp, mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint();
     const toggleMenu = () => {
-      menuShouldShow.value = !menuShouldShow.value
+      menuShouldShow.value = !menuShouldShow.value;
     };
 
-    const nextPage = () => {
-      router.push('/tenant/voice/sendvoicemessage')
-    }
+    const voiceMenu = ref([
+      {
+        name: "Compose Voice",
+        path: "/tenant/voice/sendvoicemessage",
+      },
+      {
+        name: "Voice report",
+        path: "/tenant/voice/voicelist",
+      }
+    ]);
+
     return {
       route,
       router,
@@ -89,7 +75,7 @@ export default {
       lgAndUp,
       xlAndUp,
       primarycolor,
-      nextPage
+      voiceMenu
     };
   },
 };
@@ -188,7 +174,7 @@ export default {
 .active-link {
   /* background: rgba(19, 106, 205, 0.05); */
   /* border-bottom: 2px solid #136acd; */
-  color: #136acd;
+  color: #ffffff !important;
 }
 
 .router-link-exact-active .active {
