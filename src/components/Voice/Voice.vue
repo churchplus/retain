@@ -2,11 +2,11 @@
   <div>
     <Header headerName="Voice" />
     <!-- Content Box -->
-    <el-main class="mt-md-3">
+    <el-main class="mt-md-3" >
       <div class="container-fluid">
         <div class="row">
           <div
-            class="col-6 col-md-2 mt-4"
+            class="col-6 col-md-2 pl-0"
             v-for="(item, index) in voiceMenu"
             :key="index"
           >
@@ -58,10 +58,10 @@ export default {
         name: "Compose Voice",
         path: "/tenant/voice/sendvoicemessage",
       },
-      {
-        name: "Voice report",
-        path: "/tenant/voice/voicelist",
-      }
+      // {
+      //   name: "Voice report",
+      //   path: "/tenant/voice/voicelist",
+      // }
     ]);
 
     return {

@@ -117,7 +117,8 @@ export default {
       document.head.appendChild(styleTag);
 
       // Define the CSS rule with the desired style
-      var cssRule = `.el-popper.el-dropdown__popper {width: ${childElement.offsetWidth}px}`;
+      var cssRule = `.el-popper.el-dropdown__popper {width: ${childElement.offsetWidth ? childElement.offsetWidth : 0}px}`;
+      console.log(childElement.offsetWidth, 'here')
 
       // Add the CSS rule to the style tag
       styleTag.textContent = cssRule;

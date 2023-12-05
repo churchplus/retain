@@ -282,6 +282,11 @@ export default {
             route: "/tenant/email",
             // route: "/tenant/report/email",
           },
+          {
+            name: "Voice Report",
+            logo: "/",
+            route: "/tenant/voice/voicelist",
+          },
         ],
       };
 
@@ -304,7 +309,7 @@ export default {
           {
             name: "Voice",
             logo: "/",
-            route: "/tenant/voice/voicelist",
+            route: "/tenant/voice/sendvoicemessage",
           },
           {
             name: "Whatsapp",
@@ -374,275 +379,14 @@ export default {
         ],
       };
 
-      // const financial = {
-      //   id: 5,
-      //   name: 'Financials',
-      //   logo: require('../../assets/dashboardlinks/acc-icon.svg'),
-      //   route: '/',
-      //   submenu: [
-      //     {
-      //       name: 'Offerings',
-      //       logo: '/',
-      //       route: '/tenant/offering',
-      //     },
-      //     {
-      //       name:line Donation',
-      //       logo: '/',
-      //       route: '/tenant/onlinedonation',
-      //     },
-      //     {
-      //       name: 'Dues/Pledges/Partnership',
-      //       logo: '/',
-      //       route: '/tenant/pledge/pledgeslist',
-      //     },
-      //     {
-      //       name: 'Transactions',
-      //       logo: '/',
-      //       route: '/tenant/transactionlist',
-      //     },
-      //     {
-      //       name: 'Charts of Account',
-      //       logo: '/',
-      //       route: '/tenant/chartofaccount',
-      //     },
-      //   ]
-      // }
-
-      // const members = {
-      //   name: 'Members',
-      //   logo: '/',
-      //   route: '/tenant/people',
-      // }
-
-      // const firsttimers = {
-      //   name: 'First Timers',
-      //   logo: '/',
-      //   route: '/tenant/firsttimerslist',
-      // }
-
-      // const groups = {
-      //   name: 'Groups / Departments',
-      //   logo: '/',
-      //   route: '/tenant/peoplegroups',
-      // }
-
-      // const families = {
-      //   name: 'Families',
-      //   logo: '/',
-      //   route: '/tenant/family',
-      // }
-      // const social = {
-      //   id: 6,
-      //   name: 'Social & Mobile App',
-      //   logo: require('../../assets/dashboardlinks/social-icon.svg'),
-      //   route: '/tenant/social',
-      //   submenu: []
-      // }
-      // const social = {
-      //   name: 'Social & Mobile App',
-      //   logo: '/',
-      //   route: '/tenant/social',
-      //   submenu: []
-      // }
-      // const report = {
-      //   id: 7,
-      //   name: 'Reports',
-      //   logo: require('../../assets/dashboardlinks/reports-icon.svg'),
-      //   route: '/tenant/reports',
-      //   submenu: []
-      // }
-      // const report = {
-      //   id: 6,
-      //   name: 'Reports',
-      //   logo: require('../../assets/dashboardlinks/reports-icon.svg'),
-      //   route: '/tenant/reports',
-      //   submenu: []
-      // }
-
-      // const media = {
-      //   name: 'Ecommerce/Media Library',
-      //   logo: '/',
-      //   route: '/tenant/media',
-      //   submenu: []
-      // }
-
-      // const branch = {
-      //   name: 'Branches',
-      //   logo: '',
-      //   route: '/',
-      //   submenu: [
-      //     {
-      //       name: 'Dashboard',
-      //       logo: '/',
-      //       route: '/tenant/branch/mainbranchsummary',
-      //     },
-      //   ]
-      // }
-      // const workflow = {
-      //   name: 'Workflow',
-      //   logo: '/',
-      //   route: '/tenant/workflow/list',
-      //   submenu: []
-      // }
-
-      // const settings = {
-      //   name: 'Settings',
-      //   logo: '/',
-      //   route: '/tenant/settings',
-      //   submenu: []
-      // }
-
-      // const archivedpeople = {
-      //   name: 'Archived People',
-      //   logo: '/',
-      //   route: '/tenant/archivedpeople',
-      //   submenu: []
-      // }
-
-      // const groupleader = {
-      //   name: 'Leader Dashboard',
-      //   logo: '/',
-      //   route: '/tenant/groupleader'
-      // }
-
-      // const followup = {
-      //   name: 'Follow up',
-      //   logo: '/',
-      //   route: '/tenant/followup'
-      // }
-
-      // const more = {
-      //   id: 8,
-      //   name: 'More',
-      //   logo: '',
-      //   route: '/',
-      //   submenu: []
-      // }
-      // const more = {
-      //   id: 8,
-      //   name: 'More',
-      //   logo: '',
-      //   route: '/',
-      //   submenu: []
-      // }
-
-      // roleOfCurrentUser.value.forEach((i) => {
-      // if (i.toLowerCase() == 'canaccessfirsttimers' && roleOfCurrentUser.value.indexOf('Admin') < 0) {
-      //   if (menuLink.value.findIndex(i => i.id == people.id) < 0) {
-      //     menuLink.value.push(people)
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(firsttimers)
-      //   } else {
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(firsttimers)
-      //   }
-      // }
-
-      // if (i.toLowerCase() == 'followup') {
-      //   if (menuLink.value.findIndex(i => i.id == people.id) < 0) {
-      //     menuLink.value.push(people)
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(followup)
-      //   } else {
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(followup)
-      //   }
-      // }
-
-      // if (i.toLowerCase() == 'financialaccount') {
-      //   if (menuLink.value.findIndex(i => i.id == financial.id) < 0) {
-      //     menuLink.value.push(financial)
-      //   }
-      // }
-      // if (i.toLowerCase() == 'reports') {
-      //   if (menuLink.value.findIndex(i => i.id == report.id) < 0) {
-      //     menuLink.value.push(report)
-      //   }
-      // }
-      // if (i.toLowerCase() == 'mobileadmin') {
-      //   if (menuLink.value.findIndex(i => i.id == more.id) < 0) {
-      //     menuLink.value.push(more)
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'more').submenu.push(media)
-      //   }
-      //   if (menuLink.value.findIndex(i => i.id == social.id) < 0) {
-      //     menuLink.value.push(social)
-      //   }
-      // }
-
-      // if (i.toLowerCase() == 'groupleader') {
-      //   if (menuLink.value.findIndex(i => i.id == people.id) < 0) {
-      //     menuLink.value.push(people)
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(groupleader)
-      //   } else {
-      //     menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(groupleader)
-      //   }
-      // }
-
-      // if (
-      //   i.toLowerCase() == "basicuser" &&
-      //   roleOfCurrentUser.value.indexOf("Admin") < 0
-      // ) {
-      // if (menuLink.value.findIndex(i => i.id == sms.id) < 0) {
-      //   menuLink.value.push(sms)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == email.id) < 0) {
-      //   menuLink.value.push(email)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == voice.id) < 0) {
-      //   menuLink.value.push(voice)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == whatsapp.id) < 0) {
-      //   menuLink.value.push(dashboard)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == dashboard.id) < 0) {
-      //   menuLink.value.push(whatsapp)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == contactlist.id) < 0) {
-      //   menuLink.value.push(contactlist)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == people.id) < 0) {
-      //   menuLink.value.push(people)
-      //   menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(members, firsttimers, groups, families)
-      // } else {
-      //   menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(members, firsttimers, groups, families)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == communication.id) < 0) {
-      //   menuLink.value.push(communication)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == event.id) < 0) {
-      //   menuLink.value.push(event)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == report.id) < 0) {
-      //   menuLink.value.push(report)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == social.id) < 0) {
-      //   menuLink.value.push(social)
-      // }
-      // if (menuLink.value.findIndex(i => i.id == more.id) < 0) {
-      //   menuLink.value.push(more)
-      //   menuLink.value.find(i => i.name.toLowerCase() == 'more').submenu.push(media, branch, settings)
-      // } else {
-      //   menuLink.value.find(i => i.name.toLowerCase() == 'more').submenu.push(media, branch, settings)
-      // }
-      // }
-
-      // if (i.toLowerCase() == "admin") {
       menuLink.value.push(
         dashboard,
         contacts,
         campaigns,
         reports,
         wallets,
-        // profile,
         settings
-        // sms,
-        // whatsapp,
-        // email,
-        // voice,
-        // contactlist
       );
-      // menuLink.value.push(dashboard, people, communication, event, financial,  report, more)
-      // menuLink.value.find(i => i.name.toLowerCase() == 'people').submenu.push(members, firsttimers, groups, families)
-      // menuLink.value.find(i => i.name.toLowerCase() == 'more').submenu.push(media, branch, settings)
-      //     // menuLink.value.find(i => i.name.toLowerCase() == 'more').submenu.push( workflow, social, media, branch,  archivedpeople, settings)
-      //   }
-      // });
     };
     displayRoleMenu();
 
