@@ -70,13 +70,21 @@
           <div class="row">
             <div class="col-md-8 mt-3">
               <div>
-                <el-checkbox label="Track url" size="large" />
+                <el-checkbox label="Track url" v-model="trackUrl" size="large" />
               </div>
-
+              <transition name="el-zoom-in-center">
+                <el-input
+                  type="text"
+                  placeholder="Paste your URL here"
+                  v-model="shortUrl"
+                  v-show="trackUrl"
+                />
+              </transition>
               <el-input
                 type="textarea"
                 placeholder="Enter your message"
                 rows="6"
+                class="mt-3"
                 v-model="editorData"
               />
             </div>
@@ -84,13 +92,27 @@
           <div class="row mt-4">
             <div class="col-12">
               <div>
-                <el-checkbox label="Schedule" @change="showScheduleModal" size="large" />
+                <el-checkbox
+                  label="Schedule"
+                  v-model="scheduleCheck"
+                  @change="showScheduleModal"
+                  size="large"
+                />
               </div>
               <div>
                 <el-checkbox
                   label="Create a new template from this"
                   @change="draftModal = true"
+                  v-model="draftCheck"
                   size="large"
+                />
+              </div>
+              <div>
+                <el-checkbox
+                  label="Preview template"
+                  size="large"
+                  v-model="previewCheck"
+                  @change="displayTrackUrl = true"
                 />
               </div>
             </div>
@@ -431,6 +453,7 @@
 
       <el-dialog
         v-model="display"
+        @close="scheduleCheck = false"
         title="Select date and time"
         :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
         align-center
@@ -447,14 +470,10 @@
         </div>
         <template #footer>
           <span class="dialog-footer">
-            <el-button @click="display = false" class="secondary-button" round
+            <el-button @click="display = false" class="secondary-button"
               >Cancel</el-button
             >
-            <el-button
-              :color="primarycolor"
-              @click="contructScheduleMessageBody(2, '')"
-              round
-            >
+            <el-button :color="primarycolor" @click="contructScheduleMessageBody(2, '')">
               Schedule
             </el-button>
           </span>
@@ -466,6 +485,7 @@
       <el-dialog
         v-model="draftModal"
         title="Create a template"
+        @close="draftCheck = false"
         :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
         align-center
       >
@@ -503,6 +523,36 @@
             >
           </span>
         </template>
+      </el-dialog>
+
+      <!-- Preview Template modal -->
+
+      <el-dialog
+        v-model="displayTrackUrl"
+        @close="previewCheck = false"
+        title="Preview"
+        :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : xsOnly ? `90%` : `70%`"
+        align-center
+        class="p-4"
+      >
+        <div class="row">
+          <div class="col-12">
+            {{ editorData }}
+          </div>
+          <div class="col-12">
+            {{ shortUrl }}
+          </div>
+        </div>
+        <!-- <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="display = false" class="secondary-button"
+              >Cancel</el-button
+            >
+            <el-button :color="primarycolor" @click="contructScheduleMessageBody(2, '')">
+              Schedule
+            </el-button>
+          </span>
+        </template> -->
       </el-dialog>
 
       <!-- Create sender id modal -->
@@ -641,6 +691,12 @@ export default {
     const draftModal = ref(false);
     const draftTitle = ref("");
     const draftLoading = ref(false);
+    const trackUrl = ref(false);
+    const shortUrl = ref("");
+    const draftCheck = ref(false);
+    const scheduleCheck = ref(false);
+    const displayTrackUrl = ref(false);
+    const previewCheck = ref(false);
 
     const toggleGroupsVissibility = () => {
       groupsAreVissible.value = !groupsAreVissible.value;
@@ -1405,6 +1461,12 @@ export default {
       draftTitle,
       draftLoading,
       setSelectedGroup,
+      trackUrl,
+      shortUrl,
+      draftCheck,
+      scheduleCheck,
+      displayTrackUrl,
+      previewCheck,
     };
   },
 };

@@ -1371,7 +1371,6 @@ export default {
     const getAllVoiceAudio = async () => {
       try {
         let data = await communicationService.getAllUploadedVoiceAudio();
-        console.log(data);
         voiceAudioList.value = data;
       } catch (err) {
         console.error(err);

@@ -25,6 +25,15 @@ const routes = [
             title: 'Retain - Terms Of Use',
         }
     },
+    {
+        path: '/:token',
+        name: 'PreShortURL',
+        component: () =>
+            import( /* webpackChunkName: "preshorturl" */ '../views/communication/PreShortURL.vue'),
+        meta: {
+            title: 'Retain',
+        }
+    },
 
     {
         path: '/',
@@ -814,7 +823,8 @@ router.beforeEach((to, from, next) => {
         to.name === "PublicNewConvert" ||
         to.name === "EventRegistration" ||
         to.name === "PricingPage" ||
-        to.name === "PublicPledgePayment") && !tokenIsValid) return next(true)
+        to.name === "PublicPledgePayment" || 
+        to.name === "PreShortURL") && !tokenIsValid) return next(true)
 
 
     if ((to.name !== "Login" && to.name !== "Register") && to.name !== "Onboarding" && to.name !== "StartingPoint" && to.name !== "ForgotPassword" && to.name !== "ResetPassword" && to.name !== "TermsOfUse" && (!token || token.length < 30)) return next("/")
