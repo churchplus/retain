@@ -172,7 +172,16 @@
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
   </noscript>
-  <div id="app">loading</div>
+  <div id="app">
+    <div class="d-flex justify-content-center align-items-center w-100" style="height: 100vh">
+      <div>
+        <div>
+          <img src="./favicon.png" width="40" />
+        </div>
+        <img src="./loading.gif" width="40" />
+      </div>
+    </div>
+  </div>
   <!-- built files will be auto injected -->
 
   <!-- <script src="https://unpkg.com/vue-paystack/dist/paystack.min.js"></script> -->
