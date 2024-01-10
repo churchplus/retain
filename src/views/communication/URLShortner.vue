@@ -24,7 +24,7 @@
             <span>{{ item.shortUrl }}</span>
           </template>
           <template #dateEntered="{ item }">
-            <span>{{ item.dateEntered }}</span>
+            <span>{{ formatDate(item.dateEntered) }}</span>
           </template>
           <template #longUrl="{ item }">
             <span>{{
@@ -70,25 +70,81 @@
     <el-dialog
       v-model="createURLDialog"
       title="Create short link"
-      :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : `90%`"
+      :width="mdAndUp || lgAndUp || xlAndUp ? `75%` : `90%`"
     >
       <div class="row">
         <div class="col-md-12">
-          <div class="font-weight-700">Enter the url you wanted to shorten</div>
+          <div class="font-weight-700">Destination URL</div>
           <el-input
             type="text"
-            v-model="longUrl"
+            v-model="preShort.longUrl"
             placeholder="https://example.com/"
             class="mt-2"
           />
         </div>
+        <div class="col-md-12 mt-3">
+          <div class="font-weight-700">Title</div>
+          <el-input
+            type="text"
+            v-model="preShort.title"
+            placeholder="Event campaigne"
+            class="mt-2"
+          />
+        </div>
+        <div class="col-md-12 mt-3">
+          <div class="d-flex align-items-center">
+            <el-switch v-model="toggleSources" size="large" />
+            <div class="ml-2">Add UTMs to track web traffic in analytics tools</div>
+          </div>
+          <transition name="el-zoom-in-top">
+            <div
+              style="background: #f4f6fa; border-radius: 5px"
+              class="mt-3 p-3"
+              v-show="toggleSources"
+            >
+              <div class="row">
+                <div class="col-12 col-md-6 mt-3 mt-md-0">
+                  <div class="font-weight-700">Source</div>
+                  <el-input
+                    type="text"
+                    placeholder="e.g., google, whatsapp, sms"
+                    v-model="preShort.source"
+                  />
+                </div>
+                <div class="col-12 col-md-6 mt-3 mt-md-0">
+                  <div class="font-weight-700">Medium</div>
+                  <el-input
+                    type="text"
+                    placeholder="e.g., social, banner, email"
+                    v-model="preShort.medium"
+                  />
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                  <div class="font-weight-700">Campaign</div>
+                  <el-input
+                    type="text"
+                    placeholder="e.g., event_promo, spring_sale"
+                    v-model="preShort.campaign"
+                  />
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="createURLDialog = false" class="secondary-button"
+          <el-button
+            @click="createURLDialog = false"
+            size="large"
+            class="secondary-button"
             >Cancel</el-button
           >
-          <el-button :color="primarycolor" @click="shortenUrl" :loading="shorteningURL"
+          <el-button
+            :color="primarycolor"
+            size="large"
+            @click="shortenUrl"
+            :loading="shorteningURL"
             >Shorten</el-button
           >
         </span>
@@ -101,13 +157,16 @@
 import Header from "@/components/header/Header.vue";
 import Table from "@/components/table/Table";
 import deviceBreakpoint from "../../mixins/deviceBreakpoint";
-import { ElMessage } from "element-plus";
+// import { ElMessage } from "element-plus";
 import axios from "@/gateway/backendapi";
+// import ElDropDown from "@/components/dropdown/ElDropDown";
+import dateFormatter from "@/services/dates/dateformatter.js";
 
 export default {
   components: {
     Header,
     Table,
+    // ElDropDown,
   },
   inject: ["primarycolor"],
   name: "Test",
@@ -128,30 +187,41 @@ export default {
       lgAndUp: deviceBreakpoint().lgAndUp,
       xlAndUp: deviceBreakpoint().xlAndUp,
       longUrl: "",
+      preShort: {},
       shorteningURL: false,
       gettingURLs: false,
       shortenedURLs: [],
+      // sources: ["SMS", "WhatsApp", "Facebook", "Twitter", "Instagram", "Others"],
+      toggleSources: false,
     };
   },
   props: {},
   methods: {
     async shortenUrl() {
-      this.shorteningURL = true;
-      try {
-        let response = await axios.get(`/api/UrlShortner/ShortenUrl?url=${this.longUrl}`);
-        this.shorteningURL = false;
-        this.createURLDialog = false;
-        this.getShortenUrl();
-        ElMessage({
-          type: "success",
-          message: "Link created successfully",
-          duration: 6000,
-        });
-        console.log(response);
-      } catch (error) {
-        this.shorteningURL = false;
-        console.error(error);
-      }
+      // this.preShort.longUrl = this.preShort.utm.source
+      //   ? "?utm_source=" + this.preShort.utm.source
+      //   : "" + this.preShort.utm.medium
+      //   ? "&&utm_medium=" + this.preShort.utm.medium
+      //   : "" + this.preShort.utm.campaigne
+      //   ? "&&utm_campaigne=" + this.preShort.utm.campaigne
+      //   : "";
+      console.log(this.preShort);
+      // this.shorteningURL = true;
+      // try {
+      //   let response = await axios.get(`/api/UrlShortner/ShortenUrl?url=${this.longUrl}`);
+      //   this.shorteningURL = false;
+      //   this.createURLDialog = false;
+      //   this.getShortenUrl();
+      //   ElMessage({
+      //     type: "success",
+      //     message: "Link created successfully",
+      //     duration: 6000,
+      //   });
+      //   console.log(response);
+      // } catch (error) {
+      //   this.shorteningURL = false;
+      //   console.error(error);
+      // }
     },
     async getShortenUrl() {
       this.gettingURLs = true;
@@ -164,6 +234,9 @@ export default {
         this.gettingURLs = false;
         console.error(error);
       }
+    },
+    formatDate(date) {
+      return dateFormatter.monthDayYear(date);
     },
   },
 };

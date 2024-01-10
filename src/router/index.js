@@ -517,7 +517,7 @@ const routes = [
                 {
                     path: '',
                     meta: {
-                        title: 'Retain - Church Members',
+                        title: 'Retain - Contacts',
                     },
                     component: () =>
                         import( /* webpackChunkName: "peopleempty" */ '../views/people/PeopleEmpty.vue')
@@ -525,7 +525,7 @@ const routes = [
                 {
                     path: 'import',
                     meta: {
-                        title: 'Retain - Import Members',
+                        title: 'Retain - Import Contact',
                     },
                     component: () =>
                         import( /* webpackChunkName: "importpeople" */ '../views/people/ImportPeople.vue'),
@@ -535,7 +535,7 @@ const routes = [
                     path: 'add/:personId?',
                     name: 'AddPerson',
                     meta: {
-                        title: 'Retain - Member Form',
+                        title: 'Retain - Contact Form',
                     },
                     component: () =>
                         import( /* webpackChunkName: "addperson" */ '../views/people/AddPerson.vue')

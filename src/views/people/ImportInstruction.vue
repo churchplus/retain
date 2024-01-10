@@ -22,14 +22,13 @@
           <span> You can use this as a template for creating your Excel/CSV file.</span>
         </div>
         <div class="col-12">
-           
           <div class="py-2 rounded bg-white">
             <div class="col-md-12 col-12 col-lg-12 mt-3">
               <el-upload
                 class="upload-demo"
                 :limit="1"
                 :on-change="imageSelected"
-                :on-remove="handleRemove" 
+                :on-remove="handleRemove"
                 :auto-upload="false"
                 accept="text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 drag
@@ -52,7 +51,7 @@
                 @click="uploadFile"
                 :loading="uploadLoading"
                 round
-                >Upload and preview members</el-button
+                >Upload and preview contacts</el-button
               >
             </div>
           </div>
@@ -181,34 +180,50 @@
 
         <el-dialog
           v-model="displayModal"
-          title="Members to import from file"
-          :width="mdAndUp || lgAndUp || xlAndUp ? `50%` : `90%`"
+          title="Contacts to import from file"
+          :width="mdAndUp || lgAndUp || xlAndUp ? `70%` : `90%`"
         >
           <div class="row">
-            <div class="col-3 font-weight-700">Name</div>
-            <div class="col-4 font-weight-700">Email</div>
-            <div class="col-2 font-weight-700">Gender</div>
-            <div class="col-2 font-weight-700">Phone Number</div>
-          </div>
-          <div class="row" v-for="(item, index) in memberData" :key="index">
-            <div class="col-3">
-              {{ item.firstName ? item.firstName : "" }}
-              {{ item.lastName ? item.lastName : "" }}
+            <div class="col-12">
+              <Table
+                :data="memberData"
+                :headers="contactHeaders"
+                :checkMultipleItem="false"
+              >
+                <template #firstName="{ item }">
+                  <span>
+                    {{ item.firstName ? item.firstName : "" }}
+                    {{ item.lastName ? item.lastName : "" }}
+                  </span>
+                </template>
+                <template #email="{ item }">
+                  <span>
+                    {{ item.email }}
+                  </span>
+                </template>
+                <template #gender="{ item }">
+                  <span>
+                    {{ item.gender }}
+                  </span>
+                </template>
+                <template #phoneNumber="{ item }">
+                  <span>
+                    {{ item.phoneNumber }}
+                  </span>
+                </template>
+              </Table>
             </div>
-            <div class="col-4">{{ item.email }}</div>
-            <div class="col-2">{{ item.gender }}</div>
-            <div class="col-2">{{ item.phoneNumber }}</div>
           </div>
           <template #footer>
             <span class="dialog-footer d-flex justify-content-end text-center">
-              <el-button class="secondary-button" @click="displayModal = false" round
+              <el-button class="secondary-button" @click="displayModal = false" size="large"
                 >Cancel</el-button
               >
               <el-button
                 :color="primarycolor"
                 :loading="loading"
                 @click="addToMembers"
-                round
+                size="large"
               >
                 Save
               </el-button>
@@ -230,11 +245,13 @@ import deviceBreakpoint from "../../mixins/deviceBreakpoint";
 import { ElMessage } from "element-plus";
 import router from "../../router/index";
 import Header from "@/components/header/Header.vue";
+import Table from "@/components/table/Table"
 
 export default {
   emits: ["uploadtogroup"],
   components: {
     Header,
+    Table
   },
   setup(props, { emit }) {
     const primarycolor = inject("primarycolor");
@@ -247,9 +264,15 @@ export default {
     const loading = ref(false);
     const { mdAndUp, lgAndUp, xlAndUp } = deviceBreakpoint();
     const uploadLoading = ref(false);
+    const contactHeaders = ref([
+      { name: "Name", value: "firstName" },
+      { name: "Email", value: "email" },
+      { name: "Gender", value: "gender" },
+      { name: "Phone number", value: "phoneNumber" },
+    ]);
 
     const imageSelected = async (e) => {
-        image.value = e.raw
+      image.value = e.raw;
     };
 
     const uploadFile = async () => {
@@ -449,8 +472,8 @@ export default {
     getImportType();
 
     const handleRemove = () => {
-        image.value = null
-    }
+      image.value = null;
+    };
 
     return {
       imageSelected,
@@ -468,7 +491,8 @@ export default {
       xlAndUp,
       uploadLoading,
       primarycolor,
-      handleRemove
+      handleRemove,
+      contactHeaders,
     };
   },
 };

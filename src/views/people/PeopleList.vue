@@ -1,7 +1,6 @@
 <template>
   <div class="my-con">
     <div>
-
       <!-- <div class="boards">
         <div class="board">
           <div class="board-top">
@@ -413,14 +412,14 @@
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <!-- <a class="dropdown-item" href="#">
                   <router-link
                     :to="`/tenant/firsttimermanagement/${item.id}?memberType=1`"
                     class="text-color"
                   >
                     Follow Up
                   </router-link>
-                </a>
+                </a> -->
               </li>
               <li>
                 <a class="dropdown-item" href="#">
@@ -645,8 +644,8 @@
 
 <script>
 import { ref, computed, watch, watchEffect, inject } from "vue";
-import ByGenderChart from "@/components/charts/PieChart.vue";
-import ByMaritalStatusChart from "@/components/charts/PieChart.vue";
+// import ByGenderChart from "@/components/charts/PieChart.vue";
+// import ByMaritalStatusChart from "@/components/charts/PieChart.vue";
 import axios from "@/gateway/backendapi";
 import { useRoute } from "vue-router";
 import store from "../../store/store";
@@ -667,8 +666,8 @@ import swal from "sweetalert";
 export default {
   props: ["list", "totalItems"],
   components: {
-    ByGenderChart,
-    ByMaritalStatusChart,
+    // ByGenderChart,
+    // ByMaritalStatusChart,
     smsComponent,
     emailComponent,
     // SideBar,
@@ -1314,8 +1313,6 @@ export default {
 
     getAllCountries();
 
-    
-
     return {
       churchMembers,
       chooseGroupto,
@@ -1402,7 +1399,7 @@ export default {
       allcountries,
       tenantCountry,
       sendingwhatsappmessage,
-      clientSessionId
+      clientSessionId,
     };
   },
 };

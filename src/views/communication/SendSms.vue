@@ -14,7 +14,7 @@
             <div class="col-md-8 mt-3 mt-md-5">
               <ElDropDown
                 :options="drafts"
-                optionLabel="body"
+                optionLabel="title"
                 placeholder="Choose template"
                 @selectedvalue="setSelectedDraft"
                 :multiple="false"
@@ -470,10 +470,10 @@
         </div>
         <template #footer>
           <span class="dialog-footer">
-            <el-button @click="display = false" class="secondary-button"
+            <el-button @click="display = false" class="secondary-button" size="large"
               >Cancel</el-button
             >
-            <el-button :color="primarycolor" @click="contructScheduleMessageBody(2, '')">
+            <el-button :color="primarycolor" :loading="scheduleLoading" @click="contructScheduleMessageBody(2, '')" size="large">
               Schedule
             </el-button>
           </span>
@@ -510,7 +510,7 @@
         </div>
         <template #footer>
           <span class="dialog-footer">
-            <el-button @click="draftModal = false" class="secondary-button" round
+            <el-button @click="draftModal = false" class="secondary-button" size="large"
               >Cancel</el-button
             >
             <el-button
@@ -518,7 +518,7 @@
               :disabled="!draftTitle"
               @click="draftMessage"
               :loading="draftLoading"
-              round
+              size="large"
               >Create template</el-button
             >
           </span>
@@ -697,6 +697,7 @@ export default {
     const scheduleCheck = ref(false);
     const displayTrackUrl = ref(false);
     const previewCheck = ref(false);
+    const scheduleLoading = ref(false);
 
     const toggleGroupsVissibility = () => {
       groupsAreVissible.value = !groupsAreVissible.value;
@@ -944,6 +945,7 @@ export default {
             sender: subject.value.mask,
             body: editorData.value,
             isDefaultBirthDayMessage: false,
+            dateModified: new Date().toISOString()
           },
           "/api/Messaging/PostSmsDraft"
         );
@@ -1008,7 +1010,15 @@ export default {
           data.executionDate = iSoStringFormat.value;
           data.date = iSoStringFormat.value;
           data.time = iSoStringFormat.value.split("T")[1];
-          scheduleMessage(data);
+          if (data.date) {
+            scheduleMessage(data);
+          } else {
+            ElMessage({
+              type: "warning",
+              message: "Please choose the date and time for this campaign to be scheduled",
+              duration: 6000,
+            });
+          }
         } else {
           sendSMS(data);
         }
@@ -1026,7 +1036,7 @@ export default {
     };
 
     const scheduleMessage = async (data) => {
-      display.value = false;
+      scheduleLoading.value = true;
       const formattedDate = dateFormatter.monthDayTime(data.date);
       try {
         await composerObj.sendMessage("/api/Messaging/saveSmsSchedule", data);
@@ -1036,6 +1046,8 @@ export default {
           message: `Message scheduled for ${formattedDate}`,
           duration: 6000,
         });
+        scheduleLoading.value = false
+        display.value = false
       } catch (error) {
         console.log(error);
         ElMessage({
@@ -1467,6 +1479,7 @@ export default {
       scheduleCheck,
       displayTrackUrl,
       previewCheck,
+      scheduleLoading
     };
   },
 };

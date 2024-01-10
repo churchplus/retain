@@ -74,7 +74,7 @@ axios.interceptors.response.use(response => {
   return response
 }, error => {
   console.log(error, "there is the error path")
-  NProgress.done()
+  NProgress.done();
   if (error && error.response && error.response.status == 403) {
     router.push('/errorpage/unauthorized')
   } else {
