@@ -8,10 +8,36 @@
         </div>
       </div>
 
-      <div class="row bg-white mt-3 mt-md-5">
+      <div class="row bg-white mt-3 mt-md-3">
         <div class="col-12">
           <div class="row">
-            <div class="col-md-8 mt-3 mt-md-5">
+          <div class="col-md-8 mt-3 mt-md-3 d-flex justify-content-md-end">
+            <el-upload
+                class="upload-demo mt-3"
+                :limit="1"
+                :on-change="uploadFile"
+                :on-remove="handleRemove"
+                :auto-upload="false"
+                accept="text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              >
+                <div>
+                  <el-button class="secondary-button" size="large">Import phone numbers</el-button></div>
+                <template #tip>
+                  <div class="el-upload__tip">
+                  <el-button text>
+                    <a
+                  href="/files/Upload_Contact Template.csv"
+                  class="template-text text-decoration-none font-weight-bold"
+                  download
+                  >Download template</a
+                >
+                  
+                  </el-button>
+                  </div>
+                </template>
+              </el-upload>
+          </div>
+            <div class="col-md-8 mt-3 mt-md-3">
               <ElDropDown
                 :options="drafts"
                 optionLabel="title"
@@ -65,27 +91,7 @@
               <!-- <div class="text-danger small-text mt-1" v-if="phoneNumber.length == 0 || selectedGroups.value.length == 0">
                 Phone Numbers is required
               </div> -->
-              <el-upload
-                class="upload-demo mt-3"
-                :limit="1"
-                :on-change="uploadFile"
-                :on-remove="handleRemove"
-                :auto-upload="false"
-                accept="text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-              >
-                <div>
-                  <el-button class="secondary-button" size="large">Import phone numbers</el-button></div>
-                <template #tip>
-                  <div class="el-upload__tip">
-                    <a
-                  href="/files/Upload_Contact Template.csv"
-                  class="template-text text-decoration-none font-weight-bold"
-                  download
-                  >Download template</a
-                >
-                  </div>
-                </template>
-              </el-upload>
+             
               <div class="mt-1">
                
               </div>
@@ -226,7 +232,7 @@
       </div>
 
       <!-- Start upload contact -->
-      <div v-if="true" class="row mt-3 mb-1">
+      <div v-if="false" class="row mt-3 mb-1">
         <div class="offset-md-2 col-md-10 px-0 grey-rounded-border bg-white p-2">
           <div class="d-flex justify-content-between">
             <input type="file" class="form-control-file" @change="uploadFile" />
@@ -1086,7 +1092,7 @@ export default {
     };
 
     const sendSMSToUploadedContacts = async (gateway) => {
-      console.log('reaching')
+      
       let formData = new FormData();
       formData.append("contactUploadedFile", multipleContact.value);
       formData.append("message", editorData.value);
