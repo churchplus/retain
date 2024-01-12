@@ -248,17 +248,17 @@ export default {
             name: "SMS",
             data: dashboardData.value.smsTrend.map((i) => i.value).reverse(),
           });
-          smsXaxis.value = dashboardData.value.smsTrend.map((i) =>
-            dateFormatter.monthDayYear(i.name.split(" ")[0])
-          ).reverse();
+          smsXaxis.value = dashboardData.value.smsTrend
+            .map((i) => dateFormatter.monthDayYear(i.name.split(" ")[0]))
+            .reverse();
 
           contactSeries.value.push({
             name: "Contacts",
             data: dashboardData.value.contactsTrend.map((i) => i.value).reverse(),
           });
-          contactXaxis.value = dashboardData.value.contactsTrend.map((i) =>
-            dateFormatter.monthDayYear(i.name.split(" ")[0])
-          ).reverse();
+          contactXaxis.value = dashboardData.value.contactsTrend
+            .map((i) => dateFormatter.monthDayYear(i.name.split(" ")[0]))
+            .reverse();
 
           // Set date range value
           setcurrentvalue.value = {
@@ -646,18 +646,37 @@ export default {
     };
 
     const returnDates = (str) => {
-      if (str == 1)
-        return (
-          returnDoubleDigits(new Date().getDate().toString()) +
-          returnDoubleDigits((new Date().getMonth() + 1 - 3).toString()) +
-          new Date().getFullYear()
-        );
-      if (str == 2)
-        return (
-          returnDoubleDigits(new Date().getDate().toString()) +
-          returnDoubleDigits((new Date().getMonth() + 1 - 6).toString()) +
-          new Date().getFullYear()
-        );
+      if (str == 1) {
+        const currentDate = new Date();
+        let month = currentDate.getMonth() + 1 - 3;
+        let year = currentDate.getFullYear();
+
+        if (month <= 0) {
+          month += 12;
+          year -= 1;
+        }
+
+        const day = returnDoubleDigits(currentDate.getDate().toString());
+        const formattedMonth = returnDoubleDigits(month.toString());
+        const formattedYear = year.toString();
+        return day + formattedMonth + formattedYear;
+      }
+      if (str == 2) {
+        const currentDate = new Date();
+        let month = currentDate.getMonth() + 1 - 6;
+        let year = currentDate.getFullYear();
+
+        if (month <= 0) {
+          month += 12;
+          year -= 1;
+        }
+
+        const day = returnDoubleDigits(currentDate.getDate().toString());
+        const formattedMonth = returnDoubleDigits(month.toString());
+        const formattedYear = year.toString();
+
+        return day + formattedMonth + formattedYear;
+      }
       if (str == 3)
         return (
           returnDoubleDigits(new Date().getDate().toString()) +
@@ -712,6 +731,7 @@ export default {
     ]);
 
     const setSelectedDateRange = (payload) => {
+      console.log(dateRange);
       smsSeries.value = new Array();
       smsXaxis.value = new Array();
       contactSeries.value = new Array();

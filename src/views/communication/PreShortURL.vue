@@ -1,5 +1,5 @@
 <template>
-  <div>getting and redirecting to long url {{ route.params.token }}</div>
+  <div></div>
 </template>
 
 <script>
@@ -9,17 +9,17 @@ import { getDeviceInfo } from "@/services/deviceInformation/userAgent.js";
 
 export default {
   name: "PreShortURL",
-  created() {
-    // this.getLongUrl();
+  created() { 
     this.getUserAgent();
+    
   },
-
   data() {
     return {
       route: this.$route,
       device: "",
       browser: "",
       ip: "",
+      country: ""
     };
   },
   props: {},
@@ -28,15 +28,16 @@ export default {
       console.log(getDeviceInfo());
       this.device = getDeviceInfo().device.vendor;
       this.browser = getDeviceInfo().browser.name;
-      this.getIPAddress();
+      this.getGeolocationData();
     },
-    getIPAddress() {
-      axiosII.get("https://www.cloudflare.com/cdn-cgi/trace/").then(({ data }) => {
-        let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/;
-        let ip = data.match(ipRegex)[0];
-        this.ip = ip;
+    getGeolocationData() {
+      axiosII.get(`https://ipgeolocation.abstractapi.com/v1/?api_key=bac6ccc8cd56499dbd1385017983a52c`).then(({ data }) => {
+        console.log(data)
+        this.ip = data.ip_address;
+        this.country = data.country
         this.getLongUrl();
-      });
+
+      }).catch(err => console.log(err))
     },
     async getLongUrl() {
       let payload = {
@@ -54,25 +55,17 @@ export default {
         device: this.device,
         browser: this.browser,
         ip: this.ip,
+        country: this.country
       };
-      console.log(payload);
       try {
         let { data } = await axios.post(
-          `/ResolveShortenUrl?url=https://retain-psi.vercel.app/${this.route.params.token}`,
-          payload
-        );
-        // this.shorteningURL = false;
-        // this.createURLDialog = false;
-        // this.getShortenUrl();
-        // ElMessage({
-        //   type: "success",
-        //   message: "Link created successfully",
-        //   duration: 6000,
-        // });
-        console.log(data);
-        // window.location.href = data.longUrl;
+          `/ResolveShortenUrl?url=https://retain-psi.vercel.app/${this.route.params.token}`, payload);
+        console.log(data, 'herrr');
+        const source = data.source ? data.source : ""
+        const medium = data.medium ? data.medium : ""
+        const campaign = data.campaign ? data.campaign : ""
+        window.location.href = `${data.longUrl}?source=${source}&&medium=${medium}&&campaign=${campaign}`
       } catch (error) {
-        // this.shorteningURL = false;
         console.error(error);
       }
     },

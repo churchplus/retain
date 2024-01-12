@@ -62,8 +62,32 @@
                 placeholder="Enter comma seperated phone numbers eg. 2349033246067,190392833348"
                 v-model="phoneNumber"
               />
-              <div class="text-danger small-text mt-1" v-if="phoneNumber.length == 0">
+              <!-- <div class="text-danger small-text mt-1" v-if="phoneNumber.length == 0 || selectedGroups.value.length == 0">
                 Phone Numbers is required
+              </div> -->
+              <el-upload
+                class="upload-demo mt-3"
+                :limit="1"
+                :on-change="uploadFile"
+                :on-remove="handleRemove"
+                :auto-upload="false"
+                accept="text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              >
+                <div>
+                  <el-button class="secondary-button" size="large">Import phone numbers</el-button></div>
+                <template #tip>
+                  <div class="el-upload__tip">
+                    <a
+                  href="/files/Upload_Contact Template.csv"
+                  class="template-text text-decoration-none font-weight-bold"
+                  download
+                  >Download template</a
+                >
+                  </div>
+                </template>
+              </el-upload>
+              <div class="mt-1">
+               
               </div>
             </div>
           </div>
@@ -202,7 +226,7 @@
       </div>
 
       <!-- Start upload contact -->
-      <div v-if="contactUpload" class="row mt-3 mb-1">
+      <div v-if="true" class="row mt-3 mb-1">
         <div class="offset-md-2 col-md-10 px-0 grey-rounded-border bg-white p-2">
           <div class="d-flex justify-content-between">
             <input type="file" class="form-control-file" @change="uploadFile" />
@@ -698,6 +722,7 @@ export default {
     const displayTrackUrl = ref(false);
     const previewCheck = ref(false);
     const scheduleLoading = ref(false);
+    const gateway = ref("")
 
     const toggleGroupsVissibility = () => {
       groupsAreVissible.value = !groupsAreVissible.value;
@@ -969,6 +994,7 @@ export default {
     };
 
     const contructScheduleMessageBody = (sendOrSchedule, gateway) => {
+      gateway.value = gateway
       disableBtn.value = true;
       console.log(disableBtn.value, "disablesd");
       const data = {
@@ -1004,9 +1030,10 @@ export default {
       }
 
       if (subject.value) {
-        if (multipleContact.value instanceof File) {
-          sendSMSToUploadedContacts(gateway);
-        } else if (sendOrSchedule == 2) {
+        // if (multipleContact.value instanceof File) {
+          
+        // }
+        if (sendOrSchedule == 2) {
           data.executionDate = iSoStringFormat.value;
           data.date = iSoStringFormat.value;
           data.time = iSoStringFormat.value.split("T")[1];
@@ -1059,18 +1086,19 @@ export default {
     };
 
     const sendSMSToUploadedContacts = async (gateway) => {
+      console.log('reaching')
       let formData = new FormData();
-      formData.append("file", multipleContact.value);
+      formData.append("contactUploadedFile", multipleContact.value);
       formData.append("message", editorData.value);
       formData.append("category", "");
       formData.append("gatewayToUse", gateway);
       formData.append("isoCode", isoCode.value);
 
       try {
-        let { data } = await axios.post("/api/messaging/upload", formData);
+        await axios.post("/api/messaging/upload", formData);
         ElMessage({
           type: "success",
-          message: data.response,
+          message: "Message sent to uploaded contacts",
           duration: 6000,
         });
       } catch (err) {
@@ -1242,7 +1270,9 @@ export default {
     }
 
     const uploadFile = (e) => {
-      multipleContact.value = e.target.files[0];
+      multipleContact.value = e.raw;
+
+      sendSMSToUploadedContacts(gateway.value);
     };
 
     const getSenderId = async () => {
@@ -1374,11 +1404,21 @@ export default {
     getSMSDrafts();
 
     const setSelectedDraft = (payload) => {
-      editorData.value += payload.body;
+      editorData.value = payload.body;
+      ElMessage({
+        type: "success",
+        showClose: true,
+        message: `${payload.title} ${payload.title.toLowerCase().includes('template') ? "" : "template"} selected`,
+        duration: 4000
+      })
     };
 
     const setSelectedGroup = (payload) => {
       selectGroup("group", payload);
+    };
+
+    const handleRemove = () => {
+      multipleContact.value = new Object();
     };
 
     return {
@@ -1479,7 +1519,9 @@ export default {
       scheduleCheck,
       displayTrackUrl,
       previewCheck,
-      scheduleLoading
+      scheduleLoading,
+      handleRemove,
+      gateway
     };
   },
 };
