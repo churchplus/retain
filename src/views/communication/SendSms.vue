@@ -87,6 +87,7 @@
                 rows="4"
                 placeholder="Enter comma seperated phone numbers eg. 2349033246067,190392833348"
                 v-model="phoneNumber"
+                ref="phoneNumberRef"
               />
               <!-- <div class="text-danger small-text mt-1" v-if="phoneNumber.length == 0 || selectedGroups.value.length == 0">
                 Phone Numbers is required
@@ -728,7 +729,7 @@ export default {
     const displayTrackUrl = ref(false);
     const previewCheck = ref(false);
     const scheduleLoading = ref(false);
-    const gateway = ref("")
+    const phoneNumberRef = ref(null)
 
     const toggleGroupsVissibility = () => {
       groupsAreVissible.value = !groupsAreVissible.value;
@@ -1000,9 +1001,7 @@ export default {
     };
 
     const contructScheduleMessageBody = (sendOrSchedule, gateway) => {
-      gateway.value = gateway
       disableBtn.value = true;
-      console.log(disableBtn.value, "disablesd");
       const data = {
         subject: subject.value.mask,
         message: editorData.value,
@@ -1091,20 +1090,17 @@ export default {
       }
     };
 
-    const sendSMSToUploadedContacts = async (gateway) => {
-      
+    const sendSMSToUploadedContacts = async () => {
       let formData = new FormData();
       formData.append("contactUploadedFile", multipleContact.value);
-      formData.append("message", editorData.value);
-      formData.append("category", "");
-      formData.append("gatewayToUse", gateway);
-      formData.append("isoCode", isoCode.value);
 
       try {
-        await axios.post("/api/messaging/upload", formData);
+        let { data } = await axios.post("/api/messaging/upload", formData);
+        phoneNumberRef.value.ref.focus();
+        phoneNumber.value += data.map(i => i.phone).join(",")
         ElMessage({
           type: "success",
-          message: "Message sent to uploaded contacts",
+          message: "Phone numbers extracted from file",
           duration: 6000,
         });
       } catch (err) {
@@ -1278,7 +1274,7 @@ export default {
     const uploadFile = (e) => {
       multipleContact.value = e.raw;
 
-      sendSMSToUploadedContacts(gateway.value);
+      sendSMSToUploadedContacts();
     };
 
     const getSenderId = async () => {
@@ -1527,7 +1523,7 @@ export default {
       previewCheck,
       scheduleLoading,
       handleRemove,
-      gateway
+      phoneNumberRef
     };
   },
 };
