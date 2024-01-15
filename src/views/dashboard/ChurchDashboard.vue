@@ -16,9 +16,8 @@
       <div class="col-12 mb-4">
         <div class="d-flex flex-column flex-md-row justify-content-between">
           <div class="thick-secondary head-text">
-            {{ dashboardData.userName ? `Welcome, ${dashboardData.userName}` : "" }}
+            {{ dashboardData.userName ? `Welcome, ${dashboardData.churchName}` : "" }}
           </div>
-
           <div>
             <ElDropDown
               :options="dateRange"
@@ -63,7 +62,7 @@
         >
           <div
             class="font-weight-700 align-self-start"
-            v-if="donutOption && donutOption.labels.length > 0"
+            v-if="donutOption  && donutOption.labels && donutOption.labels.length > 0"
           >
             Delivery Status
           </div>
@@ -73,7 +72,7 @@
             type="donut"
             :options="donutOption"
             :series="donutSeries"
-            v-if="donutOption && donutOption.labels.length > 0"
+            v-if="donutOption && donutOption.labels && donutOption.labels.length > 0"
           ></apexchart>
           <div class="font-weight-700 thick-secondary" v-else>No data</div>
         </div>
@@ -240,10 +239,11 @@ export default {
         .get(url)
         .then(({ data }) => {
           dashboardLoading.value = false;
-          console.log(data);
           dashboardData.value = data.returnObject;
 
-          donutOption.value.labels = dashboardData.value.deliveryTrend.map((i) => i.name);
+          donutOption.value.labels =
+            dashboardData.value.deliveryTrend &&
+            dashboardData.value.deliveryTrend.map((i) => i.name);
           smsSeries.value.push({
             name: "SMS",
             data: dashboardData.value.smsTrend.map((i) => i.value).reverse(),
@@ -265,7 +265,6 @@ export default {
             name: moment(`${returnDates(3)}`, "DDMMYYYY").fromNow(),
             value: moment(returnDates(3), "DDMMYYYY").format("l"),
           };
-          console.log(setcurrentvalue.value);
 
           // tenantInfoBasic.value = res.data.returnObject;
           // tenantInfoExtra.value.hasMobileApp = res.data.returnObject.hasMobileApp;
