@@ -208,7 +208,7 @@
                     </div>
                     <div class="col-md-12 d-flex justify-content-between">
                       <div>Bank:</div>
-                      <span class="font-weight-bold">Zenith bank</span>
+                      <span class="font-weight-bold">Zenith bank</span>
                     </div>
                   </div>
                 </div>

@@ -195,9 +195,9 @@
                 <div class="mt-3 col-10 offset-sm-1 offset-md-0 col-md-3 col-lg-4 text-md-right align-self-center">
                     <div>Enter account number</div>
                 </div>
-                <div class="col-12 col-sm-10 offset-sm-1 offset-md-0 col-md-6 col-lg-5 pl-md-0 mt-3" style="height: 43px;">
+                <!-- <div class="col-12 col-sm-10 offset-sm-1 offset-md-0 col-md-6 col-lg-5 pl-md-0 mt-3" style="height: 43px;">
                     <el-input class="w-100" type="text" v-model="accountNumber" @blur="resolveCustomerDetail" />
-                </div>
+                </div> -->
                 <div class="col-2 d-none d-sm-block"></div>
 
                 <div class="mt-3 col-10 offset-sm-1 offset-md-0 col-md-3 col-lg-4 text-md-right align-self-center">
@@ -347,7 +347,7 @@ import { ref,  computed } from 'vue'
 import axios from "@/gateway/backendapi";
 import finish from '../../services/progressbar/progress'
 
-import axio from  'axios'
+// import axio from  'axios'
 import { useStore } from 'vuex'
 import router from "@/router/index";
 import { useRoute } from "vue-router"
@@ -911,7 +911,7 @@ export default {
 
         return {
             contributionItems, newContribution, addContribution, lgAndUp, mdAndUp, xlAndUp,filteredBanks, setBank,
-            deleteContribution, nigerianBanks, selectedBank, resolveCustomerDetail, bankSearchText,
+            deleteContribution, nigerianBanks, selectedBank, bankSearchText,
             accountNumber, saveAndContinue, selectContribution, selectedContribution, accountName,
             accNameRef, loading, loadingSave, loadingEdit, disabled,  newConItems, firstTemplate,
             secondTemplate, thirdTemplate, toggleFirstTemplate, toggleSecondTemplate,
