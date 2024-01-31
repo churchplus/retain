@@ -45,7 +45,7 @@ export default {
           // "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
           // "tenantID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
           // "longUrl": "string",
-          shortUrl: `https://retain-psi.vercel.app/${this.route.params.token}`,
+          shortUrl: `https://r10.ng/${this.route.params.token}`,
           // "dateEntered": "2023-12-13T12:45:53.135Z",
           // "token": "string"
         },
@@ -59,7 +59,7 @@ export default {
       };
       try {
         let { data } = await axios.post(
-          `/ResolveShortenUrl?url=https://retain-psi.vercel.app/${this.route.params.token}`, payload);
+          `/ResolveShortenUrl?url=https://r10.ng/${this.route.params.token}`, payload);
         console.log(data, 'herrr');
         const source = data.source ? data.source : ""
         const medium = data.medium ? data.medium : ""
