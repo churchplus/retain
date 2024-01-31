@@ -553,75 +553,75 @@ export default {
       }
     };
 
-        const resolveCustomerDetail = async() => {
-            console.log(accountNumber.value)
-            loading.value = true
-            try {
-                let header = { headers: { Authorization: `Bearer ${process.env.VUE_APP_PAYSTACK_SECRET_KEY}` }}
-                console.log(header, "header");
+        // const resolveCustomerDetail = async() => {
+        //     console.log(accountNumber.value)
+        //     loading.value = true
+        //     try {
+        //         let header = { headers: { Authorization: `Bearer ${process.env.VUE_APP_PAYSTACK_SECRET_KEY}` }}
+        //         console.log(header, "header");
 
-                let { data } = await axio.get(`https://api.paystack.co/bank/resolve?account_number=${accountNumber.value}&bank_code=${selectedBank.value.code}`, header)
-                console.log(data)
-            }
-            catch (error) {
-                finish()
-                console.log(error)
-                loading.value = false
+        //         let { data } = await axio.get(`https://api.paystack.co/bank/resolve?account_number=${accountNumber.value}&bank_code=${selectedBank.value.code}`, header)
+        //         console.log(data)
+        //     }
+        //     catch (error) {
+        //         finish()
+        //         console.log(error)
+        //         loading.value = false
 
                 
-            }
+        //     }
             
-            try {
+        //     try {
 
-                let { data } = await axio.post(`https://api.ravepay.co/flwv3-pug/getpaidx/api/resolve_account`, {
-                    recipientaccount: accountNumber.value,
-                    destbankcode: selectedBank.value.code,
-                    PBFPubKey: process.env.VUE_APP_FLUTTERWAVE_PUBLIC_KEY_LIVE
-                })
-                console.log(data)
-                accountName.value = data.data.data.accountname
-                disabled.value = false
+        //         let { data } = await axio.post(`https://api.ravepay.co/flwv3-pug/getpaidx/api/resolve_account`, {
+        //             recipientaccount: accountNumber.value,
+        //             destbankcode: selectedBank.value.code,
+        //             PBFPubKey: process.env.VUE_APP_FLUTTERWAVE_PUBLIC_KEY_LIVE
+        //         })
+        //         console.log(data)
+        //         accountName.value = data.data.data.accountname
+        //         disabled.value = false
 
-                loading.value = false
+        //         loading.value = false
 
-                if (data.data.data.responsemessage.toLowerCase().includes('sorry')) {
-                    ElMessage({
-                        type: "warning",
-                        message: data.data.data.responsemessage,
-                        duration: 3000,
-                    });
-                }   else {
-                    ElMessage({
-                        type: "success",
-                        message: "Account Check Successful",
-                        duration: 3000,
-                    });
-                }
+        //         if (data.data.data.responsemessage.toLowerCase().includes('sorry')) {
+        //             ElMessage({
+        //                 type: "warning",
+        //                 message: data.data.data.responsemessage,
+        //                 duration: 3000,
+        //             });
+        //         }   else {
+        //             ElMessage({
+        //                 type: "success",
+        //                 message: "Account Check Successful",
+        //                 duration: 3000,
+        //             });
+        //         }
 
-            }
-            catch (error) {
-                finish()
-                console.log(error)
+        //     }
+        //     catch (error) {
+        //         finish()
+        //         console.log(error)
 
-                loading.value = false
-                    if (!accountNumber.value || accountNumber.value === "") {
-                        ElMessage({
-                        type: "warning",
-                        message: "Please enter your account number",
-                        duration: 3000,
-                    });
-                    }   else {
-                         ElMessage({
-                        type: "error",
-                        message: "Please check your banks details again",
-                        duration: 3000,
-                        });
-                    }
-                // }
+        //         loading.value = false
+        //             if (!accountNumber.value || accountNumber.value === "") {
+        //                 ElMessage({
+        //                 type: "warning",
+        //                 message: "Please enter your account number",
+        //                 duration: 3000,
+        //             });
+        //             }   else {
+        //                  ElMessage({
+        //                 type: "error",
+        //                 message: "Please check your banks details again",
+        //                 duration: 3000,
+        //                 });
+        //             }
+        //         // }
 
                 
-            }
-        }
+        //     }
+        // }
 
 
         const toggleCheckBox = (item) => {

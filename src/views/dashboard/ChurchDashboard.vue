@@ -16,7 +16,7 @@
       <div class="col-12 mb-4">
         <div class="d-flex flex-column flex-md-row justify-content-between">
           <div class="thick-secondary head-text">
-            {{ dashboardData.userName ? `Welcome, ${dashboardData.churchName}` : "" }}
+            {{ dashboardData.churchName ? `Welcome, ${dashboardData.churchName}` : "" }}
           </div>
           <div>
             <ElDropDown

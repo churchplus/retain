@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header headerName="URL Manager" />
+    <Header headerName="URL Shortner" />
     <el-main>
       <div class="d-flex justify-content-end">
         <div class="mt-3 mt-sm-0">

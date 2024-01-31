@@ -200,15 +200,15 @@
                   <div class="row">
                     <div class="col-md-12 d-flex justify-content-between">
                       <div>Account Name:</div>
-                      <span class="font-weight-bold">Complustech Limited</span>
+                      <span class="font-weight-bold">Retain technologies limited</span>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between">
                       <div>Account Number:</div>
-                      <span class="font-weight-bold">0017934252</span>
+                      <span class="font-weight-bold">1227160043</span>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between">
                       <div>Bank:</div>
-                      <span class="font-weight-bold">Access</span>
+                      <span class="font-weight-bold">Zenith bank</span>
                     </div>
                   </div>
                 </div>
