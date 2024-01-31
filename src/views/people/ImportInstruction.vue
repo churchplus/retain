@@ -293,9 +293,9 @@ export default {
           memberData.value = data.returnObject;
           displayModal.value = true;
         } catch (err) {
-          uploadLoading.value = false;
           finish();
           console.log(err);
+          uploadLoading.value = false;
           if (err.toString().toLowerCase().includes("network error")) {
             ElMessage({
               type: "warning",
@@ -323,6 +323,7 @@ export default {
             formData
           );
           console.log(data);
+          uploadLoading.value = false;
           ElMessage({
             type: "success",
             message: data.response,
@@ -331,6 +332,7 @@ export default {
           emit("uploadtogroup", data.returnObject);
         } catch (err) {
           finish();
+          uploadLoading.value = false;
           console.log(err);
           if (err.toString().toLowerCase().includes("network error")) {
             ElMessage({

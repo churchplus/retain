@@ -42,6 +42,7 @@
                     <label for="groupName" class="font-weight-600">Group name</label>
                   </div> -->
                     <div class="col-md-8">
+                    <label class="font-weight-700">Enter contact segment name</label>
                       <el-input
                         type="text"
                         v-model="groupData.name"
@@ -1431,6 +1432,8 @@ export default {
         phone: payload.personNumber,
       };
       selectedMembers.value.push(body);
+      memberListShown.value = false;
+      memberSearchResults.value = [];
     };
     const addSelectedMembersToGroup = () => {
       if (selectedMembers.value.length === 0) {

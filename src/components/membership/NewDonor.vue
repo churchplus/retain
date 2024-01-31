@@ -167,10 +167,10 @@ export default {
                             }
                             emit('person-id', {
                                 personId: res.data.personId,
-                                personFirstName: donor.firstName,
-                                personLastName: donor.lastName,
-                                personEmail: donor.email,
-                                personNumber: donor.mobilePhone
+                                personFirstName: donor.firstName ? donor.firstName : "",
+                                personLastName: donor.lastName ? donor.lastName : "",
+                                personEmail: donor.email ? donor.email : "",
+                                personNumber: donor.mobilePhone ? donor.mobilePhone : ""
                             })
                             resolve(res.data);
 

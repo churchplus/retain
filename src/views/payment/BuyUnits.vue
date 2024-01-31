@@ -315,7 +315,7 @@ export default {
       UserSMSPricing.value = data.find((i) => i.product.name.toLowerCase() === "sms");
       if (!UserSMSPricing.value) {
         ElMessageBox.confirm(
-          "SMS Unit pricing is currently not available for this currency selected, we will make it available as soon as possible, you can reach out to us by sending an email to info@churchplus.co for us to address your specific needs. Thank you for choosing Churchplus",
+          "SMS Unit pricing is currently not available for this currency selected, we will make it available as soon as possible, you can reach out to us by sending an email to info@churchplus.co for us to address your specific needs. Thank you for choosing Retain",
           "Notice",
           {
             confirmButtonText: "OK",

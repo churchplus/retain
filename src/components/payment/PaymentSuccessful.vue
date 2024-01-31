@@ -11,7 +11,7 @@
                 <div class="col-md-12 py-5 main-bottom">
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="text-center d-flex flex-column primary-text"><span class="stylish-text">Thank You!</span> <span class="font-weight-700">For Choosing Churchplus</span></p>
+                            <p class="text-center d-flex flex-column primary-text"><span class="stylish-text">Thank You!</span> <span class="font-weight-700">For Choosing Retain</span></p>
                         </div>
                     </div>
                     <div class="row action-message py-4">
